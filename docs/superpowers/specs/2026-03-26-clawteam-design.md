@@ -1037,7 +1037,221 @@ pub async fn with_retry[T](
 
 ## 12. Agent 协作流程详解
 
-### 12.1 助手决策逻辑
+### 12.1 调用链设计
+
+ClawTeam 通过多次 CLI 调用实现 Agent 协作，每次调用传入对应 Agent 的角色提示词和上下文：
+
+```
+用户输入 → 助手 CLI 调用 → 助手分析决策 → 员工 CLI 调用 → 员工执行任务 → 监工 CLI 调用 → 监工审核
+```
+
+#### 调用链示例
+
+```
+Step 1: 助手接收用户输入
+─────────────────────────────────────────────────────────
+终端调用: opencode -p "[助手 agent-prompt], [用户输入]"
+
+CLI 命令:
+  opencode 
+  -p "你是一个助手角色，负责理解用户需求并分配任务给合适的员工。
+      当前可用员工: [员工A, 员工B]
+      当前可用监工: [监工A]
+      
+      用户输入: 生成用户管理模块的 CRUD 接口"
+      
+助手分析结果:
+  - 意图: 代码生成
+  - 需要审核: 是
+  - 分配任务: 员工A 执行代码生成，监工A 审核
+
+
+Step 2: 助手派发任务给员工A
+─────────────────────────────────────────────────────────
+终端调用: opencode -p "[员工A agent-prompt], [skill], [助手分配任务1]"
+
+CLI 命令:
+  opencode 
+  -p "你是一个员工角色，负责执行助手分配的任务。
+      你的能力: [code-generation, refactoring, testing]
+      
+      使用技能: generate-api
+      
+      助手分配任务: 为用户管理模块生成 CRUD 接口，包含:
+        - GET /users - 获取用户列表
+        - POST /users - 创建用户
+        - PUT /users/:id - 更新用户
+        - DELETE /users/:id - 删除用户"
+      
+员工A 执行结果:
+  - 生成文件: user_api.rs, user_service.rs, user_test.rs
+  - 状态: 完成
+
+
+Step 3: 助手派发任务给监工A
+─────────────────────────────────────────────────────────
+终端调用: gemini -p "[监工A agent-prompt], [审核任务]"
+
+CLI 命令:
+  gemini 
+  -p "你是一个监工角色，负责审核员工的工作成果。
+      审核标准: [code-style, type-safety, test-coverage]
+      
+      审核对象: 员工A 生成的用户管理 CRUD 接口
+      文件列表: user_api.rs, user_service.rs, user_test.rs"
+      
+监工A 审核结果:
+  - 代码风格: ✓ 通过
+  - 类型安全: ✓ 通过
+  - 测试覆盖: ✓ 通过
+  - 结论: 通过
+
+
+Step 4: 助手汇总结果反馈用户
+─────────────────────────────────────────────────────────
+助手输出:
+  "已完成用户管理模块的 CRUD 接口生成:
+   - 生成了 3 个文件
+   - 代码审核通过
+   - 文件位置: src/user/"
+```
+
+### 12.2 Agent Prompt 模板
+
+每个 Agent 角色有对应的系统提示词模板：
+
+```moonbit
+/// Agent 角色提示词模板
+pub struct AgentPromptTemplate {
+  role : AgentRole
+  system_prompt : String
+  available_tools : Array[String]
+}
+
+/// 助手提示词模板
+let ASSISTANT_PROMPT_TEMPLATE = """
+你是一个助手角色，负责：
+1. 理解用户需求
+2. 分析任务复杂度
+3. 决定任务分配策略
+4. 汇总员工和监工的反馈
+
+当前可用员工: {{available_workers}}
+当前可用监工: {{available_supervisors}}
+派发策略: {{dispatch_strategy}}
+
+请分析用户输入，决定如何分配任务。
+"""
+
+/// 员工提示词模板
+let WORKER_PROMPT_TEMPLATE = """
+你是一个员工角色，负责：
+1. 执行助手分配的任务
+2. 使用指定技能完成任务
+3. 向助手反馈执行结果
+
+你的能力: {{capabilities}}
+使用技能: {{skill}}
+
+请执行助手分配的任务。
+"""
+
+/// 监工提示词模板
+let SUPERVISOR_PROMPT_TEMPLATE = """
+你是一个监工角色，负责：
+1. 审核员工的工作成果
+2. 检查是否符合标准
+3. 向助手反馈审核结果
+
+审核标准: {{review_criteria}}
+
+请审核指定的工作成果。
+"""
+
+/// 渲染提示词模板
+pub fn render_prompt(
+  template : String,
+  variables : Map[String, String],
+) -> String {
+  var result = template
+  for key, value in variables {
+    result = result.replace("{{" + key + "}}", value)
+  }
+  result
+}
+```
+
+### 12.3 CLI 调用封装
+
+```moonbit
+/// CLI 调用参数
+pub struct CliCallParams {
+  cli_tool : String              // 工具名称，如 "opencode"
+  agent_prompt : String          // Agent 角色提示词
+  context : String               // 上下文（用户输入/任务/审核对象）
+  skill? : String                // 使用的技能（可选）
+  variables : Map[String, String] // 模板变量
+}
+
+/// 构建 CLI 命令
+pub fn build_cli_command(
+  tool_config : CliToolConfig,
+  params : CliCallParams,
+) -> Array[String] {
+  let prompt = render_prompt(params.agent_prompt, params.variables)
+  let full_prompt = match params.skill {
+    Some(skill) => "\{prompt}\n\n使用技能: \{skill}\n\n\{params.context}"
+    None => "\{prompt}\n\n\{params.context}"
+  }
+  
+  let mut args = tool_config.args.to_array()
+  args.push("-p")
+  args.push(full_prompt)
+  args
+}
+
+/// 执行 Agent CLI 调用
+pub async fn execute_agent_call(
+  agent : AgentConfig,
+  cli_registry : CliToolRegistry,
+  context : String,
+  skill? : String,
+) -> Result[CliCallResult, ClawTeamError] {
+  // 获取 CLI 工具配置
+  let tool_config = cli_registry.tools.get(agent.cli_tool)?
+  
+  // 构建 prompt
+  let prompt_template = get_prompt_template(agent.role)
+  let variables = build_variables(agent)
+  let agent_prompt = render_prompt(prompt_template, variables)
+  
+  // 构建 CLI 参数
+  let params = CliCallParams::{
+    cli_tool: agent.cli_tool,
+    agent_prompt,
+    context,
+    skill?,
+    variables: {},
+  }
+  
+  // 执行 CLI
+  let command = build_cli_command(tool_config, params)
+  let result = @spawn.spawn(
+    tool_config.command,
+    command,
+    cwd=agent.cwd,
+    env=merge_env(tool_config.env, agent.env),
+  )
+  
+  Ok(CliCallResult::{
+    stdout: result.stdout,
+    stderr: result.stderr,
+    status: result.status,
+  })
+}
+```
+
+### 12.4 消息流转格式
 
 ```moonbit
 pub async fn assistant_decision_loop(
