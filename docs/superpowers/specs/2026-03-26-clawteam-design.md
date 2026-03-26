@@ -237,18 +237,11 @@ clawteam/
 
 ## 4. 核心数据结构
 
-### 4.1 Agent 角色与配置
+### 4.1 CLI 工具定义
 
 ```moonbit
-/// Agent 角色定义
-pub enum AgentRole {
-  Assistant    // 助手：理解需求、决策、分配任务（必须，默认）
-  Worker       // 员工：执行任务、反馈给助手
-  Supervisor   // 监工：核查任务完成情况、反馈给助手
-} derive(ToJson, FromJson, Show, Eq)
-
-/// 终端类型枚举
-pub enum TerminalType {
+/// 支持的 CLI 工具类型
+pub enum CliToolType {
   Claude
   Codex
   Gemini
@@ -256,6 +249,35 @@ pub enum TerminalType {
   Qwen
   OpenClaw
   Shell
+} derive(ToJson, FromJson, Show, Eq)
+
+/// CLI 工具配置
+pub struct CliToolConfig {
+  tool_type : CliToolType
+  command : String
+  args : Array[String]
+  env : Map[String, String]
+  cwd : String?
+  ready_patterns : Array[String]      // 就绪提示符，如 ["╭─"]
+  working_patterns : Array[String]    // 工作中标识，如 ["Thinking..."]
+  output_patterns : OutputPatterns?
+  timeout? : Int
+}
+
+/// CLI 工具注册表
+pub struct CliToolRegistry {
+  tools : Map[String, CliToolConfig]  // key: 工具名称，如 "opencode"
+}
+```
+
+### 4.2 Agent 角色与配置
+
+```moonbit
+/// Agent 角色定义
+pub enum AgentRole {
+  Assistant    // 助手：理解需求、决策、分配任务（必须，默认）
+  Worker       // 员工：执行任务、反馈给助手
+  Supervisor   // 监工：核查任务完成情况、反馈给助手
 } derive(ToJson, FromJson, Show, Eq)
 
 /// 终端会话状态
@@ -272,10 +294,9 @@ pub struct AgentConfig {
   id : String
   name : String
   role : AgentRole
-  terminal_type : TerminalType
-  command : String?
-  args : Array[String]
-  env : Map[String, String]
+  cli_tool : String              // 引用 CliToolRegistry 中的工具名称
+  args : Array[String]           // 额外参数（覆盖默认）
+  env : Map[String, String]      // 额外环境变量（覆盖默认）
   cwd : String?
   auto_start : Bool
   // 角色特定配置
@@ -570,30 +591,54 @@ ui/
 │  Agent     │  ┌──────────────────────────────────────────────────────┐ │
 │  面板      │  │ [用户] 生成用户管理模块的 CRUD 接口                    │ │
 │            │  ├──────────────────────────────────────────────────────┤ │
-│  ┌────────┐│  │ [助手-Claude] 收到任务，正在分析...                    │ │
-│  │助手    ││  │   → 派发给 [Codex-员工] 执行代码生成                  │ │
-│  │Claude  ││  ├──────────────────────────────────────────────────────┤ │
-│  │● 决策中││  │ [员工-Codex] 正在生成 user_api.rs...                  │ │
-│  │✓ 必须  ││  ├──────────────────────────────────────────────────────┤ │
-│  └────────┘│  │ [监工-Gemini] 开始审核...                             │ │
-│  ┌────────┐│  ├──────────────────────────────────────────────────────┤ │
-│  │员工    ││  │ [助手-Claude] 任务完成，审核通过                      │ │
-│  │Codex   ││  └──────────────────────────────────────────────────────┘ │
-│  │● 执行中││                                                            │
-│  │✓ 可选  ││  输入框                                                    │
-│  └────────┘│  ┌──────────────────────────────────────────────────────┐ │
-│  ┌────────┐│  │ [输入消息...]                    [发送] [选择Skill ▼] │ │
-│  │监工    ││  └──────────────────────────────────────────────────────┘ │
-│  │Gemini  ││                                                            │
-│  │○ 等待  ││  CLI 输出面板                                              │
-│  │✓ 可选  ││  ┌──────────────────────────────────────────────────────┐ │
-│  └────────┘│  │ $ claude generate-api                                 │ │
-│            │  │ Generating user_api.rs...                              │ │
-│  [+ 添加]  │  │ ✓ Complete                                             │ │
-│            │  └──────────────────────────────────────────────────────┘ │
+│  ┌────────┐│  │ [助手-主助手/OpenCode] 收到任务，正在分析...           │ │
+│  │助手    ││  │   → 派发给 [员工-代码生成器/OpenCode] 执行代码生成    │ │
+│  │主助手  ││  ├──────────────────────────────────────────────────────┤ │
+│  │● 决策中││  │ [员工-代码生成器/OpenCode] 正在生成 user_api.rs...    │ │
+│  │OpenCode││  ├──────────────────────────────────────────────────────┤ │
+│  │✓ 必须  ││  │ [监工-代码审核/Gemini] 开始审核...                    │ │
+│  └────────┘│  ├──────────────────────────────────────────────────────┤ │
+│  ┌────────┐│  │ [助手-主助手/OpenCode] 任务完成，审核通过              │ │
+│  │员工    ││  └──────────────────────────────────────────────────────┘ │
+│  │代码生成││                                                            │
+│  │● 执行中││  输入框                                                    │
+│  │OpenCode││  ┌──────────────────────────────────────────────────────┐ │
+│  │✓ 可选  ││  │ [输入消息...]                    [发送] [选择Skill ▼] │ │
+│  └────────┘│  └──────────────────────────────────────────────────────┘ │
+│  ┌────────┐│                                                            │
+│  │监工    ││  CLI 输出面板                                              │
+│  │代码审核││  ┌──────────────────────────────────────────────────────┐ │
+│  │○ 等待  ││  │ $ opencode generate-api                               │ │
+│  │Gemini  ││  │ Generating user_api.rs...                              │ │
+│  │✓ 可选  ││  │ ✓ Complete                                             │ │
+│  └────────┘│  └──────────────────────────────────────────────────────┘ │
+│            │                                                            │
+│  [+ 添加]  │                                                            │
 ├────────────┴────────────────────────────────────────────────────────────┤
 │  [📋 原始输出] [🔍 搜索] [⏸️ 暂停] [⏹️ 终止] [📋 审计日志]              │
 └─────────────────────────────────────────────────────────────────────────┘
+
+Agent 配置弹窗:
+┌─────────────────────────────────────────┐
+│ 配置 Agent                              │
+├─────────────────────────────────────────┤
+│ 名称: [主助手          ]                │
+│ 角色: [助手 ▼] (助手/员工/监工)          │
+│                                         │
+│ CLI 工具: [OpenCode ▼]                  │
+│   ┌─────────────────────────────────┐   │
+│   │ ○ Claude Code                   │   │
+│   │ ○ Codex                         │   │
+│   │ ○ Gemini                        │   │
+│   │ ● OpenCode                      │   │
+│   │ ○ Qwen                          │   │
+│   │ ○ OpenClaw                      │   │
+│   └─────────────────────────────────┘   │
+│                                         │
+│ 自动启动: [✓]                           │
+│                                         │
+│         [取消]  [保存]                  │
+└─────────────────────────────────────────┘
 ```
 
 ---
@@ -613,57 +658,94 @@ ui/
     "path": "~/projects/my-project",
     "name": "My Project"
   },
+  "cliTools": {
+    "claude": {
+      "command": "claude",
+      "readyPatterns": ["╭─"],
+      "workingPatterns": ["Thinking...", "Working..."]
+    },
+    "codex": {
+      "command": "codex",
+      "readyPatterns": [">"],
+      "workingPatterns": []
+    },
+    "gemini": {
+      "command": "gemini",
+      "readyPatterns": [">"],
+      "workingPatterns": []
+    },
+    "opencode": {
+      "command": "opencode",
+      "readyPatterns": [">"],
+      "workingPatterns": ["Processing..."]
+    },
+    "qwen": {
+      "command": "qwen",
+      "readyPatterns": [">"],
+      "workingPatterns": []
+    },
+    "openclaw": {
+      "command": "openclaw",
+      "readyPatterns": [">"],
+      "workingPatterns": []
+    }
+  },
   "agents": [
     {
-      "id": "claude-assistant",
-      "name": "Claude",
+      "id": "assistant-1",
+      "name": "主助手",
       "role": "assistant",
-      "terminalType": "claude",
-      "command": "claude",
+      "cliTool": "opencode",
       "args": [],
       "env": {},
       "cwd": null,
       "autoStart": true,
       "enabled": true,
-      "readyPatterns": ["╭─"],
-      "workingPatterns": ["Thinking...", "Working..."],
       "roleConfig": {
-        "availableWorkers": ["codex-worker", "qwen-worker"],
-        "availableSupervisors": ["gemini-supervisor"],
+        "availableWorkers": ["worker-1", "worker-2"],
+        "availableSupervisors": ["supervisor-1"],
         "dispatchStrategy": "capability-match"
       },
       "skills": []
     },
     {
-      "id": "codex-worker",
-      "name": "Codex",
+      "id": "worker-1",
+      "name": "代码生成器",
       "role": "worker",
-      "terminalType": "codex",
-      "command": "codex",
+      "cliTool": "opencode",
       "args": [],
       "enabled": true,
       "autoStart": false,
-      "readyPatterns": [">"],
-      "workingPatterns": [],
       "roleConfig": {
-        "assistantId": "claude-assistant",
+        "assistantId": "assistant-1",
         "capabilities": ["code-generation", "refactoring", "testing"]
       },
       "skills": []
     },
     {
-      "id": "gemini-supervisor",
-      "name": "Gemini",
-      "role": "supervisor",
-      "terminalType": "gemini",
-      "command": "gemini",
+      "id": "worker-2",
+      "name": "Codex 执行者",
+      "role": "worker",
+      "cliTool": "codex",
       "args": [],
       "enabled": true,
       "autoStart": false,
-      "readyPatterns": [">"],
-      "workingPatterns": [],
       "roleConfig": {
-        "assistantId": "claude-assistant",
+        "assistantId": "assistant-1",
+        "capabilities": ["code-generation", "debugging"]
+      },
+      "skills": []
+    },
+    {
+      "id": "supervisor-1",
+      "name": "代码审核",
+      "role": "supervisor",
+      "cliTool": "gemini",
+      "args": [],
+      "enabled": true,
+      "autoStart": false,
+      "roleConfig": {
+        "assistantId": "assistant-1",
         "reviewCriteria": ["code-style", "type-safety", "test-coverage"]
       },
       "skills": []
@@ -1096,3 +1178,4 @@ clawteam gateway --daemon
 |------|------|----------|
 | 1.0.0 | 2026-03-26 | 初始设计文档 |
 | 1.0.1 | 2026-03-26 | 补充错误处理、Agent 协作流程、部署运维章节 |
+| 1.0.2 | 2026-03-26 | 将 CLI 工具与 Agent 角色解耦，支持每个角色选择任意 CLI 工具 |
