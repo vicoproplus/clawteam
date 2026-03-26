@@ -855,8 +855,244 @@ ui/
 
 ---
 
+## 11. 错误处理
+
+### 11.1 错误类型定义
+
+```moonbit
+pub enum ClawTeamError {
+  // 配置错误
+  ConfigNotFound(String)
+  ConfigInvalid(String)
+  AgentNotFound(String)
+  SkillNotFound(String)
+  
+  // 进程错误
+  ProcessStartFailed(String)
+  ProcessTimeout(String)
+  ProcessCrashed(Int)           // 退出码
+  
+  // 调度错误
+  NoAvailableAgent
+  AgentBusy(String)
+  DispatchFailed(String)
+  
+  // 渠道错误
+  ChannelError(String)
+  WebhookInvalid(String)
+  
+  // 审计错误
+  AuditLogWriteFailed(String)
+}
+
+pub fn ClawTeamError::to_message(self : ClawTeamError) -> String {
+  match self {
+    ConfigNotFound(path) => "配置文件未找到: \{path}"
+    ConfigInvalid(msg) => "配置文件无效: \{msg}"
+    AgentNotFound(id) => "Agent 未找到: \{id}"
+    SkillNotFound(id) => "Skill 未找到: \{id}"
+    ProcessStartFailed(cmd) => "进程启动失败: \{cmd}"
+    ProcessTimeout(timeout) => "进程超时 (\{timeout}ms)"
+    ProcessCrashed(code) => "进程崩溃，退出码: \{code}"
+    NoAvailableAgent => "无可用 Agent"
+    AgentBusy(id) => "Agent 忙碌: \{id}"
+    DispatchFailed(msg) => "派发失败: \{msg}"
+    ChannelError(msg) => "渠道错误: \{msg}"
+    WebhookInvalid(msg) => "Webhook 无效: \{msg}"
+    AuditLogWriteFailed(msg) => "审计日志写入失败: \{msg}"
+  }
+}
+```
+
+### 11.2 错误处理策略
+
+| 错误类型 | 处理策略 | 用户反馈 |
+|----------|----------|----------|
+| 配置错误 | 启动时检查，失败则退出 | 控制台错误信息 |
+| 进程启动失败 | 记录审计日志，返回错误 | UI 显示错误提示 |
+| 进程超时 | 终止进程，记录审计 | UI 显示超时提示 |
+| Agent 忙碌 | 加入队列等待 | UI 显示排队状态 |
+| 渠道错误 | 记录日志，重试（可配置） | 渠道错误回执 |
+
+### 11.3 重试策略
+
+```moonbit
+pub struct RetryConfig {
+  max_attempts : Int
+  backoff_ms : Int
+  backoff_multiplier : Double
+}
+
+let DEFAULT_RETRY = RetryConfig::{
+  max_attempts: 3,
+  backoff_ms: 1000,
+  backoff_multiplier: 2.0,
+}
+
+pub async fn with_retry[T](
+  config : RetryConfig,
+  f : async () -> Result[T, ClawTeamError],
+) -> Result[T, ClawTeamError] {
+  let mut attempt = 0
+  let mut delay = config.backoff_ms
+  loop {
+    match f() {
+      Ok(result) => return Ok(result)
+      Err(error) => {
+        attempt += 1
+        if attempt >= config.max_attempts {
+          return Err(error)
+        }
+        @clock.sleep(delay)
+        delay = (delay.to_double() * config.backoff_multiplier).to_int()
+      }
+    }
+  }
+}
+```
+
+---
+
+## 12. Agent 协作流程详解
+
+### 12.1 助手决策逻辑
+
+```moonbit
+pub async fn assistant_decision_loop(
+  assistant : AgentConfig,
+  message : String,
+  context : DispatchContext,
+) -> Result[AgentDecision, ClawTeamError] {
+  // 1. 分析用户意图
+  let intent = analyze_intent(message)
+  
+  // 2. 确定需要的执行步骤
+  let steps = match intent {
+    Intent::CodeGeneration => [
+      Step::Dispatch("worker", "生成代码"),
+      Step::Dispatch("supervisor", "审核代码"),
+    ]
+    Intent::CodeReview => [
+      Step::Dispatch("supervisor", "审核代码"),
+    ]
+    Intent::Refactoring => [
+      Step::Dispatch("worker", "重构代码"),
+      Step::Dispatch("supervisor", "验证重构"),
+    ]
+    Intent::Question => [
+      Step::DirectReply,
+    ]
+  }
+  
+  // 3. 选择合适的 Worker/Supervisor
+  let selected_agents = select_agents(assistant, steps)
+  
+  Ok(AgentDecision::{ steps, selected_agents })
+}
+```
+
+### 12.2 消息流转格式
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│ 消息流转示例                                                 │
+├─────────────────────────────────────────────────────────────┤
+│ [用户] 生成用户管理模块的 CRUD 接口                          │
+│                                                             │
+│ ──→ [助手-Claude] 分析意图 → 需要代码生成 + 审核             │
+│     派发任务: 代码生成 → codex-worker                        │
+│                                                             │
+│ ──→ [员工-Codex] 执行: 生成 CRUD 代码                       │
+│     输出: user_api.rs, user_service.rs                      │
+│     状态: 完成 → 通知助手                                    │
+│                                                             │
+│ ──→ [助手-Claude] 收到完成通知 → 派发审核任务                │
+│     派发任务: 代码审核 → gemini-supervisor                   │
+│                                                             │
+│ ──→ [监工-Gemini] 执行: 审核代码                            │
+│     检查: 代码风格 ✓ 类型安全 ✓ 测试覆盖 ✓                  │
+│     状态: 通过 → 通知助手                                    │
+│                                                             │
+│ ──→ [助手-Claude] 汇总结果 → 反馈用户                       │
+│     输出: 已生成 3 个文件，审核通过                          │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### 12.3 状态同步机制
+
+```moonbit
+/// Agent 状态广播
+pub struct AgentStatusBroadcast {
+  agent_id : String
+  old_status : TerminalSessionStatus
+  new_status : TerminalSessionStatus
+  timestamp : Int
+  reason : String?
+}
+
+/// 消息状态更新
+pub struct MessageStatusUpdate {
+  message_id : String
+  old_status : MessageStatus
+  new_status : MessageStatus
+  linked_agent : String?
+  timestamp : Int
+}
+
+/// UI 订阅事件
+pub enum UiEvent {
+  AgentStatusChanged(AgentStatusBroadcast)
+  MessageStatusChanged(MessageStatusUpdate)
+  NewMessage(ChatMessage)
+  CliOutput(CliOutputChunk)
+  AuditEntry(AuditLogEntry)
+}
+```
+
+---
+
+## 13. 部署与运维
+
+### 13.1 启动命令
+
+```bash
+# 启动 Gateway 服务
+clawteam gateway --port 3000 --home ~/.clawteam
+
+# 指定配置文件
+clawteam gateway --config /path/to/clawteam.json
+
+# 开发模式（启用调试日志）
+clawteam gateway --dev
+
+# 后台运行
+clawteam gateway --daemon
+```
+
+### 13.2 环境变量
+
+| 变量名 | 说明 | 默认值 |
+|--------|------|--------|
+| `CLAWTEAM_HOME` | 配置目录 | `~/.clawteam` |
+| `CLAWTEAM_PORT` | Gateway 端口 | `3000` |
+| `CLAWTEAM_LOG_LEVEL` | 日志级别 | `info` |
+| `CLAWTEAM_AUDIT_ENABLED` | 审计日志开关 | `true` |
+
+### 13.3 日志轮转
+
+```
+~/.clawteam/logs/
+├── audit-2026-03-26.jsonl
+├── audit-2026-03-25.jsonl
+├── gateway.log
+└── gateway.log.1
+```
+
+---
+
 ## 版本历史
 
 | 版本 | 日期 | 变更说明 |
 |------|------|----------|
 | 1.0.0 | 2026-03-26 | 初始设计文档 |
+| 1.0.1 | 2026-03-26 | 补充错误处理、Agent 协作流程、部署运维章节 |
