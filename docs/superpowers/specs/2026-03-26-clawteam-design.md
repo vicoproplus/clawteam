@@ -1048,72 +1048,112 @@ ClawTeam 通过多次 CLI 调用实现 Agent 协作，每次调用传入对应 A
 #### 调用链示例
 
 ```
-Step 1: 助手接收用户输入
+Step 1: 助手接收用户输入（包含所有可用技能）
 ─────────────────────────────────────────────────────────
 终端调用: opencode -p "[助手 agent-prompt], [用户输入]"
 
 CLI 命令:
   opencode 
-  -p "你是一个助手角色，负责理解用户需求并分配任务给合适的员工。
+  -p "你是一个助手角色，负责：
+      1. 理解用户需求
+      2. 分析任务复杂度，决定使用哪些技能
+      3. 分配任务给合适的员工
+      4. 汇总员工和监工的反馈
+      
       当前可用员工: [员工A, 员工B]
       当前可用监工: [监工A]
+      派发策略: 能力匹配
+      
+      当前可用技能: [generate-api, generate-tests, code-review, refactoring]
       
       用户输入: 生成用户管理模块的 CRUD 接口"
       
 助手分析结果:
-  - 意图: 代码生成
+  - 意图: 代码生成 + 测试
+  - 决定使用的技能: generate-api, generate-tests
   - 需要审核: 是
-  - 分配任务: 员工A 执行代码生成，监工A 审核
+  - 分配任务:
+    - 员工A: 生成 CRUD 接口代码
+    - 员工B: 生成单元测试
+    - 监工A: 审核代码和测试
 
 
-Step 2: 助手派发任务给员工A
+Step 2: 助手派发任务给员工A（不含 skill 参数，任务已明确）
 ─────────────────────────────────────────────────────────
-终端调用: opencode -p "[员工A agent-prompt], [skill], [助手分配任务1]"
+终端调用: opencode -p "[员工A agent-prompt], [助手分配的任务]"
 
 CLI 命令:
   opencode 
   -p "你是一个员工角色，负责执行助手分配的任务。
+      
       你的能力: [code-generation, refactoring, testing]
       
-      使用技能: generate-api
-      
-      助手分配任务: 为用户管理模块生成 CRUD 接口，包含:
+      助手分配的任务:
+      为用户管理模块生成 CRUD 接口，包含以下端点：
         - GET /users - 获取用户列表
         - POST /users - 创建用户
         - PUT /users/:id - 更新用户
-        - DELETE /users/:id - 删除用户"
+        - DELETE /users/:id - 删除用户
+      
+      输出要求：生成 Rust 代码，包含 API 处理函数和数据结构。"
       
 员工A 执行结果:
-  - 生成文件: user_api.rs, user_service.rs, user_test.rs
+  - 生成文件: user_api.rs, user_service.rs
   - 状态: 完成
 
 
-Step 3: 助手派发任务给监工A
+Step 3: 助手派发任务给员工B
+─────────────────────────────────────────────────────────
+终端调用: opencode -p "[员工B agent-prompt], [助手分配的任务]"
+
+CLI 命令:
+  opencode 
+  -p "你是一个员工角色，负责执行助手分配的任务。
+      
+      你的能力: [testing, debugging]
+      
+      助手分配的任务:
+      为用户管理模块的 CRUD 接口生成单元测试，覆盖以下场景：
+        - 正常的 CRUD 操作
+        - 参数校验失败
+        - 权限检查
+      
+      输出要求：生成 Rust 测试代码。"
+      
+员工B 执行结果:
+  - 生成文件: user_test.rs
+  - 状态: 完成
+
+
+Step 4: 助手派发任务给监工A
 ─────────────────────────────────────────────────────────
 终端调用: gemini -p "[监工A agent-prompt], [审核任务]"
 
 CLI 命令:
   gemini 
   -p "你是一个监工角色，负责审核员工的工作成果。
+      
       审核标准: [code-style, type-safety, test-coverage]
       
-      审核对象: 员工A 生成的用户管理 CRUD 接口
-      文件列表: user_api.rs, user_service.rs, user_test.rs"
+      审核对象:
+      - 员工A 生成的用户管理 CRUD 接口 (user_api.rs, user_service.rs)
+      - 员工B 生成的单元测试 (user_test.rs)"
       
 监工A 审核结果:
   - 代码风格: ✓ 通过
   - 类型安全: ✓ 通过
-  - 测试覆盖: ✓ 通过
+  - 测试覆盖: ✓ 通过（覆盖率 85%）
   - 结论: 通过
 
 
-Step 4: 助手汇总结果反馈用户
+Step 5: 助手汇总结果反馈用户
 ─────────────────────────────────────────────────────────
 助手输出:
-  "已完成用户管理模块的 CRUD 接口生成:
-   - 生成了 3 个文件
-   - 代码审核通过
-   - 文件位置: src/user/"
+  "已完成用户管理模块的 CRUD 接口生成：
+   - API 接口: user_api.rs, user_service.rs（员工A）
+   - 单元测试: user_test.rs（员工B）
+   - 代码审核: 通过（监工A）
+   - 测试覆盖率: 85%"
 ```
 
 ### 12.2 Agent Prompt 模板
@@ -1128,32 +1168,32 @@ pub struct AgentPromptTemplate {
   available_tools : Array[String]
 }
 
-/// 助手提示词模板
+/// 助手提示词模板（包含所有可用技能）
 let ASSISTANT_PROMPT_TEMPLATE = """
 你是一个助手角色，负责：
 1. 理解用户需求
-2. 分析任务复杂度
-3. 决定任务分配策略
+2. 分析任务复杂度，决定使用哪些技能
+3. 分配任务给合适的员工
 4. 汇总员工和监工的反馈
 
 当前可用员工: {{available_workers}}
 当前可用监工: {{available_supervisors}}
 派发策略: {{dispatch_strategy}}
 
-请分析用户输入，决定如何分配任务。
+当前可用技能: {{skills}}
+
+请分析用户输入，决定使用哪些技能，如何分配任务。
 """
 
-/// 员工提示词模板
+/// 员工提示词模板（不含 skill，由助手决定任务内容）
 let WORKER_PROMPT_TEMPLATE = """
 你是一个员工角色，负责：
 1. 执行助手分配的任务
-2. 使用指定技能完成任务
-3. 向助手反馈执行结果
+2. 向助手反馈执行结果
 
 你的能力: {{capabilities}}
-使用技能: {{skill}}
 
-请执行助手分配的任务。
+助手分配的任务: {{assigned_task}}
 """
 
 /// 监工提示词模板
@@ -1189,7 +1229,6 @@ pub struct CliCallParams {
   cli_tool : String              // 工具名称，如 "opencode"
   agent_prompt : String          // Agent 角色提示词
   context : String               // 上下文（用户输入/任务/审核对象）
-  skill? : String                // 使用的技能（可选）
   variables : Map[String, String] // 模板变量
 }
 
@@ -1199,10 +1238,7 @@ pub fn build_cli_command(
   params : CliCallParams,
 ) -> Array[String] {
   let prompt = render_prompt(params.agent_prompt, params.variables)
-  let full_prompt = match params.skill {
-    Some(skill) => "\{prompt}\n\n使用技能: \{skill}\n\n\{params.context}"
-    None => "\{prompt}\n\n\{params.context}"
-  }
+  let full_prompt = "\{prompt}\n\n\{params.context}"
   
   let mut args = tool_config.args.to_array()
   args.push("-p")
@@ -1210,31 +1246,79 @@ pub fn build_cli_command(
   args
 }
 
-/// 执行 Agent CLI 调用
-pub async fn execute_agent_call(
+/// 执行助手 CLI 调用（包含所有技能）
+pub async fn execute_assistant_call(
   agent : AgentConfig,
   cli_registry : CliToolRegistry,
-  context : String,
-  skill? : String,
+  skills : Array[Skill],
+  user_input : String,
 ) -> Result[CliCallResult, ClawTeamError] {
-  // 获取 CLI 工具配置
   let tool_config = cli_registry.tools.get(agent.cli_tool)?
+  let prompt_template = ASSISTANT_PROMPT_TEMPLATE
   
-  // 构建 prompt
-  let prompt_template = get_prompt_template(agent.role)
-  let variables = build_variables(agent)
+  // 构建变量
+  let skill_names = skills.map(fn(s) { s.name }).join(", ")
+  let variables = {
+    "available_workers": agent.role_config.available_workers.join(", "),
+    "available_supervisors": agent.role_config.available_supervisors.join(", "),
+    "dispatch_strategy": agent.role_config.dispatch_strategy.to_string(),
+    "skills": skill_names,
+  }
+  
   let agent_prompt = render_prompt(prompt_template, variables)
-  
-  // 构建 CLI 参数
   let params = CliCallParams::{
     cli_tool: agent.cli_tool,
     agent_prompt,
-    context,
-    skill?,
+    context: user_input,
     variables: {},
   }
   
-  // 执行 CLI
+  let command = build_cli_command(tool_config, params)
+  let result = @spawn.spawn(
+    tool_config.command,
+    command,
+    cwd=agent.cwd,
+    env=merge_env(tool_config.env, agent.env),
+  )
+  
+  Ok(CliCallResult::{
+    stdout: result.stdout,
+    stderr: result.stderr,
+    status: result.status,
+  })
+}
+
+/// 执行员工/监工 CLI 调用（不含 skill，由助手决定任务）
+pub async fn execute_agent_call(
+  agent : AgentConfig,
+  cli_registry : CliToolRegistry,
+  assigned_task : String,
+) -> Result[CliCallResult, ClawTeamError] {
+  let tool_config = cli_registry.tools.get(agent.cli_tool)?
+  let prompt_template = match agent.role {
+    Worker => WORKER_PROMPT_TEMPLATE
+    Supervisor => SUPERVISOR_PROMPT_TEMPLATE
+    _ => return Err(ClawTeamError::InvalidRole)
+  }
+  
+  // 构建变量
+  let variables = match agent.role {
+    Worker => {
+      "capabilities": agent.role_config.capabilities.join(", "),
+    }
+    Supervisor => {
+      "review_criteria": agent.role_config.review_criteria.join(", "),
+    }
+  }
+  
+  let agent_prompt = render_prompt(prompt_template, variables)
+  let params = CliCallParams::{
+    cli_tool: agent.cli_tool,
+    agent_prompt,
+    context: assigned_task,
+    variables: {},
+  }
+  
   let command = build_cli_command(tool_config, params)
   let result = @spawn.spawn(
     tool_config.command,
@@ -1393,3 +1477,4 @@ clawteam gateway --daemon
 | 1.0.0 | 2026-03-26 | 初始设计文档 |
 | 1.0.1 | 2026-03-26 | 补充错误处理、Agent 协作流程、部署运维章节 |
 | 1.0.2 | 2026-03-26 | 将 CLI 工具与 Agent 角色解耦，支持每个角色选择任意 CLI 工具 |
+| 1.0.3 | 2026-03-26 | 调整调用链设计：助手 prompt 包含所有技能，员工 prompt 不含 skill，由助手决定任务内容 |
