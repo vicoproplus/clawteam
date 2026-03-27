@@ -1,0 +1,53 @@
+﻿**********************************************************************
+** Visual Studio 2022 Developer Command Prompt v17.14.29
+** Copyright (c) 2025 Microsoft Corporation
+**********************************************************************
+[vcvarsall.bat] Environment initialized for: 'x64'
+failed: "C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\bin\HostX64\x64\cl.exe" /FoE:\moonbit\clawteam\_build\native\debug\test\internal\backtrace\backtrace.obj /IC:\Users\Administrator\.moon\include /c /utf-8 /wd4819 /nologo /Od E:\moonbit\clawteam\internal\backtrace\backtrace.c
+failed: "C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\bin\HostX64\x64\cl.exe" /FoE:\moonbit\clawteam\_build\native\debug\test\internal\os\os.obj /IC:\Users\Administrator\.moon\include /c /utf-8 /wd4819 /nologo /Od E:\moonbit\clawteam\internal\os\os.c
+failed: "C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\bin\HostX64\x64\cl.exe" /FoE:\moonbit\clawteam\_build\native\debug\test\internal\rand\rand.obj /IC:\Users\Administrator\.moon\include /c /utf-8 /wd4819 /nologo /Od E:\moonbit\clawteam\internal\rand\rand.c
+failed: "C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\bin\HostX64\x64\cl.exe" /FoE:\moonbit\clawteam\_build\native\debug\test\internal\fsx\lock.obj /IC:\Users\Administrator\.moon\include /c /utf-8 /wd4819 /nologo /Od E:\moonbit\clawteam\internal\fsx\lock.c
+failed: "C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\bin\HostX64\x64\cl.exe" /FoE:\moonbit\clawteam\_build\native\debug\test\internal\tty\tty.obj /IC:\Users\Administrator\.moon\include /c /utf-8 /wd4819 /nologo /Od E:\moonbit\clawteam\internal\tty\tty.c
+failed: "C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\bin\HostX64\x64\cl.exe" /FoE:\moonbit\clawteam\_build\native\debug\test\internal\fsx\readlink.obj /IC:\Users\Administrator\.moon\include /c /utf-8 /wd4819 /nologo /Od E:\moonbit\clawteam\internal\fsx\readlink.c
+failed: "C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\bin\HostX64\x64\cl.exe" /FoE:\moonbit\clawteam\_build\native\debug\test\internal\spawn\spawn.obj /IC:\Users\Administrator\.moon\include /c /utf-8 /wd4819 /nologo /Od E:\moonbit\clawteam\internal\spawn\spawn.c
+failed: "C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\bin\HostX64\x64\cl.exe" /FoE:\moonbit\clawteam\_build\native\debug\test\internal\fsx\mkdtemp.obj /IC:\Users\Administrator\.moon\include /c /utf-8 /wd4819 /nologo /Od E:\moonbit\clawteam\internal\fsx\mkdtemp.c
+failed: "C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\bin\HostX64\x64\cl.exe" /FoE:\moonbit\clawteam\_build\native\debug\test\internal\fsx\truncate.obj /IC:\Users\Administrator\.moon\include /c /utf-8 /wd4819 /nologo /Od E:\moonbit\clawteam\internal\fsx\truncate.c
+backtrace.c
+E:\moonbit\clawteam\internal\backtrace\backtrace.c(1): fatal error C1083: 无法打开包括文件: “execinfo.h”: No such file or directory
+os.c
+E:\moonbit\clawteam\internal\os\os.c(4): fatal error C1083: 无法打开包括文件: “pwd.h”: No such file or directory
+rand.c
+E:\moonbit\clawteam\internal\rand\rand.c(3): fatal error C1083: 无法打开包括文件: “sys/random.h”: No such file or directory
+lock.c
+E:\moonbit\clawteam\internal\fsx\lock.c(7): error C2079: “fl”使用未定义的 struct“flock”
+E:\moonbit\clawteam\internal\fsx\lock.c(8): error C2224: “.l_type”的左侧必须具有结构/联合类型
+E:\moonbit\clawteam\internal\fsx\lock.c(8): error C2065: “F_WRLCK”: 未声明的标识符
+E:\moonbit\clawteam\internal\fsx\lock.c(9): error C2224: “.l_whence”的左侧必须具有结构/联合类型
+E:\moonbit\clawteam\internal\fsx\lock.c(9): error C2065: “SEEK_SET”: 未声明的标识符
+E:\moonbit\clawteam\internal\fsx\lock.c(10): error C2224: “.l_start”的左侧必须具有结构/联合类型
+E:\moonbit\clawteam\internal\fsx\lock.c(11): error C2224: “.l_len”的左侧必须具有结构/联合类型
+E:\moonbit\clawteam\internal\fsx\lock.c(12): error C2224: “.l_pid”的左侧必须具有结构/联合类型
+E:\moonbit\clawteam\internal\fsx\lock.c(13): error C2065: “F_SETLK”: 未声明的标识符
+E:\moonbit\clawteam\internal\fsx\lock.c(19): error C2079: “fl”使用未定义的 struct“flock”
+E:\moonbit\clawteam\internal\fsx\lock.c(20): error C2224: “.l_type”的左侧必须具有结构/联合类型
+E:\moonbit\clawteam\internal\fsx\lock.c(20): error C2065: “F_WRLCK”: 未声明的标识符
+E:\moonbit\clawteam\internal\fsx\lock.c(21): error C2224: “.l_whence”的左侧必须具有结构/联合类型
+E:\moonbit\clawteam\internal\fsx\lock.c(21): error C2065: “SEEK_SET”: 未声明的标识符
+E:\moonbit\clawteam\internal\fsx\lock.c(22): error C2224: “.l_start”的左侧必须具有结构/联合类型
+E:\moonbit\clawteam\internal\fsx\lock.c(23): error C2224: “.l_len”的左侧必须具有结构/联合类型
+E:\moonbit\clawteam\internal\fsx\lock.c(24): error C2224: “.l_pid”的左侧必须具有结构/联合类型
+E:\moonbit\clawteam\internal\fsx\lock.c(25): error C2065: “F_GETLK”: 未声明的标识符
+E:\moonbit\clawteam\internal\fsx\lock.c(28): error C2224: “.l_type”的左侧必须具有结构/联合类型
+E:\moonbit\clawteam\internal\fsx\lock.c(28): error C2065: “F_UNLCK”: 未声明的标识符
+E:\moonbit\clawteam\internal\fsx\lock.c(31): error C2224: “.l_pid”的左侧必须具有结构/联合类型
+E:\moonbit\clawteam\internal\fsx\lock.c(31): warning C4033: “moonbit_moonclaw_fsx_get_lock_owner”必须返回值
+tty.c
+E:\moonbit\clawteam\internal\tty\tty.c(4): fatal error C1083: 无法打开包括文件: “sys/ioctl.h”: No such file or directory
+readlink.c
+E:\moonbit\clawteam\internal\fsx\readlink.c(3): fatal error C1083: 无法打开包括文件: “unistd.h”: No such file or directory
+spawn.c
+E:\moonbit\clawteam\internal\spawn\spawn.c(4): fatal error C1083: 无法打开包括文件: “unistd.h”: No such file or directory
+mkdtemp.c
+E:\moonbit\clawteam\internal\fsx\mkdtemp.c(4): fatal error C1083: 无法打开包括文件: “unistd.h”: No such file or directory
+truncate.c
+E:\moonbit\clawteam\internal\fsx\truncate.c(2): fatal error C1083: 无法打开包括文件: “unistd.h”: No such file or directory
