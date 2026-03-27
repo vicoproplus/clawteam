@@ -1,0 +1,8 @@
+import {
+  "moonbitlang/core/json",
+  "moonbitlang/core/random",
+}
+
+import {
+  "clawteam/clawteam/internal/rand",
+} for "test"

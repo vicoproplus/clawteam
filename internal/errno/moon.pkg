@@ -1,0 +1,8 @@
+import {
+  "clawteam/clawteam/internal/c",
+  "moonbitlang/core/encoding/utf8" @encoding/utf8,
+}
+
+options(
+  "native-stub": [ "errno.c" ],
+)

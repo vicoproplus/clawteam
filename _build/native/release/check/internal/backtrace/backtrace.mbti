@@ -1,0 +1,16 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "clawteam/clawteam/internal/backtrace"
+
+// Values
+pub fn backtrace(n? : Int) -> FixedArray[String] raise
+
+pub fn initialize() -> Unit
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits
+

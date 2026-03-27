@@ -1,0 +1,80 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "moonbitlang/moonclaw/internal/readline"
+
+import {
+  "moonbitlang/async/stdio",
+}
+
+// Values
+pub fn interface(input~ : @stdio.Input, output? : @stdio.Output) -> Interface raise
+
+// Errors
+pub suberror Aborted {
+  CtrlC
+}
+
+// Types and methods
+pub(all) struct CompletionResult {
+  completions : Array[StringView]
+  complete_on : StringView
+}
+
+type Interface
+pub fn Interface::add_new_line_on_tty(Self) -> Unit
+pub fn Interface::close(Self) -> Unit
+pub async fn Interface::prompt(Self, preserve_cursor? : Bool) -> Unit
+pub async fn Interface::question(Self, StringView) -> String
+pub async fn Interface::read_key(Self) -> Key
+pub async fn Interface::read_line(Self) -> String
+pub fn Interface::set_line(Self, BytesView) -> Unit
+pub fn Interface::set_prompt(Self, Bytes) -> Unit
+pub async fn Interface::start(Self) -> Unit
+
+pub struct Key {
+  mut meta : Bool
+  mut name : KeyName
+  mut sequence : Bytes
+  mut ctrl : Bool
+  mut shift : Bool
+}
+
+pub enum KeyName {
+  Escape
+  Enter
+  Return
+  Backspace
+  Delete
+  Up
+  Down
+  Left
+  Right
+  Home
+  End
+  Insert
+  Clear
+  PageUp
+  PageDown
+  Tab
+  F1
+  F2
+  F3
+  F4
+  F5
+  F6
+  F7
+  F8
+  F9
+  F10
+  F11
+  F12
+  PasteStart
+  PasteEnd
+  Space
+  Byte(Byte)
+  Undefined
+}
+
+// Type aliases
+
+// Traits
+

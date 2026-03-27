@@ -1,0 +1,15 @@
+import {
+  "moonbitlang/core/json",
+  "moonbitlang/async/http",
+  "moonbitlang/core/encoding/utf8" @encoding/utf8,
+  "clawteam/clawteam/channel",
+  "clawteam/clawteam/acp",
+  "clawteam/clawteam/job",
+  "clawteam/clawteam/plugin",
+  "clawteam/clawteam/workspace",
+  "clawteam/clawteam/gateway/protocol",
+  "clawteam/clawteam/internal/uuid",
+  "clawteam/clawteam/internal/rand",
+  "clawteam/clawteam/internal/pino",
+  "clawteam/clawteam/internal/buildinfo",
+}

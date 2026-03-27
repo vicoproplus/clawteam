@@ -1,0 +1,144 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "moonbitlang/moonclaw/internal/httpx"
+
+import {
+  "moonbitlang/async/http",
+  "moonbitlang/async/io",
+  "moonbitlang/core/json",
+}
+
+// Values
+pub let cors : Middleware
+
+pub let methods : Array[Method]
+
+pub let not_found : Handler
+
+pub async fn post_json(String, Json) -> (@http.Response, &@io.Data)
+
+pub fn reason(Int) -> String
+
+// Errors
+pub suberror JsonError {
+  JsonError(code~ : Int, error~ : Error, message~ : String, data~ : Json)
+}
+pub fn JsonError::new(Int, Error, message? : String, data? : Json) -> Self
+pub async fn JsonError::write(Self, ResponseWriter) -> Unit
+
+// Types and methods
+pub struct Event {
+  event : String?
+  data : String
+}
+pub fn Event::new(event? : String, data~ : String) -> Self
+pub impl Show for Event
+pub impl ToJson for Event
+
+type EventStreamReader
+pub fn EventStreamReader::new(&@io.Reader) -> Self
+pub async fn[T : FromEvent] EventStreamReader::read(Self) -> T?
+pub async fn EventStreamReader::read_event(Self) -> Event?
+
+type EventStreamWriter
+pub fn EventStreamWriter::new(ResponseWriter) -> Self
+pub async fn[T : ToEvent] EventStreamWriter::write(Self, T, flush? : Bool) -> Unit
+pub async fn EventStreamWriter::write_event(Self, id? : String, event? : String, data? : &@io.Data, flush? : Bool) -> Unit
+pub async fn EventStreamWriter::write_header(Self, Int) -> Unit
+
+type FileServer
+pub async fn FileServer::handle(Self, RequestReader, ResponseWriter) -> Unit
+pub fn FileServer::handler(Self) -> Handler
+pub fn FileServer::middleware(Self) -> Middleware
+pub fn FileServer::new(StringView) -> Self
+pub fn FileServer::path(Self) -> StringView
+pub fn FileServer::set_not_found_handler(Self, Handler) -> Unit
+
+pub(all) struct Handler(async (RequestReader, ResponseWriter) -> Unit)
+#deprecated
+pub fn Handler::inner(Self) -> async (RequestReader, ResponseWriter) -> Unit
+
+type Header
+pub fn Header::add(Self, String, String) -> Unit
+pub fn Header::config(Self, Map[String, String]) -> Unit
+pub fn Header::new() -> Self
+pub fn Header::set(Self, String, String) -> Unit
+pub impl Show for Header
+pub impl ToJson for Header
+
+pub struct JsonRequestReader(RequestReader)
+#deprecated
+pub fn JsonRequestReader::inner(Self) -> RequestReader
+pub fn JsonRequestReader::new(RequestReader) -> Self
+pub async fn[T : @json.FromJson] JsonRequestReader::read(Self) -> T
+pub async fn JsonRequestReader::read_json(Self) -> Json
+
+type JsonResponseWriter
+pub fn JsonResponseWriter::new(ResponseWriter) -> Self
+pub async fn[T : ToJson] JsonResponseWriter::write(Self, T) -> Unit
+pub async fn JsonResponseWriter::write_header(Self, Int) -> Unit
+pub async fn JsonResponseWriter::write_json(Self, Json) -> Unit
+
+pub(all) enum Method {
+  Get
+  Head
+  Post
+  Put
+  Delete
+  Connect
+  Options
+  Trace
+  Patch
+}
+pub fn Method::to_http(Self) -> @http.RequestMethod
+pub impl Compare for Method
+pub impl Eq for Method
+pub impl Hash for Method
+pub impl Show for Method
+pub impl ToJson for Method
+
+pub(all) struct Middleware((Handler) -> Handler)
+pub fn Middleware::chain(Self, Self) -> Self
+pub async fn Middleware::handle(Self, RequestReader, ResponseWriter) -> Unit
+pub fn Middleware::handler(Self) -> Handler
+#deprecated
+pub fn Middleware::inner(Self) -> (Handler) -> Handler
+
+pub struct RequestReader {
+  body : &@io.Reader
+  method_ : Method
+  path : StringView
+  vars : Map[StringView, StringView]
+}
+
+type ResponseWriter
+pub async fn ResponseWriter::close(Self) -> Unit
+pub async fn ResponseWriter::flush(Self) -> Unit
+pub fn ResponseWriter::header(Self) -> Header
+pub async fn ResponseWriter::write_header(Self, Int, reason? : String) -> Unit
+pub impl @io.Writer for ResponseWriter
+
+type Router
+pub fn Router::add_handler(Self, Method, StringView, Handler) -> Unit
+pub async fn Router::handle(Self, RequestReader, ResponseWriter) -> Unit
+pub fn Router::handler(Self) -> Handler
+pub fn Router::middleware(Self) -> Middleware
+pub fn Router::new() -> Self
+pub fn Router::set_not_found_handler(Self, Handler) -> Unit
+
+type Server
+pub fn Server::close(Self) -> Unit
+pub fn Server::new(String, Int, dual_stack? : Bool, reuse_addr? : Bool) -> Self raise
+pub fn Server::port(Self) -> Int
+pub async fn Server::serve(Self, Handler) -> Unit
+
+// Type aliases
+
+// Traits
+pub(open) trait FromEvent {
+  from_event(Event) -> Self raise
+}
+
+pub(open) trait ToEvent {
+  to_event(Self) -> Event
+}
+

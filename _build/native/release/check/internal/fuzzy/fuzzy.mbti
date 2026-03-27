@@ -1,0 +1,21 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "clawteam/clawteam/internal/fuzzy"
+
+// Values
+pub fn find_match(String, String) -> MatchResult?
+
+// Errors
+
+// Types and methods
+pub struct MatchResult {
+  position : Int
+  length : Int
+  start_line : Int
+  end_line : Int
+}
+pub impl ToJson for MatchResult
+
+// Type aliases
+
+// Traits
+

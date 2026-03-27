@@ -1,0 +1,26 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "moonbitlang/moonclaw/internal/tiktoken"
+
+// Values
+pub fn cl100k_base() -> Encoding raise
+
+// Errors
+type DecodingError
+pub impl Show for DecodingError
+
+// Types and methods
+type Encoding
+pub fn Encoding::decode(Self, ArrayView[Int]) -> String raise DecodingError
+pub fn Encoding::encode(Self, StringView) -> Array[Int]
+pub fn Encoding::new(mergeable_ranks~ : Map[Bytes, Int], special_tokens~ : Map[String, Int], pattern~ : Pattern) -> Self
+pub fn Encoding::special_tokens(Self, String) -> Int?
+
+pub enum Pattern {
+  Cl100kBase
+}
+pub fn Pattern::cl100k_base() -> Self
+
+// Type aliases
+
+// Traits
+

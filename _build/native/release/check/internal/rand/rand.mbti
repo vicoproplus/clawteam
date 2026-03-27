@@ -1,0 +1,21 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "clawteam/clawteam/internal/rand"
+
+import {
+  "clawteam/clawteam/internal/errno",
+  "moonbitlang/core/random",
+}
+
+// Values
+pub fn bytes(Int) -> Bytes raise @errno.Errno
+
+pub fn chacha8() -> @random.Rand raise @errno.Errno
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits
+

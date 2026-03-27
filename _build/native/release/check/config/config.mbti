@@ -1,0 +1,201 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "clawteam/clawteam/config"
+
+import {
+  "clawteam/clawteam/errors",
+  "clawteam/clawteam/types",
+  "moonbitlang/core/json",
+}
+
+// Values
+pub fn config_paths(String, String) -> Array[String]
+
+pub fn default_audit_config(String) -> AuditConfig
+
+pub fn default_claude_config() -> CliToolConfig
+
+pub fn default_cli_tools() -> Map[String, CliToolConfig]
+
+pub fn default_codex_config() -> CliToolConfig
+
+pub fn default_gateway_config() -> GatewayConfig
+
+pub fn default_gemini_config() -> CliToolConfig
+
+pub fn default_shell_config() -> CliToolConfig
+
+pub fn validate_config(ClawTeamConfig) -> Result[ClawTeamConfig, @errors.ClawTeamError]
+
+// Errors
+
+// Types and methods
+pub(all) struct AgentConfig {
+  id : String
+  name : String
+  role : @types.AgentRole
+  cli_tool : String
+  args : Array[String]
+  env : Map[String, String]
+  cwd : String?
+  auto_start : Bool
+  role_config : RoleConfig?
+  skills : Array[String]
+  enabled : Bool
+}
+pub impl Show for AgentConfig
+pub impl ToJson for AgentConfig
+pub impl @json.FromJson for AgentConfig
+
+pub(all) struct AssistantConfig {
+  available_workers : Array[String]
+  available_supervisors : Array[String]
+  dispatch_strategy : @types.DispatchStrategy
+}
+pub impl Show for AssistantConfig
+pub impl ToJson for AssistantConfig
+pub impl @json.FromJson for AssistantConfig
+
+pub(all) struct AuditConfig {
+  enabled : Bool
+  retention_days : Int
+  log_path : String
+}
+pub impl Show for AuditConfig
+pub impl ToJson for AuditConfig
+pub impl @json.FromJson for AuditConfig
+
+pub(all) struct ChannelConfig {
+  enabled : Bool
+  app_id : String?
+  app_secret : String?
+}
+pub impl Show for ChannelConfig
+pub impl ToJson for ChannelConfig
+pub impl @json.FromJson for ChannelConfig
+
+pub(all) struct ClawTeamConfig {
+  version : String
+  gateway : GatewayConfig
+  workspace : WorkspaceConfig?
+  cli_tools : Map[String, CliToolConfig]
+  agents : Array[AgentConfig]
+  skills : Array[Skill]
+  channels : Map[String, ChannelConfig]
+  audit : AuditConfig
+}
+pub impl Show for ClawTeamConfig
+pub impl ToJson for ClawTeamConfig
+pub impl @json.FromJson for ClawTeamConfig
+
+pub(all) struct CliToolConfig {
+  tool_type : @types.CliToolType
+  command : String
+  args : Array[String]
+  env : Map[String, String]
+  cwd : String?
+  ready_patterns : Array[String]
+  working_patterns : Array[String]
+  output_patterns : OutputPatterns?
+  timeout : Int?
+}
+pub impl Show for CliToolConfig
+pub impl ToJson for CliToolConfig
+pub impl @json.FromJson for CliToolConfig
+
+pub struct ConfigLoader {
+}
+pub fn ConfigLoader::default_config(String) -> ClawTeamConfig
+pub fn ConfigLoader::new() -> Self
+
+pub(all) struct GatewayConfig {
+  port : Int
+  host : String
+}
+pub impl Show for GatewayConfig
+pub impl ToJson for GatewayConfig
+pub impl @json.FromJson for GatewayConfig
+
+pub(all) struct OutputPatterns {
+  success_pattern : String?
+  error_pattern : String?
+  progress_pattern : String?
+}
+pub impl Show for OutputPatterns
+pub impl ToJson for OutputPatterns
+pub impl @json.FromJson for OutputPatterns
+
+pub(all) enum RoleConfig {
+  Assistant(AssistantConfig)
+  Worker(WorkerConfig)
+  Supervisor(SupervisorConfig)
+}
+pub impl Show for RoleConfig
+pub impl ToJson for RoleConfig
+pub impl @json.FromJson for RoleConfig
+
+pub(all) struct Skill {
+  id : String
+  name : String
+  name_key : String
+  description : String
+  icon : String
+  color : String
+  bg : String
+  ring : String
+  version : String
+  tags : Array[String]
+  applicable_roles : Array[@types.AgentRole]
+  template : SkillTemplate
+}
+pub impl Show for Skill
+pub impl ToJson for Skill
+pub impl @json.FromJson for Skill
+
+pub(all) struct SkillTemplate {
+  message_template : String
+  variables : Array[SkillVariable]
+  timeout_ms : Int?
+}
+pub impl Show for SkillTemplate
+pub impl ToJson for SkillTemplate
+pub impl @json.FromJson for SkillTemplate
+
+pub(all) struct SkillVariable {
+  name : String
+  label : String
+  var_type : @types.SkillVarType
+  required : Bool
+  default : String?
+}
+pub impl Show for SkillVariable
+pub impl ToJson for SkillVariable
+pub impl @json.FromJson for SkillVariable
+
+pub(all) struct SupervisorConfig {
+  assistant_id : String?
+  review_criteria : Array[String]
+}
+pub impl Show for SupervisorConfig
+pub impl ToJson for SupervisorConfig
+pub impl @json.FromJson for SupervisorConfig
+
+pub(all) struct WorkerConfig {
+  assistant_id : String?
+  capabilities : Array[String]
+}
+pub impl Show for WorkerConfig
+pub impl ToJson for WorkerConfig
+pub impl @json.FromJson for WorkerConfig
+
+pub(all) struct WorkspaceConfig {
+  path : String
+  name : String
+}
+pub impl Show for WorkspaceConfig
+pub impl ToJson for WorkspaceConfig
+pub impl @json.FromJson for WorkspaceConfig
+
+// Type aliases
+
+// Traits
+

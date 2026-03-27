@@ -1,0 +1,19 @@
+import {
+  "moonbitlang/async",
+  "moonbitlang/async/io",
+  "moonbitlang/async/stdio",
+  "clawteam/clawteam",
+  "clawteam/clawteam/agent",
+  "clawteam/clawteam/ai",
+  "clawteam/clawteam/internal/openai",
+  "clawteam/clawteam/internal/backtrace",
+  "clawteam/clawteam/tool",
+  "clawteam/clawteam/internal/os",
+  "clawteam/clawteam/event",
+  "clawteam/clawteam/model",
+}
+
+options(
+  "is-main": true,
+  overrides: [ "clawteam/clawteam/internal/abort" ],
+)

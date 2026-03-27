@@ -1,0 +1,20 @@
+import {
+  "clawteam/clawteam/internal/backtrace",
+  "moonbitlang/async",
+  "clawteam/clawteam/internal/os",
+  "clawteam/clawteam/cmd/main/conversation",
+  "clawteam/clawteam/cmd/main/interactive",
+  "clawteam/clawteam/cmd/main/exec",
+  "clawteam/clawteam/cmd/main/tui",
+  "clawteam/clawteam/cmd/acp",
+  "clawteam/clawteam/cmd/onboard",
+  "clawteam/clawteam/cmd/server",
+  "clawteam/clawteam/cmd/daemon",
+  "clawteam/clawteam/cmd/gateway",
+  "clawteam/clawteam/internal/buildinfo",
+}
+
+options(
+  "is-main": true,
+  overrides: [ "clawteam/clawteam/internal/abort" ],
+)

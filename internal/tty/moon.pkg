@@ -1,0 +1,8 @@
+import {
+  "clawteam/clawteam/internal/errno",
+  "moonbitlang/core/json",
+}
+
+options(
+  "native-stub": [ "tty.c" ],
+)

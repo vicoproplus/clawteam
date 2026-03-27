@@ -1,0 +1,8 @@
+import {
+  "clawteam/clawteam/internal/uuid",
+  "clawteam/clawteam/internal/rand",
+  "clawteam/clawteam/internal/conversation" @conv,
+  "clawteam/clawteam/internal/os",
+  "clawteam/clawteam/cmd/main/argument",
+  "clawteam/clawteam/internal/fsx",
+}

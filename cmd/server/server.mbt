@@ -1,0 +1,441 @@
+///|
+/// Runtime container that binds the moonclaw agent, HTTP server, and broadcast
+/// machinery needed to expose the API surface described in `README.md`.
+struct Server {
+  uuid : @uuid.Generator
+  /// Long-lived moonclaw runtime plus agent state machine.
+  moonclaw : @clawteam.Moonclaw
+  /// SSE fan-out used to push events to every connected client.
+  broadcast : @broadcast.Broadcast[@event.Event]
+  /// Incoming message queue; each entry carries a reply channel to report
+  /// whether it started immediately or was queued.
+  message_queue : @aqueue.Queue[
+    (CreateMessageRequest, @aqueue.Queue[(@uuid.Uuid, Bool)]),
+  ]
+  /// Handle to the currently running moonclaw task (when any) so we can cancel or
+  /// report busy/idle status.
+  mut task : @async.Task[Unit]?
+  /// Directory served as static assets (usually `cmd/server`).
+  serve : String
+  /// TCP port bound by the underlying HTTP server.
+  port : Int
+  /// Underlying HTTP listener that dispatches all endpoints.
+  http_server : @httpx.Server
+}
+
+///|
+fn Server::status(self : Server) -> Status {
+  match self.task {
+    None => Status::Idle
+    Some(_) => Status::Busy
+  }
+}
+
+///|
+pub fn Server::port(self : Server) -> Int {
+  self.port
+}
+
+///|
+/// Boots moonclaw, wires the SSE broadcast pipeline, optionally registers with a
+/// daemon, and binds an `@httpx.Server`. The returned handle is ready to
+/// `start()`.
+pub async fn Server::new(
+  name? : String,
+  model? : String,
+  register? : RegisterInfo,
+  serve~ : String,
+  port~ : Int,
+  home? : String,
+  cwd? : String,
+  web_search? : Bool = false,
+  resume_id? : @uuid.Uuid,
+) -> Server {
+  let home = match home {
+    Some(home) => home
+    None => @os.home()
+  }
+  let broadcast = @broadcast.Broadcast::new()
+  let uuid = @uuid.generator(@rand.chacha8())
+  guard @model.load(home~, name?=model) is Some(model) else {
+    fail("Failed to load model '\{model}' from cwd '\{cwd}'")
+  }
+  let moonclaw = if resume_id is Some(resume_id) {
+    @clawteam.Moonclaw::resume_(model~, resume_id, web_search~)
+  } else {
+    @clawteam.Moonclaw::new(name?, model~, cwd?, web_search~)
+  }
+  moonclaw.agent.add_listener((event : @event.Event) => broadcast.put(event))
+  let http_server = @httpx.Server::new("[::]", port, reuse_addr=true)
+  let port = http_server.port()
+  if register is Some(register) {
+    register.register(
+      port~,
+      new_id=moonclaw.agent.id(),
+      web_search=moonclaw.agent.web_search,
+      cwd=moonclaw.agent.cwd,
+      model=moonclaw.agent.model.name,
+    )
+    |> ignore()
+  } else {
+    logger.warn("No register information provided; skipping registration.")
+    let pid = @spawn.getpid()
+    logger.info("Listening on port \{port}", data={ "pid": pid })
+    logger.info("Visit http://localhost:\{port}/ to access the server.", data={
+      "pid": pid,
+    })
+  }
+  Server::{
+    uuid,
+    moonclaw,
+    broadcast,
+    message_queue: @aqueue.new(kind=Unbounded),
+    task: None,
+    serve,
+    port,
+    http_server,
+  }
+}
+
+///|
+/// Central HTTP router that handles static files, REST endpoints, and SSE
+/// streams behind the necessary CORS wrapper.
+async fn Server::serve_http(self : Server) -> Unit {
+  let file_server = @httpx.FileServer::new(self.serve)
+  self.http_server.serve(
+    @httpx.cors((r, w) => {
+      logger.info("Received request: \{r.method_} \{r.path}")
+      try {
+        match (r.method_, r.path) {
+          (Options, _) => w.write_header(204)
+          (Get, "/") => {
+            let index_html = html_read_file(
+              @pathx.join(self.serve, "index.html"),
+            )
+            w.header().set("Content-Type", "text/html")
+            w.write_header(200)
+            w.write(index_html)
+          }
+          (Get, "/v1/status") =>
+            w.send_json(code=200, {
+              "status": self.status(),
+              "web_search": self.moonclaw.agent.web_search,
+            })
+          (Post, "/v1/cancel") => self.cancel_moonclaw(w)
+          (Get, "/v1/queued-messages") => self.get_queued_messages(w)
+          (Get, "/v1/events") => self.get_events(w)
+          (Post, "/v1/external-event/cancel") => self.send_cancellation_event(w)
+          (Get, "/v1/tools") => self.get_tools(w)
+          (Get, "/v1/system-prompt") => self.get_system_prompt(w)
+          (Get, _) => file_server.handle(r, w)
+          (
+            Post,
+            "/v1/message"
+            | "/v1/external-event"
+            | "/v1/external-event/diagnostics"
+            | "/v1/external-event/user-message"
+            | "/v1/enabled-tools"
+            | "/v1/system-prompt"
+            | "/v1/moonbit/publish",
+          ) => {
+            // Parse JSON once for all POST endpoints that need it
+            let json = r.body.read_all().json() catch {
+                error =>
+                  raise json_error(400, "BadRequest", {
+                    "error": {
+                      "code": -1,
+                      "message": "Invalid JSON in request body: \{error}",
+                    },
+                  })
+              }
+            match r.path {
+              "/v1/message" => self.create_message(json, w)
+              "/v1/external-event" => self.send_external_event(json, w)
+              "/v1/external-event/user-message" =>
+                self.send_user_message_event(json, w)
+              "/v1/enabled-tools" => self.set_enabled_tools(json, w)
+              "/v1/system-prompt" => self.set_system_prompt(json, w)
+              _ => fail("unreachable")
+            }
+          }
+          _ =>
+            w.send_json(code=404, {
+              "error": { "code": -1, "message": "Unknown endpoint: \{r.path}" },
+            })
+        }
+      } catch {
+        HttpError(code~, reason~, body~) => {
+          w.write_header(code, reason~)
+          w.write(body)
+        }
+        error => raise error
+      }
+    }),
+  )
+}
+
+///|
+/// Background worker that drains the inbound queue, kicks off the moonclaw agent,
+/// and mirrors failures into the broadcast stream.
+async fn Server::start_moonclaw(self : Server) -> Unit {
+  while true {
+    @async.with_task_group(group => {
+      let (msg, idq) = self.message_queue.get()
+      let id = self.moonclaw.agent.queue_message(
+        msg.message,
+        web_search?=msg.web_search,
+      )
+      group.spawn_bg(
+        () => {
+          while true {
+            let (msg, idq) = self.message_queue.get()
+            let id = self.moonclaw.agent.queue_message(
+              msg.message,
+              web_search?=msg.web_search,
+            )
+            idq.put((id, true))
+          }
+        },
+        no_wait=true,
+      )
+      idq.put((id, false))
+      let task = group.spawn(
+        () => {
+          logger.info("Starting moonclaw task...")
+          self.moonclaw.agent.start() catch {
+            error => {
+              logger.error("moonclaw task failed: \{error}")
+              if !@async.is_being_cancelled() {
+                self.broadcast.put(
+                  @event.Event::new(id=self.uuid.v4(), Failed(error.to_json())),
+                )
+              } else {
+                self.broadcast.put(
+                  @event.Event::new(id=self.uuid.v4(), @event.Cancelled),
+                )
+              }
+              raise error
+            }
+          }
+        },
+        allow_failure=true,
+      )
+      self.task = Some(task)
+      defer {
+        self.task = None
+      }
+      task.wait() catch {
+        _ => ()
+      }
+    })
+  }
+}
+
+///|
+async fn @httpx.ResponseWriter::send_json(
+  self : Self,
+  code~ : Int,
+  json : Json,
+) -> Unit {
+  self.header().set("Content-Type", "application/json")
+  self.write_header(code)
+  self.write(json.stringify())
+}
+
+///|
+/// Cancels the running agent (if any) and returns the pending queue back to
+/// the client so UIs can decide what to do next.
+async fn Server::cancel_moonclaw(
+  self : Server,
+  w : @httpx.ResponseWriter,
+) -> Unit {
+  guard self.task is Some(task) else {
+    w.send_json(code=404, {
+      "error": { "code": -1, "message": "No running task to cancel." },
+    })
+  }
+  task.cancel()
+  let pms = self.moonclaw.agent.clear_inputs()
+  w.send_json(code=200, { "pending_messages": pms.to_json() })
+}
+
+///|
+/// Runs the HTTP server alongside the background moonclaw worker until the
+/// process is cancelled.
+pub async fn Server::start(self : Server) -> Unit {
+  @async.with_task_group(group => {
+    group.spawn_bg(() => self.start_moonclaw(), allow_failure=true)
+    self.serve_http()
+  })
+}
+
+///|
+pub(all) enum ServerStreamEvent {
+  MoonclawQueuedMessagesSynchronized(Array[@agent.QueuedMessage])
+  Moonclaw(@event.Event)
+}
+
+///|
+pub impl @httpx.FromEvent for ServerStreamEvent with from_event(
+  event : @httpx.Event,
+) -> ServerStreamEvent raise {
+  let { event, data } = event
+  let data = @json.parse(data)
+  match event {
+    Some("moonclaw.queued_messages.synchronized") =>
+      ServerStreamEvent::MoonclawQueuedMessagesSynchronized(
+        @json.from_json(data),
+      )
+    Some("moonclaw") => ServerStreamEvent::Moonclaw(@json.from_json(data))
+    _ => fail("unrecognized event type: \{event}")
+  }
+}
+
+///|
+pub impl @httpx.ToEvent for ServerStreamEvent with to_event(
+  self : ServerStreamEvent,
+) -> @httpx.Event {
+  match self {
+    ServerStreamEvent::MoonclawQueuedMessagesSynchronized(queued_messages) =>
+      @httpx.Event::new(
+        event="moonclaw.queued_messages.synchronized",
+        data=queued_messages.to_json().stringify(),
+      )
+    ServerStreamEvent::Moonclaw(event) =>
+      @httpx.Event::new(event="moonclaw", data=event.to_json().stringify())
+  }
+}
+
+///|
+/// Streams moonclaw lifecycle events plus queue synchronization messages over
+/// Server-Sent Events.
+async fn Server::get_events(self : Server, w : @httpx.ResponseWriter) -> Unit {
+  let w = @httpx.EventStreamWriter::new(w)
+  w.write_header(200)
+  w.write(
+    MoonclawQueuedMessagesSynchronized(self.moonclaw.agent.queued_messages()),
+  )
+  self.broadcast.listen_forever(event => {
+    if event.desc is (TokenCounted(_) | ContextPruned(_)) {
+      return
+    }
+    w.write(Moonclaw(event))
+    if event.desc is (MessageQueued(_) | MessageUnqueued(_)) {
+      w.write(
+        MoonclawQueuedMessagesSynchronized(
+          self.moonclaw.agent.queued_messages(),
+        ),
+      )
+    }
+  })
+}
+
+///|
+/// Returns the queued messages as JSON without keeping the connection open.
+async fn Server::get_queued_messages(
+  self : Server,
+  w : @httpx.ResponseWriter,
+) -> Unit {
+  let queued_messages : Array[Json] = self.moonclaw.agent
+    .queued_messages()
+    .map(m => { "id": m.id, "message": m.message.to_openai() })
+  w.send_json(code=200, queued_messages.to_json())
+}
+
+///|
+/// Lists the registered tools and whether each one is currently enabled.
+async fn Server::get_tools(self : Server, w : @httpx.ResponseWriter) -> Unit {
+  let tools = self.moonclaw.agent.tools()
+  let tools_json : Map[String, Json] = {}
+  for name, tool in tools {
+    tools_json[name] = { "enabled": tool.enabled() }
+  }
+  w.send_json(code=200, Json::object(tools_json))
+}
+
+///|
+/// Returns the current system prompt (or `null` when none is configured).
+async fn Server::get_system_prompt(
+  self : Server,
+  w : @httpx.ResponseWriter,
+) -> Unit {
+  let res : Json = match self.moonclaw.agent.system_prompt() {
+    Some(sys) => sys.to_json()
+    None => Json::null()
+  }
+  w.send_json(code=200, res)
+}
+
+///|
+/// Sends a generic external event to the agent.
+///
+/// Request body:
+/// ```json
+/// {
+///   "type": "UserMessage" | "Cancelled" | "Diagnostics",
+///   "message": "...",  // for UserMessage
+///   "diagnostics": "..."  // JSONL string for Diagnostics
+/// }
+/// ```
+async fn Server::send_external_event(
+  self : Server,
+  json : Json,
+  w : @httpx.ResponseWriter,
+) -> Unit {
+  guard json is { "type": String(event_type), .. } else {
+    raise json_error(400, "BadRequest", {
+      "error": "Missing 'type' field in request body",
+    })
+  }
+  let queue = self.moonclaw.agent.external_events()
+  match event_type {
+    "Cancelled" => queue.send(@event.Cancelled)
+    "UserMessage" => {
+      guard json is { "message": String(message), .. } else {
+        raise json_error(400, "BadRequest", {
+          "error": "Missing 'message' field for UserMessage event",
+        })
+      }
+      queue.send(UserMessage(message))
+    }
+    _ =>
+      raise json_error(400, "BadRequest", {
+        "error": "Unknown event type: \{event_type}. Expected 'UserMessage', 'Cancelled', or 'Diagnostics'",
+      })
+  }
+  w.send_json(code=200, { "success": true })
+}
+
+///|
+/// Sends an immediate user message to the agent.
+///
+/// Request body:
+/// ```json
+/// {
+///   "message": "Please stop and focus on this instead..."
+/// }
+/// ```
+async fn Server::send_user_message_event(
+  self : Server,
+  json : Json,
+  w : @httpx.ResponseWriter,
+) -> Unit {
+  guard json is { "message": String(message), .. } else {
+    raise json_error(400, "BadRequest", {
+      "error": "Missing 'message' field in request body",
+    })
+  }
+  self.moonclaw.agent.external_events().send(UserMessage(message))
+  w.send_json(code=200, { "success": true })
+}
+
+///|
+/// Sends a Cancelled event to the agent.
+/// This will cause the agent to stop at the next poll point.
+async fn Server::send_cancellation_event(
+  self : Server,
+  w : @httpx.ResponseWriter,
+) -> Unit {
+  self.moonclaw.agent.external_events().send(Cancelled)
+  w.send_json(code=200, { "success": true })
+}

@@ -1,0 +1,9 @@
+import {
+  "clawteam/clawteam/internal/os",
+  "clawteam/clawteam/internal/pathx",
+  "clawteam/clawteam/internal/fsx",
+  "clawteam/clawteam/internal/spawn",
+  "moonbitlang/async/http",
+  "moonbitlang/async",
+  "moonbitlang/core/json",
+}

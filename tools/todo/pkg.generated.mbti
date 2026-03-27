@@ -1,0 +1,44 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "moonbitlang/moonclaw/tools/todo"
+
+import {
+  "moonbitlang/core/json",
+  "moonbitlang/moonclaw/clock",
+  "moonbitlang/moonclaw/internal/uuid",
+  "moonbitlang/moonclaw/tool",
+}
+
+// Values
+pub fn new(uuid~ : @uuid.Generator, clock? : &@clock.Clock, cwd~ : StringView) -> Todo
+
+pub fn new_tool(Todo) -> @tool.Tool[TodoResult]
+
+pub fn parse_todo_args(Json) -> TodoArgs raise TodoArgsError
+
+pub let prompt : String
+
+// Errors
+type TodoArgsError
+pub impl Show for TodoArgsError
+
+// Types and methods
+type Items
+pub impl Eq for Items
+pub impl ToJson for Items
+pub impl @json.FromJson for Items
+
+type Todo
+
+type TodoArgs
+pub impl Show for TodoArgs
+pub impl ToJson for TodoArgs
+
+type TodoResult
+pub impl Show for TodoResult
+pub impl ToJson for TodoResult
+pub impl @json.FromJson for TodoResult
+
+// Type aliases
+
+// Traits
+

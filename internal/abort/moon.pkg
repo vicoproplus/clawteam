@@ -1,0 +1,7 @@
+import {
+  "clawteam/clawteam/internal/backtrace",
+}
+
+options(
+  implement: "moonbitlang/core/abort",
+)

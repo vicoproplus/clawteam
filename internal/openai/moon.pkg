@@ -1,0 +1,20 @@
+import {
+  "clawteam/clawteam/model",
+  "clawteam/clawteam/oauth/codex",
+  "clawteam/clawteam/oauth/copilot",
+  "moonbitlang/async/http",
+  "clawteam/clawteam/internal/schema",
+  "moonbitlang/async/io",
+  "moonbitlang/async",
+  "clawteam/clawteam/internal/pino",
+  "clawteam/clawteam/internal/openai/responses",
+  "moonbitlang/core/json",
+  "moonbitlang/core/test",
+}
+
+import {
+  "clawteam/clawteam/internal/os",
+  "clawteam/clawteam/internal/mock",
+  "clawteam/clawteam/ai",
+  "clawteam/clawteam/tool",
+} for "test"

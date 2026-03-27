@@ -1,0 +1,8 @@
+import {
+  "moonbitlang/async",
+  "moonbitlang/core/json",
+  "clawteam/clawteam/internal/fsx",
+  "clawteam/clawteam/internal/spawn",
+  "clawteam/clawteam/oauth/codex",
+  "moonbitlang/x/path",
+}

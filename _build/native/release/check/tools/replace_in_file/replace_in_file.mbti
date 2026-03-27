@@ -1,0 +1,24 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "clawteam/clawteam/tools/replace_in_file"
+
+import {
+  "clawteam/clawteam/file",
+  "clawteam/clawteam/tool",
+  "moonbitlang/core/json",
+}
+
+// Values
+pub fn new(@file.Manager) -> @tool.Tool[WriteResult]
+
+// Errors
+
+// Types and methods
+type WriteResult
+pub impl Show for WriteResult
+pub impl ToJson for WriteResult
+pub impl @json.FromJson for WriteResult
+
+// Type aliases
+
+// Traits
+

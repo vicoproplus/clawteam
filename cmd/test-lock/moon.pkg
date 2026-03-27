@@ -1,0 +1,12 @@
+import {
+  "moonbitlang/async",
+  "clawteam/clawteam/internal/fsx",
+  "clawteam/clawteam/internal/os",
+  "moonbitlang/async/fs",
+  "moonbitlang/async/stdio",
+  "moonbitlang/async/io",
+}
+
+options(
+  "is-main": true,
+)

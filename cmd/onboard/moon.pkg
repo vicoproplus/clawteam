@@ -1,0 +1,15 @@
+import {
+  "moonbitlang/async",
+  "moonbitlang/core/json",
+  "moonbitlang/core/strconv",
+  "clawteam/clawteam/onboarding",
+  "clawteam/clawteam/internal/os",
+  "clawteam/clawteam/internal/pathx",
+  "clawteam/clawteam/internal/pino",
+  "clawteam/clawteam/internal/buildinfo",
+  "clawteam/clawteam/internal/backtrace",
+}
+
+options(
+  "is-main": true,
+)

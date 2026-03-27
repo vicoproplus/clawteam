@@ -1,0 +1,56 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "clawteam/clawteam/scheduler"
+
+import {
+  "clawteam/clawteam/config",
+  "clawteam/clawteam/errors",
+  "clawteam/clawteam/types",
+}
+
+// Values
+pub fn get_prompt_template(@types.AgentRole) -> String
+
+pub fn render_prompt(String, Map[String, String]) -> String
+
+// Errors
+
+// Types and methods
+pub struct AgentRouter {
+  config : @config.ClawTeamConfig
+}
+pub fn AgentRouter::get_agent(Self, String) -> Result[@config.AgentConfig, @errors.ClawTeamError]
+pub fn AgentRouter::get_available_workers(Self, String) -> Array[String]
+pub fn AgentRouter::get_default_assistant(Self) -> Result[@config.AgentConfig, @errors.ClawTeamError]
+pub fn AgentRouter::new(@config.ClawTeamConfig) -> Self
+
+pub struct CliCallParams {
+  cli_tool : String
+  agent_prompt : String
+  context : String
+  variables : Map[String, String]
+}
+pub impl Show for CliCallParams
+pub impl ToJson for CliCallParams
+
+pub struct CliCallResult {
+  stdout : String
+  stderr : String
+  status : Int
+  elapsed : Int
+}
+pub impl Show for CliCallResult
+pub impl ToJson for CliCallResult
+
+pub struct DispatchContext {
+  session_id : String
+  user_id : String?
+  channel : String?
+  timestamp : Int
+  metadata : Map[String, String]
+}
+pub impl Show for DispatchContext
+
+// Type aliases
+
+// Traits
+

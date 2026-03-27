@@ -1,0 +1,9 @@
+import {
+  "clawteam/clawteam/internal/errno",
+  "moonbitlang/core/json",
+  "moonbitlang/core/random",
+}
+
+options(
+  "native-stub": [ "rand.c" ],
+)

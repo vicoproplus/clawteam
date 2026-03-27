@@ -1,0 +1,27 @@
+import {
+  "moonbitlang/async",
+  "clawteam/clawteam/internal/os",
+  "clawteam/clawteam/internal/backtrace",
+  "clawteam/clawteam/internal/fsx",
+  "clawteam/clawteam/internal/pathx",
+  "clawteam/clawteam/internal/git",
+  "moonbitlang/x/time",
+  "moonbitlang/regexp",
+  "clawteam/clawteam/event",
+  "clawteam/clawteam/ai",
+  "clawteam/clawteam/clock",
+  "moonbitlang/core/cmp",
+  "moonbitlang/core/json",
+  "moonbitlang/core/strconv",
+  "moonbitlang/core/test",
+}
+
+import {
+  "clawteam/clawteam/internal/mock",
+  "clawteam/clawteam/internal/pino",
+} for "wbtest"
+
+options(
+  "is-main": true,
+  overrides: [ "clawteam/clawteam/internal/abort" ],
+)

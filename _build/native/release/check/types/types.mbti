@@ -1,0 +1,104 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "clawteam/clawteam/types"
+
+import {
+  "moonbitlang/core/json",
+}
+
+// Values
+
+// Errors
+
+// Types and methods
+pub(all) enum AgentRole {
+  Assistant
+  Worker
+  Supervisor
+}
+pub impl Eq for AgentRole
+pub impl Show for AgentRole
+pub impl ToJson for AgentRole
+pub impl @json.FromJson for AgentRole
+
+pub(all) enum AuditEventType {
+  JobTriggered
+  JobCompleted
+  CliStarted
+  CliCompleted
+  CliFailed
+  CliKilled
+  OutputCaptured
+  UserPaused
+  UserResumed
+  UserCancelled
+  ProcessTimeout
+  OutputError
+}
+pub impl Show for AuditEventType
+pub impl ToJson for AuditEventType
+pub impl @json.FromJson for AuditEventType
+
+pub(all) enum CliToolType {
+  Claude
+  Codex
+  Gemini
+  OpenCode
+  Qwen
+  OpenClaw
+  Shell
+}
+pub impl Eq for CliToolType
+pub impl Show for CliToolType
+pub impl ToJson for CliToolType
+pub impl @json.FromJson for CliToolType
+
+pub(all) enum DispatchStrategy {
+  RoundRobin
+  LeastLoaded
+  CapabilityMatch
+  Manual
+}
+pub impl Eq for DispatchStrategy
+pub impl Show for DispatchStrategy
+pub impl ToJson for DispatchStrategy
+pub impl @json.FromJson for DispatchStrategy
+
+pub(all) enum MessageStatus {
+  Pending
+  Dispatched
+  Processing
+  Completed
+  Failed
+}
+pub impl Eq for MessageStatus
+pub impl Show for MessageStatus
+pub impl ToJson for MessageStatus
+pub impl @json.FromJson for MessageStatus
+
+pub(all) enum SkillVarType {
+  Text
+  Number
+  File
+  Directory
+  Select(Array[String])
+}
+pub impl Show for SkillVarType
+pub impl ToJson for SkillVarType
+pub impl @json.FromJson for SkillVarType
+
+pub(all) enum TerminalSessionStatus {
+  Pending
+  Online
+  Working
+  Offline
+  Broken
+}
+pub impl Eq for TerminalSessionStatus
+pub impl Show for TerminalSessionStatus
+pub impl ToJson for TerminalSessionStatus
+pub impl @json.FromJson for TerminalSessionStatus
+
+// Type aliases
+
+// Traits
+

@@ -1,0 +1,85 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "moonbitlang/moonclaw/internal/fsx"
+
+import {
+  "moonbitlang/async/fs",
+}
+
+// Values
+pub async fn exists(StringView) -> Bool
+
+pub async fn exists_as_file(StringView) -> Bool
+
+pub fn get_lock_owner(@fs.File) -> Int? raise
+
+pub async fn kind(StringView) -> FileKind
+
+pub async fn list_directory(StringView) -> Array[DirectoryEntry]
+
+pub fn lock_file(@fs.File) -> Unit raise
+
+pub async fn make_directory(StringView, recursive? : Bool, exists_ok? : Bool) -> Unit
+
+pub fn mkdtemp(String) -> String raise
+
+pub async fn read_file(StringView) -> String
+
+pub fn readlink(String, bufsize? : UInt64) -> String raise
+
+pub async fn remove(StringView) -> Unit
+
+pub async fn resolve(StringView) -> String
+
+pub fn stat(StringView) -> Stat raise
+
+pub fn truncate(@fs.File, Int64) -> Unit raise
+
+pub async fn[T] with_temporary_directory(String, async (String) -> T) -> T
+
+pub async fn write_bytes_to_file(StringView, Bytes, create? : Int) -> Unit
+
+pub async fn write_to_file(StringView, StringView, create? : Int) -> Unit
+
+// Errors
+
+// Types and methods
+pub struct DirectoryEntry {
+  path : String
+  name : String
+  kind : FileKind
+}
+pub impl Compare for DirectoryEntry
+pub impl Eq for DirectoryEntry
+pub impl Hash for DirectoryEntry
+pub impl Show for DirectoryEntry
+pub impl ToJson for DirectoryEntry
+
+pub enum FileKind {
+  Unknown
+  Regular
+  Directory
+  SymLink
+  Socket
+  Pipe
+  BlockDevice
+  CharDevice
+}
+pub impl Compare for FileKind
+pub impl Eq for FileKind
+pub impl Hash for FileKind
+pub impl Show for FileKind
+pub impl ToJson for FileKind
+
+type FileRead
+pub fn FileRead::close(Self) -> Unit
+pub async fn FileRead::create(StringView) -> Self
+pub async fn FileRead::read_text(Self) -> String
+
+type Stat
+pub fn Stat::atime(Self) -> Int64
+pub fn Stat::mtime(Self) -> Int64
+
+// Type aliases
+
+// Traits
+

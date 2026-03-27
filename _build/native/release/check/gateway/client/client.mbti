@@ -1,0 +1,294 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "clawteam/clawteam/gateway/client"
+
+import {
+  "clawteam/clawteam/acp",
+  "clawteam/clawteam/channel",
+  "clawteam/clawteam/gateway/protocol",
+  "clawteam/clawteam/internal/pino",
+  "clawteam/clawteam/internal/uuid",
+  "clawteam/clawteam/job",
+  "clawteam/clawteam/plugin",
+  "clawteam/clawteam/workspace",
+  "moonbitlang/async/http",
+  "moonbitlang/core/json",
+}
+
+// Values
+
+// Errors
+
+// Types and methods
+pub(all) struct AcpRunMutationPayload {
+  status : String
+  run : @acp.AcpRun
+}
+pub impl Show for AcpRunMutationPayload
+pub impl ToJson for AcpRunMutationPayload
+pub impl @json.FromJson for AcpRunMutationPayload
+
+pub(all) struct AcpRunPayload {
+  run : @acp.AcpRun
+}
+pub impl Show for AcpRunPayload
+pub impl ToJson for AcpRunPayload
+pub impl @json.FromJson for AcpRunPayload
+
+pub(all) struct AcpRunsPayload {
+  runs : Array[@acp.AcpRun]
+}
+pub impl Show for AcpRunsPayload
+pub impl ToJson for AcpRunsPayload
+pub impl @json.FromJson for AcpRunsPayload
+
+pub(all) struct AcpSessionMutationPayload {
+  status : String
+  session : @acp.AcpSession
+}
+pub impl Show for AcpSessionMutationPayload
+pub impl ToJson for AcpSessionMutationPayload
+pub impl @json.FromJson for AcpSessionMutationPayload
+
+pub(all) struct AcpSessionPayload {
+  session : @acp.AcpSession
+}
+pub impl Show for AcpSessionPayload
+pub impl ToJson for AcpSessionPayload
+pub impl @json.FromJson for AcpSessionPayload
+
+pub(all) struct AcpSessionRunPayload {
+  status : String
+  session : @acp.AcpSession
+  run : @acp.AcpRun
+  accepted : @protocol.AgentAcceptedPayload
+  target : @acp.AcpTarget
+  plan : @acp.AcpLaunchPlan
+}
+pub impl Show for AcpSessionRunPayload
+pub impl ToJson for AcpSessionRunPayload
+pub impl @json.FromJson for AcpSessionRunPayload
+
+pub(all) struct AcpSessionsPayload {
+  sessions : Array[@acp.AcpSession]
+}
+pub impl Show for AcpSessionsPayload
+pub impl ToJson for AcpSessionsPayload
+pub impl @json.FromJson for AcpSessionsPayload
+
+pub(all) struct AcpTargetPayload {
+  target : @acp.AcpTarget
+}
+pub impl Show for AcpTargetPayload
+pub impl ToJson for AcpTargetPayload
+pub impl @json.FromJson for AcpTargetPayload
+
+pub(all) struct AcpTargetsPayload {
+  targets : Array[@acp.AcpTarget]
+}
+pub impl Show for AcpTargetsPayload
+pub impl ToJson for AcpTargetsPayload
+pub impl @json.FromJson for AcpTargetsPayload
+
+pub(all) struct AcpUiEventsPayload {
+  timeline : Array[@acp.AcpUiTimelineEntry]
+}
+pub impl Show for AcpUiEventsPayload
+pub impl ToJson for AcpUiEventsPayload
+pub impl @json.FromJson for AcpUiEventsPayload
+
+pub(all) struct AcpUiSnapshotPayload {
+  snapshot : @acp.AcpUiSnapshot
+}
+pub impl Show for AcpUiSnapshotPayload
+pub impl ToJson for AcpUiSnapshotPayload
+pub impl @json.FromJson for AcpUiSnapshotPayload
+
+pub(all) struct ChannelMutationPayload {
+  status : String
+  channel_id : String
+  account_id : String?
+}
+pub impl Show for ChannelMutationPayload
+pub impl ToJson for ChannelMutationPayload
+pub impl @json.FromJson for ChannelMutationPayload
+
+pub(all) struct ChannelsListPayload {
+  channels : Array[@channel.ChannelDock]
+}
+pub impl Show for ChannelsListPayload
+pub impl ToJson for ChannelsListPayload
+pub impl @json.FromJson for ChannelsListPayload
+
+pub struct Client {
+  base_url : String
+  token : String?
+  http : @http.Client
+  uuid : @uuid.Generator
+  logger : @pino.Logger
+  mut connected : Bool
+}
+pub async fn Client::agent(Self, message~ : String, session_key? : String, cwd? : String, model? : String, run_id? : String) -> Result[@protocol.AgentAcceptedPayload, String]
+pub async fn Client::ask_job(Self, @job.JobAskParams) -> Result[@job.ChatAnswer, String]
+pub async fn Client::cancel_acp_run(Self, run_id~ : String) -> Result[AcpRunMutationPayload, String]
+pub async fn Client::cancel_job(Self, job_id~ : String) -> Result[JobMutationPayload, String]
+pub async fn Client::configure_channel(Self, channel_id~ : String, @channel.ChannelConfig) -> Result[ChannelMutationPayload, String]
+pub async fn Client::connect(Self) -> Result[@protocol.HelloOk, String]
+pub async fn Client::create_acp_session(Self, target_id~ : String, session_key~ : String, session_id? : String, metadata? : Json) -> Result[AcpSessionMutationPayload, String]
+pub async fn Client::create_job(Self, @job.JobDefinition) -> Result[JobMutationPayload, String]
+pub async fn Client::create_memory(Self, @job.MemoryWriteRequest) -> Result[MemoryMutationPayload, String]
+pub async fn Client::force_cancel_job(Self, job_id~ : String) -> Result[JobMutationPayload, String]
+pub async fn Client::get_acp_run(Self, run_id~ : String) -> Result[AcpRunPayload, String]
+pub async fn Client::get_acp_session(Self, session_id~ : String) -> Result[AcpSessionPayload, String]
+pub async fn Client::get_acp_target(Self, target_id~ : String) -> Result[AcpTargetPayload, String]
+pub async fn Client::get_acp_ui_events(Self) -> Result[AcpUiEventsPayload, String]
+pub async fn Client::get_acp_ui_snapshot(Self) -> Result[AcpUiSnapshotPayload, String]
+pub async fn Client::get_channel(Self, channel_id~ : String) -> Result[@channel.ChannelDock, String]
+pub async fn Client::get_job(Self, job_id~ : String) -> Result[JobPayload, String]
+pub async fn Client::get_job_run(Self, run_id~ : String) -> Result[JobRunDetails, String]
+pub async fn Client::get_job_ui_events(Self, run_id~ : String) -> Result[JobUiEventsPayload, String]
+pub async fn Client::get_job_ui_snapshot(Self, run_id~ : String) -> Result[JobUiSnapshotPayload, String]
+pub async fn Client::get_memory(Self, memory_id~ : String) -> Result[@job.MemoryRecord, String]
+pub async fn Client::get_plugin(Self, plugin_id~ : String) -> Result[@plugin.PluginRecord, String]
+pub async fn Client::get_run(Self, run_id~ : String) -> Result[RunInfo, String]
+pub async fn Client::get_workspace(Self) -> Result[WorkspacePayload, String]
+pub async fn Client::health(Self) -> Result[@protocol.HealthPayload, String]
+pub async fn Client::list_acp_runs(Self) -> Result[AcpRunsPayload, String]
+pub async fn Client::list_acp_sessions(Self) -> Result[AcpSessionsPayload, String]
+pub async fn Client::list_acp_targets(Self) -> Result[AcpTargetsPayload, String]
+pub async fn Client::list_channels(Self) -> Result[ChannelsListPayload, String]
+pub async fn Client::list_job_runs(Self) -> Result[JobRunsPayload, String]
+pub async fn Client::list_jobs(Self) -> Result[JobsListPayload, String]
+pub async fn Client::list_memories(Self, query? : @job.MemoryQuery) -> Result[MemoriesListPayload, String]
+pub async fn Client::list_plugins(Self) -> Result[PluginsListPayload, String]
+pub async fn Client::list_runs(Self) -> Result[RunsListPayload, String]
+pub async fn Client::list_sessions(Self) -> Result[@protocol.SessionsListPayload, String]
+pub async fn Client::new(ClientConfig) -> Self
+pub async fn Client::reset_acp_session(Self, session_id~ : String) -> Result[AcpSessionMutationPayload, String]
+pub async fn Client::run_acp_session(Self, session_id~ : String, message~ : String, run_id? : String, model? : String, cwd? : String, idempotency_key? : String) -> Result[AcpSessionRunPayload, String]
+pub async fn Client::run_job(Self, job_id~ : String) -> Result[JobMutationPayload, String]
+pub async fn Client::search_memories(Self, question~ : String, query? : @job.MemoryQuery, max_hits? : Int) -> Result[MemorySearchPayload, String]
+pub async fn Client::start_channel(Self, channel_id~ : String, account_id~ : String, Json) -> Result[ChannelMutationPayload, String]
+pub async fn Client::stop_channel(Self, channel_id~ : String, account_id~ : String) -> Result[ChannelMutationPayload, String]
+pub async fn Client::update_job(Self, @job.JobDefinition) -> Result[JobMutationPayload, String]
+pub async fn Client::wait_agent(Self, run_id~ : String, timeout_ms? : Int) -> Result[Json, String]
+
+pub(all) struct ClientConfig {
+  base_url : String
+  token : String?
+  client_id : String?
+  client_mode : @protocol.ClientMode
+}
+
+pub(all) struct JobMutationPayload {
+  status : String
+  job : @job.JobDefinition?
+  run : @job.JobRun?
+}
+pub impl Show for JobMutationPayload
+pub impl ToJson for JobMutationPayload
+pub impl @json.FromJson for JobMutationPayload
+
+pub(all) struct JobPayload {
+  job : @job.JobDefinition
+}
+pub impl Show for JobPayload
+pub impl ToJson for JobPayload
+pub impl @json.FromJson for JobPayload
+
+pub(all) struct JobRunDetails {
+  run : @job.JobRun
+  steps : Array[@job.JobStepRun]
+  artifacts : Array[@job.ArtifactRecord]
+}
+pub impl Show for JobRunDetails
+pub impl ToJson for JobRunDetails
+pub impl @json.FromJson for JobRunDetails
+
+pub(all) struct JobRunsPayload {
+  runs : Array[@job.JobRun]
+}
+pub impl Show for JobRunsPayload
+pub impl ToJson for JobRunsPayload
+pub impl @json.FromJson for JobRunsPayload
+
+pub(all) struct JobUiEventsPayload {
+  timeline : Array[@job.JobUiTimelineEntry]
+}
+pub impl Show for JobUiEventsPayload
+pub impl ToJson for JobUiEventsPayload
+pub impl @json.FromJson for JobUiEventsPayload
+
+pub(all) struct JobUiSnapshotPayload {
+  snapshot : @job.JobUiSnapshot
+}
+pub impl Show for JobUiSnapshotPayload
+pub impl ToJson for JobUiSnapshotPayload
+pub impl @json.FromJson for JobUiSnapshotPayload
+
+pub(all) struct JobsListPayload {
+  jobs : Array[@job.JobDefinition]
+}
+pub impl Show for JobsListPayload
+pub impl ToJson for JobsListPayload
+pub impl @json.FromJson for JobsListPayload
+
+pub(all) struct MemoriesListPayload {
+  memories : Array[@job.MemoryRecord]
+}
+pub impl Show for MemoriesListPayload
+pub impl ToJson for MemoriesListPayload
+pub impl @json.FromJson for MemoriesListPayload
+
+pub(all) struct MemoryMutationPayload {
+  status : String
+  memory : @job.MemoryRecord
+}
+pub impl Show for MemoryMutationPayload
+pub impl ToJson for MemoryMutationPayload
+pub impl @json.FromJson for MemoryMutationPayload
+
+pub(all) struct MemorySearchPayload {
+  hits : Array[@job.MemorySearchHit]
+}
+pub impl Show for MemorySearchPayload
+pub impl ToJson for MemorySearchPayload
+pub impl @json.FromJson for MemorySearchPayload
+
+pub(all) struct PluginsListPayload {
+  plugins : Array[@plugin.PluginRecord]
+}
+pub impl Show for PluginsListPayload
+pub impl ToJson for PluginsListPayload
+pub impl @json.FromJson for PluginsListPayload
+
+pub(all) struct RunInfo {
+  run_id : String
+  session_key : String
+  status : String
+  created_at : Int
+  completed_at : Int?
+  result : Json?
+  error : @protocol.ErrorShape?
+}
+pub impl Show for RunInfo
+pub impl ToJson for RunInfo
+pub impl @json.FromJson for RunInfo
+
+pub(all) struct RunsListPayload {
+  runs : Array[RunInfo]
+}
+pub impl Show for RunsListPayload
+pub impl ToJson for RunsListPayload
+pub impl @json.FromJson for RunsListPayload
+
+pub(all) struct WorkspacePayload {
+  workspace : @workspace.WorkspaceSnapshot
+}
+pub impl Show for WorkspacePayload
+pub impl ToJson for WorkspacePayload
+pub impl @json.FromJson for WorkspacePayload
+
+// Type aliases
+
+// Traits
+

@@ -1,0 +1,22 @@
+import {
+  "clawteam/clawteam/file",
+  "clawteam/clawteam/tool",
+  "clawteam/clawteam/internal/fsx",
+  "clawteam/clawteam/internal/pathx",
+  "clawteam/clawteam/internal/fuzzy",
+  "moonbitlang/async/os_error",
+  "moonbitlang/core/json",
+  "moonbitlang/core/test",
+}
+
+import {
+  "moonbitlang/async",
+  "clawteam/clawteam/tools/read_file",
+  "clawteam/clawteam/internal/mock",
+  "clawteam/clawteam/agent",
+  "clawteam/clawteam/model",
+  "clawteam/clawteam/internal/pino",
+  "clawteam/clawteam/event",
+  "clawteam/clawteam/ai",
+  "moonbitlang/async/fs",
+} for "test"

@@ -1,0 +1,10 @@
+import {
+  "moonbitlang/async",
+  "moonbitlang/async/stdio",
+  "moonbitlang/async/os_error",
+  "clawteam/clawteam/internal/errno",
+  "clawteam/clawteam/internal/tty",
+  "clawteam/clawteam/internal/readline/unicode/width" @unicode/width,
+  "moonbitlang/core/buffer",
+  "moonbitlang/core/encoding/utf8" @encoding/utf8,
+}

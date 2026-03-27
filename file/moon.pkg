@@ -1,0 +1,4 @@
+import {
+  "moonbitlang/async",
+  "clawteam/clawteam/internal/mock",
+} for "wbtest"

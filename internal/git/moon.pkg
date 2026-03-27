@@ -1,0 +1,16 @@
+import {
+  "clawteam/clawteam/internal/pathx",
+  "clawteam/clawteam/internal/spawn",
+  "clawteam/clawteam/internal/fsx",
+  "moonbitlang/async",
+  "clawteam/clawteam/internal/mock",
+  "moonbitlang/core/cmp",
+  "moonbitlang/core/json",
+  "moonbitlang/core/strconv",
+  "moonbitlang/core/test",
+}
+
+import {
+  "clawteam/clawteam/internal/mock",
+  "clawteam/clawteam/internal/os",
+} for "test"

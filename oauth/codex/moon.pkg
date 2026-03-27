@@ -1,0 +1,17 @@
+import {
+  "clawteam/clawteam/internal/rand",
+  "clawteam/clawteam/internal/os",
+  "clawteam/clawteam/internal/pathx",
+  "clawteam/clawteam/internal/fsx",
+  "clawteam/clawteam/internal/httpx",
+  "clawteam/clawteam/internal/spawn",
+  "moonbitlang/x/crypto",
+  "moonbitlang/x/codec/base64",
+  "moonbitlang/async/http",
+  "moonbitlang/async/io",
+  "moonbitlang/async",
+  "moonbitlang/core/encoding/utf8" @encoding/utf8,
+  "moonbitlang/core/json",
+  "moonbitlang/core/random",
+  "clawteam/clawteam/internal/pino",
+}

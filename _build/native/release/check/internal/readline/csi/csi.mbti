@@ -1,0 +1,24 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "clawteam/clawteam/internal/readline/csi"
+
+// Values
+pub const ClearLine : Bytes = \x1b[2K
+
+pub const ClearScreenDown : Bytes = \x1b[0J
+
+pub const ClearToLineBeginning : Bytes = \x1b[1K
+
+pub const ClearToLineEnd : Bytes = \x1b[0K
+
+pub const Escape : Byte = \x1b
+
+pub fn csi(Bytes) -> Bytes
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits
+

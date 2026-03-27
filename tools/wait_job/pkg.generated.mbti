@@ -1,0 +1,19 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "moonbitlang/moonclaw/tools/wait_job"
+
+import {
+  "moonbitlang/moonclaw/job",
+  "moonbitlang/moonclaw/tool",
+}
+
+// Values
+pub fn new(@job.Manager) -> @tool.Tool[String]
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits
+

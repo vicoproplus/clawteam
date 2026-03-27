@@ -1,0 +1,24 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "moonbitlang/moonclaw/tools/list_files"
+
+import {
+  "moonbitlang/core/json",
+  "moonbitlang/moonclaw/file",
+  "moonbitlang/moonclaw/tool",
+}
+
+// Values
+pub fn new(@file.Manager) -> @tool.Tool[ListFilesResult]
+
+// Errors
+
+// Types and methods
+type ListFilesResult
+pub impl Show for ListFilesResult
+pub impl ToJson for ListFilesResult
+pub impl @json.FromJson for ListFilesResult
+
+// Type aliases
+
+// Traits
+

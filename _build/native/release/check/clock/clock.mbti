@@ -1,0 +1,34 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "clawteam/clawteam/clock"
+
+import {
+  "moonbitlang/core/json",
+}
+
+// Values
+pub let epoch : Epoch
+
+// Errors
+
+// Types and methods
+type Epoch
+pub impl Clock for Epoch
+
+type Timestamp
+pub fn Timestamp::from_ms(Int64) -> Self
+pub fn Timestamp::ms(Self) -> Int64
+pub fn Timestamp::ms_since(Self, Self) -> Int64
+pub fn Timestamp::truncate_to_s(Self) -> Int64
+pub impl Eq for Timestamp
+pub impl Show for Timestamp
+pub impl ToJson for Timestamp
+pub impl @json.FromJson for Timestamp
+
+// Type aliases
+
+// Traits
+pub(open) trait Clock {
+  now(Self) -> Timestamp
+  now_str(Self) -> String
+}
+

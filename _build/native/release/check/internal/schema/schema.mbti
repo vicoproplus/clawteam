@@ -1,0 +1,26 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "clawteam/clawteam/internal/schema"
+
+// Values
+pub fn array(Schema) -> Schema
+
+pub fn enums(Array[Json]) -> Schema
+
+pub fn integer() -> Schema
+
+pub fn object(Map[String, Schema], additional_properties? : Bool, required? : Array[String]) -> Schema
+
+pub fn string() -> Schema
+
+// Errors
+
+// Types and methods
+type Schema
+pub fn Schema::to_json(Self) -> Map[String, Json]
+pub fn Schema::verify(Self, Json) -> Bool
+pub impl ToJson for Schema
+
+// Type aliases
+
+// Traits
+

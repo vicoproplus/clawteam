@@ -1,0 +1,19 @@
+import {
+  "moonbitlang/async/process",
+  "moonbitlang/async/io",
+  "clawteam/clawteam/internal/errno",
+  "moonbitlang/async/aqueue",
+  "moonbitlang/async",
+  "clawteam/clawteam/clock",
+  "moonbitlang/core/encoding/utf8" @encoding/utf8,
+  "moonbitlang/core/json",
+  "moonbitlang/core/test",
+}
+
+import {
+  "clawteam/clawteam/internal/mock",
+} for "test"
+
+options(
+  "native-stub": [ "spawn.c" ],
+)

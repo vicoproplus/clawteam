@@ -1,0 +1,17 @@
+import {
+  "moonbitlang/async/stdio",
+  "clawteam/clawteam/internal/readline/csi",
+  "moonbitlang/async/aqueue",
+  "moonbitlang/async",
+  "clawteam/clawteam/internal/readline/unicode",
+  "moonbitlang/async/io",
+  "clawteam/clawteam/internal/tty",
+  "clawteam/clawteam/internal/signal",
+  "clawteam/clawteam/internal/spawn",
+  "clawteam/clawteam/internal/readline/unicode/width" @unicode/width,
+  "moonbitlang/core/buffer",
+  "moonbitlang/core/cmp",
+  "moonbitlang/core/deque",
+  "moonbitlang/core/encoding/utf8" @encoding/utf8,
+  "moonbitlang/core/env",
+}

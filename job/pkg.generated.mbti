@@ -1,0 +1,1399 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "moonbitlang/moonclaw/job"
+
+import {
+  "moonbitlang/core/json",
+  "moonbitlang/moonclaw/ai",
+  "moonbitlang/moonclaw/workspace",
+}
+
+// Values
+pub fn analysis_step_handler(runtime~ : RuntimeManager, executor? : AnalysisExecutor, now? : () -> Int, kind? : String) -> WorkflowStepHandler
+
+pub fn analysis_system_prompt(AnalysisStepConfig) -> String
+
+pub async fn apply_named_job_profile(JobProposal, String, String, String, String?) -> JobProposal
+
+pub async fn build_analysis_request(SystemStore, WorkflowStepContext, AnalysisStepConfig) -> AnalysisRequest
+
+pub async fn build_job_ui_snapshot(SystemStore, String, linked_remote? : Array[JobUiRemoteLink], handoffs? : Array[JobUiHandoff]) -> JobUiSnapshot?
+
+pub async fn capture_successful_run_memories(SystemStore, JobDefinition, JobRun, Int) -> Array[MemoryRecord]
+
+pub async fn checkpoint_run_workspace(SystemStore, String, String) -> Bool
+
+pub fn child_runs_for(SystemStore, String) -> Array[JobRun]
+
+pub fn compile_job_proposal(JobProposal, Int, String, String, workspace_root? : String) -> ProposalCompilation
+
+pub async fn complete_controller_iteration_for_step(SystemStore, JobRun, WorkflowStepDefinition, RunStatus, Int) -> Unit
+
+pub async fn complete_controller_run(SystemStore, JobRun, RunStatus, Int) -> Unit
+
+pub fn current_step_id_for_ui(SystemStore, JobRun, WorkflowDefinition?) -> String?
+
+pub fn current_step_label(SystemStore, JobDefinition, String) -> String
+
+pub fn decide_active_job_notifications(String, JobRun, Array[JobRunEvent], JobNotifyTarget, JobNotificationRuntimeState, Int) -> JobNotificationDecision
+
+pub fn default_analysis_executor() -> AnalysisExecutor
+
+pub fn definition_display_title(JobDefinition) -> String
+
+pub async fn[T] dispatch_job_chat_action(JobChatAction?, async (String) -> T, async (String) -> T, async (String) -> T, async (String) -> T, async (String) -> T, async (String) -> T, async () -> T, async (String, Bool) -> T, async (String) -> T, async (String) -> T, async () -> T, async (String) -> T) -> T?
+
+pub fn draft_job_proposal(String, String, Int, channel_id? : String?, account_id? : String?, recipient? : String?, thread_id? : String?) -> JobProposal
+
+pub async fn ensure_controller_iteration_for_step(SystemStore, JobRun, WorkflowStepDefinition, Int) -> Unit
+
+pub async fn ensure_controller_records_for_run(SystemStore, JobDefinition, JobRun, Int) -> Unit
+
+pub fn ensure_draft_proposal(JobProposal, String) -> String?
+
+pub fn event_as_ui_timeline_entry(JobRunEvent, Int) -> JobUiTimelineEntry
+
+pub async fn execute_run_lifecycle(RuntimeManager, String, () -> Int, () -> WorkflowEngine, control? : WorkflowExecutionControl, hooks? : RunExecutionHooks) -> Unit
+
+pub fn execution_notification_hooks(GatewayJobState, () -> Int, async (JobNotifyTarget, String) -> Unit, on_info? : async (String) -> Unit, on_warn? : async (String) -> Unit) -> RunExecutionHooks
+
+pub fn finished_status_prefix(RunStatus) -> String
+
+pub fn format_job_timestamp(Int) -> String
+
+pub fn format_progress_event(JobRunEvent) -> String?
+
+pub fn human_readable_proposal_id(String, Int, String) -> String
+
+pub fn human_readable_run_id(Int, String) -> String
+
+pub fn initial_notification_runtime_state(Int) -> JobNotificationRuntimeState
+
+pub async fn list_job_profiles(String, String) -> Array[JobProfile]
+
+pub async fn load_job_profile(String, String, String) -> JobProfile?
+
+pub async fn load_run_ui_timeline(SystemStore, String) -> Array[JobUiTimelineEntry]
+
+pub fn notification_preference_id(String, String, String, String?) -> String
+
+pub fn parse_job_chat_action(String, Bool) -> JobChatAction?
+
+pub fn parse_job_notify_target(Json) -> JobNotifyTarget?
+
+pub fn parse_notification_verbosity(String) -> NotificationVerbosity?
+
+pub fn parse_reply_thread_job_action(String) -> (String, String)?
+
+pub fn parse_revise_args(String) -> (String, String)?
+
+pub async fn plan_job_proposal(String, String, Int, executor? : AnalysisExecutor, channel_id? : String?, account_id? : String?, recipient? : String?, thread_id? : String?, model? : String?, cwd? : String, home? : String?, workspace? : String?, memory_context? : String?) -> JobProposal
+
+pub async fn prepare_run_workspace(SystemStore, JobDefinition, JobRun) -> JobRun
+
+pub fn proposal_as_workflow(JobProposal, Int, String, String, workspace_root? : String) -> (JobDefinition, WorkflowDefinition)
+
+pub fn proposal_for_reply(SystemStore, String?) -> JobProposal?
+
+pub async fn record_controller_child_run(SystemStore, JobRun, WorkflowStepDefinition, String, String, String, Int) -> Unit
+
+pub async fn record_controller_decision_from_output(SystemStore, JobDefinition, JobRun, WorkflowStepDefinition, Json, Int) -> Unit
+
+pub async fn refresh_run_workspace_memory(SystemStore, JobDefinition, JobRun) -> Unit
+
+pub fn render_active_jobs(Array[ActiveJobSnapshot]) -> String
+
+pub fn render_active_runs(SystemStore, Array[JobRun]) -> String
+
+pub fn render_confirm_proposal_failure(String, String) -> String
+
+pub fn render_confirmed_job_reply(String, String, String, String, String, String) -> String
+
+pub fn render_job_notify_updated(NotificationVerbosity) -> String
+
+pub fn render_job_notify_usage() -> String
+
+pub fn render_job_proposal_for_chat(JobProposal) -> String
+
+pub fn render_job_status(JobStatusSnapshot, String) -> String
+
+pub async fn render_job_status_command_reply(SystemStore, String, Int, String, active_run_id? : String?) -> String?
+
+pub fn render_job_stop_requested(String, String, Bool) -> String
+
+pub fn render_job_stop_usage(Bool) -> String
+
+pub async fn render_job_workspace_command_reply(SystemStore, String, active_run_id? : String?) -> String?
+
+pub fn render_job_workspace_usage() -> String
+
+pub fn render_jobs_command_reply(SystemStore, Array[JobRun]) -> String
+
+pub fn render_memories_reply(Array[MemoryRecord]) -> String
+
+pub fn render_memory_hits_prompt(Array[MemorySearchHit], header? : String) -> String
+
+pub fn render_memory_records_prompt(Array[MemoryRecord], header? : String) -> String
+
+pub fn render_memory_saved_reply(MemoryRecord) -> String
+
+pub fn render_memory_search_reply(String, Array[MemorySearchHit]) -> String
+
+pub fn render_memory_search_usage() -> String
+
+pub fn render_progress_notification(String, String, String) -> String
+
+pub fn render_rejected_job_reply(String) -> String
+
+pub fn render_remember_usage() -> String
+
+pub fn render_revise_usage(Bool) -> String
+
+pub async fn render_run_workspace_status(SystemStore, JobDefinition, JobRun) -> String
+
+pub async fn render_status_text(SystemStore, JobDefinition, JobRun, String, Int) -> String
+
+pub fn render_unknown_job_or_run_message(String) -> String
+
+pub fn render_unknown_proposal_message(String) -> String
+
+pub async fn request_job_stop(SystemStore, String, async (String, Bool) -> Result[JobRun, String], force? : Bool, active_run_id? : String?) -> Result[String, String]
+
+pub fn resolve_job_notify_target(SystemStore, JobDefinition) -> JobNotifyTarget?
+
+pub fn resolve_status_target(SystemStore, String, active_run_id? : String?) -> (JobDefinition, JobRun)?
+
+pub fn resolve_target_proposal(SystemStore, String, String?) -> JobProposal?
+
+pub async fn revise_job_proposal(JobProposal, String, Int, executor? : AnalysisExecutor, model? : String?, cwd? : String, home? : String?, workspace? : String?, memory_context? : String?) -> JobProposal
+
+pub fn run_events_as_timeline(Array[JobRunEvent]) -> Array[JobUiTimelineEntry]
+
+pub async fn save_confirmed_job_proposal(SystemStore, JobProposal, ProposalCompilation, String, Int) -> Unit
+
+pub async fn save_job_notification_preference(SystemStore, String, String, String, String?, NotificationVerbosity, Int, heartbeat_interval_ms? : Int?, warn_after_ms? : Int?) -> Unit
+
+pub async fn save_presented_job_proposal(SystemStore, JobProposal, String) -> Unit
+
+pub async fn save_rejected_job_proposal(SystemStore, JobProposal, Int) -> Unit
+
+pub fn split_job_chat_command(String) -> (String, String)
+
+pub fn subjob_step_handler(runtime~ : RuntimeManager, planner~ : ProposalPlanner, compiler~ : ProposalCompiler, engine_factory~ : () -> WorkflowEngine, child_executor? : ChildRunExecutor?, now? : () -> Int, next_run_id? : () -> String, kind? : String) -> WorkflowStepHandler
+
+pub async fn suggest_job_profile_family(String, String, String) -> String?
+
+// Errors
+pub suberror InvalidJobId {
+  InvalidJobId(Id)
+}
+
+// Types and methods
+pub(all) struct ActiveJobSnapshot {
+  definition_id : String
+  definition_title : String
+  created_at_label : String
+  run_id : String
+  status : String
+  family : String
+  depth : Int
+  current_step : String
+}
+pub impl Show for ActiveJobSnapshot
+pub impl ToJson for ActiveJobSnapshot
+pub impl @json.FromJson for ActiveJobSnapshot
+
+pub(all) struct AnalysisArtifactConfig {
+  report_artifact_type : String
+  result_artifact_type : String
+  logical_key : String?
+  report_file_name : String?
+  result_file_name : String?
+  scope : Array[String]
+  append_only : Bool
+}
+pub fn AnalysisArtifactConfig::new(report_artifact_type? : String, result_artifact_type? : String, logical_key? : String?, report_file_name? : String?, result_file_name? : String?, scope? : Array[String], append_only? : Bool) -> Self
+pub impl Show for AnalysisArtifactConfig
+pub impl ToJson for AnalysisArtifactConfig
+pub impl @json.FromJson for AnalysisArtifactConfig
+
+pub(all) struct AnalysisExecution {
+  model_name : String
+  content : String
+  conversation_id : String?
+  usage : @ai.Usage?
+  metadata : Json
+}
+pub impl Show for AnalysisExecution
+
+pub(all) struct AnalysisExecutor {
+  run : async (AnalysisRequest) -> Result[AnalysisExecution, String]
+}
+pub fn AnalysisExecutor::new(run~ : async (AnalysisRequest) -> Result[AnalysisExecution, String]) -> Self
+
+pub(all) struct AnalysisPolicy {
+  timeout_ms : Int?
+  max_total_tokens : Int?
+  skip_if_artifact_exists : Bool
+}
+pub fn AnalysisPolicy::new(timeout_ms? : Int?, max_total_tokens? : Int?, skip_if_artifact_exists? : Bool) -> Self
+pub impl Show for AnalysisPolicy
+pub impl ToJson for AnalysisPolicy
+pub impl @json.FromJson for AnalysisPolicy
+
+pub(all) struct AnalysisRequest {
+  job_id : String
+  run_id : String
+  step_id : String
+  prompt : String
+  model_name : String
+  cwd : String
+  home : String?
+  execution_mode : String?
+  execution_target : String?
+  system_prompt : String
+  preferred_skills : Array[String]
+  enable_tools : Bool
+  web_search : Bool
+}
+pub impl Show for AnalysisRequest
+pub impl ToJson for AnalysisRequest
+pub impl @json.FromJson for AnalysisRequest
+
+pub(all) struct AnalysisStepConfig {
+  prompt : String
+  model : String?
+  cwd : String?
+  home : String?
+  workspace : String?
+  execution_mode : String?
+  execution_target : String?
+  system_prompt : String?
+  preferred_skills : Array[String]
+  enable_tools : Bool
+  web_search : Bool
+  policy : AnalysisPolicy
+  artifacts : AnalysisArtifactConfig
+  metadata : Json
+}
+pub fn AnalysisStepConfig::new(prompt~ : String, model? : String?, cwd? : String?, home? : String?, workspace? : String?, execution_mode? : String?, execution_target? : String?, system_prompt? : String?, preferred_skills? : Array[String], enable_tools? : Bool, web_search? : Bool, policy? : AnalysisPolicy, artifacts? : AnalysisArtifactConfig, metadata? : Json) -> Self
+pub impl Show for AnalysisStepConfig
+pub impl ToJson for AnalysisStepConfig
+pub impl @json.FromJson for AnalysisStepConfig
+
+type ArtifactBytesWriteRequest
+
+pub(all) struct ArtifactCleanupReport {
+  archived_ids : Array[String]
+  deleted_ids : Array[String]
+}
+pub impl Show for ArtifactCleanupReport
+pub impl ToJson for ArtifactCleanupReport
+pub impl @json.FromJson for ArtifactCleanupReport
+
+pub(all) struct ArtifactQuery {
+  job_id : String?
+  run_id : String?
+  artifact_type : String?
+  logical_key : String?
+  scope : String?
+  status : ArtifactStatus?
+}
+pub fn ArtifactQuery::new(job_id? : String?, run_id? : String?, artifact_type? : String?, logical_key? : String?, scope? : String?, status? : ArtifactStatus?) -> Self
+pub impl Show for ArtifactQuery
+pub impl ToJson for ArtifactQuery
+pub impl @json.FromJson for ArtifactQuery
+
+pub(all) struct ArtifactRecord {
+  id : String
+  run_id : String
+  job_id : String
+  artifact_type : String
+  logical_key : String?
+  version : Int
+  status : ArtifactStatus
+  path : String
+  content_type : String
+  metadata : Json
+  created_at : Int
+  archived_at : Int?
+  scope : Array[String]
+}
+pub impl Show for ArtifactRecord
+pub impl ToJson for ArtifactRecord
+pub impl @json.FromJson for ArtifactRecord
+
+pub(all) struct ArtifactRetentionPolicy {
+  artifact_type : String?
+  scope : String?
+  keep_latest : Int?
+  max_age_ms : Int?
+  archive_before_delete : Bool
+}
+pub fn ArtifactRetentionPolicy::new(artifact_type? : String?, scope? : String?, keep_latest? : Int?, max_age_ms? : Int?, archive_before_delete? : Bool) -> Self
+pub impl Show for ArtifactRetentionPolicy
+pub impl ToJson for ArtifactRetentionPolicy
+pub impl @json.FromJson for ArtifactRetentionPolicy
+
+pub(all) enum ArtifactStatus {
+  Active
+  Archived
+}
+pub impl Eq for ArtifactStatus
+pub impl Show for ArtifactStatus
+pub impl ToJson for ArtifactStatus
+pub impl @json.FromJson for ArtifactStatus
+
+pub struct ArtifactStore {
+  store : SystemStore
+}
+pub async fn ArtifactStore::apply_retention(Self, ArtifactRetentionPolicy, Int) -> ArtifactCleanupReport
+pub async fn ArtifactStore::archive(Self, String, Int) -> ArtifactRecord?
+pub fn ArtifactStore::get(Self, String) -> ArtifactRecord?
+pub fn ArtifactStore::list(Self, query? : ArtifactQuery) -> Array[ArtifactRecord]
+pub fn ArtifactStore::new(store~ : SystemStore) -> Self
+pub async fn ArtifactStore::read_text(Self, String) -> String?
+pub async fn ArtifactStore::write(Self, ArtifactWriteRequest, String, Int) -> ArtifactRecord
+pub async fn ArtifactStore::write_bytes(Self, ArtifactBytesWriteRequest, String, Int) -> ArtifactRecord
+
+pub(all) struct ArtifactWriteRequest {
+  run_id : String
+  job_id : String
+  artifact_type : String
+  logical_key : String?
+  content_type : String
+  file_name : String?
+  metadata : Json
+  scope : Array[String]
+  content : String
+  append_only : Bool
+}
+pub fn ArtifactWriteRequest::new(run_id~ : String, job_id~ : String, artifact_type~ : String, content~ : String, logical_key? : String?, content_type? : String, file_name? : String?, metadata? : Json, scope? : Array[String], append_only? : Bool) -> Self
+pub impl Show for ArtifactWriteRequest
+pub impl ToJson for ArtifactWriteRequest
+pub impl @json.FromJson for ArtifactWriteRequest
+
+type ArtifactsIndexFile
+pub impl Show for ArtifactsIndexFile
+pub impl ToJson for ArtifactsIndexFile
+pub impl @json.FromJson for ArtifactsIndexFile
+
+pub(all) struct ChatAnswer {
+  binding_id : String?
+  question : String
+  answer : String
+  citations : Array[ChatCitation]
+  hits : Array[RetrievalHit]
+  memory_hits : Array[MemorySearchHit]
+}
+pub impl Show for ChatAnswer
+pub impl ToJson for ChatAnswer
+pub impl @json.FromJson for ChatAnswer
+
+pub(all) struct ChatBinding {
+  id : String
+  title : String?
+  artifact_query : ArtifactQuery
+  scope : Array[String]
+  created_at : Int
+  updated_at : Int
+}
+pub impl Show for ChatBinding
+pub impl ToJson for ChatBinding
+pub impl @json.FromJson for ChatBinding
+
+type ChatBindingsFile
+pub impl Show for ChatBindingsFile
+pub impl ToJson for ChatBindingsFile
+pub impl @json.FromJson for ChatBindingsFile
+
+pub(all) struct ChatCitation {
+  artifact_id : String
+  artifact_type : String
+  logical_key : String?
+  snippet : String
+  path : String
+  scope : Array[String]
+}
+pub impl Show for ChatCitation
+pub impl ToJson for ChatCitation
+pub impl @json.FromJson for ChatCitation
+
+pub struct ChatService {
+  store : SystemStore
+  artifacts : ArtifactStore
+  memories : MemoryService
+}
+pub async fn ChatService::ask(Self, JobAskParams) -> Result[ChatAnswer, String]
+pub fn ChatService::new(store~ : SystemStore) -> Self
+pub async fn ChatService::retrieve(Self, String, query? : ArtifactQuery, max_hits? : Int) -> Array[RetrievalHit]
+
+pub(all) struct CheckpointRecord {
+  job_id : String
+  last_triggered_at : Int?
+  last_started_at : Int?
+  last_completed_at : Int?
+  last_success_at : Int?
+  last_run_id : String?
+  retry_attempts : Int
+  next_retry_at : Int?
+  retry_source_run_id : String?
+}
+pub impl Show for CheckpointRecord
+pub impl ToJson for CheckpointRecord
+pub impl @json.FromJson for CheckpointRecord
+
+pub struct CheckpointStore {
+  root : String
+  checkpoints : Map[String, CheckpointRecord]
+}
+pub fn CheckpointStore::get(Self, String) -> CheckpointRecord?
+pub fn CheckpointStore::list(Self) -> Array[CheckpointRecord]
+pub async fn CheckpointStore::load(Self) -> Unit
+pub fn CheckpointStore::new(root~ : String) -> Self
+pub async fn CheckpointStore::save(Self) -> Unit
+pub async fn CheckpointStore::save_checkpoint(Self, CheckpointRecord) -> Unit
+
+pub(all) struct ChildRunExecutionRequest {
+  parent_context : WorkflowStepContext
+  child_run : JobRun
+  compilation : ProposalCompilation
+  config : SubjobStepConfig
+  control : WorkflowExecutionControl
+}
+
+pub(all) struct ChildRunExecutionResult {
+  outputs : Map[String, Json]
+}
+
+pub(all) struct ChildRunExecutor {
+  run : async (ChildRunExecutionRequest) -> Result[ChildRunExecutionResult?, String]
+}
+pub fn ChildRunExecutor::new(run~ : async (ChildRunExecutionRequest) -> Result[ChildRunExecutionResult?, String]) -> Self
+
+pub(all) struct ChildRunStatus {
+  run_id : String
+  status : String
+}
+pub impl Show for ChildRunStatus
+pub impl ToJson for ChildRunStatus
+pub impl @json.FromJson for ChildRunStatus
+
+pub struct ConfirmProposalResult {
+  compilation : ProposalCompilation
+  run : JobRun
+}
+
+type ControllerDecisionsFile
+pub impl Show for ControllerDecisionsFile
+pub impl ToJson for ControllerDecisionsFile
+pub impl @json.FromJson for ControllerDecisionsFile
+
+type ControllerIterationsFile
+pub impl Show for ControllerIterationsFile
+pub impl ToJson for ControllerIterationsFile
+pub impl @json.FromJson for ControllerIterationsFile
+
+type ControllerLineageFile
+pub impl Show for ControllerLineageFile
+pub impl ToJson for ControllerLineageFile
+pub impl @json.FromJson for ControllerLineageFile
+
+type ControllerStateFile
+pub impl Show for ControllerStateFile
+pub impl ToJson for ControllerStateFile
+pub impl @json.FromJson for ControllerStateFile
+
+type DefinitionsIndexFile
+pub impl Show for DefinitionsIndexFile
+pub impl ToJson for DefinitionsIndexFile
+pub impl @json.FromJson for DefinitionsIndexFile
+
+pub struct GatewayJobApp {
+  state : GatewayJobState
+  cwd : String
+  home : String
+  workspace : @workspace.WorkspaceRuntime
+  next_id : () -> String
+  now : () -> Int
+}
+pub fn GatewayJobApp::compile_proposal(Self, JobProposal) -> ProposalCompilation
+pub fn GatewayJobApp::compile_proposal_in_workspace(Self, JobProposal, String, String) -> ProposalCompilation
+pub async fn GatewayJobApp::confirm_proposal(Self, JobProposal, String, async (String) -> Result[JobRun, String]) -> Result[ConfirmProposalResult, String]
+pub async fn GatewayJobApp::load(Self) -> Unit
+pub fn GatewayJobApp::new(root~ : String, cwd~ : String, home~ : String, workspace~ : @workspace.WorkspaceRuntime, next_id~ : () -> String, now~ : () -> Int) -> Self
+pub fn GatewayJobApp::new_workflow_engine(Self) -> WorkflowEngine
+pub fn GatewayJobApp::new_workflow_engine_with_child_executor(Self, child_executor? : ChildRunExecutor?) -> WorkflowEngine
+pub fn GatewayJobApp::new_workflow_engine_with_executors(Self, child_executor? : ChildRunExecutor?, analysis_executor? : AnalysisExecutor?) -> WorkflowEngine
+pub fn GatewayJobApp::next_id(Self) -> String
+pub fn GatewayJobApp::now(Self) -> Int
+pub async fn GatewayJobApp::plan_proposal(Self, String, channel_id? : String?, account_id? : String?, recipient? : String?, thread_id? : String?, model? : String?) -> JobProposal
+pub async fn GatewayJobApp::plan_proposal_in_workspace(Self, String, String, String, channel_id? : String?, account_id? : String?, recipient? : String?, thread_id? : String?, model? : String?) -> JobProposal
+pub async fn GatewayJobApp::reject_proposal(Self, JobProposal) -> Unit
+pub async fn GatewayJobApp::revise_draft_proposal(Self, JobProposal, String, String) -> Result[JobProposal, String]
+pub async fn GatewayJobApp::revise_proposal(Self, JobProposal, String) -> JobProposal
+pub async fn GatewayJobApp::revise_proposal_in_workspace(Self, JobProposal, String, String, String) -> JobProposal
+pub fn GatewayJobApp::runtime(Self) -> RuntimeManager
+pub fn GatewayJobApp::state(Self) -> GatewayJobState
+pub fn GatewayJobApp::workspace_prompt_context(Self) -> String
+pub fn GatewayJobApp::workspace_root(Self) -> String
+
+pub struct GatewayJobState {
+  runtime : RuntimeManager
+  cancel_requests : Map[String, Bool]
+  force_stop_requests : Map[String, Bool]
+  status_last_sent_at : Map[String, Int]
+  last_notified_event_count : Map[String, Int]
+  long_running_warned : Map[String, Bool]
+}
+pub fn GatewayJobState::clear_control_requests(Self, String) -> Unit
+pub fn GatewayJobState::clear_notification_runtime_state(Self, String) -> Unit
+pub async fn GatewayJobState::load(Self) -> Unit
+pub fn GatewayJobState::new(root~ : String) -> Self
+pub fn GatewayJobState::notification_runtime_state(Self, String) -> JobNotificationRuntimeState
+pub fn GatewayJobState::request_stop(Self, String, force? : Bool) -> Unit
+pub fn GatewayJobState::runtime(Self) -> RuntimeManager
+pub fn GatewayJobState::set_notification_runtime_state(Self, String, JobNotificationRuntimeState) -> Unit
+pub fn GatewayJobState::should_cancel(Self, String) -> Bool
+pub fn GatewayJobState::should_force_stop(Self, String) -> Bool
+
+pub(all) struct Id(Int)
+#deprecated
+pub fn Id::inner(Self) -> Int
+pub impl Eq for Id
+pub impl Hash for Id
+pub impl Show for Id
+pub impl ToJson for Id
+pub impl @json.FromJson for Id
+
+pub struct Job {
+  id : Id
+  name : String
+  description : String?
+  command : String
+  cwd : String
+  stdout : String
+  stderr : String
+  // private fields
+}
+pub fn Job::status(Self) -> Int?
+pub async fn Job::wait(Self) -> Int
+pub impl ToJson for Job
+
+pub(all) struct JobAskParams {
+  question : String
+  binding_id : String?
+  artifact_query : ArtifactQuery?
+  max_hits : Int?
+}
+pub impl Show for JobAskParams
+pub impl ToJson for JobAskParams
+pub impl @json.FromJson for JobAskParams
+
+pub(all) enum JobChatAction {
+  PlanJob(String)
+  Confirm(String)
+  Reject(String)
+  Revise(String)
+  JobStatus(String)
+  JobWorkspace(String)
+  Jobs
+  JobStop(String)
+  JobForceStop(String)
+  JobNotify(String)
+  Remember(String)
+  Memories
+  MemorySearch(String)
+}
+pub impl Show for JobChatAction
+
+pub(all) struct JobControllerDecision {
+  id : String
+  controller_job_id : String
+  controller_run_id : String
+  iteration_id : String
+  step_id : String
+  verdict : String
+  reason : String?
+  next_action : String?
+  metadata : Json
+  created_at : Int
+  updated_at : Int
+}
+pub impl Show for JobControllerDecision
+pub impl ToJson for JobControllerDecision
+pub impl @json.FromJson for JobControllerDecision
+
+pub(all) struct JobControllerIteration {
+  id : String
+  controller_job_id : String
+  controller_run_id : String
+  parent_iteration_id : String?
+  title : String
+  hypothesis : String
+  status : String
+  decision : String?
+  child_job_ids : Array[String]
+  child_run_ids : Array[String]
+  metadata : Json
+  created_at : Int
+  updated_at : Int
+}
+pub impl Show for JobControllerIteration
+pub impl ToJson for JobControllerIteration
+pub impl @json.FromJson for JobControllerIteration
+
+pub(all) struct JobControllerLineageEdge {
+  id : String
+  controller_job_id : String
+  from_iteration_id : String
+  to_iteration_id : String
+  edge_kind : String
+  metadata : Json
+  created_at : Int
+}
+pub impl Show for JobControllerLineageEdge
+pub impl ToJson for JobControllerLineageEdge
+pub impl @json.FromJson for JobControllerLineageEdge
+
+pub(all) struct JobControllerState {
+  controller_job_id : String
+  controller_run_id : String
+  family : String
+  profile_id : String?
+  objective : String
+  active_iteration_ids : Array[String]
+  accepted_iteration_ids : Array[String]
+  rejected_iteration_ids : Array[String]
+  best_iteration_id : String?
+  frontier : Array[String]
+  metadata : Json
+  created_at : Int
+  updated_at : Int
+}
+pub impl Show for JobControllerState
+pub impl ToJson for JobControllerState
+pub impl @json.FromJson for JobControllerState
+
+pub(all) struct JobDefinition {
+  id : String
+  kind : String
+  enabled : Bool
+  config : Json
+  schedule : SchedulePolicy?
+  retry_policy : RetryPolicy?
+  workflow_id : String?
+  created_at : Int
+  updated_at : Int
+  tags : Array[String]
+}
+pub impl Show for JobDefinition
+pub impl ToJson for JobDefinition
+pub impl @json.FromJson for JobDefinition
+
+pub(all) struct JobNotificationDecision {
+  messages : Array[String]
+  next_state : JobNotificationRuntimeState
+}
+pub impl Show for JobNotificationDecision
+pub impl ToJson for JobNotificationDecision
+pub impl @json.FromJson for JobNotificationDecision
+
+pub(all) struct JobNotificationPreference {
+  id : String
+  channel_id : String
+  account_id : String
+  recipient : String
+  thread_id : String?
+  verbosity : NotificationVerbosity
+  heartbeat_interval_ms : Int?
+  warn_after_ms : Int?
+  created_at : Int
+  updated_at : Int
+}
+pub impl Show for JobNotificationPreference
+pub impl ToJson for JobNotificationPreference
+pub impl @json.FromJson for JobNotificationPreference
+
+pub(all) struct JobNotificationRuntimeState {
+  last_sent_at : Int
+  last_notified_event_count : Int
+  long_running_warned : Bool
+}
+pub impl Show for JobNotificationRuntimeState
+pub impl ToJson for JobNotificationRuntimeState
+pub impl @json.FromJson for JobNotificationRuntimeState
+
+pub(all) struct JobNotifyTarget {
+  channel_id : String
+  account_id : String
+  recipient : String
+  thread_id : String?
+  verbosity : NotificationVerbosity
+  heartbeat_interval_ms : Int
+  warn_after_ms : Int
+}
+pub impl Show for JobNotifyTarget
+
+pub(all) struct JobProfile {
+  id : String
+  family : String
+  label : String?
+  role : String?
+  priority : Int
+  tags : Array[String]
+  match_rules : JobProfileMatchRules?
+  steps : Array[JobProfileStep]
+  metadata : Json
+}
+pub impl Show for JobProfile
+pub impl ToJson for JobProfile
+pub impl @json.FromJson for JobProfile
+
+type JobProfileConfigPayload
+pub impl Show for JobProfileConfigPayload
+pub impl ToJson for JobProfileConfigPayload
+pub impl @json.FromJson for JobProfileConfigPayload
+
+pub(all) struct JobProfileMatchRules {
+  any : Array[String]?
+  all : Array[String]?
+}
+pub impl Show for JobProfileMatchRules
+pub impl ToJson for JobProfileMatchRules
+pub impl @json.FromJson for JobProfileMatchRules
+
+pub(all) struct JobProfileStep {
+  id : String
+  title : String
+  kind : String
+  prompt_template : String?
+  request_template : String?
+  child_profile : String?
+  execution_mode : String?
+  execution_target : String?
+  include_parent_outputs : Bool?
+  max_depth : Int?
+  metadata : Json?
+}
+pub impl Show for JobProfileStep
+pub impl ToJson for JobProfileStep
+pub impl @json.FromJson for JobProfileStep
+
+pub(all) struct JobProposal {
+  id : String
+  title : String
+  request_text : String
+  summary : String
+  revision_history : Array[String]
+  suggested_family : String?
+  profile_id : String?
+  profile_role : String?
+  profile_metadata : Json
+  status : JobProposalStatus
+  steps : Array[JobProposalStep]
+  tags : Array[String]
+  channel_id : String?
+  account_id : String?
+  recipient : String?
+  thread_id : String?
+  presented_message_id : String?
+  job_id : String?
+  workflow_id : String?
+  last_run_id : String?
+  created_at : Int
+  updated_at : Int
+}
+pub impl Show for JobProposal
+pub impl ToJson for JobProposal
+pub impl @json.FromJson for JobProposal
+
+pub(all) enum JobProposalStatus {
+  Draft
+  Confirmed
+  Rejected
+}
+pub impl Show for JobProposalStatus
+pub impl ToJson for JobProposalStatus
+pub impl @json.FromJson for JobProposalStatus
+
+pub(all) struct JobProposalStep {
+  id : String
+  title : String
+  prompt : String
+  kind : String
+  metadata : Json
+  child_profile : String?
+  execution_mode : String?
+  execution_target : String?
+  include_parent_outputs : Bool?
+  max_depth : Int?
+}
+pub impl Show for JobProposalStep
+pub impl ToJson for JobProposalStep
+pub impl @json.FromJson for JobProposalStep
+
+type JobProposalsFile
+pub impl Show for JobProposalsFile
+pub impl ToJson for JobProposalsFile
+pub impl @json.FromJson for JobProposalsFile
+
+pub(all) struct JobRun {
+  id : String
+  job_id : String
+  trigger : TriggerSource
+  parent_run_id : String?
+  parent_step_id : String?
+  depth : Int
+  workspace_dir : String?
+  status : RunStatus
+  attempt : Int
+  retry_of : String?
+  started_at : Int?
+  completed_at : Int?
+  summary : String?
+  error : String?
+}
+pub impl Show for JobRun
+pub impl ToJson for JobRun
+pub impl @json.FromJson for JobRun
+
+pub(all) struct JobRunEvent {
+  run_id : String
+  job_id : String
+  event_type : String
+  timestamp : Int
+  step_id : String?
+  status : RunStatus?
+  message : String
+  data : Json
+}
+pub impl Show for JobRunEvent
+pub impl ToJson for JobRunEvent
+pub impl @json.FromJson for JobRunEvent
+
+pub(all) struct JobStatusSnapshot {
+  definition_id : String
+  definition_title : String
+  created_at_label : String
+  run_id : String
+  status : String
+  family : String
+  current_step : String
+  done_steps : Int
+  total_steps : Int
+  elapsed_ms : Int
+  lineage_line : String?
+  summary : String?
+  error : String?
+  child_runs : Array[ChildRunStatus]
+  latest_event_line : String
+}
+pub impl Show for JobStatusSnapshot
+pub impl ToJson for JobStatusSnapshot
+pub impl @json.FromJson for JobStatusSnapshot
+
+pub(all) struct JobStepRun {
+  id : String
+  run_id : String
+  step_id : String
+  status : RunStatus
+  started_at : Int?
+  completed_at : Int?
+  metrics : Json
+  logs : Array[String]
+  retry_count : Int
+  summary : String?
+  output : Json?
+  error : String?
+}
+pub impl Show for JobStepRun
+pub impl ToJson for JobStepRun
+pub impl @json.FromJson for JobStepRun
+
+pub(all) struct JobUiHandoff {
+  node_id : String
+  step_id : String?
+  remote : Array[JobUiRemoteLink]
+}
+pub impl Show for JobUiHandoff
+pub impl ToJson for JobUiHandoff
+pub impl @json.FromJson for JobUiHandoff
+
+pub(all) struct JobUiNode {
+  id : String
+  parent_id : String?
+  kind : JobUiNodeKind
+  title : String
+  status : String
+  summary : String?
+  detail : String?
+  run_id : String?
+  step_id : String?
+  artifact_id : String?
+  memory_id : String?
+  created_at : Int?
+  updated_at : Int?
+  provisional : Bool
+  metadata : Json
+}
+pub impl Show for JobUiNode
+pub impl ToJson for JobUiNode
+pub impl @json.FromJson for JobUiNode
+
+pub(all) enum JobUiNodeKind {
+  Proposal
+  Workflow
+  Split
+  Merge
+  Step
+  ChildRun
+  Artifact
+  Memory
+}
+pub impl Show for JobUiNodeKind
+pub impl ToJson for JobUiNodeKind
+pub impl @json.FromJson for JobUiNodeKind
+
+pub(all) struct JobUiRemoteLink {
+  id : String
+  kind : String
+  title : String
+  status : String
+  summary : String?
+  detail : String?
+  metadata : Json
+}
+pub impl Show for JobUiRemoteLink
+pub impl ToJson for JobUiRemoteLink
+pub impl @json.FromJson for JobUiRemoteLink
+
+pub(all) struct JobUiSnapshot {
+  run : JobRun
+  definition : JobDefinition
+  workflow : WorkflowDefinition?
+  proposal : JobProposal?
+  workspace_dir : String?
+  current_step_id : String?
+  child_runs : Array[JobRun]
+  artifacts : Array[ArtifactRecord]
+  memories : Array[MemoryRecord]
+  linked_remote : Array[JobUiRemoteLink]
+  handoffs : Array[JobUiHandoff]
+  nodes : Array[JobUiNode]
+  timeline : Array[JobUiTimelineEntry]
+}
+pub impl Show for JobUiSnapshot
+pub impl ToJson for JobUiSnapshot
+pub impl @json.FromJson for JobUiSnapshot
+
+pub(all) struct JobUiTimelineEntry {
+  id : String
+  run_id : String
+  event_type : String
+  title : String
+  detail : String
+  timestamp : Int
+  step_id : String?
+  status : String?
+  data : Json
+}
+pub impl Show for JobUiTimelineEntry
+pub impl ToJson for JobUiTimelineEntry
+pub impl @json.FromJson for JobUiTimelineEntry
+
+pub struct Manager {
+  cwd : String
+  // private fields
+}
+pub fn Manager::get(Self, Id) -> Job?
+pub fn Manager::list(Self) -> Array[Job]
+pub fn Manager::new(cwd~ : String) -> Self
+pub async fn Manager::spawn(Self, name~ : String, description? : String, command~ : String, cwd? : String) -> Job
+pub async fn Manager::start(Self) -> Unit
+pub async fn Manager::wait(Self, Id) -> Int
+
+type MemoriesFile
+pub impl Show for MemoriesFile
+pub impl ToJson for MemoriesFile
+pub impl @json.FromJson for MemoriesFile
+
+pub(all) struct MemoryQuery {
+  kind : String?
+  tag : String?
+  scope : String?
+  workspace : String?
+  agent_id : String?
+  channel_id : String?
+  account_id : String?
+  recipient : String?
+  thread_id : String?
+  source_artifact_id : String?
+  status : MemoryStatus?
+}
+pub fn MemoryQuery::new(kind? : String?, tag? : String?, scope? : String?, workspace? : String?, agent_id? : String?, channel_id? : String?, account_id? : String?, recipient? : String?, thread_id? : String?, source_artifact_id? : String?, status? : MemoryStatus?) -> Self
+pub impl Show for MemoryQuery
+pub impl ToJson for MemoryQuery
+pub impl @json.FromJson for MemoryQuery
+
+pub(all) struct MemoryRecord {
+  id : String
+  kind : String
+  title : String?
+  content : String
+  metadata : Json
+  tags : Array[String]
+  scope : Array[String]
+  workspace : String?
+  agent_id : String?
+  channel_id : String?
+  account_id : String?
+  recipient : String?
+  thread_id : String?
+  source_artifact_id : String?
+  status : MemoryStatus
+  created_at : Int
+  updated_at : Int
+  archived_at : Int?
+}
+pub impl Show for MemoryRecord
+pub impl ToJson for MemoryRecord
+pub impl @json.FromJson for MemoryRecord
+
+pub(all) struct MemorySearchHit {
+  memory_id : String
+  kind : String
+  title : String?
+  score : Int
+  snippet : String
+  tags : Array[String]
+  scope : Array[String]
+  workspace : String?
+  channel_id : String?
+  account_id : String?
+  recipient : String?
+  thread_id : String?
+}
+pub impl Show for MemorySearchHit
+pub impl ToJson for MemorySearchHit
+pub impl @json.FromJson for MemorySearchHit
+
+pub struct MemoryService {
+  store : SystemStore
+}
+pub async fn MemoryService::archive(Self, String, Int) -> Bool
+pub fn MemoryService::get(Self, String) -> MemoryRecord?
+pub fn MemoryService::list(Self, query? : MemoryQuery) -> Array[MemoryRecord]
+pub fn MemoryService::new(store~ : SystemStore) -> Self
+pub async fn MemoryService::remember(Self, MemoryWriteRequest, String, Int) -> MemoryRecord
+pub fn MemoryService::search(Self, String, query? : MemoryQuery, max_hits? : Int) -> Array[MemorySearchHit]
+
+pub(all) enum MemoryStatus {
+  Active
+  Archived
+}
+pub impl Eq for MemoryStatus
+pub impl Show for MemoryStatus
+pub impl ToJson for MemoryStatus
+pub impl @json.FromJson for MemoryStatus
+
+pub(all) struct MemoryWriteRequest {
+  kind : String
+  title : String?
+  content : String
+  metadata : Json
+  tags : Array[String]
+  scope : Array[String]
+  workspace : String?
+  agent_id : String?
+  channel_id : String?
+  account_id : String?
+  recipient : String?
+  thread_id : String?
+  source_artifact_id : String?
+}
+pub fn MemoryWriteRequest::new(kind~ : String, content~ : String, title? : String?, metadata? : Json, tags? : Array[String], scope? : Array[String], workspace? : String?, agent_id? : String?, channel_id? : String?, account_id? : String?, recipient? : String?, thread_id? : String?, source_artifact_id? : String?) -> Self
+pub impl Show for MemoryWriteRequest
+pub impl ToJson for MemoryWriteRequest
+pub impl @json.FromJson for MemoryWriteRequest
+
+type NotificationPreferencesFile
+pub impl Show for NotificationPreferencesFile
+pub impl ToJson for NotificationPreferencesFile
+pub impl @json.FromJson for NotificationPreferencesFile
+
+pub(all) enum NotificationVerbosity {
+  Off
+  Normal
+  Verbose
+}
+pub impl Eq for NotificationVerbosity
+pub impl Show for NotificationVerbosity
+pub impl ToJson for NotificationVerbosity
+pub impl @json.FromJson for NotificationVerbosity
+
+pub(all) struct ProposalCompilation {
+  family : String
+  definition : JobDefinition
+  workflow : WorkflowDefinition
+  bindings : Array[ChatBinding]
+}
+
+pub(all) struct ProposalCompiler {
+  run : (JobProposal, Int, String, String) -> ProposalCompilation
+}
+pub fn ProposalCompiler::new(run~ : (JobProposal, Int, String, String) -> ProposalCompilation) -> Self
+
+type ProposalPlanPayload
+pub impl Show for ProposalPlanPayload
+pub impl ToJson for ProposalPlanPayload
+pub impl @json.FromJson for ProposalPlanPayload
+
+type ProposalPlanStepPayload
+pub impl Show for ProposalPlanStepPayload
+pub impl ToJson for ProposalPlanStepPayload
+pub impl @json.FromJson for ProposalPlanStepPayload
+
+pub(all) struct ProposalPlanner {
+  run : async (String, String, String?) -> JobProposal
+}
+pub fn ProposalPlanner::new(run~ : async (String, String, String?) -> JobProposal) -> Self
+
+pub(all) struct RetrievalHit {
+  artifact_id : String
+  artifact_type : String
+  logical_key : String?
+  score : Int
+  snippet : String
+  path : String
+  scope : Array[String]
+}
+pub impl Show for RetrievalHit
+pub impl ToJson for RetrievalHit
+pub impl @json.FromJson for RetrievalHit
+
+pub(all) struct RetryPolicy {
+  max_attempts : Int
+  backoff_ms : Int?
+}
+pub impl Show for RetryPolicy
+pub impl ToJson for RetryPolicy
+pub impl @json.FromJson for RetryPolicy
+
+pub(all) struct RunExecutionHooks {
+  on_started : async (JobDefinition, JobRun) -> Unit
+  on_finished : async (JobDefinition, JobRun) -> Unit
+  on_info : async (String) -> Unit
+  on_warn : async (String) -> Unit
+}
+pub fn RunExecutionHooks::new(on_started? : async (JobDefinition, JobRun) -> Unit, on_finished? : async (JobDefinition, JobRun) -> Unit, on_info? : async (String) -> Unit, on_warn? : async (String) -> Unit) -> Self
+
+pub(all) enum RunStatus {
+  Pending
+  Running
+  Succeeded
+  Failed
+  Cancelled
+}
+pub impl Show for RunStatus
+pub impl ToJson for RunStatus
+pub impl @json.FromJson for RunStatus
+
+type RunsIndexFile
+pub impl Show for RunsIndexFile
+pub impl ToJson for RunsIndexFile
+pub impl @json.FromJson for RunsIndexFile
+
+pub struct RuntimeManager {
+  store : SystemStore
+  checkpoints : CheckpointStore
+  active_runs : Map[String, String]
+}
+pub fn RuntimeManager::active_run_id(Self, String) -> String?
+pub async fn RuntimeManager::cancel_run(Self, String, Int, summary? : String?) -> JobRun?
+pub fn RuntimeManager::checkpoints(Self) -> CheckpointStore
+pub async fn RuntimeManager::create_run(Self, String, String, TriggerSource, Int, parent_run_id? : String?, parent_step_id? : String?, depth? : Int) -> Result[JobRun, String]
+pub fn RuntimeManager::due_definitions(Self, Int) -> Array[JobDefinition]
+pub fn RuntimeManager::is_job_active(Self, String) -> Bool
+pub fn RuntimeManager::list_active_runs(Self) -> Array[JobRun]
+pub fn RuntimeManager::list_recent_runs(Self, limit? : Int) -> Array[JobRun]
+pub async fn RuntimeManager::load(Self) -> Unit
+pub async fn RuntimeManager::mark_run_failed(Self, String, Int, String, summary? : String?) -> JobRun?
+pub async fn RuntimeManager::mark_run_started(Self, String, Int) -> JobRun?
+pub async fn RuntimeManager::mark_run_succeeded(Self, String, Int, summary? : String?) -> JobRun?
+pub fn RuntimeManager::new(root~ : String) -> Self
+pub async fn RuntimeManager::register_definition(Self, JobDefinition) -> Unit
+pub async fn RuntimeManager::register_workflow(Self, WorkflowDefinition) -> Unit
+pub fn RuntimeManager::store(Self) -> SystemStore
+pub async fn RuntimeManager::trigger_definition(Self, String, String, TriggerSource, Int, parent_run_id? : String?, parent_step_id? : String?, depth? : Int) -> Result[JobRun, String]
+pub async fn RuntimeManager::trigger_due_definitions(Self, Int, () -> String) -> Array[JobRun]
+pub async fn RuntimeManager::trigger_retry_run(Self, String, String, Int) -> Result[JobRun, String]
+
+pub(all) struct SchedulePolicy {
+  kind : String
+  interval_minutes : Int?
+  timezone : String?
+}
+pub impl Show for SchedulePolicy
+pub impl ToJson for SchedulePolicy
+pub impl @json.FromJson for SchedulePolicy
+
+pub(all) struct SubjobStepConfig {
+  request_text : String
+  cwd : String?
+  home : String?
+  child_profile : String?
+  execution_mode : String?
+  execution_target : String?
+  include_parent_outputs : Bool
+  max_depth : Int
+}
+pub fn SubjobStepConfig::new(request_text~ : String, cwd? : String?, home? : String?, child_profile? : String?, execution_mode? : String?, execution_target? : String?, include_parent_outputs? : Bool, max_depth? : Int) -> Self
+pub impl Show for SubjobStepConfig
+pub impl ToJson for SubjobStepConfig
+pub impl @json.FromJson for SubjobStepConfig
+
+pub struct SystemStore {
+  root : String
+  definitions : Map[String, JobDefinition]
+  workflows : Map[String, WorkflowDefinition]
+  runs : Map[String, JobRun]
+  steps : Map[String, JobStepRun]
+  artifacts : Map[String, ArtifactRecord]
+  memories : Map[String, MemoryRecord]
+  chat_bindings : Map[String, ChatBinding]
+  notification_preferences : Map[String, JobNotificationPreference]
+  proposals : Map[String, JobProposal]
+  controller_states : Map[String, JobControllerState]
+  controller_iterations : Map[String, JobControllerIteration]
+  controller_lineage_edges : Map[String, JobControllerLineageEdge]
+  controller_decisions : Map[String, JobControllerDecision]
+}
+pub async fn SystemStore::append_run_event(Self, JobRunEvent) -> Unit
+pub fn SystemStore::artifact_content_file(Self, String, file_name? : String) -> String
+pub fn SystemStore::artifact_dir(Self, String) -> String
+pub async fn SystemStore::delete_artifact(Self, String) -> Bool
+pub fn SystemStore::find_job_proposal_by_message_id(Self, String) -> JobProposal?
+pub fn SystemStore::get_artifact(Self, String) -> ArtifactRecord?
+pub fn SystemStore::get_chat_binding(Self, String) -> ChatBinding?
+pub fn SystemStore::get_controller_decision(Self, String) -> JobControllerDecision?
+pub fn SystemStore::get_controller_iteration(Self, String) -> JobControllerIteration?
+pub fn SystemStore::get_controller_state(Self, String) -> JobControllerState?
+pub fn SystemStore::get_definition(Self, String) -> JobDefinition?
+pub fn SystemStore::get_job_proposal(Self, String) -> JobProposal?
+pub fn SystemStore::get_memory(Self, String) -> MemoryRecord?
+pub fn SystemStore::get_notification_preference(Self, String) -> JobNotificationPreference?
+pub fn SystemStore::get_run(Self, String) -> JobRun?
+pub fn SystemStore::get_step_run(Self, String, String) -> JobStepRun?
+pub fn SystemStore::get_workflow(Self, String) -> WorkflowDefinition?
+pub fn SystemStore::list_artifacts(Self, run_id? : String) -> Array[ArtifactRecord]
+pub fn SystemStore::list_chat_bindings(Self) -> Array[ChatBinding]
+pub fn SystemStore::list_controller_decisions(Self, controller_run_id? : String?) -> Array[JobControllerDecision]
+pub fn SystemStore::list_controller_iterations(Self, controller_run_id? : String?) -> Array[JobControllerIteration]
+pub fn SystemStore::list_controller_lineage_edges(Self, controller_job_id? : String?) -> Array[JobControllerLineageEdge]
+pub fn SystemStore::list_controller_states(Self) -> Array[JobControllerState]
+pub fn SystemStore::list_definitions(Self) -> Array[JobDefinition]
+pub fn SystemStore::list_job_proposals(Self) -> Array[JobProposal]
+pub fn SystemStore::list_memories(Self) -> Array[MemoryRecord]
+pub fn SystemStore::list_notification_preferences(Self) -> Array[JobNotificationPreference]
+pub async fn SystemStore::list_run_events(Self, String) -> Array[JobRunEvent]
+pub fn SystemStore::list_runs(Self) -> Array[JobRun]
+pub fn SystemStore::list_step_runs(Self, String) -> Array[JobStepRun]
+pub fn SystemStore::list_workflows(Self) -> Array[WorkflowDefinition]
+pub async fn SystemStore::load(Self) -> Unit
+pub fn SystemStore::new(root~ : String) -> Self
+pub fn SystemStore::root_dir(Self) -> String
+pub fn SystemStore::run_events_file(Self, String) -> String
+pub async fn SystemStore::save_artifact(Self, ArtifactRecord) -> Unit
+pub async fn SystemStore::save_chat_binding(Self, ChatBinding) -> Unit
+pub async fn SystemStore::save_controller_decision(Self, JobControllerDecision) -> Unit
+pub async fn SystemStore::save_controller_iteration(Self, JobControllerIteration) -> Unit
+pub async fn SystemStore::save_controller_lineage_edge(Self, JobControllerLineageEdge) -> Unit
+pub async fn SystemStore::save_controller_state(Self, JobControllerState) -> Unit
+pub async fn SystemStore::save_definition(Self, JobDefinition) -> Unit
+pub async fn SystemStore::save_job_proposal(Self, JobProposal) -> Unit
+pub async fn SystemStore::save_memory(Self, MemoryRecord) -> Unit
+pub async fn SystemStore::save_notification_preference(Self, JobNotificationPreference) -> Unit
+pub async fn SystemStore::save_run(Self, JobRun) -> Unit
+pub async fn SystemStore::save_step_run(Self, JobStepRun) -> Unit
+pub async fn SystemStore::save_workflow(Self, WorkflowDefinition) -> Unit
+
+pub(all) enum TriggerSource {
+  Manual
+  Scheduled
+  Webhook
+  Recovery
+  Custom(String)
+}
+pub impl Show for TriggerSource
+pub impl ToJson for TriggerSource
+pub impl @json.FromJson for TriggerSource
+
+pub(all) struct WorkflowDefinition {
+  id : String
+  kind : String
+  steps : Array[WorkflowStepDefinition]
+  output_bindings : Array[String]
+}
+pub impl Show for WorkflowDefinition
+pub impl ToJson for WorkflowDefinition
+pub impl @json.FromJson for WorkflowDefinition
+
+pub struct WorkflowEngine {
+  runtime : RuntimeManager
+  handlers : Map[String, WorkflowStepHandler]
+}
+pub async fn WorkflowEngine::execute_run(Self, String, () -> Int, initial_input? : Json?, control? : WorkflowExecutionControl) -> Result[WorkflowExecutionResult, String]
+pub fn WorkflowEngine::new(runtime~ : RuntimeManager) -> Self
+pub fn WorkflowEngine::register_handler(Self, WorkflowStepHandler) -> Unit
+
+pub(all) struct WorkflowExecutionControl {
+  should_cancel : () -> Bool
+  should_force_stop : () -> Bool
+}
+pub fn WorkflowExecutionControl::new(should_cancel? : () -> Bool, should_force_stop? : () -> Bool) -> Self
+
+pub(all) struct WorkflowExecutionResult {
+  run : JobRun
+  workflow : WorkflowDefinition
+  outputs : Map[String, Json]
+  steps : Array[JobStepRun]
+}
+
+pub(all) struct WorkflowStepContext {
+  run : JobRun
+  step : WorkflowStepDefinition
+  initial_input : Json?
+  outputs : Map[String, Json]
+  control : WorkflowExecutionControl
+}
+pub fn WorkflowStepContext::new(run~ : JobRun, step~ : WorkflowStepDefinition, initial_input? : Json?, outputs? : Map[String, Json], control? : WorkflowExecutionControl) -> Self
+pub fn WorkflowStepContext::output(Self, String) -> Json?
+
+pub(all) struct WorkflowStepDefinition {
+  id : String
+  kind : String
+  config : Json
+  retry_policy : RetryPolicy?
+}
+pub impl Show for WorkflowStepDefinition
+pub impl ToJson for WorkflowStepDefinition
+pub impl @json.FromJson for WorkflowStepDefinition
+
+pub(all) struct WorkflowStepHandler {
+  kind : String
+  run : async (WorkflowStepContext) -> Result[WorkflowStepResult, String]
+}
+pub fn WorkflowStepHandler::new(kind~ : String, run~ : async (WorkflowStepContext) -> Result[WorkflowStepResult, String]) -> Self
+
+pub(all) struct WorkflowStepResult {
+  output : Json
+  summary : String?
+  metrics : Json
+  logs : Array[String]
+}
+pub fn WorkflowStepResult::new(output~ : Json, summary? : String?, metrics? : Json, logs? : Array[String]) -> Self
+
+// Type aliases
+
+// Traits
+

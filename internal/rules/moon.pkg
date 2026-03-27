@@ -1,0 +1,20 @@
+import {
+  "clawteam/clawteam/ai",
+  "clawteam/clawteam/internal/pino",
+  "clawteam/clawteam/internal/fsx",
+  "clawteam/clawteam/internal/pathx",
+  "clawteam/clawteam/internal/os",
+  "clawteam/clawteam/internal/yamd",
+  "moonbitlang/core/json",
+  "moonbitlang/core/test",
+}
+
+import {
+  "moonbitlang/async",
+  "clawteam/clawteam/internal/mock",
+} for "test"
+
+import {
+  "moonbitlang/async",
+  "clawteam/clawteam/internal/mock",
+} for "wbtest"

@@ -1,0 +1,71 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "clawteam/clawteam/event"
+
+import {
+  "clawteam/clawteam/ai",
+  "clawteam/clawteam/clock",
+  "clawteam/clawteam/internal/uuid",
+  "clawteam/clawteam/tool",
+  "moonbitlang/core/json",
+}
+
+// Values
+
+// Errors
+
+// Types and methods
+pub struct Event {
+  id : @uuid.Uuid
+  created : @clock.Timestamp
+  desc : EventDesc
+}
+pub fn Event::is_cancellation(Self) -> Bool
+pub fn Event::is_incoming(Self) -> Bool
+pub fn Event::is_starting(Self) -> Bool
+pub fn Event::is_stopping(Self) -> Bool
+pub fn Event::new(id~ : @uuid.Uuid, created? : @clock.Timestamp, EventDesc) -> Self
+pub impl Eq for Event
+pub impl Show for Event
+pub impl ToJson for Event
+pub impl @json.FromJson for Event
+
+pub(all) enum EventDesc {
+  ModelLoaded(name~ : String)
+  PreConversation
+  PostConversation
+  SystemPromptSet(String?)
+  MessageUnqueued(id~ : @uuid.Uuid)
+  MessageQueued(id~ : @uuid.Uuid)
+  ToolAdded(@tool.ToolDesc)
+  PreToolCall(@ai.ToolCall)
+  PostToolCall(@ai.ToolCall, result~ : Result[Json, Json], rendered~ : String)
+  TokenCounted(Int)
+  ContextPruned(origin_token_count~ : Int, pruned_token_count~ : Int)
+  AssistantMessageDelta(String)
+  AssistantMessage(usage~ : @ai.Usage?, tool_calls~ : Array[@ai.ToolCall], String)
+  UserMessage(String)
+  Cancelled
+  Failed(Json)
+  Pruned(id~ : @uuid.Uuid)
+}
+pub impl Eq for EventDesc
+pub impl Show for EventDesc
+pub impl ToJson for EventDesc
+pub impl @json.FromJson for EventDesc
+
+type EventTarget
+pub fn EventTarget::add_listener(Self, async (Event) -> Unit) -> Unit
+pub fn EventTarget::emit(Self, EventDesc, id? : @uuid.Uuid) -> Unit
+pub async fn EventTarget::flush(Self) -> Unit
+pub fn EventTarget::new(uuid? : @uuid.Generator, clock? : &@clock.Clock) -> Self raise
+pub async fn EventTarget::start(Self) -> Unit
+
+type ExternalEventQueue
+pub fn ExternalEventQueue::new() -> Self raise
+pub fn ExternalEventQueue::poll(Self) -> Array[Event]
+pub fn ExternalEventQueue::send(Self, EventDesc) -> Unit
+
+// Type aliases
+
+// Traits
+

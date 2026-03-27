@@ -1,0 +1,35 @@
+import {
+  "moonbitlang/async",
+  "clawteam/clawteam/agent",
+  "clawteam/clawteam/ai",
+  "clawteam/clawteam/event",
+  "clawteam/clawteam/file",
+  "clawteam/clawteam/model",
+  "clawteam/clawteam/prompt",
+  "clawteam/clawteam/internal/spawn",
+  "clawteam/clawteam/internal/pathx",
+  "clawteam/clawteam/internal/fsx",
+  "clawteam/clawteam/internal/pino",
+  "clawteam/clawteam/workspace",
+  "moonbitlang/core/encoding/utf8" @encoding/utf8,
+  "moonbitlang/core/json",
+  "moonbitlang/core/strconv",
+  "moonbitlang/core/test",
+  "moonbitlang/x/time",
+  "clawteam/clawteam/tools/apply_patch",
+  "clawteam/clawteam/tools/execute_command",
+  "clawteam/clawteam/tools/list_files",
+  "clawteam/clawteam/tools/read_file",
+  "clawteam/clawteam/tools/search_files",
+  "clawteam/clawteam/tools/todo",
+  "clawteam/clawteam/tools/write_to_file",
+}
+
+import {
+  "moonbitlang/async",
+  "clawteam/clawteam/internal/mock",
+} for "test"
+
+import {
+  "moonbitlang/async",
+} for "wbtest"

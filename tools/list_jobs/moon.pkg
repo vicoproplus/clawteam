@@ -1,0 +1,10 @@
+import {
+  "clawteam/clawteam/tool",
+  "clawteam/clawteam/job",
+  "moonbitlang/core/test",
+}
+
+import {
+  "moonbitlang/async",
+  "clawteam/clawteam/internal/mock",
+} for "test"

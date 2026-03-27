@@ -1,0 +1,17 @@
+import {
+  "moonbitlang/async/http",
+  "moonbitlang/async/io",
+  "moonbitlang/async/socket",
+  "clawteam/clawteam/internal/httpx/status",
+  "clawteam/clawteam/internal/httpx/reason",
+  "clawteam/clawteam/internal/pathx",
+  "clawteam/clawteam/internal/fsx",
+  "moonbitlang/core/encoding/utf8" @encoding/utf8,
+  "moonbitlang/core/json",
+  "moonbitlang/core/test",
+}
+
+import {
+  "moonbitlang/async",
+  "clawteam/clawteam/internal/mock",
+} for "test"

@@ -1,0 +1,23 @@
+import {
+  "moonbitlang/async/fs",
+  "clawteam/clawteam/internal/pathx",
+  "moonbitlang/async/io",
+  "clawteam/clawteam/internal/errno",
+  "clawteam/clawteam/internal/os",
+  "moonbitlang/async/os_error",
+  "moonbitlang/core/encoding/utf8" @encoding/utf8,
+  "moonbitlang/core/json",
+  "moonbitlang/core/test",
+}
+
+import {
+  "moonbitlang/async",
+  "clawteam/clawteam/internal/mock",
+  "clawteam/clawteam/internal/spawn",
+  "moonbitlang/async/process",
+  "clawteam/clawteam/internal/signal",
+} for "test"
+
+options(
+  "native-stub": [ "stat.c", "mkdtemp.c", "readlink.c", "lock.c", "truncate.c" ],
+)

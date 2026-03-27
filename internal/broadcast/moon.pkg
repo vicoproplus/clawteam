@@ -1,0 +1,11 @@
+import {
+  "moonbitlang/async",
+  "moonbitlang/async/cond_var",
+  "moonbitlang/core/json",
+  "moonbitlang/core/test",
+}
+
+import {
+  "moonbitlang/async",
+  "clawteam/clawteam/internal/mock",
+} for "test"

@@ -1,0 +1,31 @@
+import {
+  "moonbitlang/async/http",
+  "moonbitlang/async",
+  "moonbitlang/async/io",
+  "clawteam/clawteam",
+  "clawteam/clawteam/ai",
+  "clawteam/clawteam/internal/os",
+  "moonbitlang/async/aqueue",
+  "clawteam/clawteam/agent",
+  "clawteam/clawteam/internal/openai",
+  "clawteam/clawteam/internal/fsx",
+  "clawteam/clawteam/internal/pathx",
+  "moonbitlang/async/os_error",
+  "clawteam/clawteam/internal/broadcast",
+  "clawteam/clawteam/internal/spawn",
+  "clawteam/clawteam/internal/uuid",
+  "clawteam/clawteam/internal/rand",
+  "clawteam/clawteam/internal/httpx",
+  "clawteam/clawteam/event",
+  "clawteam/clawteam/model",
+  "moonbitlang/core/json",
+  "moonbitlang/core/strconv",
+  "moonbitlang/core/test",
+  "clawteam/clawteam/internal/pino",
+}
+
+import {
+  "clawteam/clawteam/internal/mock",
+  "moonbitlang/async/socket",
+  "clawteam/clawteam/cmd/internal/test_utils",
+} for "test"

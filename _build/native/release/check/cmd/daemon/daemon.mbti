@@ -1,0 +1,33 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "clawteam/clawteam/cmd/daemon"
+
+import {
+  "clawteam/clawteam/internal/uuid",
+  "moonbitlang/async/fs",
+  "moonbitlang/core/json",
+}
+
+// Values
+pub async fn detach(exec_path? : String, port? : Int, serve? : StringView) -> Int
+
+pub async fn lock_daemon_file(home~ : StringView) -> @fs.File?
+
+pub async fn start(ArrayView[String]) -> Unit
+
+// Errors
+
+// Types and methods
+type Daemon
+pub async fn Daemon::new(uuid? : @uuid.Generator, exec_path~ : String, port~ : Int, serve~ : String, cwd? : StringView, home? : StringView, lock? : Bool) -> Self?
+pub fn Daemon::port(Self) -> Int
+pub async fn Daemon::serve(Self) -> Unit
+
+type Task
+pub fn Task::is_idle(Self) -> Bool
+pub impl ToJson for Task
+pub impl @json.FromJson for Task
+
+// Type aliases
+
+// Traits
+

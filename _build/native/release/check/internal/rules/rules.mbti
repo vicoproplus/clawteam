@@ -1,0 +1,39 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "clawteam/clawteam/internal/rules"
+
+import {
+  "clawteam/clawteam/ai",
+  "clawteam/clawteam/internal/pino",
+}
+
+// Values
+
+// Errors
+
+// Types and methods
+type Loader
+pub fn Loader::apply(Self, Array[@ai.Message]) -> Unit
+pub async fn Loader::load(Self) -> Unit
+pub fn Loader::new(String, logger~ : @pino.Logger) -> Self
+
+pub struct Rule {
+  description : String?
+  globs : Array[String]
+  always_apply : Bool
+  content : String
+  source : Source
+}
+pub impl Show for Rule
+pub impl ToJson for Rule
+
+pub enum Source {
+  Global
+  Local
+}
+pub impl Show for Source
+pub impl ToJson for Source
+
+// Type aliases
+
+// Traits
+

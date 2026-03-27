@@ -1,0 +1,14 @@
+import {
+  "moonbitlang/async/fs",
+  "clawteam/clawteam/internal/pathx",
+  "moonbitlang/async/io",
+  "clawteam/clawteam/internal/os",
+  "clawteam/clawteam/internal/spawn",
+  "moonbitlang/async",
+  "moonbitlang/async/os_error",
+  "clawteam/clawteam/internal/errno",
+  "moonbitlang/async/aqueue",
+  "moonbitlang/core/buffer",
+  "moonbitlang/core/encoding/utf8" @encoding/utf8,
+  "moonbitlang/core/json",
+}

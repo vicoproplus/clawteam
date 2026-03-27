@@ -1,0 +1,14 @@
+import {
+  "clawteam/clawteam/internal/os",
+  "moonbitlang/async",
+  "clawteam/clawteam/internal/fsx",
+  "clawteam/clawteam/internal/pino",
+  "clawteam/clawteam",
+  "clawteam/clawteam/internal/backtrace",
+  "clawteam/clawteam/model",
+}
+
+options(
+  "is-main": true,
+  overrides: [ "clawteam/clawteam/internal/abort" ],
+)

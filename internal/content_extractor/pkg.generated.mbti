@@ -1,0 +1,22 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "moonbitlang/moonclaw/internal/content_extractor"
+
+import {
+  "moonbitlang/moonclaw/internal/openai",
+  "moonbitlang/moonclaw/internal/pino",
+  "moonbitlang/moonclaw/model",
+}
+
+// Values
+
+// Errors
+
+// Types and methods
+type Extractor
+pub async fn Extractor::extract_code_snippets(Self, String, history~ : Array[@openai.ChatCompletionMessageParam]) -> String?
+pub fn Extractor::new(model~ : @model.Model, safe_zone_tokens~ : Int, window_size? : Int, overlap? : Int, logger~ : @pino.Logger) -> Self raise
+
+// Type aliases
+
+// Traits
+

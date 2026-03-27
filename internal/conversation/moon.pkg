@@ -1,0 +1,22 @@
+import {
+  "clawteam/clawteam/internal/uuid",
+  "clawteam/clawteam/internal/lru",
+  "clawteam/clawteam/internal/pathx",
+  "clawteam/clawteam/internal/fsx",
+  "clawteam/clawteam/internal/jsonx",
+  "moonbitlang/x/time",
+  "clawteam/clawteam/clock",
+  "clawteam/clawteam/ai",
+  "clawteam/clawteam/internal/openai",
+  "clawteam/clawteam/event",
+  "clawteam/clawteam/internal/pino",
+  "moonbitlang/async",
+  "clawteam/clawteam/internal/rand",
+  "moonbitlang/core/buffer",
+  "moonbitlang/core/json",
+  "moonbitlang/core/test",
+}
+
+import {
+  "clawteam/clawteam/internal/mock",
+} for "test"

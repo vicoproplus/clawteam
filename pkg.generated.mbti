@@ -1,0 +1,18 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "clawteam/clawteam"
+
+// Values
+
+// Errors
+
+// Types and methods
+pub struct ClawTeam {
+  version : String
+}
+pub fn ClawTeam::new() -> Self
+pub fn ClawTeam::version(Self) -> String
+
+// Type aliases
+
+// Traits
+

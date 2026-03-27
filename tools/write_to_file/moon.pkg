@@ -1,0 +1,14 @@
+import {
+  "clawteam/clawteam/tool",
+  "clawteam/clawteam/internal/pathx",
+  "clawteam/clawteam/internal/fsx",
+  "moonbitlang/async/os_error",
+  "moonbitlang/core/json",
+  "moonbitlang/core/test",
+}
+
+import {
+  "moonbitlang/async",
+  "clawteam/clawteam/internal/mock",
+  "moonbitlang/async/fs",
+} for "test"

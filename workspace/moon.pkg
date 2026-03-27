@@ -1,0 +1,11 @@
+import {
+  "moonbitlang/core/json",
+  "moonbitlang/core/test",
+  "clawteam/clawteam/internal/fsx",
+  "clawteam/clawteam/internal/pathx",
+}
+
+import {
+  "moonbitlang/async",
+  "moonbitlang/core/test",
+} for "wbtest"
