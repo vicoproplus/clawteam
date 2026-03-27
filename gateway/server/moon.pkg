@@ -34,4 +34,9 @@ import {
   "clawteam/clawteam/channel" @channel,
   "clawteam/clawteam/channels/feishu" @feishu,
   "clawteam/clawteam/channels/weixin" @weixin,
+  "clawteam/clawteam/scheduler",
+  "clawteam/clawteam/config",
+  "clawteam/clawteam/logger",
+  "clawteam/clawteam/types",
+  "clawteam/clawteam/errors",
 }
