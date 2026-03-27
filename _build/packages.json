@@ -4538,6 +4538,32 @@
             "Debug"
           ]
         },
+        "E:\\moonbit\\clawteam\\gateway\\server\\rpc_clawteam.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        },
+        "E:\\moonbit\\clawteam\\gateway\\server\\scheduler_ext.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        },
         "E:\\moonbit\\clawteam\\gateway\\server\\session.mbt": {
           "backend": [
             "Wasm",
@@ -4565,6 +4591,19 @@
           ]
         },
         "E:\\moonbit\\clawteam\\gateway\\server\\websocket_connector.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        },
+        "E:\\moonbit\\clawteam\\gateway\\server\\ws_events.mbt": {
           "backend": [
             "Wasm",
             "WasmGC",
@@ -4710,7 +4749,21 @@
           ]
         }
       },
-      "test-files": {},
+      "test-files": {
+        "E:\\moonbit\\clawteam\\gateway\\server\\scheduler_ext_test.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        }
+      },
       "mbt-md-files": {},
       "deps": [
         {
@@ -4747,6 +4800,16 @@
           "path": "clawteam/clawteam/clock",
           "alias": "clock",
           "fspath": "E:\\moonbit\\clawteam\\clock"
+        },
+        {
+          "path": "clawteam/clawteam/config",
+          "alias": "config",
+          "fspath": "E:\\moonbit\\clawteam\\config"
+        },
+        {
+          "path": "clawteam/clawteam/errors",
+          "alias": "errors",
+          "fspath": "E:\\moonbit\\clawteam\\errors"
         },
         {
           "path": "clawteam/clawteam/event",
@@ -4824,6 +4887,11 @@
           "fspath": "E:\\moonbit\\clawteam\\job"
         },
         {
+          "path": "clawteam/clawteam/logger",
+          "alias": "logger",
+          "fspath": "E:\\moonbit\\clawteam\\logger"
+        },
+        {
           "path": "clawteam/clawteam/model",
           "alias": "model",
           "fspath": "E:\\moonbit\\clawteam\\model"
@@ -4839,9 +4907,19 @@
           "fspath": "E:\\moonbit\\clawteam\\plugin"
         },
         {
+          "path": "clawteam/clawteam/scheduler",
+          "alias": "scheduler",
+          "fspath": "E:\\moonbit\\clawteam\\scheduler"
+        },
+        {
           "path": "clawteam/clawteam/security",
           "alias": "security",
           "fspath": "E:\\moonbit\\clawteam\\security"
+        },
+        {
+          "path": "clawteam/clawteam/types",
+          "alias": "types",
+          "fspath": "E:\\moonbit\\clawteam\\types"
         },
         {
           "path": "clawteam/clawteam/workspace",
