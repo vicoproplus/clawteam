@@ -7,6 +7,121 @@
     },
     {
       "root": "clawteam/clawteam",
+      "rel": "acp",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\acp\\acp.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "agent",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\agent\\agent.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "ai",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\ai\\ai.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "channel",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\channel\\channel.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "channels/feishu",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\channels\\feishu\\feishu.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "channels/weixin",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\channels\\weixin\\weixin.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "clock",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\clock\\clock.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "cmd/acp",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\cmd\\acp\\acp.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "cmd/daemon",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\cmd\\daemon\\daemon.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "cmd/gateway",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\cmd\\gateway\\gateway.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "cmd/internal/test_utils",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\cmd\\internal\\test_utils\\test_utils.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "cmd/jsonl2md",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\cmd\\jsonl2md\\jsonl2md.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "cmd/main",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\cmd\\main\\main.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "cmd/main/argument",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\cmd\\main\\argument\\argument.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "cmd/main/conversation",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\cmd\\main\\conversation\\conversation.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "cmd/main/exec",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\cmd\\main\\exec\\exec.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "cmd/main/interactive",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\cmd\\main\\interactive\\interactive.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "cmd/main/tui",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\cmd\\main\\tui\\tui.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "cmd/onboard",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\cmd\\onboard\\onboard.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "cmd/server",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\cmd\\server\\server.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "cmd/test",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\cmd\\test\\test.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "cmd/test-lock",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\cmd\\test-lock\\test-lock.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "cmd/test-to-be-killed",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\cmd\\test-to-be-killed\\test-to-be-killed.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
       "rel": "config",
       "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\config\\config.mi"
     },
@@ -17,8 +132,378 @@
     },
     {
       "root": "clawteam/clawteam",
+      "rel": "event",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\event\\event.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "file",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\file\\file.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "gateway/client",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\gateway\\client\\client.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "gateway/protocol",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\gateway\\protocol\\protocol.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "gateway/server",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\gateway\\server\\server.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "internal/abort",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\internal\\abort\\abort.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "internal/assets",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\internal\\assets\\assets.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "internal/backtrace",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\internal\\backtrace\\backtrace.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "internal/broadcast",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\internal\\broadcast\\broadcast.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "internal/buildinfo",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\internal\\buildinfo\\buildinfo.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "internal/c",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\internal\\c\\c.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "internal/cache",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\internal\\cache\\cache.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "internal/content_extractor",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\internal\\content_extractor\\content_extractor.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "internal/context_pruner",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\internal\\context_pruner\\context_pruner.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "internal/conversation",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\internal\\conversation\\conversation.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "internal/errno",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\internal\\errno\\errno.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "internal/fsx",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\internal\\fsx\\fsx.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "internal/fuzzy",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\internal\\fuzzy\\fuzzy.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "internal/git",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\internal\\git\\git.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "internal/httpx",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\internal\\httpx\\httpx.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "internal/httpx/reason",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\internal\\httpx\\reason\\reason.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "internal/httpx/status",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\internal\\httpx\\status\\status.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "internal/jsonx",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\internal\\jsonx\\jsonx.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "internal/lru",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\internal\\lru\\lru.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "internal/mock",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\internal\\mock\\mock.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "internal/openai",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\internal\\openai\\openai.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "internal/openai/responses",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\internal\\openai\\responses\\responses.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "internal/openrouter",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\internal\\openrouter\\openrouter.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "internal/os",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\internal\\os\\os.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "internal/pathx",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\internal\\pathx\\pathx.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "internal/pino",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\internal\\pino\\pino.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "internal/rand",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\internal\\rand\\rand.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "internal/readline",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\internal\\readline\\readline.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "internal/readline/csi",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\internal\\readline\\csi\\csi.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "internal/readline/unicode",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\internal\\readline\\unicode\\unicode.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "internal/readline/unicode/width",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\internal\\readline\\unicode\\width\\width.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "internal/rules",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\internal\\rules\\rules.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "internal/schema",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\internal\\schema\\schema.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "internal/signal",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\internal\\signal\\signal.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "internal/skills",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\internal\\skills\\skills.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "internal/spawn",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\internal\\spawn\\spawn.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "internal/tiktoken",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\internal\\tiktoken\\tiktoken.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "internal/token_counter",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\internal\\token_counter\\token_counter.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "internal/tty",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\internal\\tty\\tty.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "internal/tui",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\internal\\tui\\tui.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "internal/uri",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\internal\\uri\\uri.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "internal/uuid",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\internal\\uuid\\uuid.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "internal/websocket",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\internal\\websocket\\websocket.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "internal/yamd",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\internal\\yamd\\yamd.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "job",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\job\\job.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "logger",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\logger\\logger.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "model",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\model\\model.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "oauth/codex",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\oauth\\codex\\codex.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "oauth/copilot",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\oauth\\copilot\\copilot.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "onboarding",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\onboarding\\onboarding.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "parser",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\parser\\parser.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "plugin",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\plugin\\plugin.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "prompt",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\prompt\\prompt.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "scheduler",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\scheduler\\scheduler.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "sdk",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\sdk\\sdk.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "security",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\security\\security.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "tool",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\tool\\tool.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "tools/apply_patch",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\tools\\apply_patch\\apply_patch.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "tools/execute_command",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\tools\\execute_command\\execute_command.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "tools/list_files",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\tools\\list_files\\list_files.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "tools/list_jobs",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\tools\\list_jobs\\list_jobs.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "tools/read_file",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\tools\\read_file\\read_file.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "tools/read_multiple_files",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\tools\\read_multiple_files\\read_multiple_files.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "tools/replace_in_file",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\tools\\replace_in_file\\replace_in_file.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "tools/search_files",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\tools\\search_files\\search_files.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "tools/todo",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\tools\\todo\\todo.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "tools/wait_job",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\tools\\wait_job\\wait_job.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "tools/write_to_file",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\tools\\write_to_file\\write_to_file.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
       "rel": "types",
       "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\types\\types.mi"
+    },
+    {
+      "root": "clawteam/clawteam",
+      "rel": "workspace",
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\workspace\\workspace.mi"
     },
     {
       "root": "moonbit-community/yaml",
