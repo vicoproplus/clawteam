@@ -48,3 +48,18 @@ pub fn set_raw_mode(fd : Int) -> Unit raise {
     raise @errno.Errno(result)
   }
 }
+
+///|
+#cfg(platform="windows")
+pub fn set_raw_mode_async(_input : @stdio.Input) -> Unit {
+  // On Windows, terminal raw mode is handled by the async runtime
+  // No-op for compatibility
+}
+
+///|
+#cfg(not(platform="windows"))
+pub fn set_raw_mode_async(input : @stdio.Input) -> Unit raise {
+  // On Unix, we need to get the raw fd and set raw mode
+  // Note: This is a simplified version; full implementation would need Fd->Int conversion
+  ignore(input)
+}

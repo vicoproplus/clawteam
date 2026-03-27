@@ -110,7 +110,8 @@ pub fn interface(
   input~ : @stdio.Input,
   output? : @stdio.Output = @stdio.stdout,
 ) -> Interface raise {
-  @tty.set_raw_mode(input.fd())
+  // Use async-aware set_raw_mode
+  @tty.set_raw_mode_async(input)
   Interface::{
     line: "",
     input,

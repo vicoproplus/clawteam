@@ -1,6 +1,7 @@
 import {
   "clawteam/clawteam/internal/errno",
   "moonbitlang/core/json",
+  "moonbitlang/async/stdio",
 }
 
 options(

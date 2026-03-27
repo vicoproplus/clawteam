@@ -10237,6 +10237,11 @@
           "fspath": "E:\\moonbit\\clawteam\\internal\\errno"
         },
         {
+          "path": "moonbitlang/async/stdio",
+          "alias": "stdio",
+          "fspath": "E:\\moonbit\\clawteam\\.mooncakes\\moonbitlang\\async\\src\\stdio"
+        },
+        {
           "path": "moonbitlang/core/json",
           "alias": "json",
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\json"

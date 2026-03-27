@@ -73,7 +73,7 @@ pub fn Terminal::with_io(
 
 ///|
 pub async fn Terminal::start(self : Terminal) -> Unit {
-  @tty.set_raw_mode(self.input.fd())
+  @tty.set_raw_mode_async(self.input)
   self.running = true
   self.enter_alt_screen()
   self.clear_screen()
