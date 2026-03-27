@@ -1,0 +1,17 @@
+import {
+  "clawteam/clawteam/config",
+  "clawteam/clawteam/scheduler",
+  "clawteam/clawteam/parser",
+  "clawteam/clawteam/logger",
+  "clawteam/clawteam/gateway/server",
+  "clawteam/clawteam/job",
+  "clawteam/clawteam/channel",
+  "clawteam/clawteam/acp",
+  "clawteam/clawteam/event",
+  "clawteam/clawteam/clock",
+  "clawteam/clawteam/model",
+  "clawteam/clawteam/ai",
+  "clawteam/clawteam/internal/pino",
+  "clawteam/clawteam/internal/uuid",
+  "moonbitlang/core/json",
+}

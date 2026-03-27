@@ -1,0 +1,203 @@
+{
+  "source_dir": "E:\\moonbit\\clawteam\\.mooncakes\\moonbit-community\\yaml",
+  "name": "moonbit-community/yaml",
+  "packages": [
+    {
+      "is-main": false,
+      "is-third-party": false,
+      "root-path": "E:\\moonbit\\clawteam\\.mooncakes\\moonbit-community\\yaml\\src",
+      "root": "moonbit-community/yaml",
+      "rel": "",
+      "files": {
+        "E:\\moonbit\\clawteam\\.mooncakes\\moonbit-community\\yaml\\src\\char_utils.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        },
+        "E:\\moonbit\\clawteam\\.mooncakes\\moonbit-community\\yaml\\src\\error.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        },
+        "E:\\moonbit\\clawteam\\.mooncakes\\moonbit-community\\yaml\\src\\event.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        },
+        "E:\\moonbit\\clawteam\\.mooncakes\\moonbit-community\\yaml\\src\\lexer.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        },
+        "E:\\moonbit\\clawteam\\.mooncakes\\moonbit-community\\yaml\\src\\marker.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        },
+        "E:\\moonbit\\clawteam\\.mooncakes\\moonbit-community\\yaml\\src\\parser.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        },
+        "E:\\moonbit\\clawteam\\.mooncakes\\moonbit-community\\yaml\\src\\scalar_style.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        },
+        "E:\\moonbit\\clawteam\\.mooncakes\\moonbit-community\\yaml\\src\\tag.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        },
+        "E:\\moonbit\\clawteam\\.mooncakes\\moonbit-community\\yaml\\src\\yaml.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        }
+      },
+      "wbtest-files": {
+        "E:\\moonbit\\clawteam\\.mooncakes\\moonbit-community\\yaml\\src\\lexer_wbtest.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        }
+      },
+      "test-files": {
+        "E:\\moonbit\\clawteam\\.mooncakes\\moonbit-community\\yaml\\src\\loader_test.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        }
+      },
+      "mbt-md-files": {
+        "E:\\moonbit\\clawteam\\.mooncakes\\moonbit-community\\yaml\\src\\README.mbt.md": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        }
+      },
+      "deps": [
+        {
+          "path": "moonbitlang/core/prelude",
+          "alias": "prelude",
+          "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
+        }
+      ],
+      "wbtest-deps": [
+        {
+          "path": "moonbitlang/core/prelude",
+          "alias": "prelude",
+          "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
+        }
+      ],
+      "test-deps": [
+        {
+          "path": "moonbitlang/core/prelude",
+          "alias": "prelude",
+          "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
+        }
+      ],
+      "artifact": "E:\\moonbit\\clawteam\\.mooncakes\\moonbit-community\\yaml\\_build\\wasm-gc\\release\\check\\yaml.mi"
+    }
+  ],
+  "deps": [],
+  "backend": "wasm-gc",
+  "opt_level": "release",
+  "source": "src"
+}

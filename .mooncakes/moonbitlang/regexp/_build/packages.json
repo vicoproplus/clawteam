@@ -1,0 +1,546 @@
+{
+  "source_dir": "E:\\moonbit\\clawteam\\.mooncakes\\moonbitlang\\regexp",
+  "name": "moonbitlang/regexp",
+  "packages": [
+    {
+      "is-main": false,
+      "is-third-party": false,
+      "root-path": "E:\\moonbit\\clawteam\\.mooncakes\\moonbitlang\\regexp",
+      "root": "moonbitlang/regexp",
+      "rel": "",
+      "files": {
+        "E:\\moonbit\\clawteam\\.mooncakes\\moonbitlang\\regexp\\alias.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        },
+        "E:\\moonbit\\clawteam\\.mooncakes\\moonbitlang\\regexp\\todo.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        },
+        "E:\\moonbit\\clawteam\\.mooncakes\\moonbitlang\\regexp\\top.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        }
+      },
+      "wbtest-files": {
+        "E:\\moonbit\\clawteam\\.mooncakes\\moonbitlang\\regexp\\alias_wbtest.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        },
+        "E:\\moonbit\\clawteam\\.mooncakes\\moonbitlang\\regexp\\parser_wbtest.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        }
+      },
+      "test-files": {
+        "E:\\moonbit\\clawteam\\.mooncakes\\moonbitlang\\regexp\\regex_test.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        },
+        "E:\\moonbit\\clawteam\\.mooncakes\\moonbitlang\\regexp\\todo_test.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        }
+      },
+      "mbt-md-files": {
+        "E:\\moonbit\\clawteam\\.mooncakes\\moonbitlang\\regexp\\README.mbt.md": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        }
+      },
+      "deps": [
+        {
+          "path": "moonbitlang/core/prelude",
+          "alias": "prelude",
+          "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
+        },
+        {
+          "path": "moonbitlang/regexp/internal/ast",
+          "alias": "ast",
+          "fspath": "E:\\moonbit\\clawteam\\.mooncakes\\moonbitlang\\regexp\\internal\\ast"
+        },
+        {
+          "path": "moonbitlang/regexp/internal/parse",
+          "alias": "parse",
+          "fspath": "E:\\moonbit\\clawteam\\.mooncakes\\moonbitlang\\regexp\\internal\\parse"
+        },
+        {
+          "path": "moonbitlang/regexp/internal/vm",
+          "alias": "vm",
+          "fspath": "E:\\moonbit\\clawteam\\.mooncakes\\moonbitlang\\regexp\\internal\\vm"
+        }
+      ],
+      "wbtest-deps": [
+        {
+          "path": "moonbitlang/core/prelude",
+          "alias": "prelude",
+          "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
+        }
+      ],
+      "test-deps": [
+        {
+          "path": "moonbitlang/core/prelude",
+          "alias": "prelude",
+          "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
+        }
+      ],
+      "artifact": "E:\\moonbit\\clawteam\\.mooncakes\\moonbitlang\\regexp\\_build\\wasm-gc\\release\\check\\regexp.mi"
+    },
+    {
+      "is-main": false,
+      "is-third-party": false,
+      "root-path": "E:\\moonbit\\clawteam\\.mooncakes\\moonbitlang\\regexp\\internal\\ast",
+      "root": "moonbitlang/regexp",
+      "rel": "internal/ast",
+      "files": {
+        "E:\\moonbit\\clawteam\\.mooncakes\\moonbitlang\\regexp\\internal\\ast\\alias.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        },
+        "E:\\moonbit\\clawteam\\.mooncakes\\moonbitlang\\regexp\\internal\\ast\\compile.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        }
+      },
+      "wbtest-files": {
+        "E:\\moonbit\\clawteam\\.mooncakes\\moonbitlang\\regexp\\internal\\ast\\alias_wbtest.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        },
+        "E:\\moonbit\\clawteam\\.mooncakes\\moonbitlang\\regexp\\internal\\ast\\compile_wbtest.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        }
+      },
+      "test-files": {},
+      "mbt-md-files": {},
+      "deps": [
+        {
+          "path": "moonbitlang/core/prelude",
+          "alias": "prelude",
+          "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
+        },
+        {
+          "path": "moonbitlang/regexp/internal/unicode",
+          "alias": "unicode",
+          "fspath": "E:\\moonbit\\clawteam\\.mooncakes\\moonbitlang\\regexp\\internal\\unicode"
+        },
+        {
+          "path": "moonbitlang/regexp/internal/vm",
+          "alias": "vm",
+          "fspath": "E:\\moonbit\\clawteam\\.mooncakes\\moonbitlang\\regexp\\internal\\vm"
+        }
+      ],
+      "wbtest-deps": [
+        {
+          "path": "moonbitlang/core/prelude",
+          "alias": "prelude",
+          "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
+        }
+      ],
+      "test-deps": [
+        {
+          "path": "moonbitlang/core/prelude",
+          "alias": "prelude",
+          "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
+        }
+      ],
+      "artifact": "E:\\moonbit\\clawteam\\.mooncakes\\moonbitlang\\regexp\\_build\\wasm-gc\\release\\check\\internal\\ast\\ast.mi"
+    },
+    {
+      "is-main": false,
+      "is-third-party": false,
+      "root-path": "E:\\moonbit\\clawteam\\.mooncakes\\moonbitlang\\regexp\\internal\\parse",
+      "root": "moonbitlang/regexp",
+      "rel": "internal/parse",
+      "files": {
+        "E:\\moonbit\\clawteam\\.mooncakes\\moonbitlang\\regexp\\internal\\parse\\alias.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        },
+        "E:\\moonbit\\clawteam\\.mooncakes\\moonbitlang\\regexp\\internal\\parse\\parse.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        }
+      },
+      "wbtest-files": {
+        "E:\\moonbit\\clawteam\\.mooncakes\\moonbitlang\\regexp\\internal\\parse\\parser_wbtest.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        }
+      },
+      "test-files": {},
+      "mbt-md-files": {},
+      "deps": [
+        {
+          "path": "moonbitlang/core/prelude",
+          "alias": "prelude",
+          "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
+        },
+        {
+          "path": "moonbitlang/core/set",
+          "alias": "set",
+          "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\set"
+        },
+        {
+          "path": "moonbitlang/regexp/internal/ast",
+          "alias": "ast",
+          "fspath": "E:\\moonbit\\clawteam\\.mooncakes\\moonbitlang\\regexp\\internal\\ast"
+        },
+        {
+          "path": "moonbitlang/regexp/internal/unicode",
+          "alias": "unicode",
+          "fspath": "E:\\moonbit\\clawteam\\.mooncakes\\moonbitlang\\regexp\\internal\\unicode"
+        },
+        {
+          "path": "moonbitlang/regexp/internal/vm",
+          "alias": "vm",
+          "fspath": "E:\\moonbit\\clawteam\\.mooncakes\\moonbitlang\\regexp\\internal\\vm"
+        }
+      ],
+      "wbtest-deps": [
+        {
+          "path": "moonbitlang/core/prelude",
+          "alias": "prelude",
+          "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
+        }
+      ],
+      "test-deps": [
+        {
+          "path": "moonbitlang/core/prelude",
+          "alias": "prelude",
+          "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
+        }
+      ],
+      "artifact": "E:\\moonbit\\clawteam\\.mooncakes\\moonbitlang\\regexp\\_build\\wasm-gc\\release\\check\\internal\\parse\\parse.mi"
+    },
+    {
+      "is-main": false,
+      "is-third-party": false,
+      "root-path": "E:\\moonbit\\clawteam\\.mooncakes\\moonbitlang\\regexp\\internal\\unicode",
+      "root": "moonbitlang/regexp",
+      "rel": "internal/unicode",
+      "files": {
+        "E:\\moonbit\\clawteam\\.mooncakes\\moonbitlang\\regexp\\internal\\unicode\\case_folding.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        },
+        "E:\\moonbit\\clawteam\\.mooncakes\\moonbitlang\\regexp\\internal\\unicode\\chars.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        },
+        "E:\\moonbit\\clawteam\\.mooncakes\\moonbitlang\\regexp\\internal\\unicode\\general_category.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        },
+        "E:\\moonbit\\clawteam\\.mooncakes\\moonbitlang\\regexp\\internal\\unicode\\property_value_alises.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        }
+      },
+      "wbtest-files": {},
+      "test-files": {
+        "E:\\moonbit\\clawteam\\.mooncakes\\moonbitlang\\regexp\\internal\\unicode\\invariant_test.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        }
+      },
+      "mbt-md-files": {},
+      "deps": [
+        {
+          "path": "moonbitlang/core/prelude",
+          "alias": "prelude",
+          "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
+        }
+      ],
+      "wbtest-deps": [
+        {
+          "path": "moonbitlang/core/prelude",
+          "alias": "prelude",
+          "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
+        }
+      ],
+      "test-deps": [
+        {
+          "path": "moonbitlang/core/prelude",
+          "alias": "prelude",
+          "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
+        }
+      ],
+      "artifact": "E:\\moonbit\\clawteam\\.mooncakes\\moonbitlang\\regexp\\_build\\wasm-gc\\release\\check\\internal\\unicode\\unicode.mi"
+    },
+    {
+      "is-main": false,
+      "is-third-party": false,
+      "root-path": "E:\\moonbit\\clawteam\\.mooncakes\\moonbitlang\\regexp\\internal\\vm",
+      "root": "moonbitlang/regexp",
+      "rel": "internal/vm",
+      "files": {
+        "E:\\moonbit\\clawteam\\.mooncakes\\moonbitlang\\regexp\\internal\\vm\\alias.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        },
+        "E:\\moonbit\\clawteam\\.mooncakes\\moonbitlang\\regexp\\internal\\vm\\impl.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        }
+      },
+      "wbtest-files": {
+        "E:\\moonbit\\clawteam\\.mooncakes\\moonbitlang\\regexp\\internal\\vm\\impl_wbtest.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        }
+      },
+      "test-files": {},
+      "mbt-md-files": {},
+      "deps": [
+        {
+          "path": "moonbitlang/core/prelude",
+          "alias": "prelude",
+          "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
+        },
+        {
+          "path": "moonbitlang/regexp/internal/unicode",
+          "alias": "unicode",
+          "fspath": "E:\\moonbit\\clawteam\\.mooncakes\\moonbitlang\\regexp\\internal\\unicode"
+        }
+      ],
+      "wbtest-deps": [
+        {
+          "path": "moonbitlang/core/prelude",
+          "alias": "prelude",
+          "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
+        },
+        {
+          "path": "moonbitlang/core/test",
+          "alias": "test",
+          "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\test"
+        }
+      ],
+      "test-deps": [
+        {
+          "path": "moonbitlang/core/prelude",
+          "alias": "prelude",
+          "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
+        },
+        {
+          "path": "moonbitlang/core/test",
+          "alias": "test",
+          "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\test"
+        }
+      ],
+      "artifact": "E:\\moonbit\\clawteam\\.mooncakes\\moonbitlang\\regexp\\_build\\wasm-gc\\release\\check\\internal\\vm\\vm.mi"
+    }
+  ],
+  "deps": [],
+  "backend": "wasm-gc",
+  "opt_level": "release",
+  "source": null
+}
