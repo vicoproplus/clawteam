@@ -1,0 +1,651 @@
+﻿moon : Warning: [0029]
+At line:1 char:25
++ cd E:\moonbit\clawteam; moon check 2>&1 | Out-File -FilePath check_re ...
++                         ~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Warning: [0029]:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+   ╭─[ E:\moonbit\clawteam\acp\moon.pkg:2:3 ]
+   │
+ 2 │   "moonbitlang/async",
+   │   ─────────┬─────────  
+   │            ╰─────────── Warning (unused_package): Unused package 'moonbitlang/async'
+───╯
+Warning: [0029]
+    ╭─[ E:\moonbit\clawteam\agent\moon.pkg:33:3 ]
+    │
+ 33 │   "clawteam/clawteam/job",
+    │   ───────────┬───────────  
+    │              ╰───────────── Warning (unused_package): Unused package 'clawteam/clawteam/job'
+────╯
+Warning: [0006]
+    ╭─[ E:\moonbit\clawteam\clawteam.mbt:17:10 ]
+    │
+ 17 │ pub type ClawTeam Moonclaw
+    │          ────┬───  
+    │              ╰───── Warning (unused_constructor): Variant 'ClawTeam' is never constructed
+────╯
+Warning: [0027]
+    ╭─[ E:\moonbit\clawteam\clawteam.mbt:17:19 ]
+    │
+ 17 │ pub type ClawTeam Moonclaw
+    │                   ────┬───  
+    │                       ╰───── Warning (deprecated_syntax): The syntax `type T A` for newtype is deprecated. Use `struct T(A)` instead.
+────╯
+Warning: [0023]
+   ╭─[ E:\moonbit\clawteam\cmd\daemon\acquire_lock.mbt:7:3 ]
+   │
+ 7 │   @fsx.lock_file(file) catch {
+   │   ──────────┬─────────  
+   │             ╰─────────── Warning (unused_try): The body of this try expression never raises any error.
+───╯
+Warning: [0023]
+    ╭─[ E:\moonbit\clawteam\cmd\daemon\acquire_lock.mbt:11:17 ]
+    │
+ 11 │       let pid = @fsx.get_lock_owner(file) catch {
+    │                 ────────────┬────────────  
+    │                             ╰────────────── Warning (unused_try): The body of this try expression never raises any error.
+────╯
+Warning: [0023]
+    ╭─[ E:\moonbit\clawteam\cmd\test-lock\main.mbt:22:3 ]
+    │
+ 22 │   @fsx.lock_file(file) catch {
+    │   ──────────┬─────────  
+    │             ╰─────────── Warning (unused_try): The body of this try expression never raises any error.
+────╯
+Warning: [0029]
+   ╭─[ E:\moonbit\clawteam\config\moon.pkg:4:3 ]
+   │
+ 4 │   "moonbitlang/x/path",
+   │   ──────────┬─────────  
+   │             ╰─────────── Warning (unused_package): Unused package 'moonbitlang/x/path'
+───╯
+Warning: [0071]
+     ╭─[ E:\moonbit\clawteam\gateway\server\rpc_clawteam.mbt:141:10 ]
+     │
+ 141 │     _ => @random.Rand::chacha8(seed=Bytes::make(32, 0))
+     │          ──────┬─────  
+     │                ╰─────── Warning (core_package_not_imported): Package `random` from `moonbitlang/core/` is used without import. This is deprecated. Please add it to the imports in the moon.pkg file.
+─────╯
+Warning: [0008]
+    ╭─[ E:\moonbit\clawteam\gateway\server\scheduler_ext.mbt:12:3 ]
+    │
+ 12 │   pub config : @config.ClawTeamConfig
+    │   ─┬─  
+    │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field config is public by default
+────╯
+Warning: [0008]
+    ╭─[ E:\moonbit\clawteam\gateway\server\scheduler_ext.mbt:13:3 ]
+    │
+ 13 │   pub router : @scheduler.AgentRouter
+    │   ─┬─  
+    │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field router is public by default
+────╯
+Warning: [0008]
+    ╭─[ E:\moonbit\clawteam\gateway\server\scheduler_ext.mbt:14:3 ]
+    │
+ 14 │   pub audit : @logger.AuditStore
+    │   ─┬─  
+    │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field audit is public by default
+────╯
+Warning: [0008]
+    ╭─[ E:\moonbit\clawteam\gateway\server\scheduler_ext.mbt:15:3 ]
+    │
+ 15 │   pub events : @broadcast.Broadcast[SchedulerEvent]
+    │   ─┬─  
+    │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field events is public by default
+────╯
+Warning: [0006]
+    ╭─[ E:\moonbit\clawteam\gateway\server\scheduler_ext.mbt:22:3 ]
+    │
+ 22 │   SkillExecuted(SkillExecutedEvent)
+    │   ──────┬──────  
+    │         ╰──────── Warning (unused_constructor): Variant 'SkillExecuted' is never constructed
+────╯
+Warning: [0006]
+    ╭─[ E:\moonbit\clawteam\gateway\server\scheduler_ext.mbt:23:3 ]
+    │
+ 23 │   MessageReceived(MessageReceivedEvent)
+    │   ───────┬───────  
+    │          ╰───────── Warning (unused_constructor): Variant 'MessageReceived' is never constructed
+────╯
+Warning: [0008]
+    ╭─[ E:\moonbit\clawteam\gateway\server\scheduler_ext.mbt:30:3 ]
+    │
+ 30 │   pub session_id : String
+    │   ─┬─  
+    │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field session_id is public by default
+────╯
+Warning: [0008]
+    ╭─[ E:\moonbit\clawteam\gateway\server\scheduler_ext.mbt:31:3 ]
+    │
+ 31 │   pub agent_id : String
+    │   ─┬─  
+    │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field agent_id is public by default
+────╯
+Warning: [0008]
+    ╭─[ E:\moonbit\clawteam\gateway\server\scheduler_ext.mbt:32:3 ]
+    │
+ 32 │   pub target_id : String?
+    │   ─┬─  
+    │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field target_id is public by default
+────╯
+Warning: [0008]
+    ╭─[ E:\moonbit\clawteam\gateway\server\scheduler_ext.mbt:33:3 ]
+    │
+ 33 │   pub timestamp : Int
+    │   ─┬─  
+    │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field timestamp is public by default
+────╯
+Warning: [0009]
+    ╭─[ E:\moonbit\clawteam\gateway\server\scheduler_ext.mbt:38:12 ]
+    │
+ 38 │ pub struct SkillExecutedEvent {
+    │            ─────────┬────────  
+    │                     ╰────────── Warning (struct_never_constructed): The struct SkillExecutedEvent is never constructed
+────╯
+Warning: [0008]
+    ╭─[ E:\moonbit\clawteam\gateway\server\scheduler_ext.mbt:39:3 ]
+    │
+ 39 │   pub skill_id : String
+    │   ─┬─  
+    │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field skill_id is public by default
+────╯
+Warning: [0008]
+    ╭─[ E:\moonbit\clawteam\gateway\server\scheduler_ext.mbt:40:3 ]
+    │
+ 40 │   pub agent_id : String
+    │   ─┬─  
+    │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field agent_id is public by default
+────╯
+Warning: [0008]
+    ╭─[ E:\moonbit\clawteam\gateway\server\scheduler_ext.mbt:41:3 ]
+    │
+ 41 │   pub success : Bool
+    │   ─┬─  
+    │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field success is public by default
+────╯
+Warning: [0008]
+    ╭─[ E:\moonbit\clawteam\gateway\server\scheduler_ext.mbt:42:3 ]
+    │
+ 42 │   pub elapsed_ms : Int
+    │   ─┬─  
+    │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field elapsed_ms is public by default
+────╯
+Warning: [0008]
+    ╭─[ E:\moonbit\clawteam\gateway\server\scheduler_ext.mbt:43:3 ]
+    │
+ 43 │   pub timestamp : Int
+    │   ─┬─  
+    │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field timestamp is public by default
+────╯
+Warning: [0009]
+    ╭─[ E:\moonbit\clawteam\gateway\server\scheduler_ext.mbt:48:12 ]
+    │
+ 48 │ pub struct MessageReceivedEvent {
+    │            ──────────┬─────────  
+    │                      ╰─────────── Warning (struct_never_constructed): The struct MessageReceivedEvent is never constructed
+────╯
+Warning: [0008]
+    ╭─[ E:\moonbit\clawteam\gateway\server\scheduler_ext.mbt:49:3 ]
+    │
+ 49 │   pub session_id : String
+    │   ─┬─  
+    │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field session_id is public by default
+────╯
+Warning: [0008]
+    ╭─[ E:\moonbit\clawteam\gateway\server\scheduler_ext.mbt:50:3 ]
+    │
+ 50 │   pub channel : String?
+    │   ─┬─  
+    │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field channel is public by default
+────╯
+Warning: [0008]
+    ╭─[ E:\moonbit\clawteam\gateway\server\scheduler_ext.mbt:51:3 ]
+    │
+ 51 │   pub content_preview : String
+    │   ─┬─  
+    │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field content_preview is public by default
+────╯
+Warning: [0008]
+    ╭─[ E:\moonbit\clawteam\gateway\server\scheduler_ext.mbt:52:3 ]
+    │
+ 52 │   pub timestamp : Int
+    │   ─┬─  
+    │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field timestamp is public by default
+────╯
+Warning: [0008]
+    ╭─[ E:\moonbit\clawteam\gateway\server\scheduler_ext.mbt:58:3 ]
+    │
+ 58 │   pub entity_type : String
+    │   ─┬─  
+    │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field entity_type is public by default
+────╯
+Warning: [0008]
+    ╭─[ E:\moonbit\clawteam\gateway\server\scheduler_ext.mbt:59:3 ]
+    │
+ 59 │   pub entity_id : String
+    │   ─┬─  
+    │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field entity_id is public by default
+────╯
+Warning: [0008]
+    ╭─[ E:\moonbit\clawteam\gateway\server\scheduler_ext.mbt:60:3 ]
+    │
+ 60 │   pub old_status : String
+    │   ─┬─  
+    │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field old_status is public by default
+────╯
+Warning: [0008]
+    ╭─[ E:\moonbit\clawteam\gateway\server\scheduler_ext.mbt:61:3 ]
+    │
+ 61 │   pub new_status : String
+    │   ─┬─  
+    │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field new_status is public by default
+────╯
+Warning: [0008]
+    ╭─[ E:\moonbit\clawteam\gateway\server\scheduler_ext.mbt:62:3 ]
+    │
+ 62 │   pub timestamp : Int
+    │   ─┬─  
+    │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field timestamp is public by default
+────╯
+Warning: [0008]
+     ╭─[ E:\moonbit\clawteam\gateway\server\scheduler_ext.mbt:188:3 ]
+     │
+ 188 │   pub id : String
+     │   ─┬─  
+     │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field id is public by default
+─────╯
+Warning: [0008]
+     ╭─[ E:\moonbit\clawteam\gateway\server\scheduler_ext.mbt:189:3 ]
+     │
+ 189 │   pub name : String
+     │   ─┬─  
+     │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field name is public by default
+─────╯
+Warning: [0008]
+     ╭─[ E:\moonbit\clawteam\gateway\server\scheduler_ext.mbt:190:3 ]
+     │
+ 190 │   pub role : @types.AgentRole
+     │   ─┬─  
+     │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field role is public by default
+─────╯
+Warning: [0008]
+     ╭─[ E:\moonbit\clawteam\gateway\server\scheduler_ext.mbt:191:3 ]
+     │
+ 191 │   pub cli_tool : String
+     │   ─┬─  
+     │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field cli_tool is public by default
+─────╯
+Warning: [0008]
+     ╭─[ E:\moonbit\clawteam\gateway\server\scheduler_ext.mbt:192:3 ]
+     │
+ 192 │   pub enabled : Bool
+     │   ─┬─  
+     │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field enabled is public by default
+─────╯
+Warning: [0008]
+     ╭─[ E:\moonbit\clawteam\gateway\server\scheduler_ext.mbt:193:3 ]
+     │
+ 193 │   pub skills : Array[String]
+     │   ─┬─  
+     │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field skills is public by default
+─────╯
+Warning: [0008]
+     ╭─[ E:\moonbit\clawteam\gateway\server\scheduler_ext.mbt:199:3 ]
+     │
+ 199 │   pub id : String
+     │   ─┬─  
+     │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field id is public by default
+─────╯
+Warning: [0008]
+     ╭─[ E:\moonbit\clawteam\gateway\server\scheduler_ext.mbt:200:3 ]
+     │
+ 200 │   pub name : String
+     │   ─┬─  
+     │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field name is public by default
+─────╯
+Warning: [0008]
+     ╭─[ E:\moonbit\clawteam\gateway\server\scheduler_ext.mbt:201:3 ]
+     │
+ 201 │   pub name_key : String
+     │   ─┬─  
+     │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field name_key is public by default
+─────╯
+Warning: [0008]
+     ╭─[ E:\moonbit\clawteam\gateway\server\scheduler_ext.mbt:202:3 ]
+     │
+ 202 │   pub description : String
+     │   ─┬─  
+     │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field description is public by default
+─────╯
+Warning: [0008]
+     ╭─[ E:\moonbit\clawteam\gateway\server\scheduler_ext.mbt:203:3 ]
+     │
+ 203 │   pub icon : String
+     │   ─┬─  
+     │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field icon is public by default
+─────╯
+Warning: [0008]
+     ╭─[ E:\moonbit\clawteam\gateway\server\scheduler_ext.mbt:204:3 ]
+     │
+ 204 │   pub color : String
+     │   ─┬─  
+     │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field color is public by default
+─────╯
+Warning: [0008]
+     ╭─[ E:\moonbit\clawteam\gateway\server\scheduler_ext.mbt:205:3 ]
+     │
+ 205 │   pub tags : Array[String]
+     │   ─┬─  
+     │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field tags is public by default
+─────╯
+Warning: [0008]
+     ╭─[ E:\moonbit\clawteam\gateway\server\scheduler_ext.mbt:206:3 ]
+     │
+ 206 │   pub applicable_roles : Array[@types.AgentRole]
+     │   ─┬─  
+     │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field applicable_roles is public by default
+─────╯
+Warning: [0008]
+    ╭─[ E:\moonbit\clawteam\gateway\server\ws_events.mbt:11:3 ]
+    │
+ 11 │   pub client_id : String
+    │   ─┬─  
+    │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field client_id is public by default
+────╯
+Warning: [0008]
+    ╭─[ E:\moonbit\clawteam\gateway\server\ws_events.mbt:12:3 ]
+    │
+ 12 │   pub subscriptions : Set[String]
+    │   ─┬─  
+    │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field subscriptions is public by default
+────╯
+Warning: [0008]
+    ╭─[ E:\moonbit\clawteam\gateway\server\ws_events.mbt:13:3 ]
+    │
+ 13 │   pub created_at : Int
+    │   ─┬─  
+    │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field created_at is public by default
+────╯
+Warning: [0008]
+    ╭─[ E:\moonbit\clawteam\gateway\server\ws_events.mbt:19:3 ]
+    │
+ 19 │   pub subscriptions : Map[String, WsEventSubscription]
+    │   ─┬─  
+    │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field subscriptions is public by default
+────╯
+Warning: [0008]
+    ╭─[ E:\moonbit\clawteam\gateway\server\ws_events.mbt:20:3 ]
+    │
+ 20 │   pub event_queue : @broadcast.Broadcast[WsEvent]
+    │   ─┬─  
+    │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field event_queue is public by default
+────╯
+Warning: [0008]
+    ╭─[ E:\moonbit\clawteam\gateway\server\ws_events.mbt:26:3 ]
+    │
+ 26 │   pub event_type : String
+    │   ─┬─  
+    │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field event_type is public by default
+────╯
+Warning: [0008]
+    ╭─[ E:\moonbit\clawteam\gateway\server\ws_events.mbt:27:3 ]
+    │
+ 27 │   pub payload : Json
+    │   ─┬─  
+    │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field payload is public by default
+────╯
+Warning: [0008]
+    ╭─[ E:\moonbit\clawteam\gateway\server\ws_events.mbt:28:3 ]
+    │
+ 28 │   pub timestamp : Int
+    │   ─┬─  
+    │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field timestamp is public by default
+────╯
+Warning: [0024]
+     ╭─[ E:\moonbit\clawteam\internal\readline\readline.mbt:112:16 ]
+     │
+ 112 │ ) -> Interface raise {
+     │                ──┬──  
+     │                  ╰──── Warning (unused_error_type): The error type of this function is never used.
+─────╯
+Warning: [0008]
+   ╭─[ E:\moonbit\clawteam\logger\types.mbt:8:3 ]
+   │
+ 8 │   pub id : String
+   │   ─┬─  
+   │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field id is public by default
+───╯
+Warning: [0008]
+   ╭─[ E:\moonbit\clawteam\logger\types.mbt:9:3 ]
+   │
+ 9 │   pub timestamp : Int
+   │   ─┬─  
+   │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field timestamp is public by default
+───╯
+Warning: [0008]
+    ╭─[ E:\moonbit\clawteam\logger\types.mbt:10:3 ]
+    │
+ 10 │   pub event_type : @types.AuditEventType
+    │   ─┬─  
+    │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field event_type is public by default
+────╯
+Warning: [0008]
+    ╭─[ E:\moonbit\clawteam\logger\types.mbt:11:3 ]
+    │
+ 11 │   pub session_id : String?
+    │   ─┬─  
+    │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field session_id is public by default
+────╯
+Warning: [0008]
+    ╭─[ E:\moonbit\clawteam\logger\types.mbt:12:3 ]
+    │
+ 12 │   pub target_id : String?
+    │   ─┬─  
+    │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field target_id is public by default
+────╯
+Warning: [0008]
+    ╭─[ E:\moonbit\clawteam\logger\types.mbt:13:3 ]
+    │
+ 13 │   pub job_id : String?
+    │   ─┬─  
+    │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field job_id is public by default
+────╯
+Warning: [0008]
+    ╭─[ E:\moonbit\clawteam\logger\types.mbt:14:3 ]
+    │
+ 14 │   pub run_id : String?
+    │   ─┬─  
+    │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field run_id is public by default
+────╯
+Warning: [0008]
+    ╭─[ E:\moonbit\clawteam\logger\types.mbt:15:3 ]
+    │
+ 15 │   pub user_id : String?
+    │   ─┬─  
+    │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field user_id is public by default
+────╯
+Warning: [0008]
+    ╭─[ E:\moonbit\clawteam\logger\types.mbt:16:3 ]
+    │
+ 16 │   pub channel : String?
+    │   ─┬─  
+    │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field channel is public by default
+────╯
+Warning: [0008]
+    ╭─[ E:\moonbit\clawteam\logger\types.mbt:17:3 ]
+    │
+ 17 │   pub details : Json
+    │   ─┬─  
+    │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field details is public by default
+────╯
+Warning: [0029]
+   ╭─[ E:\moonbit\clawteam\moon.pkg:2:3 ]
+   │
+ 2 │   "clawteam/clawteam/types",
+   │   ────────────┬────────────  
+   │               ╰────────────── Warning (unused_package): Unused package 'clawteam/clawteam/types'
+───╯
+Warning: [0029]
+   ╭─[ E:\moonbit\clawteam\moon.pkg:3:3 ]
+   │
+ 3 │   "clawteam/clawteam/errors",
+   │   ─────────────┬────────────  
+   │                ╰────────────── Warning (unused_package): Unused package 'clawteam/clawteam/errors'
+───╯
+Warning: [0029]
+   ╭─[ E:\moonbit\clawteam\moon.pkg:4:3 ]
+   │
+ 4 │   "clawteam/clawteam/config",
+   │   ─────────────┬────────────  
+   │                ╰────────────── Warning (unused_package): Unused package 'clawteam/clawteam/config'
+───╯
+Warning: [0029]
+    ╭─[ E:\moonbit\clawteam\moon.pkg:16:3 ]
+    │
+ 16 │   "clawteam/clawteam/job",
+    │   ───────────┬───────────  
+    │              ╰───────────── Warning (unused_package): Unused package 'clawteam/clawteam/job'
+────╯
+Warning: [0029]
+    ╭─[ E:\moonbit\clawteam\moon.pkg:28:3 ]
+    │
+ 28 │   "moonbitlang/async",
+    │   ─────────┬─────────  
+    │            ╰─────────── Warning (unused_package): Unused package 'moonbitlang/async'
+────╯
+Warning: [0029]
+    ╭─[ E:\moonbit\clawteam\moon.pkg:29:3 ]
+    │
+ 29 │   "clawteam/clawteam/internal/mock",
+    │   ────────────────┬────────────────  
+    │                   ╰────────────────── Warning (unused_package): Unused package 'clawteam/clawteam/internal/mock'
+────╯
+Warning: [0009]
+   ╭─[ E:\moonbit\clawteam\scheduler\types.mbt:7:12 ]
+   │
+ 7 │ pub struct CliCallParams {
+   │            ──────┬──────  
+   │                  ╰──────── Warning (struct_never_constructed): The struct CliCallParams is never constructed
+───╯
+Warning: [0008]
+   ╭─[ E:\moonbit\clawteam\scheduler\types.mbt:8:3 ]
+   │
+ 8 │   pub cli_tool : String
+   │   ─┬─  
+   │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field cli_tool is public by default
+───╯
+Warning: [0008]
+   ╭─[ E:\moonbit\clawteam\scheduler\types.mbt:9:3 ]
+   │
+ 9 │   pub agent_prompt : String
+   │   ─┬─  
+   │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field agent_prompt is public by default
+───╯
+Warning: [0008]
+    ╭─[ E:\moonbit\clawteam\scheduler\types.mbt:10:3 ]
+    │
+ 10 │   pub context : String
+    │   ─┬─  
+    │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field context is public by default
+────╯
+Warning: [0008]
+    ╭─[ E:\moonbit\clawteam\scheduler\types.mbt:11:3 ]
+    │
+ 11 │   pub variables : Map[String, String]
+    │   ─┬─  
+    │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field variables is public by default
+────╯
+Warning: [0009]
+    ╭─[ E:\moonbit\clawteam\scheduler\types.mbt:16:12 ]
+    │
+ 16 │ pub struct CliCallResult {
+    │            ──────┬──────  
+    │                  ╰──────── Warning (struct_never_constructed): The struct CliCallResult is never constructed
+────╯
+Warning: [0008]
+    ╭─[ E:\moonbit\clawteam\scheduler\types.mbt:17:3 ]
+    │
+ 17 │   pub stdout : String
+    │   ─┬─  
+    │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field stdout is public by default
+────╯
+Warning: [0008]
+    ╭─[ E:\moonbit\clawteam\scheduler\types.mbt:18:3 ]
+    │
+ 18 │   pub stderr : String
+    │   ─┬─  
+    │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field stderr is public by default
+────╯
+Warning: [0008]
+    ╭─[ E:\moonbit\clawteam\scheduler\types.mbt:19:3 ]
+    │
+ 19 │   pub status : Int
+    │   ─┬─  
+    │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field status is public by default
+────╯
+Warning: [0008]
+    ╭─[ E:\moonbit\clawteam\scheduler\types.mbt:20:3 ]
+    │
+ 20 │   pub elapsed : Int
+    │   ─┬─  
+    │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field elapsed is public by default
+────╯
+Warning: [0009]
+    ╭─[ E:\moonbit\clawteam\scheduler\types.mbt:25:12 ]
+    │
+ 25 │ pub struct DispatchContext {
+    │            ───────┬───────  
+    │                   ╰───────── Warning (struct_never_constructed): The struct DispatchContext is never constructed
+────╯
+Warning: [0008]
+    ╭─[ E:\moonbit\clawteam\scheduler\types.mbt:26:3 ]
+    │
+ 26 │   pub session_id : String
+    │   ─┬─  
+    │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field session_id is public by default
+────╯
+Warning: [0008]
+    ╭─[ E:\moonbit\clawteam\scheduler\types.mbt:27:3 ]
+    │
+ 27 │   pub user_id : String?
+    │   ─┬─  
+    │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field user_id is public by default
+────╯
+Warning: [0008]
+    ╭─[ E:\moonbit\clawteam\scheduler\types.mbt:28:3 ]
+    │
+ 28 │   pub channel : String?
+    │   ─┬─  
+    │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field channel is public by default
+────╯
+Warning: [0008]
+    ╭─[ E:\moonbit\clawteam\scheduler\types.mbt:29:3 ]
+    │
+ 29 │   pub timestamp : Int
+    │   ─┬─  
+    │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field timestamp is public by default
+────╯
+Warning: [0008]
+    ╭─[ E:\moonbit\clawteam\scheduler\types.mbt:30:3 ]
+    │
+ 30 │   pub metadata : Map[String, String]
+    │   ─┬─  
+    │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field metadata is public by default
+────╯
+Warning: [0029]
+    ╭─[ E:\moonbit\clawteam\tools\replace_in_file\moon.pkg:21:3 ]
+    │
+ 21 │   "moonbitlang/async/fs",
+    │   ───────────┬──────────  
+    │              ╰──────────── Warning (unused_package): Unused package 'moonbitlang/async/fs'
+────╯
+Warning: [0029]
+    ╭─[ E:\moonbit\clawteam\tools\write_to_file\moon.pkg:13:3 ]
+    │
+ 13 │   "moonbitlang/async/fs",
+    │   ───────────┬──────────  
+    │              ╰──────────── Warning (unused_package): Unused package 'moonbitlang/async/fs'
+────╯
+Finished. moon: ran 16 tasks, now up to date (92 warnings, 0 errors)
