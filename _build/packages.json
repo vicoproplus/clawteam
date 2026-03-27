@@ -12446,7 +12446,21 @@
           ]
         }
       },
-      "wbtest-files": {},
+      "wbtest-files": {
+        "E:\\moonbit\\clawteam\\parser\\parser_wbtest.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        }
+      },
       "test-files": {},
       "mbt-md-files": {},
       "deps": [
@@ -12662,7 +12676,21 @@
           ]
         }
       },
-      "wbtest-files": {},
+      "wbtest-files": {
+        "E:\\moonbit\\clawteam\\scheduler\\scheduler_wbtest.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        }
+      },
       "test-files": {},
       "mbt-md-files": {},
       "deps": [
