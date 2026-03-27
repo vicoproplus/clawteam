@@ -1,0 +1,11 @@
+﻿moon : error: unexpected argument 'parser/' found
+At line:1 char:25
++ ... t\clawteam; moon test scheduler/ parser/ logger/ config/ 2>&1 | Out-F ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (error: unexpect...'parser/' found:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+
+Usage: moon.exe test [OPTIONS] [PATH]
+
+For more information, try '--help'.
