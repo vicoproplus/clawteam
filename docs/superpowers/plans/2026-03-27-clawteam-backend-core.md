@@ -50,7 +50,7 @@
 | `reference/moonclaw/acp/` | `acp/` | 精简复制 |
 | `reference/moonclaw/model/` | `model/` | 精简复制 |
 | `reference/moonclaw/ai/` | `ai/` | 精简复制 |
-| `reference/moonclaw/oauth/` | `oauth/` | 精简复制（仅保留 codex） |
+| `reference/moonclaw/oauth/` | `oauth/` | 精简复制 |
 
 ---
 
