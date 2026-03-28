@@ -17,3 +17,12 @@ export interface ChatMessage {
   linkedAgent?: string;
   metadata?: Record<string, unknown>;
 }
+
+// 会话
+export interface Session {
+  id: string;
+  name: string;
+  createdAt: number;
+  updatedAt: number;
+  messages: ChatMessage[];
+}
