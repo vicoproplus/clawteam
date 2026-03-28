@@ -9,6 +9,7 @@ export const useSkillStore = defineStore('skill', () => {
   const selectedSkillId = ref<string | null>(null)
   const skillDialogOpen = ref(false)
   const loading = ref(false)
+  const error = ref<string | null>(null)
 
   // Getters
   const selectedSkill = computed(() => {
@@ -26,6 +27,7 @@ export const useSkillStore = defineStore('skill', () => {
   // Actions
   const loadSkills = async () => {
     loading.value = true
+    error.value = null
     try {
       const response = await fetch('/api/skills')
       if (!response.ok) throw new Error('Failed to fetch skills')
@@ -38,8 +40,8 @@ export const useSkillStore = defineStore('skill', () => {
         skills.value[skill.id] = skill
         skillList.value.push(skill.id)
       }
-    } catch {
-      // 使用默认空数据
+    } catch (e) {
+      error.value = e instanceof Error ? e.message : String(e)
       skills.value = {}
       skillList.value = []
     } finally {
@@ -66,6 +68,7 @@ export const useSkillStore = defineStore('skill', () => {
     selectedSkillId,
     skillDialogOpen,
     loading,
+    error,
     // Getters
     selectedSkill,
     skillOptions,

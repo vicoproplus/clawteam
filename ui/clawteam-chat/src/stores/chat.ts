@@ -24,7 +24,10 @@ export const useChatStore = defineStore('chat', () => {
   // Actions
   const createSession = (session: Session) => {
     sessions.value[session.id] = session
-    if (!messages.value[session.id]) {
+    // 同步 session.messages 到 messages ref
+    if (session.messages && session.messages.length > 0) {
+      messages.value[session.id] = [...session.messages]
+    } else if (!messages.value[session.id]) {
       messages.value[session.id] = []
     }
     if (!currentSessionId.value) {
