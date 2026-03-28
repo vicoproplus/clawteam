@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { Bot, Loader2, CheckCircle, XCircle, Clock } from 'lucide-vue-next'
+import { Bot, Loader2, CheckCircle, XCircle, Clock, Play, Square, Settings } from 'lucide-vue-next'
 import { cn } from '@/lib/utils'
 import type { AgentRole, TerminalSessionStatus } from '@/types/agent'
 
@@ -12,14 +12,19 @@ interface Props {
   cliTool: string
   required?: boolean
   selected?: boolean
+  showMenu?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
   required: false,
   selected: false,
+  showMenu: false,
 })
 
-const emit = defineEmits<{ click: [] }>()
+const emit = defineEmits<{
+  click: []
+  action: [action: string]
+}>()
 
 const statusIcons: Record<TerminalSessionStatus, typeof CheckCircle> = {
   pending: Clock,
@@ -52,7 +57,7 @@ const roleColors: Record<AgentRole, string> = {
 const StatusIcon = computed(() => statusIcons[props.status])
 const cardClasses = computed(() =>
   cn(
-    'p-3 rounded-lg border cursor-pointer transition-all',
+    'group p-3 rounded-lg border cursor-pointer transition-all',
     roleColors[props.role],
     props.selected && 'ring-2 ring-blue-500',
     !props.required && 'opacity-80 hover:opacity-100'
@@ -71,6 +76,31 @@ const cardClasses = computed(() =>
         </div>
       </div>
       <component :is="StatusIcon" :class="cn('h-4 w-4', statusColors[status], status === 'working' && 'animate-spin')" />
+      <div class="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+        <button
+          v-if="status === 'online' || status === 'working'"
+          class="p-1 rounded hover:bg-gray-200 text-gray-500"
+          @click.stop="emit('action', 'stop')"
+          title="停止"
+        >
+          <Square class="h-3 w-3" />
+        </button>
+        <button
+          v-else
+          class="p-1 rounded hover:bg-gray-200 text-gray-500"
+          @click.stop="emit('action', 'start')"
+          title="启动"
+        >
+          <Play class="h-3 w-3" />
+        </button>
+        <button
+          class="p-1 rounded hover:bg-gray-200 text-gray-500"
+          @click.stop="emit('action', 'config')"
+          title="配置"
+        >
+          <Settings class="h-3 w-3" />
+        </button>
+      </div>
     </div>
     <div v-if="required" class="mt-1 text-xs text-gray-400">必需</div>
   </div>
