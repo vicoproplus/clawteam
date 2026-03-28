@@ -174,6 +174,7 @@ describe('Chat Store', () => {
       name: 'Test Session',
       createdAt: Date.now(),
       updatedAt: Date.now(),
+      messages: [],
     }
 
     store.addMessage({
