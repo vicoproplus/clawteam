@@ -146,4 +146,60 @@ describe('Agent Store', () => {
     expect(groups.worker).toHaveLength(1)
     expect(groups.supervisor).toHaveLength(0)
   })
+
+  it('should add a new agent', () => {
+    const store = useAgentStore()
+    store.addAgent({
+      id: 'worker-1',
+      name: '测试员工',
+      role: 'worker',
+      cliTool: 'codex',
+      args: [],
+      env: {},
+      autoStart: false,
+      skills: [],
+      enabled: true,
+    })
+    expect(store.agents['worker-1']).toBeDefined()
+    expect(store.agents['worker-1'].config.name).toBe('测试员工')
+    expect(store.agentList).toContain('worker-1')
+  })
+
+  it('should update an agent config', () => {
+    const store = useAgentStore()
+    store.addAgent({
+      id: 'agent-x',
+      name: 'Original',
+      role: 'assistant',
+      cliTool: 'opencode',
+      args: [],
+      env: {},
+      autoStart: false,
+      skills: [],
+      enabled: true,
+    })
+    store.updateAgent('agent-x', { name: 'Updated', cliTool: 'claude' })
+    expect(store.agents['agent-x'].config.name).toBe('Updated')
+    expect(store.agents['agent-x'].config.cliTool).toBe('claude')
+  })
+
+  it('should remove an agent', () => {
+    const store = useAgentStore()
+    store.addAgent({
+      id: 'to-remove',
+      name: 'Remove Me',
+      role: 'worker',
+      cliTool: 'opencode',
+      args: [],
+      env: {},
+      autoStart: false,
+      skills: [],
+      enabled: true,
+    })
+    store.selectAgent('to-remove')
+    store.removeAgent('to-remove')
+    expect(store.agents['to-remove']).toBeUndefined()
+    expect(store.agentList).not.toContain('to-remove')
+    expect(store.selectedAgentId).toBeNull()
+  })
 })

@@ -101,6 +101,32 @@ export const useAgentStore = defineStore('agent', () => {
     }
   }
 
+  const addAgent = (config: AgentConfig) => {
+    agents.value[config.id] = {
+      config,
+      status: 'offline',
+      lastOutputAt: 0,
+    }
+    if (!agentList.value.includes(config.id)) {
+      agentList.value.push(config.id)
+    }
+  }
+
+  const updateAgent = (id: string, updates: Partial<AgentConfig>) => {
+    const agent = agents.value[id]
+    if (agent) {
+      agent.config = { ...agent.config, ...updates }
+    }
+  }
+
+  const removeAgent = (id: string) => {
+    delete agents.value[id]
+    agentList.value = agentList.value.filter(aid => aid !== id)
+    if (selectedAgentId.value === id) {
+      selectedAgentId.value = null
+    }
+  }
+
   return {
     // State
     agents,
@@ -116,6 +142,9 @@ export const useAgentStore = defineStore('agent', () => {
     updateAgentStatus,
     selectAgent,
     updateAgentSession,
+    addAgent,
+    updateAgent,
+    removeAgent,
   }
 })
 

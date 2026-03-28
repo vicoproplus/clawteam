@@ -61,6 +61,12 @@ export const useSkillStore = defineStore('skill', () => {
     skillDialogOpen.value = false
   }
 
+  const executeSkill = (skillId: string, variables: Record<string, string>) => {
+    const skill = skills.value[skillId]
+    if (!skill) return
+    console.log('Execute skill:', skill.name, variables)
+  }
+
   return {
     // State
     skills,
@@ -77,6 +83,7 @@ export const useSkillStore = defineStore('skill', () => {
     selectSkill,
     openSkillDialog,
     closeSkillDialog,
+    executeSkill,
   }
 })
 
