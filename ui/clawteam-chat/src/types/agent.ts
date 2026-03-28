@@ -52,3 +52,41 @@ export interface AgentState {
   workingSince?: number;
   sessionId?: string;
 }
+
+export const CLI_TOOLS = [
+  { value: 'claude', label: 'Claude Code' },
+  { value: 'codex', label: 'Codex' },
+  { value: 'gemini', label: 'Gemini' },
+  { value: 'opencode', label: 'OpenCode' },
+  { value: 'qwen', label: 'Qwen' },
+  { value: 'openclaw', label: 'OpenClaw' },
+  { value: 'shell', label: 'Shell' },
+] as const
+
+export const ROLE_LABELS: Record<AgentRole, string> = {
+  assistant: '助手',
+  worker: '员工',
+  supervisor: '监工',
+}
+
+export const ROLE_COLORS: Record<AgentRole, { bg: string; text: string }> = {
+  assistant: { bg: 'bg-purple-50', text: 'text-purple-600' },
+  worker: { bg: 'bg-blue-50', text: 'text-blue-600' },
+  supervisor: { bg: 'bg-green-50', text: 'text-green-600' },
+}
+
+export const STATUS_LABELS: Record<TerminalSessionStatus, string> = {
+  pending: '启动中',
+  online: '在线',
+  working: '执行中',
+  offline: '离线',
+  broken: '异常',
+}
+
+export const STATUS_COLORS: Record<TerminalSessionStatus, string> = {
+  pending: 'text-yellow-500',
+  online: 'text-green-500',
+  working: 'text-blue-500',
+  offline: 'text-gray-400',
+  broken: 'text-red-500',
+}
