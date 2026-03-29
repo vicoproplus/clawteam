@@ -1,16 +1,28 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
+import ChatView from '@/views/ChatView.vue'
+import Settings from '@/components/Settings.vue'
 
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    name: 'home',
-    component: () => import('@/views/ChatView.vue'),
+    name: 'chat',
+    component: ChatView,
   },
   {
     path: '/session/:sessionId',
     name: 'session',
-    component: () => import('@/views/ChatView.vue'),
+    component: ChatView,
+  },
+  {
+    path: '/terminal',
+    name: 'terminal',
+    component: () => import('@/components/TerminalWorkspace.vue'),
+  },
+  {
+    path: '/settings',
+    name: 'settings',
+    component: Settings,
   },
 ]
 

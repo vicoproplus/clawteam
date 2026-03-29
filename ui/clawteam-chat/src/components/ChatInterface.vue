@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { storeToRefs } from 'pinia'
-import AgentPanel from './AgentPanel.vue'
 import MessageList from './MessageList.vue'
 import ChatInput from './ChatInput.vue'
 import OutputPanel from './OutputPanel.vue'
@@ -38,64 +37,63 @@ const handleSend = (content: string, skillId?: string) => {
 </script>
 
 <template>
-  <div class="flex h-full">
-    <AgentPanel />
-
-    <SkillStore v-if="showSkillStore" />
-
-    <div class="flex-1 flex flex-col">
-      <div class="border-b px-4 py-2 flex items-center justify-between bg-white">
-        <h1 class="font-semibold text-sm">ClawTeam</h1>
-        <div class="flex items-center gap-1">
-          <Button
-            variant="ghost"
-            size="sm"
-            class="h-8 text-xs"
-            :class="showSkillStore && 'bg-blue-50 text-blue-600'"
-            @click="showSkillStore = !showSkillStore"
-          >
-            <Package class="h-3.5 w-3.5 mr-1" />
-            Skill
-          </Button>
-          <Button
-            variant="ghost"
-            size="sm"
-            class="h-8 text-xs"
-            :class="showAuditPanel && 'bg-blue-50 text-blue-600'"
-            @click="showAuditPanel = !showAuditPanel"
-          >
-            <ScrollText class="h-3.5 w-3.5 mr-1" />
-            审计
-          </Button>
-          <Button
-            variant="ghost"
-            size="sm"
-            class="h-8 text-xs"
-            @click="channelConfigOpen = true"
-          >
-            <Settings class="h-3.5 w-3.5 mr-1" />
-            设置
-          </Button>
-          <Button
-            variant="ghost"
-            size="sm"
-            class="h-8 text-xs"
-            @click="showOutput = !showOutput"
-          >
-            <component :is="showOutput ? PanelRightClose : PanelRightOpen" class="h-3.5 w-3.5 mr-1" />
-            输出
-          </Button>
-        </div>
+  <div class="flex-1 flex flex-col">
+    <div class="border-b px-4 py-2 flex items-center justify-between bg-white">
+      <h1 class="font-semibold text-sm">ClawTeam</h1>
+      <div class="flex items-center gap-1">
+        <Button
+          variant="ghost"
+          size="sm"
+          class="h-8 text-xs"
+          :class="showSkillStore && 'bg-blue-50 text-blue-600'"
+          @click="showSkillStore = !showSkillStore"
+        >
+          <Package class="h-3.5 w-3.5 mr-1" />
+          Skill
+        </Button>
+        <Button
+          variant="ghost"
+          size="sm"
+          class="h-8 text-xs"
+          :class="showAuditPanel && 'bg-blue-50 text-blue-600'"
+          @click="showAuditPanel = !showAuditPanel"
+        >
+          <ScrollText class="h-3.5 w-3.5 mr-1" />
+          审计
+        </Button>
+        <Button
+          variant="ghost"
+          size="sm"
+          class="h-8 text-xs"
+          @click="channelConfigOpen = true"
+        >
+          <Settings class="h-3.5 w-3.5 mr-1" />
+          设置
+        </Button>
+        <Button
+          variant="ghost"
+          size="sm"
+          class="h-8 text-xs"
+          @click="showOutput = !showOutput"
+        >
+          <component :is="showOutput ? PanelRightClose : PanelRightOpen" class="h-3.5 w-3.5 mr-1" />
+          输出
+        </Button>
       </div>
-
-      <MessageList :messages="currentMessages" />
-      <ChatInput @send="handleSend" />
     </div>
 
-    <OutputPanel v-if="showOutput" />
+    <div class="flex flex-1 overflow-hidden">
+      <div class="flex-1 flex flex-col overflow-hidden">
+        <SkillStore v-if="showSkillStore" />
+        <MessageList :messages="currentMessages" />
+        <ChatInput @send="handleSend" />
+      </div>
 
-    <div v-if="showAuditPanel" class="w-80 border-l bg-white">
-      <AuditPanel />
+      <OutputPanel v-if="showOutput" />
+
+      <div v-if="showAuditPanel" class="w-80 border-l bg-white overflow-auto">
+        <AuditPanel />
+      </div>
     </div>
 
     <ChannelConfig

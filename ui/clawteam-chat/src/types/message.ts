@@ -26,3 +26,22 @@ export interface Session {
   updatedAt: number;
   messages: ChatMessage[];
 }
+
+// 扩展会话类型
+export interface Conversation {
+  id: string;
+  workspaceId: string;
+  title: string;
+  createdAt: number;
+  updatedAt: number;
+  unreadCount: number;
+  lastMessage?: ChatMessage;
+}
+
+// 扩展消息元数据
+export interface MessageMetadata {
+  skillId?: string;
+  linkedAgentId?: string;
+  dispatchOutcome?: 'dispatched' | 'queued' | 'duplicate' | 'skipped';
+  terminalSessionId?: string;
+}
