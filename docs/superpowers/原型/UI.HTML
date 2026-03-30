@@ -303,6 +303,80 @@
   @keyframes toastIn{from{opacity:0;transform:translateX(30px);}to{opacity:1;transform:translateX(0);}}
   @keyframes toastOut{from{opacity:1;transform:translateX(0);}to{opacity:0;transform:translateX(30px);}}
   @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;}}
+
+  /* CLI配置样式 */
+  .cli-config-section{margin-bottom:32px;}
+  .cli-config-title{font-size:15px;font-weight:700;margin-bottom:8px;color:var(--text-primary);}
+  .cli-config-desc{font-size:12.5px;color:var(--text-muted);margin-bottom:16px;}
+  
+  .cli-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px;}
+  @media(max-width:1200px){.cli-grid{grid-template-columns:repeat(3,1fr);}}
+  @media(max-width:800px){.cli-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:500px){.cli-grid{grid-template-columns:1fr;}}
+  
+  .cli-card{background:var(--bg-surface);border:1px solid var(--border);border-radius:12px;padding:16px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;cursor:pointer;position:relative;transition:all .2s;}
+  .cli-card:hover{background:var(--bg-hover);border-color:var(--border-light);}
+  .cli-card.active{background:var(--accent-dim);border-color:var(--accent);}
+  .cli-card.custom{border-style:dashed;}
+  
+  .cli-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:4px;}
+  .cli-icon.default{background:var(--bg-card);color:var(--text-muted);}
+  .cli-icon.installed{background:rgba(240,160,48,.15);color:var(--warning);border:1px solid rgba(240,160,48,.3);}
+  .cli-icon.selected{background:var(--accent-dim);color:var(--accent);border:1px solid rgba(0,212,170,.4);}
+  
+  .cli-name{font-weight:600;font-size:13px;color:var(--text-primary);}
+  .cli-cmd{font-size:11px;color:var(--text-muted);font-family:var(--font-mono);max-width:100%;overflow:hidden;text-overflow:ellipsis;}
+  .cli-type{font-size:11px;color:var(--text-muted);}
+  .cli-status{font-size:11px;}
+  .cli-status.installed{color:var(--warning);}
+  .cli-status.not-installed{color:var(--danger);}
+  
+  .cli-card .check-icon{position:absolute;top:8px;right:8px;color:var(--accent);font-size:12px;}
+  .cli-card .menu-btn{position:absolute;top:8px;right:8px;color:var(--text-muted);opacity:0;transition:opacity .15s;background:none;border:none;cursor:pointer;font-size:12px;}
+  .cli-card:hover .menu-btn{opacity:1;}
+  .cli-card:hover .menu-btn:hover{color:var(--text-primary);}
+  .cli-card.active .menu-btn{right:28px;opacity:1;}
+  
+  .cli-add-card{border-style:dashed;background:transparent;justify-content:center;min-height:130px;}
+  .cli-add-card:hover{border-color:var(--accent);background:var(--accent-dim);}
+  .cli-add-card .cli-icon{background:var(--bg-card);}
+  
+  .shell-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+  @media(max-width:600px){.shell-grid{grid-template-columns:1fr;}}
+  
+  .shell-card{background:var(--bg-surface);border:1px solid var(--border);border-radius:10px;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;transition:all .2s;position:relative;}
+  .shell-card:hover{background:var(--bg-hover);border-color:var(--border-light);}
+  .shell-card.active{background:var(--accent-dim);border-color:var(--accent);}
+  .shell-card.custom{border-style:dashed;flex-direction:column;justify-content:center;min-height:80px;gap:8px;}
+  
+  .shell-card .shell-name{font-weight:600;font-size:13px;color:var(--text-primary);margin-bottom:3px;}
+  .shell-card .shell-path{font-size:11px;color:var(--text-muted);font-family:var(--font-mono);max-width:220px;overflow:hidden;text-overflow:ellipsis;}
+  .shell-card .shell-check{color:var(--accent);font-size:12px;}
+  .shell-card .shell-menu{color:var(--text-muted);}
+  
+  .path-input-row{display:flex;gap:8px;margin-bottom:12px;}
+  .path-input{flex:1;background:var(--bg-surface);border:1px solid var(--border);border-radius:8px;padding:10px 14px;color:var(--text-primary);font-size:13px;outline:none;transition:border-color .2s;font-family:var(--font-ui);}
+  .path-input:focus{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-dim);}
+  .path-input::placeholder{color:var(--text-muted);}
+  
+  .path-btn{padding:10px 16px;border-radius:8px;font-size:13px;cursor:pointer;transition:all .15s;display:flex;align-items:center;gap:6px;font-family:var(--font-ui);}
+  .path-btn.browse{background:var(--bg-card);border:1px solid var(--border);color:var(--text-secondary);}
+  .path-btn.browse:hover{background:var(--bg-hover);color:var(--text-primary);}
+  .path-btn.add{background:var(--accent-dim);border:1px solid rgba(0,212,170,.4);color:var(--accent);}
+  .path-btn.add:hover{background:rgba(0,212,170,.2);}
+  
+  .path-footer{display:flex;justify-content:space-between;align-items:center;padding-top:10px;border-top:1px solid rgba(42,52,68,.5);}
+  .path-count{font-size:11.5px;color:var(--text-muted);}
+  .path-manage{font-size:11.5px;color:var(--text-muted);background:none;border:none;cursor:pointer;transition:color .15s;}
+  .path-manage:hover{color:var(--text-primary);}
+  
+  .cli-toolbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}
+  .cli-toolbar-left{font-size:13px;color:var(--text-secondary);}
+  .cli-toolbar-right{display:flex;align-items:center;gap:16px;}
+  .encoding-select{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-muted);}
+  .encoding-select select{background:var(--bg-surface);border:1px solid var(--border);border-radius:6px;padding:4px 24px 4px 8px;color:var(--text-secondary);font-size:12px;outline:none;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 12 12'%3E%3Cpath d='M3 5l3 3 3-3' fill='none' stroke='%238b949e' stroke-width='1.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 6px center;}
+  .refresh-btn{font-size:12px;color:var(--accent);background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:4px;}
+  .refresh-btn:hover{color:var(--accent-hover);}
 </style>
 </head>
 <body>
@@ -341,7 +415,7 @@
     </div>
   </div>
   <div class="nav-tree" id="navSkills" style="display:none;"><div class="nav-header">商店</div><div class="nav-group"><div class="nav-item active"><i class="fa-solid fa-wand-magic-sparkles"></i> 技能</div><div class="nav-item"><i class="fa-regular fa-file-lines"></i> 模板</div><div class="nav-item"><i class="fa-solid fa-puzzle-piece"></i> 插件商店</div></div></div>
-  <div class="nav-tree" id="navSettings" style="display:none;"><div class="nav-header">设置</div><div class="nav-group"><div class="nav-item active" data-settings="account"><i class="fa-regular fa-user"></i> 我的账号</div><div class="nav-item" data-settings="appearance"><i class="fa-regular fa-sun"></i> 外观</div><div class="nav-item" data-settings="cli"><i class="fa-solid fa-terminal"></i> 成员</div><div class="nav-item"><i class="fa-regular fa-bell"></i> 通知</div><div class="nav-item"><i class="fa-solid fa-shield-halved"></i> 安全</div></div><div class="nav-group" style="margin-top:8px;"><div class="nav-group-title">用户设置</div><div class="nav-item"><i class="fa-solid fa-sliders"></i> 偏好设置</div><div class="nav-item"><i class="fa-solid fa-language"></i> 语言</div></div></div>
+  <div class="nav-tree" id="navSettings" style="display:none;"><div class="nav-header">设置</div><div class="nav-group"><div class="nav-item active" data-settings="account"><i class="fa-regular fa-user"></i> 我的账号</div><div class="nav-item" data-settings="appearance"><i class="fa-regular fa-sun"></i> 外观</div><div class="nav-item" data-settings="cli"><i class="fa-solid fa-terminal"></i> CLI配置</div><div class="nav-item"><i class="fa-regular fa-bell"></i> 通知</div><div class="nav-item"><i class="fa-solid fa-shield-halved"></i> 安全</div></div><div class="nav-group" style="margin-top:8px;"><div class="nav-group-title">用户设置</div><div class="nav-item"><i class="fa-solid fa-sliders"></i> 偏好设置</div><div class="nav-item"><i class="fa-solid fa-language"></i> 语言</div></div></div>
 </nav>
 
 <main class="main-content">
@@ -390,11 +464,195 @@
   <!-- 设置页 -->
   <div class="page" id="pageSettings">
     <div class="settings-layout">
-      <div class="settings-nav" id="settingsNav"><div class="settings-nav-item active" data-stab="account"><i class="fa-regular fa-user"></i> 我的账号</div><div class="settings-nav-item" data-stab="appearance"><i class="fa-regular fa-sun"></i> 外观</div><div class="settings-nav-item" data-stab="cli"><i class="fa-solid fa-terminal"></i> 成员</div><div class="settings-nav-item"><i class="fa-regular fa-bell"></i> 通知</div><div class="settings-nav-item"><i class="fa-solid fa-shield-halved"></i> 安全</div></div>
       <div class="settings-body" id="settingsBody">
         <div class="settings-tab active" id="settingsAccount"><div class="settings-section"><div class="settings-section-title">我的账号</div><div class="setting-row"><div><div class="setting-label">名称</div></div><div class="setting-value"><span>群主</span></div></div><div class="setting-row"><div><div class="setting-label">邮箱</div></div><div class="setting-value"><span>name@example.com</span></div></div><div class="setting-row"><div><div class="setting-label">时区</div></div><div class="setting-value"><select class="setting-select"><option selected>UTC 协调世界时</option><option>Asia/Shanghai (UTC+8)</option></select></div></div></div></div>
         <div class="settings-tab" id="settingsAppearance" style="display:none;"><div class="settings-section"><div class="settings-section-title">外观</div><div class="setting-row" style="flex-direction:column;align-items:flex-start;gap:14px;"><div><div class="setting-label">主题</div></div><div class="theme-options"><div class="theme-option active"><div class="preview" style="background:linear-gradient(135deg,#0d1117,#1c2333);"></div><span>深色</span></div><div class="theme-option"><div class="preview" style="background:linear-gradient(135deg,#f0f2f5,#fff);"></div><span>浅色</span></div><div class="theme-option"><div class="preview" style="background:linear-gradient(135deg,#0d1117 50%,#f0f2f5 50%);"></div><span>系统</span></div></div></div></div></div>
-        <div class="settings-tab" id="settingsCli" style="display:none;"><div class="settings-section"><div class="settings-section-title">成员</div><div class="empty-state" style="padding:60px 20px;"><i class="fa-solid fa-terminal" style="font-size:32px;display:block;margin-bottom:12px;opacity:.4;"></i><p style="font-size:14px;color:var(--text-muted);">CLI 成员配置请前往员工管理页面</p></div></div></div>
+        <div class="settings-tab" id="settingsCli" style="display:none;">
+          <!-- CLI配置头部 -->
+          <div class="cli-config-section">
+            <div class="cli-config-title">CLI配置</div>
+            <div class="cli-config-desc">配置终端调用CLI方式，选择默认的AI助手工具</div>
+          </div>
+          
+          <!-- CLI 卡片网格 -->
+          <div class="cli-grid">
+            <!-- Gemini CLI -->
+            <div class="cli-card">
+              <button class="menu-btn"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+              <div class="cli-icon default"><i class="fa-solid fa-robot"></i></div>
+              <div class="cli-name">Gemini CLI</div>
+              <div class="cli-cmd">gemini</div>
+              <div class="cli-type">默认终端</div>
+              <div class="cli-status not-installed">未安装</div>
+            </div>
+            
+            <!-- Codex -->
+            <div class="cli-card">
+              <button class="menu-btn"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+              <div class="cli-icon default"><i class="fa-solid fa-code"></i></div>
+              <div class="cli-name">Codex</div>
+              <div class="cli-cmd">codex</div>
+              <div class="cli-type">默认终端</div>
+              <div class="cli-status not-installed">未安装</div>
+            </div>
+            
+            <!-- Claude Code (已安装) -->
+            <div class="cli-card">
+              <button class="menu-btn"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+              <div class="cli-icon installed"><i class="fa-solid fa-asterisk"></i></div>
+              <div class="cli-name">Claude Code</div>
+              <div class="cli-cmd">claude</div>
+              <div class="cli-type">默认终端</div>
+              <div class="cli-status installed">已安装</div>
+            </div>
+            
+            <!-- opencode -->
+            <div class="cli-card">
+              <button class="menu-btn"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+              <div class="cli-icon default"><i class="fa-solid fa-terminal"></i></div>
+              <div class="cli-name">opencode</div>
+              <div class="cli-cmd">opencode</div>
+              <div class="cli-type">默认终端</div>
+              <div class="cli-status not-installed">未安装</div>
+            </div>
+            
+            <!-- Qwen Code -->
+            <div class="cli-card">
+              <button class="menu-btn"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+              <div class="cli-icon default"><i class="fa-solid fa-cube"></i></div>
+              <div class="cli-name">Qwen Code</div>
+              <div class="cli-cmd">qwen</div>
+              <div class="cli-type">默认终端</div>
+              <div class="cli-status not-installed">未安装</div>
+            </div>
+            
+            <!-- OpenClaw -->
+            <div class="cli-card">
+              <button class="menu-btn"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+              <div class="cli-icon default"><i class="fa-solid fa-paw"></i></div>
+              <div class="cli-name">OpenClaw</div>
+              <div class="cli-cmd">openclaw</div>
+              <div class="cli-type">默认终端</div>
+              <div class="cli-status not-installed">未安装</div>
+            </div>
+            
+            <!-- Terminal -->
+            <div class="cli-card">
+              <button class="menu-btn"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+              <div class="cli-icon default"><i class="fa-solid fa-desktop"></i></div>
+              <div class="cli-name">Terminal</div>
+              <div class="cli-type">默认终端</div>
+            </div>
+            
+            <!-- iflow (当前选中) -->
+            <div class="cli-card active">
+              <i class="fa-solid fa-circle-check check-icon"></i>
+              <button class="menu-btn"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+              <div class="cli-icon selected"><i class="fa-solid fa-brain"></i></div>
+              <div class="cli-name">iflow</div>
+              <div class="cli-cmd">iflow -p</div>
+              <div class="cli-type">自定义终端</div>
+            </div>
+            
+            <!-- 自定义 CLI 1 -->
+            <div class="cli-card">
+              <button class="menu-btn"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+              <div class="cli-icon default"><i class="fa-solid fa-brain"></i></div>
+              <div class="cli-name">opencode</div>
+              <div class="cli-cmd">"C:\Users\Administr...</div>
+              <div class="cli-type">自定义终端</div>
+            </div>
+            
+            <!-- 自定义 CLI 2 -->
+            <div class="cli-card">
+              <button class="menu-btn"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+              <div class="cli-icon default"><i class="fa-solid fa-brain"></i></div>
+              <div class="cli-name">bun-iflow</div>
+              <div class="cli-cmd">"C:\Users\Administr...</div>
+              <div class="cli-type">自定义终端</div>
+            </div>
+            
+            <!-- 添加自定义 CLI -->
+            <div class="cli-card cli-add-card custom">
+              <div class="cli-icon default"><i class="fa-solid fa-plus"></i></div>
+              <div class="cli-name" style="color:var(--text-muted);">自定义 CLI</div>
+            </div>
+          </div>
+          
+          <!-- 分隔线 -->
+          <div style="height:1px;background:var(--border);margin:24px 0;"></div>
+          
+          <!-- 终端选择区域 -->
+          <div class="cli-config-section">
+            <div class="cli-toolbar">
+              <span class="cli-toolbar-left">选择终端</span>
+              <div class="cli-toolbar-right">
+                <div class="encoding-select">
+                  <span>编码</span>
+                  <select>
+                    <option>自动 (推荐)</option>
+                    <option>UTF-8</option>
+                    <option>GBK</option>
+                  </select>
+                </div>
+                <button class="refresh-btn"><i class="fa-solid fa-rotate"></i> 刷新列表</button>
+              </div>
+            </div>
+            
+            <div class="shell-grid">
+              <!-- 系统默认 -->
+              <div class="shell-card">
+                <div>
+                  <div class="shell-name">系统默认</div>
+                  <div class="shell-path">使用系统默认 shell。</div>
+                </div>
+                <i class="fa-solid fa-ellipsis-vertical shell-menu"></i>
+              </div>
+              
+              <!-- PowerShell -->
+              <div class="shell-card">
+                <div>
+                  <div class="shell-name">Windows PowerShell</div>
+                  <div class="shell-path">C:\Windows\System32\WindowsPowerShell\v1.0\pow...</div>
+                </div>
+                <i class="fa-solid fa-ellipsis-vertical shell-menu"></i>
+              </div>
+              
+              <!-- Command Prompt (当前选中) -->
+              <div class="shell-card active">
+                <i class="fa-solid fa-circle-check shell-check" style="position:absolute;right:32px;"></i>
+                <div>
+                  <div class="shell-name">Command Prompt</div>
+                  <div class="shell-path">C:\Windows\system32\cmd.exe</div>
+                </div>
+                <i class="fa-solid fa-ellipsis-vertical shell-menu" style="color:var(--text-muted);"></i>
+              </div>
+              
+              <!-- 添加自定义终端 -->
+              <div class="shell-card custom">
+                <div class="cli-icon default" style="width:36px;height:36px;font-size:16px;"><i class="fa-solid fa-plus"></i></div>
+                <span style="font-size:13px;color:var(--text-muted);">自定义终端</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- PATH 路径池 -->
+          <div class="cli-config-section" style="margin-top:32px;">
+            <div class="cli-config-title">兜底 PATH 路径池</div>
+            <div class="cli-config-desc">仅在命令检测失败或启动终端成员时，用于兜底查找与 PATH 注入。</div>
+            
+            <div class="path-input-row">
+              <input type="text" class="path-input" placeholder="每行输入一条路径 (目录或可执行文件路径)">
+              <button class="path-btn browse"><i class="fa-regular fa-folder-open"></i> 选择文件夹</button>
+              <button class="path-btn add"><i class="fa-solid fa-plus"></i> 添加</button>
+            </div>
+            
+            <div class="path-footer">
+              <span class="path-count">0 条路径</span>
+              <button class="path-manage"><i class="fa-solid fa-list"></i> 管理列表</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -589,6 +847,69 @@ document.querySelectorAll('.theme-option').forEach(o=>{o.addEventListener('click
 
 function showToast(type,message){const c=document.getElementById('toastContainer');const t=document.createElement('div');t.className=`toast ${type}`;const icons={success:'fa-solid fa-circle-check',error:'fa-solid fa-circle-xmark',info:'fa-solid fa-circle-info'};t.innerHTML=`<i class="${icons[type]}"></i><span>${message}</span>`;c.appendChild(t);setTimeout(()=>{t.style.animation='toastOut .3s ease forwards';setTimeout(()=>t.remove(),300);},2500);}
 chatMessages.scrollTop=chatMessages.scrollHeight;
+
+// ===== CLI配置交互 =====
+document.querySelectorAll('.cli-card:not(.cli-add-card)').forEach(card=>{
+  card.addEventListener('click',e=>{
+    if(e.target.closest('.menu-btn'))return;
+    document.querySelectorAll('.cli-card').forEach(c=>{
+      c.classList.remove('active');
+      const check=c.querySelector('.check-icon');
+      if(check)check.remove();
+    });
+    card.classList.add('active');
+    const check=document.createElement('i');
+    check.className='fa-solid fa-circle-check check-icon';
+    card.appendChild(check);
+    const name=card.querySelector('.cli-name')?.textContent||'CLI';
+    showToast('success',`已选择「${name}」作为默认CLI`);
+  });
+});
+document.querySelectorAll('.shell-card:not(.custom)').forEach(card=>{
+  card.addEventListener('click',e=>{
+    if(e.target.closest('.shell-menu'))return;
+    document.querySelectorAll('.shell-card').forEach(c=>{
+      c.classList.remove('active');
+      const check=c.querySelector('.shell-check');
+      if(check)check.remove();
+    });
+    card.classList.add('active');
+    const check=document.createElement('i');
+    check.className='fa-solid fa-circle-check shell-check';
+    check.style.position='absolute';
+    check.style.right='32px';
+    card.appendChild(check);
+    const name=card.querySelector('.shell-name')?.textContent||'终端';
+    showToast('success',`已选择「${name}」作为默认终端`);
+  });
+});
+document.querySelectorAll('.cli-add-card').forEach(card=>{
+  card.addEventListener('click',()=>{
+    showToast('info','打开自定义CLI配置对话框');
+  });
+});
+document.querySelectorAll('.shell-card.custom').forEach(card=>{
+  card.addEventListener('click',()=>{
+    showToast('info','打开自定义终端配置对话框');
+  });
+});
+document.querySelectorAll('.path-btn.add').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const input=btn.parentElement.querySelector('.path-input');
+    if(input&&input.value.trim()){
+      showToast('success',`已添加路径: ${input.value.trim().substring(0,30)}...`);
+      input.value='';
+    }else{
+      showToast('error','请输入有效的路径');
+    }
+  });
+});
+document.querySelectorAll('.refresh-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    btn.querySelector('i').style.animation='fa-spin .5s linear';
+    setTimeout(()=>{btn.querySelector('i').style.animation='';showToast('success','终端列表已刷新');},500);
+  });
+});
 </script>
 </body>
 </html>
