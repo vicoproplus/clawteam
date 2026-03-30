@@ -1,1123 +1,1498 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AgentFlow - 智能协作平台</title>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
-<style>
-  :root {
-    --bg-deep:#0a0e14;--bg-base:#0d1117;--bg-surface:#151b23;--bg-card:#1c2333;
-    --bg-hover:#242d3d;--border:#2a3444;--border-light:#344055;
-    --text-primary:#e2e8f0;--text-secondary:#8b949e;--text-muted:#5a6577;
-    --accent:#00d4aa;--accent-dim:rgba(0,212,170,.12);--accent-hover:#00f0c0;
-    --warning:#f0a030;--danger:#f05050;--info:#4da6ff;--success:#00d4aa;
-    --expert:#8b5cf6;--expert-dim:rgba(139,92,246,.12);--expert-hover:#a78bfa;
-    --sidebar-w:62px;--nav-w:260px;
-    --font-ui:'Noto Sans SC',sans-serif;--font-mono:'JetBrains Mono',monospace;
-    --msg-self-bg:#0e3a3a;--msg-self-border:#0a4a42;
-  }
-  *{margin:0;padding:0;box-sizing:border-box;}
-  body{font-family:var(--font-ui);background:var(--bg-deep);color:var(--text-primary);overflow:hidden;height:100vh;display:flex;flex-direction:column;}
-  ::-webkit-scrollbar{width:5px;}
-  ::-webkit-scrollbar-track{background:transparent;}
-  ::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px;}
-  ::-webkit-scrollbar-thumb:hover{background:var(--border-light);}
-  .no-scrollbar::-webkit-scrollbar{display:none;}
-  .no-scrollbar{-ms-overflow-style:none;scrollbar-width:none;}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOCS - OpenClaw Tutorial</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        gray: {
+                            850: '#1f2937',
+                            900: '#111827',
+                            950: '#0B0F19',
+                        },
+                        primary: {
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            900: '#0c4a6e',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            background-color: #0B0F19;
+            color: #e5e7eb;
+            font-family: 'Inter', sans-serif;
+            overflow: hidden;
+        }
 
-  /* 窗口标题栏 */
-  .window-titlebar{height:36px;background:var(--bg-deep);display:flex;align-items:center;justify-content:space-between;padding:0 12px;border-bottom:1px solid var(--border);-webkit-app-region:drag;user-select:none;flex-shrink:0;}
-  .window-titlebar .title-group{display:flex;align-items:center;gap:10px;}
-  .window-titlebar .app-name{font-weight:700;font-size:13px;color:var(--text-primary);letter-spacing:1px;}
-  .window-titlebar .workspace-path{font-size:11px;color:var(--text-muted);font-family:var(--font-mono);}
-  .window-titlebar .window-controls{display:flex;gap:16px;color:var(--text-muted);-webkit-app-region:no-drag;}
-  .window-titlebar .window-controls i{cursor:pointer;transition:color .15s;}
-  .window-titlebar .window-controls i:hover{color:var(--text-primary);}
-  .window-titlebar .window-controls .fa-times:hover{color:var(--danger);}
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #111827; }
+        ::-webkit-scrollbar-thumb { background: #374151; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #4b5563; }
 
-  /* 主布局容器 */
-  .app-layout{flex:1;display:flex;overflow:hidden;}
+        .glass-panel {
+            background: rgba(31, 41, 55, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
 
-  .icon-rail{width:var(--sidebar-w);min-width:var(--sidebar-w);background:var(--bg-deep);border-right:1px solid var(--border);display:flex;flex-direction:column;align-items:center;padding:12px 0;gap:4px;z-index:10;}
-  .icon-rail .logo{width:36px;height:36px;background:linear-gradient(135deg,var(--accent),#007a62);border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;color:#fff;margin-bottom:16px;cursor:pointer;transition:transform .2s,box-shadow .2s;}
-  .icon-rail .logo:hover{transform:scale(1.08);box-shadow:0 0 20px rgba(0,212,170,.3);}
-  .rail-avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#f0a030,#e06020);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:#fff;margin-bottom:12px;cursor:pointer;position:relative;}
-  .rail-avatar::after{content:'';position:absolute;bottom:0;right:0;width:10px;height:10px;background:var(--success);border:2px solid var(--bg-deep);border-radius:50%;}
-  .rail-divider{width:28px;height:1px;background:var(--border);margin:6px 0;}
-  .rail-btn{width:38px;height:38px;display:flex;align-items:center;justify-content:center;border-radius:10px;color:var(--text-muted);cursor:pointer;transition:all .2s;font-size:16px;position:relative;border:none;background:transparent;}
-  .rail-btn:hover{color:var(--text-primary);background:var(--bg-hover);}
-  .rail-btn.active{color:var(--accent);background:var(--accent-dim);}
-  .rail-btn .badge{position:absolute;top:4px;right:4px;width:8px;height:8px;background:var(--danger);border-radius:50%;border:1.5px solid var(--bg-deep);}
-  .rail-spacer{flex:1;}
+        .nav-item {
+            position: relative;
+            transition: all 0.2s;
+        }
+        .nav-item:hover { background: rgba(255, 255, 255, 0.05); }
+        .nav-item.active {
+            background: rgba(14, 165, 233, 0.2);
+            color: #38bdf8;
+        }
+        .nav-item.active::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 50%; transform: translateY(-50%);
+            height: 24px; width: 3px;
+            background: #38bdf8;
+            border-radius: 0 4px 4px 0;
+        }
 
-  .nav-panel{width:var(--nav-w);min-width:var(--nav-w);background:var(--bg-base);border-right:1px solid var(--border);display:flex;flex-direction:column;overflow-y:auto;}
-  .nav-header{padding:16px;font-size:13px;font-weight:600;color:var(--text-secondary);text-transform:uppercase;letter-spacing:.5px;}
-  .nav-group{margin-bottom:8px;}
-  .nav-group-title{padding:8px 16px 4px;font-size:11px;font-weight:500;color:var(--text-muted);text-transform:uppercase;letter-spacing:.8px;}
-  .nav-item{display:flex;align-items:center;gap:10px;padding:8px 16px;cursor:pointer;color:var(--text-secondary);font-size:13.5px;transition:all .15s;position:relative;}
-  .nav-item:hover{color:var(--text-primary);background:var(--bg-hover);}
-  .nav-item.active{color:var(--text-primary);background:var(--accent-dim);}
-  .nav-item.active::before{content:'';position:absolute;left:0;top:4px;bottom:4px;width:3px;background:var(--accent);border-radius:0 3px 3px 0;}
-  .nav-item i{width:18px;text-align:center;font-size:14px;}
-  .nav-item .count{margin-left:auto;font-size:11px;color:var(--text-muted);background:var(--bg-hover);padding:1px 7px;border-radius:10px;}
+        /* Chat Bubbles */
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            padding: 20px 0;
+        }
 
-  .conv-item{display:flex;align-items:center;gap:10px;padding:10px 14px;cursor:pointer;transition:all .15s;position:relative;border-radius:8px;margin:2px 8px;}
-  .conv-item:hover{background:var(--bg-hover);}
-  .conv-item.active{background:var(--bg-card);border:1px solid var(--border);}
-  .conv-item.active::before{content:'';position:absolute;left:0;top:6px;bottom:6px;width:3px;background:var(--accent);border-radius:0 3px 3px 0;}
-  .conv-avatar{width:32px;height:32px;min-width:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;color:#fff;position:relative;}
-  .conv-avatar .online-dot{position:absolute;bottom:-2px;right:-2px;width:10px;height:10px;background:var(--success);border:2px solid var(--bg-base);border-radius:50%;}
-  .conv-info{flex:1;min-width:0;}
-  .conv-name{font-weight:500;font-size:12px;margin-bottom:2px;}
-  .conv-preview{font-size:11px;color:var(--text-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-  .conv-meta{display:flex;flex-direction:column;align-items:flex-end;gap:2px;}
-  .conv-time{font-size:10px;color:var(--text-muted);}
-  .conv-unread{width:16px;height:16px;border-radius:50%;background:var(--accent);color:var(--bg-deep);font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;}
+        .message-row {
+            display: flex;
+            gap: 12px;
+            max-width: 85%;
+        }
 
-  /* 频道区域 */
-  .nav-channel{padding:8px 14px;margin-bottom:8px;}
-  .nav-channel-label{font-size:10px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;}
-  .channel-item{display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;cursor:pointer;transition:all .15s;}
-  .channel-item:hover{border-color:var(--border-light);}
-  .channel-item .channel-avatar{width:28px;height:28px;border-radius:6px;object-fit:cover;}
-  .channel-item .channel-info{flex:1;min-width:0;}
-  .channel-item .channel-name{font-size:12px;font-weight:500;margin-bottom:1px;}
-  .channel-item .channel-preview{font-size:10px;color:var(--text-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+        .message-row.user {
+            margin-left: auto;
+            flex-direction: row-reverse;
+        }
 
-  .main-content{flex:1;display:flex;flex-direction:column;overflow:hidden;background:var(--bg-base);}
-  .page{display:none;flex:1;flex-direction:column;overflow:hidden;}
-  .page.active{display:flex;}
+        .message-row.assistant {
+            margin-right: auto;
+        }
 
-  .chat-header{padding:12px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;background:var(--bg-surface);flex-shrink:0;}
-  .chat-header-avatar{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;color:#fff;}
-  .chat-header-info{flex:1;}
-  .chat-header-name{font-weight:600;font-size:14px;margin-bottom:1px;}
-  .chat-header-status{font-size:11px;color:var(--success);display:flex;align-items:center;gap:4px;}
-  .chat-header-status .dot{width:5px;height:5px;border-radius:50%;background:var(--success);}
-  .chat-header .header-actions{display:flex;gap:4px;}
-  .chat-header .header-actions button{width:32px;height:32px;border-radius:8px;border:none;background:transparent;color:var(--text-secondary);cursor:pointer;transition:all .15s;font-size:14px;}
-  .chat-header .header-actions button:hover{background:var(--bg-hover);color:var(--text-primary);}
+        .bubble {
+            padding: 12px 16px;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            position: relative;
+        }
 
-  /* 消息区域 */
-  .chat-messages{flex:1;overflow-y:auto;padding:20px 24px;display:flex;flex-direction:column;gap:20px;}
-  .chat-date-divider{display:flex;align-items:center;gap:12px;color:var(--text-muted);font-size:11px;margin:8px 0;}
-  .chat-date-divider::before,.chat-date-divider::after{content:'';flex:1;height:1px;background:var(--border);}
-  .msg-row{display:flex;gap:12px;max-width:85%;animation:fadeIn .3s ease;}
-  .msg-row.self{flex-direction:row-reverse;margin-left:auto;}
-  .msg-row.other{margin-right:auto;}
-  .msg-avatar{width:32px;height:32px;min-width:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:#fff;margin-top:2px;}
-  .msg-body{min-width:0;flex:1;}
-  .msg-header{display:flex;align-items:baseline;gap:8px;margin-bottom:4px;}
-  .msg-row.self .msg-header{flex-direction:row-reverse;}
-  .msg-author{font-weight:600;font-size:12px;}
-  .msg-time{font-size:10px;color:var(--text-muted);}
-  .msg-bubble{padding:12px 16px;border-radius:12px;font-size:13px;line-height:1.65;word-break:break-word;}
-  .msg-row.other .msg-bubble{background:transparent;color:var(--text-secondary);padding-left:0;}
-  .msg-row.self .msg-bubble{background:var(--bg-card);border:1px solid var(--border);border-top-right-radius:4px;}
-  .msg-bubble code{font-family:var(--font-mono);font-size:12px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.06);padding:2px 6px;border-radius:4px;color:#ff9d6c;}
-  .msg-bubble strong{font-weight:600;color:var(--text-primary);}
-  .msg-file-paths{margin:10px 0 6px;display:flex;flex-direction:column;gap:4px;}
-  .msg-file-path{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--text-muted);font-family:var(--font-mono);}
-  .msg-file-path i.fa-eye{color:var(--text-muted);font-size:10px;}
-  .msg-file-path .file-tag{background:var(--bg-card);padding:1px 6px;border-radius:3px;border:1px solid var(--border);}
-  .msg-file-path .line-info{color:var(--text-muted);font-size:10px;}
-  .msg-list{margin:8px 0 4px 16px;padding-left:16px;border-left:2px solid var(--border-light);display:flex;flex-direction:column;gap:3px;}
-  .msg-list li{font-size:13px;line-height:1.5;color:var(--text-secondary);list-style:none;position:relative;}
-  .msg-list li::before{content:'';position:absolute;left:-20px;top:7px;width:5px;height:5px;border-radius:50%;background:var(--border-light);}
+        .bubble.user {
+            background: #1e293b;
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.05);
+            border-bottom-right-radius: 2px;
+        }
 
-  /* 消息操作按钮 */
-  .msg-actions{display:flex;gap:8px;margin-top:8px;padding-top:8px;border-top:1px solid var(--border);}
-  .msg-actions button{color:var(--text-muted);background:none;border:none;cursor:pointer;font-size:12px;transition:color .15s;}
-  .msg-actions button:hover{color:var(--text-primary);}
+        .bubble.assistant {
+            background: transparent;
+            color: #e5e7eb;
+            padding-left: 0;
+        }
+        
+        .bubble.assistant .content {
+            background: transparent;
+        }
 
-  /* 输入区域 */
-  .chat-input-area{padding:12px 20px 16px;border-top:1px solid var(--border);background:var(--bg-surface);flex-shrink:0;}
-  .jump-to-latest{display:flex;justify-content:flex-end;margin-bottom:8px;}
-  .jump-to-latest button{background:var(--bg-card);backdrop-filter:blur(8px);color:var(--text-muted);padding:4px 10px;border-radius:20px;font-size:11px;border:1px solid var(--border);cursor:pointer;display:flex;align-items:center;gap:4px;transition:all .15s;}
-  .jump-to-latest button:hover{color:var(--text-primary);border-color:var(--border-light);}
-  .chat-input-wrap{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:8px;transition:border-color .2s,box-shadow .2s;}
-  .chat-input-wrap:focus-within{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-dim);}
-  .input-toolbar{display:flex;align-items:center;gap:2px;padding:0 4px 6px;border-bottom:1px solid var(--border);margin-bottom:6px;}
-  .input-toolbar button{width:28px;height:28px;border-radius:6px;border:none;background:transparent;color:var(--text-muted);cursor:pointer;transition:all .15s;font-size:13px;}
-  .input-toolbar button:hover{color:var(--accent);background:var(--bg-hover);}
-  .chat-input-wrap textarea{width:100%;background:transparent;color:var(--text-primary);font-size:13px;resize:none;outline:none;height:72px;padding:0 8px;font-family:var(--font-ui);line-height:1.5;}
-  .chat-input-wrap textarea::placeholder{color:var(--text-muted);}
-  .input-footer{display:flex;justify-content:space-between;align-items:center;padding:0 4px;}
-  .input-hint{font-size:11px;color:var(--text-muted);}
-  .send-btn{background:var(--accent);color:var(--bg-deep);border:none;padding:6px 16px;border-radius:8px;font-size:12px;font-weight:500;cursor:pointer;transition:all .15s;}
-  .send-btn:hover{background:var(--accent-hover);}
-  
-  .typing-indicator{display:flex;align-items:center;gap:10px;max-width:85%;margin-right:auto;opacity:.6;}
-  .typing-dots{display:flex;gap:3px;padding:10px 14px;background:var(--bg-surface);border:1px solid var(--border);border-radius:12px;border-top-left-radius:4px;}
-  .typing-dots span{width:5px;height:5px;border-radius:50%;background:var(--text-muted);animation:pulseDot 1.2s infinite;}
-  .typing-dots span:nth-child(2){animation-delay:.2s;}
-  .typing-dots span:nth-child(3){animation-delay:.4s;}
-  .msg-list li code{font-family:var(--font-mono);font-size:12px;background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.06);padding:1px 5px;border-radius:4px;color:#ff9d6c;}
-  .typing-indicator{display:flex;align-items:center;gap:12px;max-width:72%;margin-right:auto;opacity:.6;}
-  .typing-dots{display:flex;gap:4px;padding:14px 18px;background:var(--bg-surface);border:1px solid var(--border);border-radius:14px;border-top-left-radius:4px;}
-  .typing-dots span{width:6px;height:6px;border-radius:50%;background:var(--text-muted);animation:pulseDot 1.2s infinite;}
-  .typing-dots span:nth-child(2){animation-delay:.2s;}
-  .typing-dots span:nth-child(3){animation-delay:.4s;}
-  .chat-input-area{padding:12px 28px 16px;border-top:1px solid var(--border);background:var(--bg-surface);}
-  .chat-input-wrap{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;display:flex;align-items:flex-end;padding:6px;transition:border-color .2s;}
-  .chat-input-wrap:focus-within{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-dim);}
-  .chat-input-wrap input{flex:1;border:none;background:transparent;color:var(--text-primary);font-size:13.5px;padding:8px 12px;outline:none;font-family:var(--font-ui);}
-  .chat-input-wrap input::placeholder{color:var(--text-muted);}
-  .chat-input-actions{display:flex;gap:2px;padding-right:4px;}
-  .chat-input-actions button{width:34px;height:34px;border-radius:8px;border:none;background:transparent;color:var(--text-muted);cursor:pointer;font-size:15px;transition:all .15s;}
-  .chat-input-actions button:hover{background:var(--bg-hover);color:var(--text-secondary);}
-  .chat-input-actions .send-btn{background:var(--accent);color:var(--bg-deep);font-size:14px;}
-  .chat-input-actions .send-btn:hover{background:var(--accent-hover);color:var(--bg-deep);}
+        .file-status {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.8rem;
+            color: #9ca3af;
+            margin-bottom: 8px;
+            font-family: 'Consolas', monospace;
+        }
 
-  .page-header{padding:20px 28px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);background:var(--bg-surface);}
-  .page-header .title-group h2{font-size:18px;font-weight:700;margin-bottom:2px;}
-  .page-header .title-group p{font-size:12.5px;color:var(--text-muted);}
-  .page-header .actions{display:flex;gap:8px;}
-  .btn{padding:7px 16px;border-radius:8px;border:1px solid var(--border);background:var(--bg-card);color:var(--text-secondary);font-size:13px;cursor:pointer;transition:all .15s;display:flex;align-items:center;gap:6px;font-family:var(--font-ui);}
-  .btn:hover{background:var(--bg-hover);color:var(--text-primary);border-color:var(--border-light);}
-  .btn-primary{background:var(--accent);color:var(--bg-deep);border-color:var(--accent);font-weight:600;}
-  .btn-primary:hover{background:var(--accent-hover);border-color:var(--accent-hover);color:var(--bg-deep);}
-  .btn-sm{padding:4px 10px;font-size:12px;border-radius:6px;}
-  .btn-ghost{background:transparent;border-color:transparent;color:var(--text-secondary);}
-  .btn-ghost:hover{background:var(--bg-hover);color:var(--text-primary);}
-  .btn-danger-ghost{background:transparent;border-color:transparent;color:var(--text-muted);}
-  .btn-danger-ghost:hover{background:rgba(240,80,80,.1);color:var(--danger);}
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-  .page-body-dark{flex:1;overflow-y:auto;padding:0;}
+        /* ===== 员工管理页样式 ===== */
+        .staff-topbar{padding:16px 28px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #374151;background:#1f2937;}
+        .staff-topbar h2{font-size:22px;font-weight:700;color:#fff;}
+        .staff-topbar .right{display:flex;align-items:center;gap:16px;}
+        .sort-group{display:flex;align-items:center;gap:6px;font-size:13px;color:#9ca3af;}
+        .sort-badge{background:#1f2937;border:1px solid #374151;padding:2px 10px;border-radius:6px;font-size:12px;color:#e5e7eb;cursor:pointer;transition:all .15s;}
+        .sort-badge:hover{background:#374151;}
 
-  /* ===== 员工管理页 - 新布局 ===== */
-  .staff-topbar{padding:16px 28px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);background:var(--bg-surface);}
-  .staff-topbar h2{font-size:22px;font-weight:700;color:#fff;}
-  .staff-topbar .right{display:flex;align-items:center;gap:16px;}
-  .sort-group{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--text-secondary);}
-  .sort-badge{background:var(--bg-card);border:1px solid var(--border);padding:2px 10px;border-radius:6px;font-size:12px;color:var(--text-primary);cursor:pointer;transition:all .15s;}
-  .sort-badge:hover{background:var(--bg-hover);}
+        .staff-cols{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;padding:24px 28px;}
+        @media(max-width:900px){.staff-cols{grid-template-columns:1fr;}}
+        .staff-col-title{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
+        .staff-col-label{font-size:13px;font-weight:700;color:#9ca3af;display:flex;align-items:center;gap:8px;}
+        .staff-col-dot{width:8px;height:8px;border-radius:50%;display:inline-block;}
 
-  .staff-cols{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;padding:24px 28px;}
-  @media(max-width:900px){.staff-cols{grid-template-columns:1fr;}}
-  .staff-col-title{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
-  .staff-col-label{font-size:13px;font-weight:700;color:var(--text-secondary);display:flex;align-items:center;gap:8px;}
-  .staff-col-dot{width:8px;height:8px;border-radius:50%;display:inline-block;}
-  .staff-col-add{font-size:12px;color:var(--text-muted);background:none;border:none;cursor:pointer;transition:color .15s;padding:2px;}
-  .staff-col-add:hover{color:var(--text-primary);}
+        .agent-card{padding:14px 16px;border-radius:12px;background:#1f2937;border:1px solid #374151;display:flex;align-items:start;justify-content:space-between;transition:all .15s;}
+        .agent-card:hover{border-color:#4b5563;background:#374151;}
+        .agent-card-left{display:flex;align-items:center;gap:12px;}
+        .agent-card-avatar{width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid #374151;}
+        .agent-card-name{font-size:13.5px;font-weight:700;color:#e5e7eb;}
+        .agent-card-desc{font-size:11.5px;color:#6b7280;}
+        .agent-card-actions{display:flex;gap:4px;}
+        .agent-card-actions button{width:30px;height:30px;border-radius:6px;border:none;background:transparent;color:#6b7280;cursor:pointer;transition:all .15s;font-size:13px;display:flex;align-items:center;justify-content:center;}
+        .agent-card-actions button:hover{background:#1f2937;color:#e5e7eb;}
+        .agent-card-actions button.del:hover{background:rgba(239,68,68,0.1);color:#ef4444;}
 
-  .agent-card{padding:14px 16px;border-radius:12px;background:var(--bg-surface);border:1px solid var(--border);display:flex;align-items:start;justify-content:space-between;transition:all .15s;}
-  .agent-card:hover{border-color:var(--border-light);background:var(--bg-hover);}
-  .agent-card-left{display:flex;align-items:center;gap:12px;}
-  .agent-card-avatar{width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid var(--border);}
-  .agent-card-name{font-size:13.5px;font-weight:700;color:var(--text-primary);}
-  .agent-card-desc{font-size:11.5px;color:var(--text-muted);}
-  .agent-card-actions{display:flex;gap:4px;}
-  .agent-card-actions button{width:30px;height:30px;border-radius:6px;border:none;background:transparent;color:var(--text-muted);cursor:pointer;transition:all .15s;font-size:13px;display:flex;align-items:center;justify-content:center;}
-  .agent-card-actions button:hover{background:var(--bg-card);color:var(--text-primary);}
-  .agent-card-actions button.del:hover{background:rgba(240,80,80,.1);color:var(--danger);}
+        .empty-col{padding:32px 16px;border-radius:12px;border:1px dashed #374151;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;min-height:120px;}
+        .empty-col i{font-size:24px;color:#6b7280;opacity:.5;}
+        .empty-col p{font-size:12px;color:#6b7280;}
 
-  .empty-col{padding:32px 16px;border-radius:12px;border:1px dashed var(--border);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;min-height:120px;}
-  .empty-col i{font-size:24px;color:var(--text-muted);opacity:.5;}
-  .empty-col p{font-size:12px;color:var(--text-muted);}
+        .custom-expert-card{padding:20px 16px;border-radius:12px;border:1px dashed #374151;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;cursor:pointer;transition:all .2s;min-height:140px;}
+        .custom-expert-card:hover{border-color:#8b5cf6;background:rgba(139,92,246,.12);}
+        .custom-expert-icon{width:44px;height:44px;border-radius:50%;background:#1f2937;display:flex;align-items:center;justify-content:center;color:#6b7280;transition:all .2s;}
+        .custom-expert-card:hover .custom-expert-icon{background:rgba(139,92,246,.12);color:#8b5cf6;}
+        .custom-expert-card span{font-size:12px;color:#6b7280;transition:color .2s;}
+        .custom-expert-card:hover span{color:#e5e7eb;}
 
-  .custom-expert-card{padding:20px 16px;border-radius:12px;border:1px dashed var(--border);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;cursor:pointer;transition:all .2s;min-height:140px;}
-  .custom-expert-card:hover{border-color:var(--expert);background:var(--expert-dim);}
-  .custom-expert-icon{width:44px;height:44px;border-radius:50%;background:var(--bg-card);display:flex;align-items:center;justify-content:center;color:var(--text-muted);transition:all .2s;}
-  .custom-expert-card:hover .custom-expert-icon{background:var(--expert-dim);color:var(--expert);}
-  .custom-expert-card span{font-size:12px;color:var(--text-muted);transition:color .2s;}
-  .custom-expert-card:hover span{color:var(--text-primary);}
+        /* 专家中心面板 */
+        .expert-panel{margin:0 28px 24px;border-radius:14px;border:1px solid #4b5563;overflow:hidden;display:flex;flex-direction:column;min-height:420px;}
+        .expert-panel-header{padding:20px 24px 16px;border-bottom:1px solid #374151;background:rgba(31,41,55,.6);}
+        .expert-panel-header-top{display:flex;justify-content:space-between;align-items:start;margin-bottom:16px;}
+        .expert-panel-header h2{font-size:18px;font-weight:700;color:#fff;margin-bottom:4px;}
+        .expert-panel-header p{font-size:13px;color:#6b7280;}
+        .expert-search{position:relative;width:260px;}
+        .expert-search i{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:#6b7280;font-size:12px;}
+        .expert-search input{width:100%;background:#1f2937;border:1px solid #374151;border-radius:8px;padding:8px 12px 8px 34px;color:#e5e7eb;font-size:13px;outline:none;transition:border-color .2s;font-family:'Inter',sans-serif;}
+        .expert-search input:focus{border-color:#8b5cf6;box-shadow:0 0 0 2px rgba(139,92,246,.12);}
+        .expert-search input::placeholder{color:#6b7280;}
 
-  /* 专家中心面板 */
-  .expert-panel{margin:0 28px 24px;border-radius:14px;border:1px solid var(--border-light);overflow:hidden;display:flex;flex-direction:column;min-height:420px;}
-  .expert-panel-header{padding:20px 24px 16px;border-bottom:1px solid var(--border);background:rgba(21,27,35,.6);}
-  .expert-panel-header-top{display:flex;justify-content:space-between;align-items:start;margin-bottom:16px;}
-  .expert-panel-header h2{font-size:18px;font-weight:700;color:#fff;margin-bottom:4px;}
-  .expert-panel-header p{font-size:13px;color:var(--text-muted);}
-  .expert-search{position:relative;width:260px;}
-  .expert-search i{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:12px;}
-  .expert-search input{width:100%;background:var(--bg-surface);border:1px solid var(--border);border-radius:8px;padding:8px 12px 8px 34px;color:var(--text-primary);font-size:13px;outline:none;transition:border-color .2s;font-family:var(--font-ui);}
-  .expert-search input:focus{border-color:var(--expert);box-shadow:0 0 0 2px var(--expert-dim);}
-  .expert-search input::placeholder{color:var(--text-muted);}
+        .expert-tabs{display:flex;gap:24px;overflow-x:auto;border-bottom:1px solid #374151;padding-bottom:0;}
+        .expert-tabs::-webkit-scrollbar{display:none;}
+        .expert-tab{font-size:13px;color:#6b7280;padding:8px 2px;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;transition:all .15s;background:none;border-top:none;border-left:none;border-right:none;font-family:'Inter',sans-serif;}
+        .expert-tab:hover{color:#9ca3af;}
+        .expert-tab.active{color:#a78bfa;border-bottom-color:#8b5cf6;font-weight:500;}
+        .expert-tab .tab-count{font-size:11px;color:#6b7280;margin-left:3px;}
 
-  .expert-tabs{display:flex;gap:24px;overflow-x:auto;border-bottom:1px solid var(--border);padding-bottom:0;}
-  .expert-tabs::-webkit-scrollbar{display:none;}
-  .expert-tab{font-size:13px;color:var(--text-muted);padding:8px 2px;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;transition:all .15s;background:none;border-top:none;border-left:none;border-right:none;font-family:var(--font-ui);}
-  .expert-tab:hover{color:var(--text-secondary);}
-  .expert-tab.active{color:var(--expert-hover);border-bottom-color:var(--expert);font-weight:500;}
-  .expert-tab .tab-count{font-size:11px;color:var(--text-muted);margin-left:3px;}
+        .expert-panel-body{flex:1;overflow-y:auto;padding:20px 24px;background:rgba(17,24,39,.4);}
+        .expert-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+        @media(max-width:1000px){.expert-grid{grid-template-columns:repeat(3,1fr);}}
+        @media(max-width:700px){.expert-grid{grid-template-columns:repeat(2,1fr);}}
 
-  .expert-panel-body{flex:1;overflow-y:auto;padding:20px 24px;background:rgba(13,17,23,.4);}
-  .expert-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
-  @media(max-width:1000px){.expert-grid{grid-template-columns:repeat(3,1fr);}}
-  @media(max-width:700px){.expert-grid{grid-template-columns:repeat(2,1fr);}}
+        /* 白底专家卡片 */
+        .expert-card{background:#fff;color:#1f2937;border-radius:12px;padding:20px 16px 16px;display:flex;flex-direction:column;align-items:center;position:relative;overflow:hidden;border:1px solid #e5e7eb;transition:all .2s;cursor:pointer;}
+        .expert-card:hover{transform:translateY(-3px);box-shadow:0 12px 24px rgba(0,0,0,.12);border-color:#8b5cf6;}
+        .expert-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#8b5cf6,#a78bfa);opacity:0;transition:opacity .2s;}
+        .expert-card:hover::before{opacity:1;}
+        .expert-card-avatar{width:56px;height:56px;border-radius:50%;object-fit:cover;border:3px solid #f3f4f6;margin-bottom:10px;}
+        .expert-card-name{font-size:14px;font-weight:700;color:#111827;margin-bottom:6px;}
+        .expert-tag{background:#ede9fe;color:#6d28d9;padding:3px 12px;border-radius:20px;font-size:11.5px;font-weight:600;margin-bottom:8px;}
+        .expert-card-desc{font-size:12px;color:#6b7280;line-height:1.5;flex:1;margin-bottom:14px;text-align:center;}
+        .btn-add-expert{width:100%;padding:8px;border-radius:8px;font-size:12.5px;font-weight:500;background:#f3f4f6;color:#4b5563;border:1px solid #e5e7eb;cursor:pointer;transition:all .15s;font-family:'Inter',sans-serif;}
+        .btn-add-expert:hover{background:#8b5cf6;color:#fff;border-color:#8b5cf6;}
 
-  /* 白底专家卡片 */
-  .expert-card{background:#fff;color:#1f2937;border-radius:12px;padding:20px 16px 16px;display:flex;flex-direction:column;align-items:center;position:relative;overflow:hidden;border:1px solid #e5e7eb;transition:all .2s;cursor:pointer;}
-  .expert-card:hover{transform:translateY(-3px);box-shadow:0 12px 24px rgba(0,0,0,.12);border-color:var(--expert);}
-  .expert-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--expert),var(--expert-hover));opacity:0;transition:opacity .2s;}
-  .expert-card:hover::before{opacity:1;}
-  .expert-card-avatar{width:56px;height:56px;border-radius:50%;object-fit:cover;border:3px solid #f3f4f6;margin-bottom:10px;}
-  .expert-card-name{font-size:14px;font-weight:700;color:#111827;margin-bottom:6px;}
-  .expert-tag{background:#ede9fe;color:#6d28d9;padding:3px 12px;border-radius:20px;font-size:11.5px;font-weight:600;margin-bottom:8px;}
-  .expert-card-desc{font-size:12px;color:#6b7280;line-height:1.5;flex:1;margin-bottom:14px;text-align:center;}
-  .btn-add-expert{width:100%;padding:8px;border-radius:8px;font-size:12.5px;font-weight:500;background:#f3f4f6;color:#4b5563;border:1px solid #e5e7eb;cursor:pointer;transition:all .15s;font-family:var(--font-ui);}
-  .btn-add-expert:hover{background:var(--expert);color:#fff;border-color:var(--expert);}
+        /* 弹窗 */
+        .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);z-index:100;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .2s;}
+        .modal-overlay.show{opacity:1;pointer-events:auto;}
+        .modal{background:#1f2937;border:1px solid #374151;border-radius:16px;width:520px;max-width:90vw;transform:translateY(10px) scale(.98);transition:transform .25s;box-shadow:0 20px 60px rgba(0,0,0,.5);}
+        .modal-overlay.show .modal{transform:translateY(0) scale(1);}
+        .modal-header{padding:20px 24px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #374151;}
+        .modal-header h3{font-size:16px;font-weight:700;}
+        .modal-close{width:30px;height:30px;border-radius:8px;border:none;background:transparent;color:#6b7280;cursor:pointer;font-size:16px;transition:all .15s;display:flex;align-items:center;justify-content:center;}
+        .modal-close:hover{background:#374151;color:#e5e7eb;}
+        .modal-body{padding:20px 24px;}
+        .modal-footer{padding:16px 24px 20px;display:flex;justify-content:flex-end;gap:8px;border-top:1px solid #374151;}
+        .form-group{margin-bottom:16px;}
+        .form-group:last-child{margin-bottom:0;}
+        .form-label{display:block;font-size:13px;font-weight:600;margin-bottom:6px;color:#e5e7eb;}
+        .form-hint{font-size:11.5px;color:#6b7280;margin-top:4px;line-height:1.5;}
+        .form-input{width:100%;background:#1f2937;border:1px solid #374151;border-radius:8px;padding:9px 12px;color:#e5e7eb;font-size:13px;outline:none;transition:border-color .2s;font-family:'Inter',sans-serif;}
+        .form-input:focus{border-color:#0ea5e9;box-shadow:0 0 0 2px rgba(14,165,233,.12);}
+        .form-input::placeholder{color:#6b7280;}
+        .form-textarea{width:100%;background:#1f2937;border:1px solid #374151;border-radius:8px;padding:10px 12px;color:#e5e7eb;font-size:13px;outline:none;transition:border-color .2s;font-family:'Inter',sans-serif;resize:vertical;min-height:120px;line-height:1.6;}
+        .form-textarea:focus{border-color:#0ea5e9;box-shadow:0 0 0 2px rgba(14,165,233,.12);}
+        .form-textarea::placeholder{color:#6b7280;}
+        .form-select{width:100%;background:#1f2937;border:1px solid #374151;border-radius:8px;padding:9px 12px;color:#e5e7eb;font-size:13px;outline:none;cursor:pointer;font-family:'Inter',sans-serif;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M3 5l3 3 3-3' fill='none' stroke='%238b949e' stroke-width='1.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;transition:border-color .2s;}
+        .form-select:focus{border-color:#0ea5e9;box-shadow:0 0 0 2px rgba(14,165,233,.12);}
+        .form-row{display:flex;gap:12px;}
+        .form-row .form-group{flex:1;}
 
-  /* 弹窗 */
-  .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);z-index:100;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .2s;}
-  .modal-overlay.show{opacity:1;pointer-events:auto;}
-  .modal{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;width:520px;max-width:90vw;transform:translateY(10px) scale(.98);transition:transform .25s;box-shadow:0 20px 60px rgba(0,0,0,.5);}
-  .modal-overlay.show .modal{transform:translateY(0) scale(1);}
-  .modal-header{padding:20px 24px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);}
-  .modal-header h3{font-size:16px;font-weight:700;}
-  .modal-close{width:30px;height:30px;border-radius:8px;border:none;background:transparent;color:var(--text-muted);cursor:pointer;font-size:16px;transition:all .15s;display:flex;align-items:center;justify-content:center;}
-  .modal-close:hover{background:var(--bg-hover);color:var(--text-primary);}
-  .modal-body{padding:20px 24px;}
-  .modal-footer{padding:16px 24px 20px;display:flex;justify-content:flex-end;gap:8px;border-top:1px solid var(--border);}
-  .form-group{margin-bottom:16px;}
-  .form-group:last-child{margin-bottom:0;}
-  .form-label{display:block;font-size:13px;font-weight:600;margin-bottom:6px;color:var(--text-primary);}
-  .form-hint{font-size:11.5px;color:var(--text-muted);margin-top:4px;line-height:1.5;}
-  .form-input{width:100%;background:var(--bg-surface);border:1px solid var(--border);border-radius:8px;padding:9px 12px;color:var(--text-primary);font-size:13px;outline:none;transition:border-color .2s;font-family:var(--font-ui);}
-  .form-input:focus{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-dim);}
-  .form-input::placeholder{color:var(--text-muted);}
-  .form-textarea{width:100%;background:var(--bg-surface);border:1px solid var(--border);border-radius:8px;padding:10px 12px;color:var(--text-primary);font-size:13px;outline:none;transition:border-color .2s;font-family:var(--font-ui);resize:vertical;min-height:120px;line-height:1.6;}
-  .form-textarea:focus{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-dim);}
-  .form-textarea::placeholder{color:var(--text-muted);}
-  .form-select{width:100%;background:var(--bg-surface);border:1px solid var(--border);border-radius:8px;padding:9px 12px;color:var(--text-primary);font-size:13px;outline:none;cursor:pointer;font-family:var(--font-ui);appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M3 5l3 3 3-3' fill='none' stroke='%238b949e' stroke-width='1.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;transition:border-color .2s;}
-  .form-select:focus{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-dim);}
-  .form-row{display:flex;gap:12px;}
-  .form-row .form-group{flex:1;}
+        /* 设置 */
+        .settings-layout{display:flex;flex:1;overflow:hidden;}
+        .settings-nav{width:200px;min-width:200px;border-right:1px solid #374151;padding:16px 0;overflow-y:auto;}
+        .settings-nav-item{display:flex;align-items:center;gap:10px;padding:9px 20px;cursor:pointer;color:#9ca3af;font-size:13.5px;transition:all .15s;position:relative;}
+        .settings-nav-item:hover{color:#e5e7eb;background:#374151;}
+        .settings-nav-item.active{color:#e5e7eb;background:rgba(14,165,233,.12);}
+        .settings-nav-item.active::before{content:'';position:absolute;left:0;top:4px;bottom:4px;width:3px;background:#0ea5e9;border-radius:0 3px 3px 0;}
+        .settings-nav-item i{width:16px;text-align:center;font-size:13px;}
+        .settings-body{flex:1;overflow-y:auto;padding:32px;}
+        .settings-section{margin-bottom:32px;}
+        .settings-section-title{font-size:15px;font-weight:700;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid #374151;}
+        .setting-row{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(55,65,81,.5);}
+        .setting-row:last-child{border-bottom:none;}
+        .setting-label{font-size:13.5px;font-weight:500;margin-bottom:2px;}
+        .setting-desc{font-size:12px;color:#6b7280;}
+        .setting-value{font-size:13px;color:#9ca3af;display:flex;align-items:center;gap:8px;}
+        .theme-options{display:flex;gap:8px;}
+        .theme-option{width:80px;padding:12px 8px;border-radius:10px;border:2px solid #374151;background:#1f2937;cursor:pointer;text-align:center;transition:all .15s;font-family:'Inter',sans-serif;}
+        .theme-option:hover{border-color:#4b5563;}
+        .theme-option.active{border-color:#0ea5e9;background:rgba(14,165,233,.12);}
+        .theme-option .preview{width:36px;height:28px;border-radius:5px;margin:0 auto 8px;border:1px solid rgba(255,255,255,.1);}
+        .theme-option span{font-size:11px;color:#9ca3af;}
+        .theme-option.active span{color:#0ea5e9;}
+        select.setting-select{background:#1f2937;border:1px solid #374151;border-radius:8px;padding:6px 28px 6px 10px;color:#e5e7eb;font-size:13px;outline:none;cursor:pointer;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M3 5l3 3 3-3' fill='none' stroke='%238b949e' stroke-width='1.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 8px center;font-family:'Inter',sans-serif;transition:border-color .2s;}
+        select.setting-select:focus{border-color:#0ea5e9;box-shadow:0 0 0 2px rgba(14,165,233,.12);}
 
-  /* 设置 */
-  .settings-layout{display:flex;flex:1;overflow:hidden;}
-  .settings-nav{width:200px;min-width:200px;border-right:1px solid var(--border);padding:16px 0;overflow-y:auto;}
-  .settings-nav-item{display:flex;align-items:center;gap:10px;padding:9px 20px;cursor:pointer;color:var(--text-secondary);font-size:13.5px;transition:all .15s;position:relative;}
-  .settings-nav-item:hover{color:var(--text-primary);background:var(--bg-hover);}
-  .settings-nav-item.active{color:var(--text-primary);background:var(--accent-dim);}
-  .settings-nav-item.active::before{content:'';position:absolute;left:0;top:4px;bottom:4px;width:3px;background:var(--accent);border-radius:0 3px 3px 0;}
-  .settings-nav-item i{width:16px;text-align:center;font-size:13px;}
-  .settings-body{flex:1;overflow-y:auto;padding:32px;}
-  .settings-section{margin-bottom:32px;}
-  .settings-section-title{font-size:15px;font-weight:700;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--border);}
-  .setting-row{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(42,52,68,.5);}
-  .setting-row:last-child{border-bottom:none;}
-  .setting-label{font-size:13.5px;font-weight:500;margin-bottom:2px;}
-  .setting-desc{font-size:12px;color:var(--text-muted);}
-  .setting-value{font-size:13px;color:var(--text-secondary);display:flex;align-items:center;gap:8px;}
-  .theme-options{display:flex;gap:8px;}
-  .theme-option{width:80px;padding:12px 8px;border-radius:10px;border:2px solid var(--border);background:var(--bg-card);cursor:pointer;text-align:center;transition:all .15s;font-family:var(--font-ui);}
-  .theme-option:hover{border-color:var(--border-light);}
-  .theme-option.active{border-color:var(--accent);background:var(--accent-dim);}
-  .theme-option .preview{width:36px;height:28px;border-radius:5px;margin:0 auto 8px;border:1px solid rgba(255,255,255,.1);}
-  .theme-option span{font-size:11px;color:var(--text-secondary);}
-  .theme-option.active span{color:var(--accent);}
-  select.setting-select{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:6px 28px 6px 10px;color:var(--text-primary);font-size:13px;outline:none;cursor:pointer;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M3 5l3 3 3-3' fill='none' stroke='%238b949e' stroke-width='1.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 8px center;font-family:var(--font-ui);transition:border-color .2s;}
-  select.setting-select:focus{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-dim);}
+        /* 技能 */
+        .skill-tabs{display:flex;gap:2px;background:#1f2937;border-radius:10px;padding:3px;border:1px solid #374151;margin-bottom:16px;width:fit-content;}
+        .skill-tab{padding:6px 18px;font-size:13px;border-radius:8px;cursor:pointer;color:#9ca3af;transition:all .15s;border:none;background:transparent;font-family:'Inter',sans-serif;}
+        .skill-tab:hover{color:#e5e7eb;}
+        .skill-tab.active{background:#1f2937;color:#e5e7eb;font-weight:500;box-shadow:0 1px 3px rgba(0,0,0,.3);}
+        .skill-filters{display:flex;gap:6px;margin-bottom:20px;flex-wrap:wrap;}
+        .skill-filter-btn{padding:5px 14px;border-radius:20px;border:1px solid #374151;background:transparent;color:#9ca3af;font-size:12.5px;cursor:pointer;transition:all .15s;font-family:'Inter',sans-serif;}
+        .skill-filter-btn:hover{border-color:#4b5563;color:#e5e7eb;}
+        .skill-filter-btn.active{background:rgba(14,165,233,.12);border-color:#0ea5e9;color:#0ea5e9;}
+        .search-bar{display:flex;align-items:center;gap:8px;background:#1f2937;border:1px solid #374151;border-radius:10px;padding:0 14px;margin-bottom:16px;max-width:360px;transition:border-color .2s;}
+        .search-bar:focus-within{border-color:#0ea5e9;box-shadow:0 0 0 2px rgba(14,165,233,.12);}
+        .search-bar i{color:#6b7280;font-size:14px;}
+        .search-bar input{flex:1;border:none;background:transparent;color:#e5e7eb;font-size:13px;padding:9px 0;outline:none;font-family:'Inter',sans-serif;}
+        .search-bar input::placeholder{color:#6b7280;}
+        .skill-grid{display:grid;grid-template-columns:1fr;gap:12px;}
+        .skill-card{background:#1f2937;border:1px solid #374151;border-radius:12px;padding:20px;transition:all .2s;display:flex;gap:16px;align-items:flex-start;}
+        .skill-card:hover{border-color:#4b5563;background:#374151;transform:translateY(-1px);box-shadow:0 4px 16px rgba(0,0,0,.2);}
+        .skill-icon{width:48px;height:48px;min-width:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;}
+        .skill-info{flex:1;}
+        .skill-name{font-weight:600;font-size:14px;margin-bottom:4px;}
+        .skill-desc{font-size:12.5px;color:#9ca3af;line-height:1.5;margin-bottom:10px;}
+        .skill-meta{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+        .skill-tag{font-size:11px;padding:2px 8px;border-radius:4px;font-weight:500;}
+        .skill-tag.official{background:rgba(0,212,170,.1);color:#00d4aa;}
+        .skill-rating{display:flex;align-items:center;gap:4px;font-size:12.5px;color:#f59e0b;}
+        .skill-rating span{color:#9ca3af;}
+        .skill-actions{display:flex;align-items:center;gap:8px;margin-left:auto;}
+        .pagination{display:flex;align-items:center;justify-content:center;gap:4px;margin-top:24px;padding-top:16px;border-top:1px solid #374151;}
+        .page-btn{width:32px;height:32px;border-radius:6px;border:1px solid #374151;background:transparent;color:#9ca3af;font-size:12.5px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;font-family:'Inter',sans-serif;}
+        .page-btn:hover{background:#374151;color:#e5e7eb;}
+        .page-btn.active{background:#0ea5e9;color:#111827;border-color:#0ea5e9;font-weight:600;}
+        .page-btn:disabled{opacity:.3;cursor:not-allowed;}
 
-  /* 技能 */
-  .skill-tabs{display:flex;gap:2px;background:var(--bg-surface);border-radius:10px;padding:3px;border:1px solid var(--border);margin-bottom:16px;width:fit-content;}
-  .skill-tab{padding:6px 18px;font-size:13px;border-radius:8px;cursor:pointer;color:var(--text-secondary);transition:all .15s;border:none;background:transparent;font-family:var(--font-ui);}
-  .skill-tab:hover{color:var(--text-primary);}
-  .skill-tab.active{background:var(--bg-card);color:var(--text-primary);font-weight:500;box-shadow:0 1px 3px rgba(0,0,0,.3);}
-  .skill-filters{display:flex;gap:6px;margin-bottom:20px;flex-wrap:wrap;}
-  .skill-filter-btn{padding:5px 14px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--text-secondary);font-size:12.5px;cursor:pointer;transition:all .15s;font-family:var(--font-ui);}
-  .skill-filter-btn:hover{border-color:var(--border-light);color:var(--text-primary);}
-  .skill-filter-btn.active{background:var(--accent-dim);border-color:var(--accent);color:var(--accent);}
-  .search-bar{display:flex;align-items:center;gap:8px;background:var(--bg-surface);border:1px solid var(--border);border-radius:10px;padding:0 14px;margin-bottom:16px;max-width:360px;transition:border-color .2s;}
-  .search-bar:focus-within{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-dim);}
-  .search-bar i{color:var(--text-muted);font-size:14px;}
-  .search-bar input{flex:1;border:none;background:transparent;color:var(--text-primary);font-size:13px;padding:9px 0;outline:none;font-family:var(--font-ui);}
-  .search-bar input::placeholder{color:var(--text-muted);}
-  .skill-grid{display:grid;grid-template-columns:1fr;gap:12px;}
-  .skill-card{background:var(--bg-surface);border:1px solid var(--border);border-radius:12px;padding:20px;transition:all .2s;display:flex;gap:16px;align-items:flex-start;}
-  .skill-card:hover{border-color:var(--border-light);background:var(--bg-hover);transform:translateY(-1px);box-shadow:0 4px 16px rgba(0,0,0,.2);}
-  .skill-icon{width:48px;height:48px;min-width:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;}
-  .skill-info{flex:1;}
-  .skill-name{font-weight:600;font-size:14px;margin-bottom:4px;}
-  .skill-desc{font-size:12.5px;color:var(--text-secondary);line-height:1.5;margin-bottom:10px;}
-  .skill-meta{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
-  .skill-tag{font-size:11px;padding:2px 8px;border-radius:4px;font-weight:500;}
-  .skill-tag.official{background:rgba(0,212,170,.1);color:var(--accent);}
-  .skill-rating{display:flex;align-items:center;gap:4px;font-size:12.5px;color:var(--warning);}
-  .skill-rating span{color:var(--text-secondary);}
-  .skill-actions{display:flex;align-items:center;gap:8px;margin-left:auto;}
-  .pagination{display:flex;align-items:center;justify-content:center;gap:4px;margin-top:24px;padding-top:16px;border-top:1px solid var(--border);}
-  .page-btn{width:32px;height:32px;border-radius:6px;border:1px solid var(--border);background:transparent;color:var(--text-secondary);font-size:12.5px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;font-family:var(--font-ui);}
-  .page-btn:hover{background:var(--bg-hover);color:var(--text-primary);}
-  .page-btn.active{background:var(--accent);color:var(--bg-deep);border-color:var(--accent);font-weight:600;}
-  .page-btn:disabled{opacity:.3;cursor:not-allowed;}
+        /* CLI配置样式 */
+        .cli-config-section{margin-bottom:32px;}
+        .cli-config-title{font-size:15px;font-weight:700;margin-bottom:8px;color:#e5e7eb;}
+        .cli-config-desc{font-size:12.5px;color:#6b7280;margin-bottom:16px;}
+        
+        .cli-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px;}
+        @media(max-width:1200px){.cli-grid{grid-template-columns:repeat(3,1fr);}}
+        @media(max-width:800px){.cli-grid{grid-template-columns:repeat(2,1fr);}}
+        @media(max-width:500px){.cli-grid{grid-template-columns:1fr;}}
+        
+        .cli-card{background:#1f2937;border:1px solid #374151;border-radius:12px;padding:16px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;cursor:pointer;position:relative;transition:all .2s;}
+        .cli-card:hover{background:#374151;border-color:#4b5563;}
+        .cli-card.active{background:rgba(14,165,233,.12);border-color:#0ea5e9;}
+        .cli-card.custom{border-style:dashed;}
+        
+        .cli-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:4px;}
+        .cli-icon.default{background:#1f2937;color:#6b7280;}
+        .cli-icon.installed{background:rgba(245,158,11,.15);color:#f59e0b;border:1px solid rgba(245,158,11,.3);}
+        .cli-icon.selected{background:rgba(14,165,233,.12);color:#0ea5e9;border:1px solid rgba(14,165,233,.4);}
+        
+        .cli-name{font-weight:600;font-size:13px;color:#e5e7eb;}
+        .cli-cmd{font-size:11px;color:#6b7280;font-family:'JetBrains Mono',monospace;max-width:100%;overflow:hidden;text-overflow:ellipsis;}
+        .cli-type{font-size:11px;color:#6b7280;}
+        .cli-status{font-size:11px;}
+        .cli-status.installed{color:#f59e0b;}
+        .cli-status.not-installed{color:#ef4444;}
+        
+        .cli-card .check-icon{position:absolute;top:8px;right:8px;color:#0ea5e9;font-size:12px;}
+        .cli-card .menu-btn{position:absolute;top:8px;right:8px;color:#6b7280;opacity:0;transition:opacity .15s;background:none;border:none;cursor:pointer;font-size:12px;}
+        .cli-card:hover .menu-btn{opacity:1;}
+        .cli-card:hover .menu-btn:hover{color:#e5e7eb;}
+        .cli-card.active .menu-btn{right:28px;opacity:1;}
+        
+        .cli-add-card{border-style:dashed;background:transparent;justify-content:center;min-height:130px;}
+        .cli-add-card:hover{border-color:#0ea5e9;background:rgba(14,165,233,.12);}
+        .cli-add-card .cli-icon{background:#1f2937;}
+        
+        .shell-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+        @media(max-width:600px){.shell-grid{grid-template-columns:1fr;}}
+        
+        .shell-card{background:#1f2937;border:1px solid #374151;border-radius:10px;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;transition:all .2s;position:relative;}
+        .shell-card:hover{background:#374151;border-color:#4b5563;}
+        .shell-card.active{background:rgba(14,165,233,.12);border-color:#0ea5e9;}
+        .shell-card.custom{border-style:dashed;flex-direction:column;justify-content:center;min-height:80px;gap:8px;}
+        
+        .shell-card .shell-name{font-weight:600;font-size:13px;color:#e5e7eb;margin-bottom:3px;}
+        .shell-card .shell-path{font-size:11px;color:#6b7280;font-family:'JetBrains Mono',monospace;max-width:220px;overflow:hidden;text-overflow:ellipsis;}
+        .shell-card .shell-check{color:#0ea5e9;font-size:12px;}
+        .shell-card .shell-menu{color:#6b7280;}
+        
+        .path-input-row{display:flex;gap:8px;margin-bottom:12px;}
+        .path-input{flex:1;background:#1f2937;border:1px solid #374151;border-radius:8px;padding:10px 14px;color:#e5e7eb;font-size:13px;outline:none;transition:border-color .2s;font-family:'Inter',sans-serif;}
+        .path-input:focus{border-color:#0ea5e9;box-shadow:0 0 0 2px rgba(14,165,233,.12);}
+        .path-input::placeholder{color:#6b7280;}
+        
+        .path-btn{padding:10px 16px;border-radius:8px;font-size:13px;cursor:pointer;transition:all .15s;display:flex;align-items:center;gap:6px;font-family:'Inter',sans-serif;}
+        .path-btn.browse{background:#1f2937;border:1px solid #374151;color:#9ca3af;}
+        .path-btn.browse:hover{background:#374151;color:#e5e7eb;}
+        .path-btn.add{background:rgba(14,165,233,.12);border:1px solid rgba(14,165,233,.4);color:#0ea5e9;}
+        .path-btn.add:hover{background:rgba(14,165,233,.2);}
+        
+        .path-footer{display:flex;justify-content:space-between;align-items:center;padding-top:10px;border-top:1px solid rgba(55,65,81,.5);}
+        .path-count{font-size:11.5px;color:#6b7280;}
+        .path-manage{font-size:11.5px;color:#6b7280;background:none;border:none;cursor:pointer;transition:color .15s;}
+        .path-manage:hover{color:#e5e7eb;}
+        
+        .cli-toolbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}
+        .cli-toolbar-left{font-size:13px;color:#9ca3af;}
+        .cli-toolbar-right{display:flex;align-items:center;gap:16px;}
+        .encoding-select{display:flex;align-items:center;gap:6px;font-size:12px;color:#6b7280;}
+        .encoding-select select{background:#1f2937;border:1px solid #374151;border-radius:6px;padding:4px 24px 4px 8px;color:#9ca3af;font-size:12px;outline:none;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 12 12'%3E%3Cpath d='M3 5l3 3 3-3' fill='none' stroke='%238b949e' stroke-width='1.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 6px center;}
+        .refresh-btn{font-size:12px;color:#0ea5e9;background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:4px;}
+        .refresh-btn:hover{color:#38bdf8;}
 
-  @keyframes fadeIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
-  .page.active{animation:fadeIn .25s ease;}
-  @keyframes pulseDot{0%,100%{opacity:1;}50%{opacity:.3;}}
-  .bg-glow{position:fixed;width:500px;height:500px;border-radius:50%;filter:blur(120px);opacity:.025;pointer-events:none;z-index:0;}
-  .bg-glow-1{top:-200px;right:-100px;background:var(--accent);}
-  .bg-glow-2{bottom:-200px;left:200px;background:#f0a030;}
-  .toast-container{position:fixed;top:20px;right:20px;z-index:1000;display:flex;flex-direction:column;gap:8px;}
-  .toast{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:12px 18px;font-size:13px;color:var(--text-primary);box-shadow:0 8px 30px rgba(0,0,0,.4);display:flex;align-items:center;gap:10px;animation:toastIn .3s ease;min-width:260px;}
-  .toast.success i{color:var(--success);}.toast.error i{color:var(--danger);}.toast.info i{color:var(--info);}
-  @keyframes toastIn{from{opacity:0;transform:translateX(30px);}to{opacity:1;transform:translateX(0);}}
-  @keyframes toastOut{from{opacity:1;transform:translateX(0);}to{opacity:0;transform:translateX(30px);}}
-  @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;}}
+        /* 通用按钮样式 */
+        .btn{padding:7px 16px;border-radius:8px;border:1px solid #374151;background:#1f2937;color:#9ca3af;font-size:13px;cursor:pointer;transition:all .15s;display:flex;align-items:center;gap:6px;font-family:'Inter',sans-serif;}
+        .btn:hover{background:#374151;color:#e5e7eb;border-color:#4b5563;}
+        .btn-primary{background:#0ea5e9;color:#111827;border-color:#0ea5e9;font-weight:600;}
+        .btn-primary:hover{background:#38bdf8;border-color:#38bdf8;color:#111827;}
+        .btn-sm{padding:4px 10px;font-size:12px;border-radius:6px;}
+        .btn-ghost{background:transparent;border-color:transparent;color:#9ca3af;}
+        .btn-ghost:hover{background:#374151;color:#e5e7eb;}
+        .btn-danger-ghost{background:transparent;border-color:transparent;color:#6b7280;}
+        .btn-danger-ghost:hover{background:rgba(239,68,68,.1);color:#ef4444;}
 
-  /* CLI配置样式 */
-  .cli-config-section{margin-bottom:32px;}
-  .cli-config-title{font-size:15px;font-weight:700;margin-bottom:8px;color:var(--text-primary);}
-  .cli-config-desc{font-size:12.5px;color:var(--text-muted);margin-bottom:16px;}
-  
-  .cli-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px;}
-  @media(max-width:1200px){.cli-grid{grid-template-columns:repeat(3,1fr);}}
-  @media(max-width:800px){.cli-grid{grid-template-columns:repeat(2,1fr);}}
-  @media(max-width:500px){.cli-grid{grid-template-columns:1fr;}}
-  
-  .cli-card{background:var(--bg-surface);border:1px solid var(--border);border-radius:12px;padding:16px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;cursor:pointer;position:relative;transition:all .2s;}
-  .cli-card:hover{background:var(--bg-hover);border-color:var(--border-light);}
-  .cli-card.active{background:var(--accent-dim);border-color:var(--accent);}
-  .cli-card.custom{border-style:dashed;}
-  
-  .cli-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:4px;}
-  .cli-icon.default{background:var(--bg-card);color:var(--text-muted);}
-  .cli-icon.installed{background:rgba(240,160,48,.15);color:var(--warning);border:1px solid rgba(240,160,48,.3);}
-  .cli-icon.selected{background:var(--accent-dim);color:var(--accent);border:1px solid rgba(0,212,170,.4);}
-  
-  .cli-name{font-weight:600;font-size:13px;color:var(--text-primary);}
-  .cli-cmd{font-size:11px;color:var(--text-muted);font-family:var(--font-mono);max-width:100%;overflow:hidden;text-overflow:ellipsis;}
-  .cli-type{font-size:11px;color:var(--text-muted);}
-  .cli-status{font-size:11px;}
-  .cli-status.installed{color:var(--warning);}
-  .cli-status.not-installed{color:var(--danger);}
-  
-  .cli-card .check-icon{position:absolute;top:8px;right:8px;color:var(--accent);font-size:12px;}
-  .cli-card .menu-btn{position:absolute;top:8px;right:8px;color:var(--text-muted);opacity:0;transition:opacity .15s;background:none;border:none;cursor:pointer;font-size:12px;}
-  .cli-card:hover .menu-btn{opacity:1;}
-  .cli-card:hover .menu-btn:hover{color:var(--text-primary);}
-  .cli-card.active .menu-btn{right:28px;opacity:1;}
-  
-  .cli-add-card{border-style:dashed;background:transparent;justify-content:center;min-height:130px;}
-  .cli-add-card:hover{border-color:var(--accent);background:var(--accent-dim);}
-  .cli-add-card .cli-icon{background:var(--bg-card);}
-  
-  .shell-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
-  @media(max-width:600px){.shell-grid{grid-template-columns:1fr;}}
-  
-  .shell-card{background:var(--bg-surface);border:1px solid var(--border);border-radius:10px;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;transition:all .2s;position:relative;}
-  .shell-card:hover{background:var(--bg-hover);border-color:var(--border-light);}
-  .shell-card.active{background:var(--accent-dim);border-color:var(--accent);}
-  .shell-card.custom{border-style:dashed;flex-direction:column;justify-content:center;min-height:80px;gap:8px;}
-  
-  .shell-card .shell-name{font-weight:600;font-size:13px;color:var(--text-primary);margin-bottom:3px;}
-  .shell-card .shell-path{font-size:11px;color:var(--text-muted);font-family:var(--font-mono);max-width:220px;overflow:hidden;text-overflow:ellipsis;}
-  .shell-card .shell-check{color:var(--accent);font-size:12px;}
-  .shell-card .shell-menu{color:var(--text-muted);}
-  
-  .path-input-row{display:flex;gap:8px;margin-bottom:12px;}
-  .path-input{flex:1;background:var(--bg-surface);border:1px solid var(--border);border-radius:8px;padding:10px 14px;color:var(--text-primary);font-size:13px;outline:none;transition:border-color .2s;font-family:var(--font-ui);}
-  .path-input:focus{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-dim);}
-  .path-input::placeholder{color:var(--text-muted);}
-  
-  .path-btn{padding:10px 16px;border-radius:8px;font-size:13px;cursor:pointer;transition:all .15s;display:flex;align-items:center;gap:6px;font-family:var(--font-ui);}
-  .path-btn.browse{background:var(--bg-card);border:1px solid var(--border);color:var(--text-secondary);}
-  .path-btn.browse:hover{background:var(--bg-hover);color:var(--text-primary);}
-  .path-btn.add{background:var(--accent-dim);border:1px solid rgba(0,212,170,.4);color:var(--accent);}
-  .path-btn.add:hover{background:rgba(0,212,170,.2);}
-  
-  .path-footer{display:flex;justify-content:space-between;align-items:center;padding-top:10px;border-top:1px solid rgba(42,52,68,.5);}
-  .path-count{font-size:11.5px;color:var(--text-muted);}
-  .path-manage{font-size:11.5px;color:var(--text-muted);background:none;border:none;cursor:pointer;transition:color .15s;}
-  .path-manage:hover{color:var(--text-primary);}
-  
-  .cli-toolbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}
-  .cli-toolbar-left{font-size:13px;color:var(--text-secondary);}
-  .cli-toolbar-right{display:flex;align-items:center;gap:16px;}
-  .encoding-select{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-muted);}
-  .encoding-select select{background:var(--bg-surface);border:1px solid var(--border);border-radius:6px;padding:4px 24px 4px 8px;color:var(--text-secondary);font-size:12px;outline:none;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 12 12'%3E%3Cpath d='M3 5l3 3 3-3' fill='none' stroke='%238b949e' stroke-width='1.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 6px center;}
-  .refresh-btn{font-size:12px;color:var(--accent);background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:4px;}
-  .refresh-btn:hover{color:var(--accent-hover);}
-</style>
+        @keyframes fadeIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+        @keyframes toastIn{from{opacity:0;transform:translateX(30px);}to{opacity:1;transform:translateX(0);}}
+        @keyframes toastOut{from{opacity:1;transform:translateX(0);}to{opacity:0;transform:translateX(30px);}}
+        
+        .toast-container{position:fixed;top:20px;right:20px;z-index:1000;display:flex;flex-direction:column;gap:8px;}
+        .toast{background:#1f2937;border:1px solid #374151;border-radius:10px;padding:12px 18px;font-size:13px;color:#e5e7eb;box-shadow:0 8px 30px rgba(0,0,0,.4);display:flex;align-items:center;gap:10px;animation:toastIn .3s ease;min-width:260px;}
+        .toast.success i{color:#10b981;}.toast.error i{color:#ef4444;}.toast.info i{color:#0ea5e9;}
+    </style>
 </head>
-<body>
-<div class="bg-glow bg-glow-1"></div><div class="bg-glow bg-glow-2"></div>
-<div class="toast-container" id="toastContainer"></div>
+<body class="h-screen w-screen flex flex-col text-sm select-none">
 
-<!-- 主应用布局 -->
-<div class="app-layout">
-<div class="modal-overlay" id="agentEditModal"><div class="modal"><div class="modal-header"><h3 id="agentEditTitle">编辑助手</h3><button class="modal-close" onclick="closeAgentEdit()" aria-label="关闭"><i class="fa-solid fa-xmark"></i></button></div><div class="modal-body"><div class="form-row"><div class="form-group"><label class="form-label">名称</label><input class="form-input" type="text" id="agentEditName" placeholder="助手名称" maxlength="20"></div><div class="form-group"><label class="form-label">类型</label><select class="form-select" id="agentEditType"><option value="assistant">助手</option><option value="supervisor">监工</option><option value="member">成员</option></select></div></div><div class="form-group"><label class="form-label">提示词设置</label><textarea class="form-textarea" id="agentEditPrompt" placeholder="定义该 Agent 的角色定位、行为规范和输出要求..."></textarea><div class="form-hint">提示词决定了 Agent 的行为方式和专业表现。修改后会在下次对话时生效。</div></div></div><div class="modal-footer"><button class="btn btn-danger-ghost" id="agentDeleteBtn" style="margin-right:auto;"><i class="fa-regular fa-trash-can"></i> 移除</button><button class="btn" onclick="closeAgentEdit()">取消</button><button class="btn btn-primary" id="agentSaveBtn"><i class="fa-solid fa-check"></i> 保存</button></div></div></div>
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
 
-<div class="modal-overlay" id="addExpertModal"><div class="modal"><div class="modal-header"><h3>添加自定义专家</h3><button class="modal-close" onclick="closeExpertModal()" aria-label="关闭"><i class="fa-solid fa-xmark"></i></button></div><div class="modal-body"><div class="form-group"><label class="form-label">专家名称</label><input class="form-input" type="text" id="expertName" placeholder="例如：Alex" maxlength="20"></div><div class="form-group"><label class="form-label">职业/专长描述</label><input class="form-input" type="text" id="expertRole" placeholder="例如：全栈开发顾问" maxlength="30"></div><div class="form-group"><label class="form-label">所属行业</label><select class="form-select" id="expertCategory"><option value="设计">设计</option><option value="工程技术" selected>工程技术</option><option value="内容创作">内容创作</option><option value="数据分析">数据分析</option><option value="产品管理">产品管理</option><option value="市场营销">市场营销</option><option value="其他">其他</option></select></div><div class="form-group"><label class="form-label">专家提示词</label><textarea class="form-textarea" id="expertPrompt" placeholder="描述这位专家的角色定位、专业能力、工作风格和输出规范..."></textarea><div class="form-hint">提示词决定了专家的行为方式和专业表现，请尽量详细描述</div></div></div><div class="modal-footer"><button class="btn" onclick="closeExpertModal()">取消</button><button class="btn btn-primary" id="confirmAddExpert"><i class="fa-solid fa-plus"></i> 添加专家</button></div></div></div>
-
-<aside class="icon-rail">
-  <div class="logo" title="AgentFlow">AF</div>
-  <div class="rail-avatar" title="我">我</div>
-  <div class="rail-divider"></div>
-  <button class="rail-btn active" data-page="chat" title="会话" aria-label="会话"><i class="fa-regular fa-comment-dots"></i><span class="badge"></span></button>
-  <button class="rail-btn" data-page="agents" title="员工管理" aria-label="员工管理"><i class="fa-regular fa-address-book"></i></button>
-  <button class="rail-btn" data-page="skills" title="技能" aria-label="技能"><i class="fa-solid fa-wand-magic-sparkles"></i></button>
-  <div class="rail-spacer"></div>
-  <button class="rail-btn" data-page="settings" title="设置" aria-label="设置"><i class="fa-solid fa-gear"></i></button>
-</aside>
-
-<nav class="nav-panel" id="navPanel">
-  <div class="nav-tree" id="navChat">
-    <!-- 项目信息 -->
-    <div style="padding:14px 16px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border);">
-      <div style="width:28px;height:28px;border-radius:6px;background:var(--accent-dim);display:flex;align-items:center;justify-content:center;color:var(--accent);border:1px solid rgba(0,212,170,.3);">
-        <i class="fa-solid fa-code-branch" style="font-size:12px;"></i>
-      </div>
-      <div>
-        <div style="font-size:13px;font-weight:600;">clawteam</div>
-        <div style="font-size:10px;color:var(--text-muted);">工作区</div>
-      </div>
-    </div>
-    
-    <!-- 频道区域 -->
-    <div class="nav-channel">
-      <div class="nav-channel-label">频道</div>
-      <div class="channel-item">
-        <img src="https://image.qwenlm.ai/public_source/5728b46f-e43d-4e71-b846-6b359aeb0209/17bbb1cee-bb8b-4d48-ba64-86babb83fb3b.png" class="channel-avatar" alt="docs">
-        <div class="channel-info">
-          <div class="channel-name">docs</div>
-          <div class="channel-preview">WorkBuddy: 我来看看工作区...</div>
-        </div>
-        <i class="fa-solid fa-ellipsis-vertical" style="color:var(--text-muted);font-size:10px;opacity:0;transition:opacity .15s;"></i>
-      </div>
-    </div>
-    
-    <!-- 会话记录 -->
-    <div class="nav-group">
-      <div class="nav-group-title">会话记录</div>
-      <div class="conv-item" data-conv="yesterday">
-        <i class="fa-regular fa-clock" style="font-size:11px;color:var(--text-muted);"></i>
-        <span style="font-size:12px;color:var(--text-secondary);">昨天</span>
-      </div>
-      <div class="conv-item" data-conv="lastweek">
-        <i class="fa-regular fa-clock" style="font-size:11px;color:var(--text-muted);"></i>
-        <span style="font-size:12px;color:var(--text-secondary);">上周</span>
-      </div>
-    </div>
-  </div>
-  <div class="nav-tree" id="navAgents" style="display:none;">
-    <div class="nav-header">员工管理</div>
-    <div class="nav-group">
-      <div class="nav-item active"><i class="fa-solid fa-wand-magic-sparkles"></i> 助手 <span class="count" id="navCountAssistant">1</span></div>
-      <div class="nav-item"><i class="fa-solid fa-eye"></i> 监工 <span class="count" id="navCountSupervisor">0</span></div>
-      <div class="nav-item" style="color:var(--expert);"><i class="fa-solid fa-star"></i> 专家成员 <span class="count" id="navCountExpert">3</span></div>
-    </div>
-  </div>
-  <div class="nav-tree" id="navSkills" style="display:none;"><div class="nav-header">商店</div><div class="nav-group"><div class="nav-item active"><i class="fa-solid fa-wand-magic-sparkles"></i> 技能</div><div class="nav-item"><i class="fa-regular fa-file-lines"></i> 模板</div><div class="nav-item"><i class="fa-solid fa-puzzle-piece"></i> 插件商店</div></div></div>
-  <div class="nav-tree" id="navSettings" style="display:none;"><div class="nav-header">设置</div><div class="nav-group"><div class="nav-item active" data-settings="account"><i class="fa-regular fa-user"></i> 我的账号</div><div class="nav-item" data-settings="appearance"><i class="fa-regular fa-sun"></i> 外观</div><div class="nav-item" data-settings="cli"><i class="fa-solid fa-terminal"></i> CLI配置</div><div class="nav-item"><i class="fa-regular fa-bell"></i> 通知</div><div class="nav-item"><i class="fa-solid fa-shield-halved"></i> 安全</div></div><div class="nav-group" style="margin-top:8px;"><div class="nav-group-title">用户设置</div><div class="nav-item"><i class="fa-solid fa-sliders"></i> 偏好设置</div><div class="nav-item"><i class="fa-solid fa-language"></i> 语言</div></div></div>
-</nav>
-
-<main class="main-content">
-  <!-- 聊天页 -->
-  <div class="page active" id="pageChat">
-    <div class="chat-header">
-      <div class="chat-header-avatar" style="background:linear-gradient(135deg,#d97706,#92400e);">助</div>
-      <div class="chat-header-info">
-        <div class="chat-header-name">助手</div>
-        <div class="chat-header-status"><span class="dot"></span>在线</div>
-      </div>
-      <div class="header-actions">
-        <button aria-label="语音"><i class="fa-solid fa-phone"></i></button>
-        <button aria-label="视频"><i class="fa-solid fa-video"></i></button>
-        <button aria-label="更多"><i class="fa-solid fa-ellipsis"></i></button>
-      </div>
-    </div>
-    
-    <div class="chat-messages" id="chatMessages">
-      <div class="chat-date-divider">今天</div>
-      
-      <!-- 用户消息 -->
-      <div class="msg-row self">
-        <div class="msg-avatar" style="background:linear-gradient(135deg,#f0a030,#e06020);">我</div>
-        <div class="msg-body">
-          <div class="msg-header">
-            <span class="msg-time">14:32</span>
-            <span class="msg-author" style="color:#f0a030;">我</span>
-          </div>
-          <div class="msg-bubble">hi</div>
-        </div>
-      </div>
-      
-      <!-- 助手消息 -->
-      <div class="msg-row other">
-        <div class="msg-avatar" style="background:linear-gradient(135deg,#d97706,#92400e);">助</div>
-        <div class="msg-body">
-          <div class="msg-header">
-            <span class="msg-author" style="color:#d97706;">WorkBuddy</span>
-            <span class="msg-time">14:32</span>
-          </div>
-          <div class="msg-bubble">
-            <p style="margin-bottom:12px;color:var(--text-secondary);">我来看看工作区和身份文件的情况。</p>
-            
-            <!-- 文件状态指示器 -->
-            <div style="margin-bottom:12px;">
-              <div class="msg-file-path">
-                <i class="fa-regular fa-eye"></i>
-                <span>已读取</span>
-                <span class="file-tag">C:\Users\Administrator\.workbuddy\BOOTSTRAP.md</span>
-                <span class="line-info">L1-末尾</span>
-              </div>
-              <div class="msg-file-path">
-                <i class="fa-regular fa-eye"></i>
-                <span>已读取</span>
-                <span class="file-tag">C:\Users\Administrator\.workbuddy\IDENTITY.md</span>
-                <span class="line-info">L1-末尾</span>
-              </div>
+    <!-- Modals -->
+    <div class="modal-overlay" id="agentEditModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 id="agentEditTitle">编辑助手</h3>
+                <button class="modal-close" onclick="closeAgentEdit()" aria-label="关闭"><i class="fa-solid fa-xmark"></i></button>
             </div>
-            
-            <p style="margin-bottom:12px;color:var(--text-secondary);">嗨！在正式开始之前，想和你确认几个固定信息——这样以后每次打招呼都省事。</p>
-            
-            <div style="color:var(--text-secondary);">
-              <p style="margin-bottom:8px;">
-                <strong>关于我：</strong>你想怎么叫我？我可以有个名字。你可以给我起一个，或者让我自己选——我倾向于叫 <strong>Claw</strong>，感觉利落又有点个性，正好也和这个工作区名字呼应。你觉得呢？
-              </p>
-              <p>
-                <strong>关于你：</strong>我该怎么称呼你？名字、昵称都行。
-              </p>
-            </div>
-            
-            <div class="msg-actions">
-              <button><i class="fa-regular fa-copy"></i></button>
-              <button><i class="fa-regular fa-thumbs-up"></i></button>
-              <button><i class="fa-regular fa-thumbs-down"></i></button>
-              <button><i class="fa-solid fa-ellipsis"></i></button>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <!-- 用户第二条消息 -->
-      <div class="msg-row self">
-        <div class="msg-avatar" style="background:linear-gradient(135deg,#f0a030,#e06020);">我</div>
-        <div class="msg-body">
-          <div class="msg-header">
-            <span class="msg-time">14:35</span>
-            <span class="msg-author" style="color:#f0a030;">我</span>
-          </div>
-          <div class="msg-bubble">好的 Claw，叫我群主就行。另外有个问题，执行不了 <code>golutra-cli.exe</code>，报路径不存在。</div>
-        </div>
-      </div>
-      
-      <!-- 输入中指示器 -->
-      <div class="typing-indicator">
-        <div class="msg-avatar" style="background:linear-gradient(135deg,#d97706,#92400e);">助</div>
-        <div class="typing-dots"><span></span><span></span><span></span></div>
-      </div>
-    </div>
-    
-    <div class="chat-input-area">
-      <div class="jump-to-latest">
-        <button><i class="fa-solid fa-arrow-down"></i> 跳到最新消息</button>
-      </div>
-      <div class="chat-input-wrap">
-        <div class="input-toolbar">
-          <button title="提及"><i class="fa-solid fa-at"></i></button>
-          <button title="附件"><i class="fa-solid fa-paperclip"></i></button>
-        </div>
-        <textarea id="chatInput" placeholder="输入消息..."></textarea>
-        <div class="input-footer">
-          <span class="input-hint">按 Enter 发送，Shift + Enter 换行</span>
-          <button class="send-btn" id="sendBtn">发送</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 员工管理页 -->
-  <div class="page" id="pageAgents">
-    <div class="staff-topbar">
-      <h2>员工管理</h2>
-      <div class="right">
-        <div class="sort-group">排序 <span class="sort-badge">默认</span></div>
-        <button class="btn" style="border-color:var(--border);"><i class="fa-solid fa-user-plus"></i> 添加员工</button>
-      </div>
-    </div>
-    <div class="page-body-dark" id="agentListArea"></div>
-  </div>
-
-  <!-- 技能页 -->
-  <div class="page" id="pageSkills">
-    <div class="page-header"><div class="title-group"><h2>技能</h2><p>浏览、安装和管理项目技能</p></div></div>
-    <div class="page-body" style="padding:24px 28px;">
-      <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;flex-wrap:wrap;"><div class="search-bar"><i class="fa-solid fa-magnifying-glass"></i><input type="text" placeholder="搜索技能..."></div><div class="skill-tabs"><button class="skill-tab active">商店</button><button class="skill-tab">我的技能</button><button class="skill-tab">项目技能</button></div></div>
-      <div class="skill-filters"><button class="skill-filter-btn active">全部技能</button><button class="skill-filter-btn">代码质量</button><button class="skill-filter-btn">文档处理</button></div>
-      <div class="skill-grid">
-        <div class="skill-card"><div class="skill-icon" style="background:linear-gradient(135deg,#00d4aa,#007a62);"><i class="fa-solid fa-shield-halved" style="color:#fff;"></i></div><div class="skill-info"><div class="skill-name">项目开发质量与可维护性</div><div class="skill-desc">官方默认技能。自动审查代码质量、可维护性指标。</div><div class="skill-meta"><span class="skill-tag official">官方默认</span><div class="skill-rating"><i class="fa-solid fa-star"></i><span>4.9</span></div></div></div><div class="skill-actions"><button class="btn btn-sm"><i class="fa-solid fa-rotate-right"></i> 重新安装</button></div></div>
-        <div class="skill-card"><div class="skill-icon" style="background:linear-gradient(135deg,#4da6ff,#2070d0);"><i class="fa-solid fa-language" style="color:#fff;"></i></div><div class="skill-info"><div class="skill-name">Humanizer - zh</div><div class="skill-desc">中文文本人性化处理技能。</div><div class="skill-meta"><span class="skill-tag official">官方默认</span><div class="skill-rating"><i class="fa-solid fa-star"></i><span>4.7</span></div></div></div><div class="skill-actions"><button class="btn btn-sm"><i class="fa-solid fa-rotate-right"></i> 重新安装</button></div></div>
-      </div>
-      <div class="pagination"><button class="page-btn" disabled><i class="fa-solid fa-chevron-left" style="font-size:11px;"></i></button><button class="page-btn active">1</button><button class="page-btn">2</button><button class="page-btn"><i class="fa-solid fa-chevron-right" style="font-size:11px;"></i></button></div>
-    </div>
-  </div>
-
-  <!-- 设置页 -->
-  <div class="page" id="pageSettings">
-    <div class="settings-layout">
-      <div class="settings-body" id="settingsBody">
-        <div class="settings-tab active" id="settingsAccount"><div class="settings-section"><div class="settings-section-title">我的账号</div><div class="setting-row"><div><div class="setting-label">名称</div></div><div class="setting-value"><span>群主</span></div></div><div class="setting-row"><div><div class="setting-label">邮箱</div></div><div class="setting-value"><span>name@example.com</span></div></div><div class="setting-row"><div><div class="setting-label">时区</div></div><div class="setting-value"><select class="setting-select"><option selected>UTC 协调世界时</option><option>Asia/Shanghai (UTC+8)</option></select></div></div></div></div>
-        <div class="settings-tab" id="settingsAppearance" style="display:none;"><div class="settings-section"><div class="settings-section-title">外观</div><div class="setting-row" style="flex-direction:column;align-items:flex-start;gap:14px;"><div><div class="setting-label">主题</div></div><div class="theme-options"><div class="theme-option active"><div class="preview" style="background:linear-gradient(135deg,#0d1117,#1c2333);"></div><span>深色</span></div><div class="theme-option"><div class="preview" style="background:linear-gradient(135deg,#f0f2f5,#fff);"></div><span>浅色</span></div><div class="theme-option"><div class="preview" style="background:linear-gradient(135deg,#0d1117 50%,#f0f2f5 50%);"></div><span>系统</span></div></div></div></div></div>
-        <div class="settings-tab" id="settingsCli" style="display:none;">
-          <!-- CLI配置头部 -->
-          <div class="cli-config-section">
-            <div class="cli-config-title">CLI配置</div>
-            <div class="cli-config-desc">配置终端调用CLI方式，选择默认的AI助手工具</div>
-          </div>
-          
-          <!-- CLI 卡片网格 -->
-          <div class="cli-grid">
-            <!-- Gemini CLI -->
-            <div class="cli-card">
-              <button class="menu-btn"><i class="fa-solid fa-ellipsis-vertical"></i></button>
-              <div class="cli-icon default"><i class="fa-solid fa-robot"></i></div>
-              <div class="cli-name">Gemini CLI</div>
-              <div class="cli-cmd">gemini</div>
-              <div class="cli-type">默认终端</div>
-              <div class="cli-status not-installed">未安装</div>
-            </div>
-            
-            <!-- Codex -->
-            <div class="cli-card">
-              <button class="menu-btn"><i class="fa-solid fa-ellipsis-vertical"></i></button>
-              <div class="cli-icon default"><i class="fa-solid fa-code"></i></div>
-              <div class="cli-name">Codex</div>
-              <div class="cli-cmd">codex</div>
-              <div class="cli-type">默认终端</div>
-              <div class="cli-status not-installed">未安装</div>
-            </div>
-            
-            <!-- Claude Code (已安装) -->
-            <div class="cli-card">
-              <button class="menu-btn"><i class="fa-solid fa-ellipsis-vertical"></i></button>
-              <div class="cli-icon installed"><i class="fa-solid fa-asterisk"></i></div>
-              <div class="cli-name">Claude Code</div>
-              <div class="cli-cmd">claude</div>
-              <div class="cli-type">默认终端</div>
-              <div class="cli-status installed">已安装</div>
-            </div>
-            
-            <!-- opencode -->
-            <div class="cli-card">
-              <button class="menu-btn"><i class="fa-solid fa-ellipsis-vertical"></i></button>
-              <div class="cli-icon default"><i class="fa-solid fa-terminal"></i></div>
-              <div class="cli-name">opencode</div>
-              <div class="cli-cmd">opencode</div>
-              <div class="cli-type">默认终端</div>
-              <div class="cli-status not-installed">未安装</div>
-            </div>
-            
-            <!-- Qwen Code -->
-            <div class="cli-card">
-              <button class="menu-btn"><i class="fa-solid fa-ellipsis-vertical"></i></button>
-              <div class="cli-icon default"><i class="fa-solid fa-cube"></i></div>
-              <div class="cli-name">Qwen Code</div>
-              <div class="cli-cmd">qwen</div>
-              <div class="cli-type">默认终端</div>
-              <div class="cli-status not-installed">未安装</div>
-            </div>
-            
-            <!-- OpenClaw -->
-            <div class="cli-card">
-              <button class="menu-btn"><i class="fa-solid fa-ellipsis-vertical"></i></button>
-              <div class="cli-icon default"><i class="fa-solid fa-paw"></i></div>
-              <div class="cli-name">OpenClaw</div>
-              <div class="cli-cmd">openclaw</div>
-              <div class="cli-type">默认终端</div>
-              <div class="cli-status not-installed">未安装</div>
-            </div>
-            
-            <!-- Terminal -->
-            <div class="cli-card">
-              <button class="menu-btn"><i class="fa-solid fa-ellipsis-vertical"></i></button>
-              <div class="cli-icon default"><i class="fa-solid fa-desktop"></i></div>
-              <div class="cli-name">Terminal</div>
-              <div class="cli-type">默认终端</div>
-            </div>
-            
-            <!-- iflow (当前选中) -->
-            <div class="cli-card active">
-              <i class="fa-solid fa-circle-check check-icon"></i>
-              <button class="menu-btn"><i class="fa-solid fa-ellipsis-vertical"></i></button>
-              <div class="cli-icon selected"><i class="fa-solid fa-brain"></i></div>
-              <div class="cli-name">iflow</div>
-              <div class="cli-cmd">iflow -p</div>
-              <div class="cli-type">自定义终端</div>
-            </div>
-            
-            <!-- 自定义 CLI 1 -->
-            <div class="cli-card">
-              <button class="menu-btn"><i class="fa-solid fa-ellipsis-vertical"></i></button>
-              <div class="cli-icon default"><i class="fa-solid fa-brain"></i></div>
-              <div class="cli-name">opencode</div>
-              <div class="cli-cmd">"C:\Users\Administr...</div>
-              <div class="cli-type">自定义终端</div>
-            </div>
-            
-            <!-- 自定义 CLI 2 -->
-            <div class="cli-card">
-              <button class="menu-btn"><i class="fa-solid fa-ellipsis-vertical"></i></button>
-              <div class="cli-icon default"><i class="fa-solid fa-brain"></i></div>
-              <div class="cli-name">bun-iflow</div>
-              <div class="cli-cmd">"C:\Users\Administr...</div>
-              <div class="cli-type">自定义终端</div>
-            </div>
-            
-            <!-- 添加自定义 CLI -->
-            <div class="cli-card cli-add-card custom">
-              <div class="cli-icon default"><i class="fa-solid fa-plus"></i></div>
-              <div class="cli-name" style="color:var(--text-muted);">自定义 CLI</div>
-            </div>
-          </div>
-          
-          <!-- 分隔线 -->
-          <div style="height:1px;background:var(--border);margin:24px 0;"></div>
-          
-          <!-- 终端选择区域 -->
-          <div class="cli-config-section">
-            <div class="cli-toolbar">
-              <span class="cli-toolbar-left">选择终端</span>
-              <div class="cli-toolbar-right">
-                <div class="encoding-select">
-                  <span>编码</span>
-                  <select>
-                    <option>自动 (推荐)</option>
-                    <option>UTF-8</option>
-                    <option>GBK</option>
-                  </select>
+            <div class="modal-body">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">名称</label>
+                        <input class="form-input" type="text" id="agentEditName" placeholder="助手名称" maxlength="20">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">类型</label>
+                        <select class="form-select" id="agentEditType">
+                            <option value="assistant">助手</option>
+                            <option value="supervisor">监工</option>
+                            <option value="member">成员</option>
+                        </select>
+                    </div>
                 </div>
-                <button class="refresh-btn"><i class="fa-solid fa-rotate"></i> 刷新列表</button>
-              </div>
+                <div class="form-group">
+                    <label class="form-label">提示词设置</label>
+                    <textarea class="form-textarea" id="agentEditPrompt" placeholder="定义该 Agent 的角色定位、行为规范和输出要求..."></textarea>
+                    <div class="form-hint">提示词决定了 Agent 的行为方式和专业表现。修改后会在下次对话时生效。</div>
+                </div>
             </div>
+            <div class="modal-footer">
+                <button class="btn btn-danger-ghost" id="agentDeleteBtn" style="margin-right:auto;"><i class="fa-regular fa-trash-can"></i> 移除</button>
+                <button class="btn" onclick="closeAgentEdit()">取消</button>
+                <button class="btn btn-primary" id="agentSaveBtn"><i class="fa-solid fa-check"></i> 保存</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="addExpertModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>添加自定义专家</h3>
+                <button class="modal-close" onclick="closeExpertModal()" aria-label="关闭"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label">专家名称</label>
+                    <input class="form-input" type="text" id="expertName" placeholder="例如：Alex" maxlength="20">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">职业/专长描述</label>
+                    <input class="form-input" type="text" id="expertRole" placeholder="例如：全栈开发顾问" maxlength="30">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">所属行业</label>
+                    <select class="form-select" id="expertCategory">
+                        <option value="设计">设计</option>
+                        <option value="工程技术" selected>工程技术</option>
+                        <option value="内容创作">内容创作</option>
+                        <option value="数据分析">数据分析</option>
+                        <option value="产品管理">产品管理</option>
+                        <option value="市场营销">市场营销</option>
+                        <option value="其他">其他</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">专家提示词</label>
+                    <textarea class="form-textarea" id="expertPrompt" placeholder="描述这位专家的角色定位、专业能力、工作风格和输出规范..."></textarea>
+                    <div class="form-hint">提示词决定了专家的行为方式和专业表现，请尽量详细描述</div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" onclick="closeExpertModal()">取消</button>
+                <button class="btn btn-primary" id="confirmAddExpert"><i class="fa-solid fa-plus"></i> 添加专家</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Layout -->
+    <div class="flex-1 flex overflow-hidden">
+        
+        <!-- Far Left Sidebar (Global Nav) -->
+        <div class="w-16 bg-gray-950 flex flex-col items-center py-4 gap-4 border-r border-gray-800 z-20">
+            <div class="relative group cursor-pointer">
+                <img src="https://image.qwenlm.ai/public_source/5728b46f-e43d-4e71-b846-6b359aeb0209/17bbb1cee-bb8b-4d48-ba64-86babb83fb3b.png" class="w-10 h-10 rounded-full border-2 border-gray-800 group-hover:border-primary-500 transition-colors object-cover">
+                <div class="absolute top-0 right-0 w-3 h-3 bg-green-500 border-2 border-gray-950 rounded-full"></div>
+            </div>
+            <div class="w-8 h-[1px] bg-gray-800 my-2"></div>
+            <button onclick="switchView('chat')" class="nav-btn w-10 h-10 rounded-xl flex items-center justify-center text-gray-400 hover:text-white hover:bg-gray-800 transition-all active" data-target="chat">
+                <i class="far fa-comment-dots text-lg"></i>
+            </button>
+            <button onclick="switchView('friends')" class="nav-btn w-10 h-10 rounded-xl flex items-center justify-center text-gray-400 hover:text-white hover:bg-gray-800 transition-all" data-target="friends">
+                <i class="fas fa-users text-lg"></i>
+            </button>
+            <button onclick="switchView('store')" class="nav-btn w-10 h-10 rounded-xl flex items-center justify-center text-gray-400 hover:text-white hover:bg-gray-800 transition-all" data-target="store">
+                <i class="fas fa-store text-lg"></i>
+            </button>
+            <button class="nav-btn w-10 h-10 rounded-xl flex items-center justify-center text-gray-400 hover:text-white hover:bg-gray-800 transition-all">
+                <i class="far fa-folder text-lg"></i>
+            </button>
+            <div class="flex-1"></div>
+            <button class="w-10 h-10 rounded-xl flex items-center justify-center text-gray-400 hover:text-white hover:bg-gray-800 transition-all">
+                <i class="far fa-question-circle text-lg"></i>
+            </button>
+            <button onclick="switchView('settings')" class="nav-btn w-10 h-10 rounded-xl flex items-center justify-center text-gray-400 hover:text-white hover:bg-gray-800 transition-all" data-target="settings">
+                <i class="fas fa-cog text-lg"></i>
+            </button>
+        </div>
+
+        <!-- Inner Left Sidebar (Context Nav) -->
+        <div class="w-64 bg-gray-900/50 flex flex-col border-r border-gray-800 backdrop-blur-sm" id="context-sidebar">
             
-            <div class="shell-grid">
-              <!-- 系统默认 -->
-              <div class="shell-card">
+            <!-- Chat Sidebar Content -->
+            <div id="sidebar-chat" class="sidebar-content p-4 hidden h-full flex flex-col">
+                 <div class="flex items-center gap-3 mb-4">
+                    <div class="w-8 h-8 rounded-lg bg-primary-900/30 flex items-center justify-center text-primary-400 border border-primary-900/50">
+                        <i class="fas fa-code-branch"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-base font-bold text-white">docs</h2>
+                    </div>
+                </div>
+                
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">频道</div>
+                <div class="space-y-1 mb-6">
+                    <div class="flex items-center gap-3 px-3 py-2 rounded-lg bg-gray-800 border border-gray-700 cursor-pointer group">
+                        <img src="https://image.qwenlm.ai/public_source/5728b46f-e43d-4e71-b846-6b359aeb0209/17bbb1cee-bb8b-4d48-ba64-86babb83fb3b.png" class="w-6 h-6 rounded-full object-cover">
+                        <div class="flex-1 min-w-0">
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm font-medium text-white truncate">docs</span>
+                                <i class="fas fa-ellipsis-v text-gray-600 text-xs opacity-0 group-hover:opacity-100"></i>
+                            </div>
+                            <p class="text-xs text-gray-500 truncate">WorkBuddy: 我来看看工作区...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">会话记录</div>
+                <div class="space-y-1">
+                    <div class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-800/50 cursor-pointer text-gray-400">
+                        <i class="far fa-clock text-xs"></i>
+                        <span class="text-sm">昨天</span>
+                    </div>
+                    <div class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-800/50 cursor-pointer text-gray-400">
+                        <i class="far fa-clock text-xs"></i>
+                        <span class="text-sm">上周</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Friends Sidebar Content (员工管理) -->
+            <div id="sidebar-friends" class="sidebar-content p-4 hidden h-full overflow-y-auto no-scrollbar">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 rounded-xl bg-primary-900/30 flex items-center justify-center text-primary-400 border border-primary-900/50">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-lg font-bold text-white">员工管理</h2>
+                        <p class="text-xs text-gray-500">管理助手与成员</p>
+                    </div>
+                </div>
+                
+                <div class="space-y-4">
+                    <!-- Agent Item -->
+                    <div class="group p-3 rounded-lg bg-gray-800/30 border border-gray-800 hover:border-gray-700 transition-colors">
+                        <div class="flex justify-between items-start mb-2">
+                            <div class="flex items-center gap-2">
+                                <div class="w-6 h-6 rounded bg-blue-900/50 flex items-center justify-center text-blue-400 text-xs">
+                                    <i class="fas fa-robot"></i>
+                                </div>
+                                <span class="text-sm font-medium text-gray-200">WorkBuddy</span>
+                            </div>
+                            <button class="text-gray-500 hover:text-primary-400 opacity-0 group-hover:opacity-100 transition-opacity" title="提示词设置" onclick="openAgentEdit(1)">
+                                <i class="fas fa-sliders-h"></i>
+                            </button>
+                        </div>
+                        <div class="text-xs text-gray-500 pl-8">状态：在线 | 角色：助手</div>
+                    </div>
+
+                    <div class="group p-3 rounded-lg bg-gray-800/30 border border-gray-800 hover:border-gray-700 transition-colors">
+                        <div class="flex justify-between items-start mb-2">
+                            <div class="flex items-center gap-2">
+                                <div class="w-6 h-6 rounded bg-purple-900/50 flex items-center justify-center text-purple-400 text-xs">
+                                    <i class="fas fa-user-shield"></i>
+                                </div>
+                                <span class="text-sm font-medium text-gray-200">Claw (Me)</span>
+                            </div>
+                            <button class="text-gray-500 hover:text-primary-400 opacity-0 group-hover:opacity-100 transition-opacity" title="提示词设置">
+                                <i class="fas fa-sliders-h"></i>
+                            </button>
+                        </div>
+                        <div class="text-xs text-gray-500 pl-8">状态：群主 | 角色：管理员</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings Sidebar Content -->
+            <div id="sidebar-settings" class="sidebar-content p-4 hidden h-full overflow-y-auto no-scrollbar">
+                <h2 class="text-xl font-bold text-white mb-6">设置</h2>
+                <div class="space-y-1">
+                    <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 ml-2">用户设置</div>
+                    <a href="#" class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-400 hover:text-white w-full" onclick="switchSettingsTab('account')">
+                        <i class="far fa-user w-5"></i>
+                        <span class="text-sm">我的账号</span>
+                    </a>
+                </div>
+                <div class="space-y-1 mt-6">
+                    <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 ml-2">应用设置</div>
+                    <a href="#" class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-400 hover:text-white w-full" onclick="switchSettingsTab('appearance')">
+                        <i class="fas fa-palette w-5"></i>
+                        <span class="text-sm">外观</span>
+                    </a>
+                    <a href="#" class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-400 hover:text-white w-full" onclick="switchSettingsTab('cli')">
+                        <i class="fas fa-terminal w-5"></i>
+                        <span class="text-sm">CLI配置</span>
+                    </a>
+                    <a href="#" class="nav-item active flex items-center gap-3 px-3 py-2.5 rounded-lg text-primary-400 w-full bg-primary-900/20">
+                        <i class="fas fa-users w-5"></i>
+                        <span class="text-sm">成员</span>
+                    </a>
+                </div>
+            </div>
+
+             <!-- Store Sidebar Content -->
+             <div id="sidebar-store" class="sidebar-content p-4 hidden">
+                <h2 class="text-lg font-bold text-white mb-1">商店</h2>
+                <p class="text-xs text-gray-500 mb-6">统一管理技能、模板与插件</p>
+                <nav class="space-y-2">
+                    <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary-900/30 text-primary-400 border border-primary-900/50">
+                        <i class="fas fa-puzzle-piece"></i>
+                        <span class="text-sm font-medium">技能商店</span>
+                    </a>
+                </nav>
+            </div>
+
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="flex-1 bg-gray-950 relative flex flex-col overflow-hidden">
+            
+            <!-- Top Bar -->
+            <div class="h-16 border-b border-gray-800 flex items-center justify-between px-6 bg-gray-950/80 backdrop-blur z-10">
+                <div id="header-chat" class="header-content w-full hidden flex justify-between items-center">
+                    <div class="flex items-center gap-3">
+                         <div class="w-8 h-8 rounded-lg bg-primary-900/30 flex items-center justify-center text-primary-400 border border-primary-900/50">
+                            <i class="fas fa-code-branch"></i>
+                        </div>
+                        <div>
+                            <h1 class="text-lg font-bold text-white">docs</h1>
+                            <p class="text-xs text-gray-500">频道 • 会话记录</p>
+                        </div>
+                    </div>
+                    <button class="w-8 h-8 rounded-lg bg-gray-800 flex items-center justify-center text-gray-400 hover:text-white hover:bg-gray-700">
+                        <i class="far fa-calendar-alt"></i>
+                    </button>
+                </div>
+
+                <div id="header-friends" class="header-content w-full hidden">
+                    <h1 class="text-2xl font-bold text-white">员工管理</h1>
+                </div>
+                
+                <div id="header-settings" class="header-content w-full hidden">
+                    <h1 class="text-2xl font-bold text-white">设置</h1>
+                </div>
+
+                <div id="header-store" class="header-content w-full hidden">
+                    <h1 class="text-2xl font-bold text-white">技能商店</h1>
+                </div>
+            </div>
+
+            <!-- Scrollable Content Area -->
+            <div class="flex-1 overflow-y-auto relative">
+                
+                <!-- CHAT VIEW -->
+                <div id="view-chat" class="view-content h-full flex flex-col">
+                    
+                    <div class="chat-container flex-1 overflow-y-auto no-scrollbar pr-2 p-6">
+                        
+                        <!-- User Message (Right) -->
+                        <div class="message-row user">
+                            <div class="bubble user">
+                                hi
+                            </div>
+                        </div>
+
+                        <!-- Assistant Message (Left) -->
+                        <div class="message-row assistant">
+                            <img src="https://image.qwenlm.ai/public_source/5728b46f-e43d-4e71-b846-6b359aeb0209/17bbb1cee-bb8b-4d48-ba64-86babb83fb3b.png" class="w-8 h-8 rounded-full object-cover mt-1">
+                            <div class="flex flex-col gap-2 max-w-3xl">
+                                <div class="flex items-center gap-2 mb-1">
+                                    <span class="font-bold text-white text-sm">WorkBuddy</span>
+                                </div>
+                                
+                                <div class="bubble assistant">
+                                    <p class="mb-3 text-gray-300">我来看看工作区和身份文件的情况。</p>
+                                    
+                                    <!-- File Status Indicators -->
+                                    <div class="space-y-1 mb-4">
+                                        <div class="file-status">
+                                            <i class="far fa-eye text-gray-500"></i>
+                                            <span>已读取</span>
+                                            <span class="text-gray-600 bg-gray-900 px-1.5 rounded text-xs font-mono">C:\Users\Administrator\.workbuddy\BOOTSTRAP.md</span>
+                                            <span class="text-gray-600 text-xs">L1-末尾</span>
+                                        </div>
+                                        <div class="file-status">
+                                            <i class="far fa-eye text-gray-500"></i>
+                                            <span>已读取</span>
+                                            <span class="text-gray-600 bg-gray-900 px-1.5 rounded text-xs font-mono">C:\Users\Administrator\.workbuddy\IDENTITY.md</span>
+                                            <span class="text-gray-600 text-xs">L1-末尾</span>
+                                        </div>
+                                    </div>
+
+                                    <p class="mb-4 text-gray-300">
+                                        嗨！在正式开始之前，想和你确认几个固定信息——这样以后每次打招呼都省事。
+                                    </p>
+
+                                    <div class="space-y-3 text-gray-300">
+                                        <p>
+                                            <span class="font-bold text-white">关于我：</span> 
+                                            你想怎么叫我？我可以有个名字。你可以给我起一个，或者让我自己选——我倾向于叫 <span class="font-bold text-white">Claw</span>，感觉利落又有点个性，正好也和这个工作区名字呼应。你觉得呢？
+                                        </p>
+                                        <p>
+                                            <span class="font-bold text-white">关于你：</span> 
+                                            我该怎么称呼你？名字、昵称都行。
+                                        </p>
+                                    </div>
+
+                                    <!-- Actions -->
+                                    <div class="flex gap-3 mt-4 pt-3 border-t border-gray-800">
+                                        <button class="text-gray-500 hover:text-white transition-colors"><i class="far fa-copy"></i></button>
+                                        <button class="text-gray-500 hover:text-white transition-colors"><i class="far fa-thumbs-up"></i></button>
+                                        <button class="text-gray-500 hover:text-white transition-colors"><i class="far fa-thumbs-down"></i></button>
+                                        <button class="text-gray-500 hover:text-white transition-colors"><i class="fas fa-ellipsis-h"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Input Area -->
+                    <div class="mt-4 relative p-6 pt-0">
+                        <div class="absolute -top-10 right-10 flex gap-2">
+                             <button class="bg-gray-800/80 backdrop-blur text-gray-400 hover:text-white px-3 py-1.5 rounded-full text-xs border border-gray-700 shadow-lg flex items-center gap-2">
+                                <i class="fas fa-arrow-down"></i>
+                                跳到最新消息
+                            </button>
+                        </div>
+                        
+                        <div class="bg-gray-900/50 border border-gray-800 rounded-2xl p-2 backdrop-blur shadow-xl">
+                            <div class="flex items-center gap-2 px-2 pb-2 border-b border-gray-800/50 mb-1">
+                                <button class="text-gray-500 hover:text-primary-400 p-1.5 rounded hover:bg-gray-800 transition-colors">
+                                    <i class="fas fa-at"></i>
+                                </button>
+                                <button class="text-gray-500 hover:text-primary-400 p-1.5 rounded hover:bg-gray-800 transition-colors">
+                                    <i class="fas fa-paperclip"></i>
+                                </button>
+                            </div>
+                            <textarea class="w-full bg-transparent text-gray-200 text-sm resize-none focus:outline-none h-20 px-2" placeholder="输入消息..."></textarea>
+                            <div class="flex justify-end px-2 pb-1">
+                                <button class="bg-primary-600 hover:bg-primary-500 text-white px-4 py-1.5 rounded-lg text-sm font-medium transition-colors">
+                                    发送
+                                </button>
+                            </div>
+                        </div>
+                        <div class="text-center mt-2">
+                            <p class="text-xs text-gray-600">按 Enter 发送，Shift + Enter 换行</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FRIENDS VIEW (员工管理) -->
+                <div id="view-friends" class="view-content hidden h-full flex flex-col">
+                    <div class="staff-topbar">
+                        <h2>员工管理</h2>
+                        <div class="right">
+                            <div class="sort-group">排序 <span class="sort-badge">默认</span></div>
+                            <button class="btn" style="border-color:#374151;"><i class="fa-solid fa-user-plus"></i> 添加员工</button>
+                        </div>
+                    </div>
+                    <div class="flex-1 overflow-y-auto" id="agentListArea"></div>
+                </div>
+
+                <!-- SETTINGS VIEW -->
+                <div id="view-settings" class="view-content hidden h-full flex flex-col">
+                    <div class="settings-layout flex-1">
+                        <div class="settings-body flex-1 overflow-y-auto" id="settingsBody">
+                            <!-- Account Settings -->
+                            <div class="settings-tab active" id="settingsAccount">
+                                <div class="settings-section">
+                                    <div class="settings-section-title">我的账号</div>
+                                    <div class="setting-row">
+                                        <div><div class="setting-label">名称</div></div>
+                                        <div class="setting-value"><span>群主</span></div>
+                                    </div>
+                                    <div class="setting-row">
+                                        <div><div class="setting-label">邮箱</div></div>
+                                        <div class="setting-value"><span>name@example.com</span></div>
+                                    </div>
+                                    <div class="setting-row">
+                                        <div><div class="setting-label">时区</div></div>
+                                        <div class="setting-value">
+                                            <select class="setting-select">
+                                                <option selected>UTC 协调世界时</option>
+                                                <option>Asia/Shanghai (UTC+8)</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Appearance Settings -->
+                            <div class="settings-tab" id="settingsAppearance" style="display:none;">
+                                <div class="settings-section">
+                                    <div class="settings-section-title">外观</div>
+                                    <div class="setting-row" style="flex-direction:column;align-items:flex-start;gap:14px;">
+                                        <div><div class="setting-label">主题</div></div>
+                                        <div class="theme-options">
+                                            <div class="theme-option active">
+                                                <div class="preview" style="background:linear-gradient(135deg,#0d1117,#1c2333);"></div>
+                                                <span>深色</span>
+                                            </div>
+                                            <div class="theme-option">
+                                                <div class="preview" style="background:linear-gradient(135deg,#f0f2f5,#fff);"></div>
+                                                <span>浅色</span>
+                                            </div>
+                                            <div class="theme-option">
+                                                <div class="preview" style="background:linear-gradient(135deg,#0d1117 50%,#f0f2f5 50%);"></div>
+                                                <span>系统</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- CLI Settings -->
+                            <div class="settings-tab" id="settingsCli" style="display:none;">
+                                <div class="cli-config-section">
+                                    <div class="cli-config-title">CLI配置</div>
+                                    <div class="cli-config-desc">配置终端调用CLI方式，选择默认的AI助手工具</div>
+                                </div>
+                                
+                                <div class="cli-grid">
+                                    <div class="cli-card">
+                                        <button class="menu-btn"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                                        <div class="cli-icon default"><i class="fa-solid fa-robot"></i></div>
+                                        <div class="cli-name">Gemini CLI</div>
+                                        <div class="cli-cmd">gemini</div>
+                                        <div class="cli-type">默认终端</div>
+                                        <div class="cli-status not-installed">未安装</div>
+                                    </div>
+                                    
+                                    <div class="cli-card">
+                                        <button class="menu-btn"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                                        <div class="cli-icon default"><i class="fa-solid fa-code"></i></div>
+                                        <div class="cli-name">Codex</div>
+                                        <div class="cli-cmd">codex</div>
+                                        <div class="cli-type">默认终端</div>
+                                        <div class="cli-status not-installed">未安装</div>
+                                    </div>
+                                    
+                                    <div class="cli-card">
+                                        <button class="menu-btn"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                                        <div class="cli-icon installed"><i class="fa-solid fa-asterisk"></i></div>
+                                        <div class="cli-name">Claude Code</div>
+                                        <div class="cli-cmd">claude</div>
+                                        <div class="cli-type">默认终端</div>
+                                        <div class="cli-status installed">已安装</div>
+                                    </div>
+                                    
+                                    <div class="cli-card">
+                                        <button class="menu-btn"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                                        <div class="cli-icon default"><i class="fa-solid fa-terminal"></i></div>
+                                        <div class="cli-name">opencode</div>
+                                        <div class="cli-cmd">opencode</div>
+                                        <div class="cli-type">默认终端</div>
+                                        <div class="cli-status not-installed">未安装</div>
+                                    </div>
+                                    
+                                    <div class="cli-card">
+                                        <button class="menu-btn"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                                        <div class="cli-icon default"><i class="fa-solid fa-cube"></i></div>
+                                        <div class="cli-name">Qwen Code</div>
+                                        <div class="cli-cmd">qwen</div>
+                                        <div class="cli-type">默认终端</div>
+                                        <div class="cli-status not-installed">未安装</div>
+                                    </div>
+                                    
+                                    <div class="cli-card">
+                                        <button class="menu-btn"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                                        <div class="cli-icon default"><i class="fa-solid fa-paw"></i></div>
+                                        <div class="cli-name">OpenClaw</div>
+                                        <div class="cli-cmd">openclaw</div>
+                                        <div class="cli-type">默认终端</div>
+                                        <div class="cli-status not-installed">未安装</div>
+                                    </div>
+                                    
+                                    <div class="cli-card">
+                                        <button class="menu-btn"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                                        <div class="cli-icon default"><i class="fa-solid fa-desktop"></i></div>
+                                        <div class="cli-name">Terminal</div>
+                                        <div class="cli-type">默认终端</div>
+                                    </div>
+                                    
+                                    <div class="cli-card active">
+                                        <i class="fa-solid fa-circle-check check-icon"></i>
+                                        <button class="menu-btn"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                                        <div class="cli-icon selected"><i class="fa-solid fa-brain"></i></div>
+                                        <div class="cli-name">iflow</div>
+                                        <div class="cli-cmd">iflow -p</div>
+                                        <div class="cli-type">自定义终端</div>
+                                    </div>
+                                    
+                                    <div class="cli-card cli-add-card custom">
+                                        <div class="cli-icon default"><i class="fa-solid fa-plus"></i></div>
+                                        <div class="cli-name" style="color:#6b7280;">自定义 CLI</div>
+                                    </div>
+                                </div>
+                                
+                                <div style="height:1px;background:#374151;margin:24px 0;"></div>
+                                
+                                <div class="cli-config-section">
+                                    <div class="cli-toolbar">
+                                        <span class="cli-toolbar-left">选择终端</span>
+                                        <div class="cli-toolbar-right">
+                                            <div class="encoding-select">
+                                                <span>编码</span>
+                                                <select>
+                                                    <option>自动 (推荐)</option>
+                                                    <option>UTF-8</option>
+                                                    <option>GBK</option>
+                                                </select>
+                                            </div>
+                                            <button class="refresh-btn"><i class="fa-solid fa-rotate"></i> 刷新列表</button>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="shell-grid">
+                                        <div class="shell-card">
+                                            <div>
+                                                <div class="shell-name">系统默认</div>
+                                                <div class="shell-path">使用系统默认 shell。</div>
+                                            </div>
+                                            <i class="fa-solid fa-ellipsis-vertical shell-menu"></i>
+                                        </div>
+                                        
+                                        <div class="shell-card">
+                                            <div>
+                                                <div class="shell-name">Windows PowerShell</div>
+                                                <div class="shell-path">C:\Windows\System32\WindowsPowerShell\v1.0\pow...</div>
+                                            </div>
+                                            <i class="fa-solid fa-ellipsis-vertical shell-menu"></i>
+                                        </div>
+                                        
+                                        <div class="shell-card active">
+                                            <i class="fa-solid fa-circle-check shell-check" style="position:absolute;right:32px;"></i>
+                                            <div>
+                                                <div class="shell-name">Command Prompt</div>
+                                                <div class="shell-path">C:\Windows\system32\cmd.exe</div>
+                                            </div>
+                                            <i class="fa-solid fa-ellipsis-vertical shell-menu" style="color:#6b7280;"></i>
+                                        </div>
+                                        
+                                        <div class="shell-card custom">
+                                            <div class="cli-icon default" style="width:36px;height:36px;font-size:16px;"><i class="fa-solid fa-plus"></i></div>
+                                            <span style="font-size:13px;color:#6b7280;">自定义终端</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="cli-config-section" style="margin-top:32px;">
+                                    <div class="cli-config-title">兜底 PATH 路径池</div>
+                                    <div class="cli-config-desc">仅在命令检测失败或启动终端成员时，用于兜底查找与 PATH 注入。</div>
+                                    
+                                    <div class="path-input-row">
+                                        <input type="text" class="path-input" placeholder="每行输入一条路径 (目录或可执行文件路径)">
+                                        <button class="path-btn browse"><i class="fa-regular fa-folder-open"></i> 选择文件夹</button>
+                                        <button class="path-btn add"><i class="fa-solid fa-plus"></i> 添加</button>
+                                    </div>
+                                    
+                                    <div class="path-footer">
+                                        <span class="path-count">0 条路径</span>
+                                        <button class="path-manage"><i class="fa-solid fa-list"></i> 管理列表</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STORE VIEW (技能商店) -->
+                <div id="view-store" class="view-content hidden h-full flex flex-col">
+                    <div class="p-6">
+                        <div class="flex items-center gap-3 mb-2">
+                            <h2 class="text-lg font-bold text-white">技能</h2>
+                            <p class="text-xs text-gray-500">浏览、安装和管理项目技能</p>
+                        </div>
+                        
+                        <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;flex-wrap:wrap;">
+                            <div class="search-bar">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                                <input type="text" placeholder="搜索技能...">
+                            </div>
+                            <div class="skill-tabs">
+                                <button class="skill-tab active">商店</button>
+                                <button class="skill-tab">我的技能</button>
+                                <button class="skill-tab">项目技能</button>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-filters">
+                            <button class="skill-filter-btn active">全部技能</button>
+                            <button class="skill-filter-btn">代码质量</button>
+                            <button class="skill-filter-btn">文档处理</button>
+                        </div>
+                        
+                        <div class="skill-grid">
+                            <div class="skill-card">
+                                <div class="skill-icon" style="background:linear-gradient(135deg,#00d4aa,#007a62);">
+                                    <i class="fa-solid fa-shield-halved" style="color:#fff;"></i>
+                                </div>
+                                <div class="skill-info">
+                                    <div class="skill-name">项目开发质量与可维护性</div>
+                                    <div class="skill-desc">官方默认技能。自动审查代码质量、可维护性指标。</div>
+                                    <div class="skill-meta">
+                                        <span class="skill-tag official">官方默认</span>
+                                        <div class="skill-rating"><i class="fa-solid fa-star"></i><span>4.9</span></div>
+                                    </div>
+                                </div>
+                                <div class="skill-actions">
+                                    <button class="btn btn-sm"><i class="fa-solid fa-rotate-right"></i> 重新安装</button>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-card">
+                                <div class="skill-icon" style="background:linear-gradient(135deg,#4da6ff,#2070d0);">
+                                    <i class="fa-solid fa-language" style="color:#fff;"></i>
+                                </div>
+                                <div class="skill-info">
+                                    <div class="skill-name">Humanizer - zh</div>
+                                    <div class="skill-desc">中文文本人性化处理技能。</div>
+                                    <div class="skill-meta">
+                                        <span class="skill-tag official">官方默认</span>
+                                        <div class="skill-rating"><i class="fa-solid fa-star"></i><span>4.7</span></div>
+                                    </div>
+                                </div>
+                                <div class="skill-actions">
+                                    <button class="btn btn-sm"><i class="fa-solid fa-rotate-right"></i> 重新安装</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="pagination">
+                            <button class="page-btn" disabled><i class="fa-solid fa-chevron-left" style="font-size:11px;"></i></button>
+                            <button class="page-btn active">1</button>
+                            <button class="page-btn">2</button>
+                            <button class="page-btn"><i class="fa-solid fa-chevron-right" style="font-size:11px;"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ===== View Switching =====
+        function switchView(viewName) {
+            document.querySelectorAll('.view-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.header-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.sidebar-content').forEach(el => el.classList.add('hidden'));
+            
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active', 'bg-primary-900/20', 'text-primary-400');
+                btn.classList.add('text-gray-400');
+            });
+
+            const viewEl = document.getElementById(`view-${viewName}`);
+            const headerEl = document.getElementById(`header-${viewName}`);
+            const sidebarEl = document.getElementById(`sidebar-${viewName}`);
+
+            if(viewEl) viewEl.classList.remove('hidden');
+            if(headerEl) headerEl.classList.remove('hidden');
+            if(sidebarEl) sidebarEl.classList.remove('hidden');
+
+            const activeBtn = document.querySelector(`.nav-btn[data-target="${viewName}"]`);
+            if(activeBtn) {
+                activeBtn.classList.remove('text-gray-400');
+                activeBtn.classList.add('active', 'bg-primary-900/20', 'text-primary-400');
+            }
+            
+            // Render agents when switching to friends view
+            if(viewName === 'friends') {
+                renderAgents();
+            }
+        }
+
+        // ===== Settings Tab Switching =====
+        function switchSettingsTab(tabName) {
+            document.querySelectorAll('.settings-tab').forEach(el => el.style.display = 'none');
+            document.querySelectorAll('#sidebar-settings .nav-item').forEach(el => el.classList.remove('active'));
+            
+            const tabEl = document.getElementById(`settings${tabName.charAt(0).toUpperCase() + tabName.slice(1)}`);
+            if(tabEl) tabEl.style.display = 'block';
+        }
+
+        // ===== Agent Data =====
+        const typeLabels = {assistant:'助手', supervisor:'监工', member:'成员'};
+        const agentColors = {
+            assistant:'linear-gradient(135deg,#d97706,#92400e)',
+            supervisor:'linear-gradient(135deg,#6b7280,#374151)',
+            member:'linear-gradient(135deg,#10b981,#047857)'
+        };
+        let agents = [{id:1, name:'助手', type:'assistant', desc:'WorkBuddy', prompt:'你是一个通用协作助手，负责协助用户完成各类工作任务。'}];
+        let editingAgentId = null;
+
+        function renderAgents() {
+            const area = document.getElementById('agentListArea');
+            if(!area) return;
+            
+            const groups = {assistant:[], supervisor:[], member:[]};
+            agents.forEach(a => { if(groups[a.type]) groups[a.type].push(a); });
+
+            const expertCount = experts.filter(e => e.added).length;
+
+            let html = `<div class="staff-cols">
                 <div>
-                  <div class="shell-name">系统默认</div>
-                  <div class="shell-path">使用系统默认 shell。</div>
-                </div>
-                <i class="fa-solid fa-ellipsis-vertical shell-menu"></i>
-              </div>
-              
-              <!-- PowerShell -->
-              <div class="shell-card">
-                <div>
-                  <div class="shell-name">Windows PowerShell</div>
-                  <div class="shell-path">C:\Windows\System32\WindowsPowerShell\v1.0\pow...</div>
-                </div>
-                <i class="fa-solid fa-ellipsis-vertical shell-menu"></i>
-              </div>
-              
-              <!-- Command Prompt (当前选中) -->
-              <div class="shell-card active">
-                <i class="fa-solid fa-circle-check shell-check" style="position:absolute;right:32px;"></i>
-                <div>
-                  <div class="shell-name">Command Prompt</div>
-                  <div class="shell-path">C:\Windows\system32\cmd.exe</div>
-                </div>
-                <i class="fa-solid fa-ellipsis-vertical shell-menu" style="color:var(--text-muted);"></i>
-              </div>
-              
-              <!-- 添加自定义终端 -->
-              <div class="shell-card custom">
-                <div class="cli-icon default" style="width:36px;height:36px;font-size:16px;"><i class="fa-solid fa-plus"></i></div>
-                <span style="font-size:13px;color:var(--text-muted);">自定义终端</span>
-              </div>
-            </div>
-          </div>
-          
-          <!-- PATH 路径池 -->
-          <div class="cli-config-section" style="margin-top:32px;">
-            <div class="cli-config-title">兜底 PATH 路径池</div>
-            <div class="cli-config-desc">仅在命令检测失败或启动终端成员时，用于兜底查找与 PATH 注入。</div>
+                    <div class="staff-col-title">
+                        <span class="staff-col-label"><span class="staff-col-dot" style="background:#3b82f6;"></span> 助手</span>
+                        <span style="font-size:12px;color:#6b7280;">${groups.assistant.length}</span>
+                    </div>`;
+                    
+            if(groups.assistant.length === 0) {
+                html += `<div class="empty-col"><i class="fa-regular fa-face-meh"></i><p>暂无助手</p></div>`;
+            } else {
+                groups.assistant.forEach(a => {
+                    html += `<div class="agent-card">
+                        <div class="agent-card-left">
+                            <div style="width:40px;height:40px;border-radius:50%;background:${agentColors[a.type]};display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff;position:relative;">
+                                ${a.name.charAt(0)}
+                                <div style="position:absolute;bottom:-1px;right:-1px;width:10px;height:10px;background:#10b981;border:2px solid #0B0F19;border-radius:50%;"></div>
+                            </div>
+                            <div><div class="agent-card-name">${a.name}</div><div class="agent-card-desc">${a.desc || '已激活'}</div></div>
+                        </div>
+                        <div class="agent-card-actions">
+                            <button title="对话"><i class="far fa-comment-dots"></i></button>
+                            <button title="提示词设置" onclick="openAgentEdit(${a.id})"><i class="fa-solid fa-sliders-h"></i></button>
+                            <button class="del" title="移除"><i class="far fa-trash-alt"></i></button>
+                        </div>
+                    </div>`;
+                });
+            }
             
-            <div class="path-input-row">
-              <input type="text" class="path-input" placeholder="每行输入一条路径 (目录或可执行文件路径)">
-              <button class="path-btn browse"><i class="fa-regular fa-folder-open"></i> 选择文件夹</button>
-              <button class="path-btn add"><i class="fa-solid fa-plus"></i> 添加</button>
-            </div>
+            html += `</div>
+                <div>
+                    <div class="staff-col-title">
+                        <span class="staff-col-label"><span class="staff-col-dot" style="background:#f97316;"></span> 监工</span>
+                        <span style="font-size:12px;color:#6b7280;">${groups.supervisor.length}</span>
+                    </div>`;
+                    
+            if(groups.supervisor.length === 0) {
+                html += `<div class="empty-col"><i class="fa-solid fa-user-shield"></i><p>暂无监工</p></div>`;
+            } else {
+                groups.supervisor.forEach(a => {
+                    html += `<div class="agent-card">
+                        <div class="agent-card-left">
+                            <div style="width:40px;height:40px;border-radius:50%;background:${agentColors[a.type]};display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff;">${a.name.charAt(0)}</div>
+                            <div><div class="agent-card-name">${a.name}</div><div class="agent-card-desc">已激活</div></div>
+                        </div>
+                        <div class="agent-card-actions">
+                            <button onclick="openAgentEdit(${a.id})"><i class="fa-solid fa-sliders-h"></i></button>
+                            <button class="del"><i class="far fa-trash-alt"></i></button>
+                        </div>
+                    </div>`;
+                });
+            }
             
-            <div class="path-footer">
-              <span class="path-count">0 条路径</span>
-              <button class="path-manage"><i class="fa-solid fa-list"></i> 管理列表</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</main>
+            html += `</div>
+                <div>
+                    <div class="staff-col-title">
+                        <span class="staff-col-label"><span class="staff-col-dot" style="background:#8b5cf6;"></span> 自定义专家</span>
+                    </div>
+                    <div class="custom-expert-card" onclick="openExpertModal()">
+                        <div class="custom-expert-icon"><i class="fa-solid fa-pen-fancy"></i></div>
+                        <span>写入提示词创建专家</span>
+                    </div>
+                </div>
+            </div>`;
 
-<script>
-// ===== Agent 数据 =====
-const typeLabels={assistant:'助手',supervisor:'监工',member:'成员'};
-const agentColors={assistant:'linear-gradient(135deg,#d97706,#92400e)',supervisor:'linear-gradient(135deg,#6b7280,#374151)',member:'linear-gradient(135deg,#10b981,#047857)'};
-let agents=[{id:1,name:'助手',type:'assistant',desc:'WorkBuddy',prompt:'你是一个通用协作助手，负责协助用户完成各类工作任务。'}];
-let editingAgentId=null;
+            // Expert Center Panel
+            html += `<div class="expert-panel">
+                <div class="expert-panel-header">
+                    <div class="expert-panel-header-top">
+                        <div><h2>专家中心</h2><p>按行业分类浏览专家，召唤他们为你服务</p></div>
+                        <div class="expert-search">
+                            <i class="fa-solid fa-search"></i>
+                            <input type="text" placeholder="搜索专家职称或描述..." id="expertSearch" aria-label="搜索专家">
+                        </div>
+                    </div>
+                    <div class="expert-tabs" id="expertTabs">
+                        <button class="expert-tab active" data-cat="全部">全部</button>
+                        <button class="expert-tab" data-cat="设计">设计 <span class="tab-count">(9)</span></button>
+                        <button class="expert-tab" data-cat="工程技术">工程技术 <span class="tab-count">(23)</span></button>
+                        <button class="expert-tab" data-cat="市场营销">市场营销 <span class="tab-count">(26)</span></button>
+                        <button class="expert-tab" data-cat="内容创作">内容创作 <span class="tab-count">(15)</span></button>
+                        <button class="expert-tab" data-cat="数据分析">数据分析 <span class="tab-count">(12)</span></button>
+                        <button class="expert-tab" data-cat="产品管理">产品 <span class="tab-count">(4)</span></button>
+                    </div>
+                </div>
+                <div class="expert-panel-body">
+                    <div class="expert-grid" id="expertGrid"></div>
+                </div>
+            </div>`;
 
-function renderAgents(){
-  const area=document.getElementById('agentListArea');
-  const groups={assistant:[],supervisor:[],member:[]};
-  agents.forEach(a=>{if(groups[a.type])groups[a.type].push(a);});
+            area.innerHTML = html;
 
-  // 获取已添加的专家数量
-  const expertCount = experts.filter(e=>e.added).length;
+            // Rebind search and tabs
+            const searchInput = document.getElementById('expertSearch');
+            if(searchInput) {
+                searchInput.addEventListener('input', e => {
+                    searchQuery = e.target.value;
+                    renderExpertGrid();
+                });
+            }
+            
+            const tabs = document.getElementById('expertTabs');
+            if(tabs) {
+                tabs.addEventListener('click', e => {
+                    const t = e.target.closest('.expert-tab');
+                    if(!t) return;
+                    document.querySelectorAll('.expert-tab').forEach(x => x.classList.remove('active'));
+                    t.classList.add('active');
+                    activeCategory = t.dataset.cat;
+                    renderExpertGrid();
+                });
+            }
 
-  let html=`<div class="staff-cols">
-    <!-- 助手列 -->
-    <div>
-      <div class="staff-col-title">
-        <span class="staff-col-label"><span class="staff-col-dot" style="background:#3b82f6;"></span> 助手</span>
-        <span style="font-size:12px;color:var(--text-muted);">${groups.assistant.length}</span>
-      </div>`;
-  if(groups.assistant.length===0){
-    html+=`<div class="empty-col"><i class="fa-regular fa-face-meh"></i><p>暂无助手</p></div>`;
-  } else {
-    groups.assistant.forEach(a=>{
-      html+=`<div class="agent-card">
-        <div class="agent-card-left">
-          <div style="width:40px;height:40px;border-radius:50%;background:${agentColors[a.type]};display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff;position:relative;">
-            ${a.name.charAt(0)}
-            <div style="position:absolute;bottom:-1px;right:-1px;width:10px;height:10px;background:var(--success);border:2px solid var(--bg-deep);border-radius:50%;"></div>
-          </div>
-          <div><div class="agent-card-name">${a.name}</div><div class="agent-card-desc">${a.desc||'已激活'}</div></div>
-        </div>
-        <div class="agent-card-actions">
-          <button title="对话"><i class="far fa-comment-dots"></i></button>
-          <button title="提示词设置" onclick="openAgentEdit(${a.id})"><i class="fa-solid fa-sliders-h"></i></button>
-          <button class="del" title="移除"><i class="far fa-trash-alt"></i></button>
-        </div>
-      </div>`;
-    });
-  }
-  html+=`</div>
-    <!-- 监工列 -->
-    <div>
-      <div class="staff-col-title">
-        <span class="staff-col-label"><span class="staff-col-dot" style="background:#f97316;"></span> 监工</span>
-        <span style="font-size:12px;color:var(--text-muted);">${groups.supervisor.length}</span>
-      </div>`;
-  if(groups.supervisor.length===0){
-    html+=`<div class="empty-col"><i class="fa-solid fa-user-shield"></i><p>暂无监工</p></div>`;
-  } else {
-    groups.supervisor.forEach(a=>{
-      html+=`<div class="agent-card"><div class="agent-card-left"><div style="width:40px;height:40px;border-radius:50%;background:${agentColors[a.type]};display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff;">${a.name.charAt(0)}</div><div><div class="agent-card-name">${a.name}</div><div class="agent-card-desc">已激活</div></div></div><div class="agent-card-actions"><button onclick="openAgentEdit(${a.id})"><i class="fa-solid fa-sliders-h"></i></button><button class="del"><i class="far fa-trash-alt"></i></button></div></div>`;
-    });
-  }
-  html+=`</div>
-    <!-- 自定义专家列 -->
-    <div>
-      <div class="staff-col-title"><span class="staff-col-label"><span class="staff-col-dot" style="background:var(--expert);"></span> 自定义专家</span></div>
-      <div class="custom-expert-card" onclick="openExpertModal()">
-        <div class="custom-expert-icon"><i class="fa-solid fa-pen-fancy"></i></div>
-        <span>写入提示词创建专家</span>
-      </div>
-    </div>
-  </div>`;
+            renderExpertGrid();
+        }
 
-  // 专家中心面板
-  html+=`<div class="expert-panel">
-    <div class="expert-panel-header">
-      <div class="expert-panel-header-top">
-        <div><h2>专家中心</h2><p>按行业分类浏览专家，召唤他们为你服务</p></div>
-        <div class="expert-search"><i class="fa-solid fa-search"></i><input type="text" placeholder="搜索专家职称或描述..." id="expertSearch" aria-label="搜索专家"></div>
-      </div>
-      <div class="expert-tabs" id="expertTabs">
-        <button class="expert-tab active" data-cat="全部">全部</button>
-        <button class="expert-tab" data-cat="设计">设计 <span class="tab-count">(9)</span></button>
-        <button class="expert-tab" data-cat="工程技术">工程技术 <span class="tab-count">(23)</span></button>
-        <button class="expert-tab" data-cat="市场营销">市场营销 <span class="tab-count">(26)</span></button>
-        <button class="expert-tab" data-cat="内容创作">内容创作 <span class="tab-count">(15)</span></button>
-        <button class="expert-tab" data-cat="数据分析">数据分析 <span class="tab-count">(12)</span></button>
-        <button class="expert-tab" data-cat="产品管理">产品 <span class="tab-count">(4)</span></button>
-      </div>
-    </div>
-    <div class="expert-panel-body">
-      <div class="expert-grid" id="expertGrid"></div>
-    </div>
-  </div>`;
+        // ===== Agent Edit Modal =====
+        function openAgentEdit(id) {
+            const a = agents.find(x => x.id === id);
+            if(!a) return;
+            editingAgentId = id;
+            document.getElementById('agentEditTitle').textContent = `编辑${typeLabels[a.type]}`;
+            document.getElementById('agentEditName').value = a.name;
+            document.getElementById('agentEditType').value = a.type;
+            document.getElementById('agentEditPrompt').value = a.prompt || '';
+            document.getElementById('agentDeleteBtn').style.display = id === 1 ? 'none' : '';
+            document.getElementById('agentEditModal').classList.add('show');
+            setTimeout(() => document.getElementById('agentEditPrompt').focus(), 200);
+        }
 
-  area.innerHTML=html;
-  document.getElementById('navCountAssistant').textContent=groups.assistant.length;
-  document.getElementById('navCountSupervisor').textContent=groups.supervisor.length;
-  document.getElementById('navCountExpert').textContent=expertCount;
+        function closeAgentEdit() {
+            document.getElementById('agentEditModal').classList.remove('show');
+            editingAgentId = null;
+        }
 
-  // 重新绑定搜索和标签
-  document.getElementById('expertSearch').addEventListener('input',e=>{searchQuery=e.target.value;renderExpertGrid();});
-  document.getElementById('expertTabs').addEventListener('click',e=>{const t=e.target.closest('.expert-tab');if(!t)return;document.querySelectorAll('.expert-tab').forEach(x=>x.classList.remove('active'));t.classList.add('active');activeCategory=t.dataset.cat;renderExpertGrid();});
-}
+        document.getElementById('agentSaveBtn').addEventListener('click', () => {
+            const n = document.getElementById('agentEditName').value.trim();
+            const t = document.getElementById('agentEditType').value;
+            const p = document.getElementById('agentEditPrompt').value.trim();
+            if(!n) { showToast('error', '请输入名称'); return; }
+            if(!p) { showToast('error', '请输入提示词'); return; }
+            const a = agents.find(x => x.id === editingAgentId);
+            if(a) { a.name = n; a.type = t; a.prompt = p; }
+            closeAgentEdit();
+            renderAgents();
+            showToast('success', `「${n}」已保存`);
+        });
 
-function openAgentEdit(id){const a=agents.find(x=>x.id===id);if(!a)return;editingAgentId=id;document.getElementById('agentEditTitle').textContent=`编辑${typeLabels[a.type]}`;document.getElementById('agentEditName').value=a.name;document.getElementById('agentEditType').value=a.type;document.getElementById('agentEditPrompt').value=a.prompt||'';document.getElementById('agentDeleteBtn').style.display=id===1?'none':'';document.getElementById('agentEditModal').classList.add('show');setTimeout(()=>document.getElementById('agentEditPrompt').focus(),200);}
-function closeAgentEdit(){document.getElementById('agentEditModal').classList.remove('show');editingAgentId=null;}
-document.getElementById('agentSaveBtn').addEventListener('click',()=>{const n=document.getElementById('agentEditName').value.trim();const t=document.getElementById('agentEditType').value;const p=document.getElementById('agentEditPrompt').value.trim();if(!n){showToast('error','请输入名称');return;}if(!p){showToast('error','请输入提示词');return;}const a=agents.find(x=>x.id===editingAgentId);if(a){a.name=n;a.type=t;a.prompt=p;}closeAgentEdit();renderAgents();showToast('success',`「${n}」已保存`);});
-document.getElementById('agentDeleteBtn').addEventListener('click',()=>{const a=agents.find(x=>x.id===editingAgentId);if(!a)return;agents=agents.filter(x=>x.id!==editingAgentId);closeAgentEdit();renderAgents();showToast('success',`已移除「${a.name}」`);});
-document.getElementById('agentEditModal').addEventListener('click',e=>{if(e.target===document.getElementById('agentEditModal'))closeAgentEdit();});
+        document.getElementById('agentDeleteBtn').addEventListener('click', () => {
+            const a = agents.find(x => x.id === editingAgentId);
+            if(!a) return;
+            agents = agents.filter(x => x.id !== editingAgentId);
+            closeAgentEdit();
+            renderAgents();
+            showToast('success', `已移除「${a.name}」`);
+        });
 
-// ===== 专家数据 =====
-const avatarBgs=['bg-pink-100','bg-blue-100','bg-red-100','bg-purple-100','bg-green-100','bg-yellow-100','bg-indigo-100','bg-teal-100'];
-let experts=[
-  {id:1,name:'Kai',role:'内容创作专家',category:'内容创作',desc:'擅长创作引人入胜的多平台内容，让品牌故事触达目标受众',tags:['文案','品牌','社媒'],added:true},
-  {id:2,name:'Phoebe',role:'数据分析报告师',category:'数据分析',desc:'将复杂数据转化为清晰可执行的业务报告，让数据驱动决策',tags:['数据清洗','可视化','报告'],added:true},
-  {id:3,name:'Jude',role:'中国电商运营专家',category:'市场营销',desc:'精通天猫京东拼多多等多平台运营，从选品到爆款一站式操盘',tags:['电商','运营','选品'],added:true},
-  {id:4,name:'Maya',role:'抖音策略师',category:'市场营销',desc:'精通抖音算法和内容生态，打造短视频爆款并实现商业化变现',tags:['抖音','短视频','变现'],added:false},
-  {id:5,name:'Sam',role:'UI设计师',category:'设计',desc:'专注于用户体验与界面美学，打造直观且美观的数字产品界面',tags:['UI','UX','设计系统'],added:false},
-  {id:6,name:'Ula',role:'销售教练',category:'产品管理',desc:'提供实战销售技巧培训，帮助团队提升转化率与客单价',tags:['销售','培训','转化'],added:false},
-  {id:7,name:'Ben',role:'品牌策略师',category:'市场营销',desc:'构建品牌核心价值，制定长期品牌发展战略与视觉识别系统',tags:['品牌','策略','VI'],added:false},
-  {id:8,name:'Fay',role:'小红书运营专家',category:'内容创作',desc:'深谙小红书种草逻辑，通过笔记优化与社群互动提升品牌曝光',tags:['小红书','种草','社群'],added:false},
-];
-let nextExpertId=100,activeCategory='全部',searchQuery='';
+        document.getElementById('agentEditModal').addEventListener('click', e => {
+            if(e.target === document.getElementById('agentEditModal')) closeAgentEdit();
+        });
 
-function getFilteredExperts(){return experts.filter(e=>{const mc=activeCategory==='全部'||e.category===activeCategory;const q=searchQuery.toLowerCase();const ms=!q||e.name.toLowerCase().includes(q)||e.role.toLowerCase().includes(q)||e.desc.toLowerCase().includes(q)||e.tags.some(t=>t.toLowerCase().includes(q));return mc&&ms;});}
+        // ===== Expert Data =====
+        const avatarBgs = ['bg-pink-100', 'bg-blue-100', 'bg-red-100', 'bg-purple-100', 'bg-green-100', 'bg-yellow-100', 'bg-indigo-100', 'bg-teal-100'];
+        let experts = [
+            {id:1, name:'Kai', role:'内容创作专家', category:'内容创作', desc:'擅长创作引人入胜的多平台内容，让品牌故事触达目标受众', tags:['文案','品牌','社媒'], added:true},
+            {id:2, name:'Phoebe', role:'数据分析报告师', category:'数据分析', desc:'将复杂数据转化为清晰可执行的业务报告，让数据驱动决策', tags:['数据清洗','可视化','报告'], added:true},
+            {id:3, name:'Jude', role:'中国电商运营专家', category:'市场营销', desc:'精通天猫京东拼多多等多平台运营，从选品到爆款一站式操盘', tags:['电商','运营','选品'], added:true},
+            {id:4, name:'Maya', role:'抖音策略师', category:'市场营销', desc:'精通抖音算法和内容生态，打造短视频爆款并实现商业化变现', tags:['抖音','短视频','变现'], added:false},
+            {id:5, name:'Sam', role:'UI设计师', category:'设计', desc:'专注于用户体验与界面美学，打造直观且美观的数字产品界面', tags:['UI','UX','设计系统'], added:false},
+            {id:6, name:'Ula', role:'销售教练', category:'产品管理', desc:'提供实战销售技巧培训，帮助团队提升转化率与客单价', tags:['销售','培训','转化'], added:false},
+            {id:7, name:'Ben', role:'品牌策略师', category:'市场营销', desc:'构建品牌核心价值，制定长期品牌发展战略与视觉识别系统', tags:['品牌','策略','VI'], added:false},
+            {id:8, name:'Fay', role:'小红书运营专家', category:'内容创作', desc:'深谙小红书种草逻辑，通过笔记优化与社群互动提升品牌曝光', tags:['小红书','种草','社群'], added:false},
+        ];
+        let nextExpertId = 100, activeCategory = '全部', searchQuery = '';
 
-function renderExpertGrid(){
-  const grid=document.getElementById('expertGrid');
-  if(!grid)return;
-  const f=getFilteredExperts();
-  if(!f.length){grid.innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:48px;color:var(--text-muted);"><i class="fa-regular fa-face-meh" style="font-size:32px;display:block;margin-bottom:12px;opacity:.4;"></i><p>没有找到匹配的专家</p></div>`;return;}
-  grid.innerHTML=f.map((e,i)=>{
-    const bg=avatarBgs[e.id%avatarBgs.length];
-    return`<div class="expert-card" style="animation:fadeIn .3s ease ${i*.04}s both;">
-      <img src="https://picsum.photos/seed/expert${e.id}/112/112.jpg" alt="${e.name}" class="expert-avatar ${bg}">
-      <div style="text-align:center;flex:1;display:flex;flex-direction:column;align-items:center;">
-        <div class="expert-card-name">${e.name}</div>
-        <span class="expert-tag">${e.role}</span>
-        <p class="expert-card-desc">${e.desc}</p>
-        <button class="btn-add-expert" onclick="addExpertToProject(${e.id})">${e.added?'已添加':'添加专家'}</button>
-      </div>
-    </div>`;
-  }).join('');
-}
+        function getFilteredExperts() {
+            return experts.filter(e => {
+                const mc = activeCategory === '全部' || e.category === activeCategory;
+                const q = searchQuery.toLowerCase();
+                const ms = !q || e.name.toLowerCase().includes(q) || e.role.toLowerCase().includes(q) || e.desc.toLowerCase().includes(q) || e.tags.some(t => t.toLowerCase().includes(q));
+                return mc && ms;
+            });
+        }
 
-function addExpertToProject(id){
-  const e=experts.find(x=>x.id===id);
-  if(!e)return;
-  if(e.added){showToast('info',`「${e.name}」已在项目中`);return;}
-  e.added=true;
-  renderExpertGrid();
-  renderAgents();
-  showToast('success',`已将「${e.name}」添加到项目`);
-}
+        function renderExpertGrid() {
+            const grid = document.getElementById('expertGrid');
+            if(!grid) return;
+            const f = getFilteredExperts();
+            if(!f.length) {
+                grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:48px;color:#6b7280;">
+                    <i class="fa-regular fa-face-meh" style="font-size:32px;display:block;margin-bottom:12px;opacity:.4;"></i>
+                    <p>没有找到匹配的专家</p>
+                </div>`;
+                return;
+            }
+            grid.innerHTML = f.map((e, i) => {
+                const bg = avatarBgs[e.id % avatarBgs.length];
+                return `<div class="expert-card" style="animation:fadeIn .3s ease ${i*.04}s both;">
+                    <img src="https://picsum.photos/seed/expert${e.id}/112/112.jpg" alt="${e.name}" class="expert-avatar ${bg}">
+                    <div style="text-align:center;flex:1;display:flex;flex-direction:column;align-items:center;">
+                        <div class="expert-card-name">${e.name}</div>
+                        <span class="expert-tag">${e.role}</span>
+                        <p class="expert-card-desc">${e.desc}</p>
+                        <button class="btn-add-expert" onclick="addExpertToProject(${e.id})">${e.added ? '已添加' : '添加专家'}</button>
+                    </div>
+                </div>`;
+            }).join('');
+        }
 
-function openExpertModal(){document.getElementById('addExpertModal').classList.add('show');setTimeout(()=>document.getElementById('expertName').focus(),200);}
-function closeExpertModal(){document.getElementById('addExpertModal').classList.remove('show');document.getElementById('expertName').value='';document.getElementById('expertRole').value='';document.getElementById('expertPrompt').value='';}
-document.getElementById('addExpertModal').addEventListener('click',e=>{if(e.target===document.getElementById('addExpertModal'))closeExpertModal();});
-document.getElementById('confirmAddExpert').addEventListener('click',()=>{
-  const n=document.getElementById('expertName').value.trim();const r=document.getElementById('expertRole').value.trim();const cat=document.getElementById('expertCategory').value;const pr=document.getElementById('expertPrompt').value.trim();
-  if(!n){showToast('error','请输入专家名称');return;}if(!r){showToast('error','请输入职业描述');return;}if(!pr){showToast('error','请输入专家提示词');return;}
-  experts.unshift({id:nextExpertId++,name:n,role:r,category:cat,desc:pr.slice(0,60)+(pr.length>60?'...':''),tags:[cat,'自定义'],added:true});
-  closeExpertModal();activeCategory='全部';document.querySelectorAll('.expert-tab').forEach(b=>b.classList.remove('active'));document.querySelector('.expert-tab[data-cat="全部"]').classList.add('active');searchQuery='';document.getElementById('expertSearch').value='';
-  renderExpertGrid();renderAgents();showToast('success',`专家「${n}」已创建并添加`);
-});
+        function addExpertToProject(id) {
+            const e = experts.find(x => x.id === id);
+            if(!e) return;
+            if(e.added) { showToast('info', `「${e.name}」已在项目中`); return; }
+            e.added = true;
+            renderExpertGrid();
+            renderAgents();
+            showToast('success', `已将「${e.name}」添加到项目`);
+        }
 
-renderAgents();renderExpertGrid();
+        // ===== Expert Modal =====
+        function openExpertModal() {
+            document.getElementById('addExpertModal').classList.add('show');
+            setTimeout(() => document.getElementById('expertName').focus(), 200);
+        }
 
-// ===== 页面切换 =====
-const railBtns=document.querySelectorAll('.rail-btn[data-page]');const pages=document.querySelectorAll('.page');const navTrees=document.querySelectorAll('.nav-tree');const pageNavMap={chat:'navChat',agents:'navAgents',skills:'navSkills',settings:'navSettings'};
-railBtns.forEach(btn=>{btn.addEventListener('click',()=>{const t=btn.dataset.page;railBtns.forEach(b=>b.classList.remove('active'));btn.classList.add('active');pages.forEach(p=>p.classList.remove('active'));document.getElementById('page'+t.charAt(0).toUpperCase()+t.slice(1)).classList.add('active');navTrees.forEach(n=>n.style.display='none');document.getElementById(pageNavMap[t]).style.display='block';});});
+        function closeExpertModal() {
+            document.getElementById('addExpertModal').classList.remove('show');
+            document.getElementById('expertName').value = '';
+            document.getElementById('expertRole').value = '';
+            document.getElementById('expertPrompt').value = '';
+        }
 
-// ===== 会话切换 =====
-const convData={assistant:{name:'助手',color:'linear-gradient(135deg,#d97706,#92400e)',initial:'助',online:true,placeholder:'发送消息给 助手...'},claudia:{name:'Claudia',color:'linear-gradient(135deg,#6366f1,#4338ca)',initial:'C',online:false,placeholder:'发送消息给 Claudia...'}};
-document.querySelectorAll('.conv-item').forEach(item=>{item.addEventListener('click',()=>{const d=convData[item.dataset.conv];document.querySelectorAll('.conv-item').forEach(c=>c.classList.remove('active'));item.classList.add('active');document.querySelector('.chat-header-avatar').style.background=d.color;document.querySelector('.chat-header-avatar').textContent=d.initial;document.querySelector('.chat-header-name').textContent=d.name;const s=document.querySelector('.chat-header-status');s.innerHTML=d.online?'<span class="dot"></span> 在线':'离线';s.style.color=d.online?'var(--success)':'var(--text-muted)';document.getElementById('chatInput').placeholder=d.placeholder;const u=item.querySelector('.conv-unread');if(u)u.style.display='none';});});
+        document.getElementById('addExpertModal').addEventListener('click', e => {
+            if(e.target === document.getElementById('addExpertModal')) closeExpertModal();
+        });
 
-// ===== 发送消息 =====
-const chatMessages=document.getElementById('chatMessages');const chatInput=document.getElementById('chatInput');
-function sendMessage(){const text=chatInput.value.trim();if(!text)return;const t=chatMessages.querySelector('.typing-indicator');if(t)t.remove();const row=document.createElement('div');row.className='msg-row self';row.style.animation='fadeIn .3s ease';row.innerHTML=`<div class="msg-avatar" style="background:linear-gradient(135deg,#f0a030,#e06020);">我</div><div class="msg-body"><div class="msg-header"><span class="msg-time">刚刚</span><span class="msg-author" style="color:#f0a030;">我</span></div><div class="msg-bubble">${escapeHtml(text)}</div></div>`;chatMessages.appendChild(row);chatInput.value='';chatMessages.scrollTop=chatMessages.scrollHeight;hideJumpButton();setTimeout(()=>{const td=document.createElement('div');td.className='typing-indicator';const d={name:'WorkBuddy',color:'linear-gradient(135deg,#d97706,#92400e)',initial:'助'};td.innerHTML=`<div class="msg-avatar" style="background:${d.color};">${d.initial}</div><div class="typing-dots"><span></span><span></span><span></span></div>`;chatMessages.appendChild(td);chatMessages.scrollTop=chatMessages.scrollHeight;setTimeout(()=>{td.remove();const replies=['收到，我来处理一下。','好的，让我看看。','明白，我这就开始分析。'];const r=document.createElement('div');r.className='msg-row other';r.style.animation='fadeIn .3s ease';const now=new Date();r.innerHTML=`<div class="msg-avatar" style="background:${d.color};">${d.initial}</div><div class="msg-body"><div class="msg-header"><span class="msg-author" style="color:#d97706;">${d.name}</span><span class="msg-time">${now.getHours().toString().padStart(2,'0')}:${now.getMinutes().toString().padStart(2,'0')}</span></div><div class="msg-bubble">${replies[Math.floor(Math.random()*replies.length)]}</div></div>`;chatMessages.appendChild(r);chatMessages.scrollTop=chatMessages.scrollHeight;},1500+Math.random()*1000);},600);}
-document.getElementById('sendBtn').addEventListener('click',sendMessage);
-chatInput.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMessage();}});
-function escapeHtml(t){const d=document.createElement('div');d.textContent=t;return d.innerHTML;}
+        document.getElementById('confirmAddExpert').addEventListener('click', () => {
+            const n = document.getElementById('expertName').value.trim();
+            const r = document.getElementById('expertRole').value.trim();
+            const cat = document.getElementById('expertCategory').value;
+            const pr = document.getElementById('expertPrompt').value.trim();
+            if(!n) { showToast('error', '请输入专家名称'); return; }
+            if(!r) { showToast('error', '请输入职业描述'); return; }
+            if(!pr) { showToast('error', '请输入专家提示词'); return; }
+            experts.unshift({
+                id: nextExpertId++,
+                name: n,
+                role: r,
+                category: cat,
+                desc: pr.slice(0, 60) + (pr.length > 60 ? '...' : ''),
+                tags: [cat, '自定义'],
+                added: true
+            });
+            closeExpertModal();
+            activeCategory = '全部';
+            document.querySelectorAll('.expert-tab').forEach(b => b.classList.remove('active'));
+            document.querySelector('.expert-tab[data-cat="全部"]').classList.add('active');
+            searchQuery = '';
+            const searchInput = document.getElementById('expertSearch');
+            if(searchInput) searchInput.value = '';
+            renderExpertGrid();
+            renderAgents();
+            showToast('success', `专家「${n}」已创建并添加`);
+        });
 
-// 跳到最新消息
-function hideJumpButton(){const btn=document.querySelector('.jump-to-latest');if(btn)btn.style.display='none';}
-function showJumpButton(){const btn=document.querySelector('.jump-to-latest');if(btn)btn.style.display='flex';}
-document.querySelectorAll('.jump-to-latest button').forEach(btn=>{btn.addEventListener('click',()=>{chatMessages.scrollTop=chatMessages.scrollHeight;hideJumpButton();});});
-chatMessages.addEventListener('scroll',()=>{const isNearBottom=chatMessages.scrollHeight-chatMessages.scrollTop-chatMessages.clientHeight<100;const btn=document.querySelector('.jump-to-latest');if(btn){btn.style.display=isNearBottom?'none':'flex';}});
+        // ===== Toast =====
+        function showToast(type, message) {
+            const c = document.getElementById('toastContainer');
+            const t = document.createElement('div');
+            t.className = `toast ${type}`;
+            const icons = {success: 'fa-solid fa-circle-check', error: 'fa-solid fa-circle-xmark', info: 'fa-solid fa-circle-info'};
+            t.innerHTML = `<i class="${icons[type]}"></i><span>${message}</span>`;
+            c.appendChild(t);
+            setTimeout(() => {
+                t.style.animation = 'toastOut .3s ease forwards';
+                setTimeout(() => t.remove(), 300);
+            }, 2500);
+        }
 
-// ===== 其他交互 =====
-document.querySelectorAll('.skill-tab').forEach(tab=>{tab.addEventListener('click',()=>{document.querySelectorAll('.skill-tab').forEach(t=>t.classList.remove('active'));tab.classList.add('active');});});
-document.querySelectorAll('.skill-filter-btn').forEach(btn=>{btn.addEventListener('click',()=>{document.querySelectorAll('.skill-filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');});});
-document.querySelectorAll('.page-btn:not(:disabled)').forEach(btn=>{btn.addEventListener('click',()=>{if(btn.disabled)return;document.querySelectorAll('.page-btn').forEach(b=>b.classList.remove('active'));if(!btn.querySelector('i'))btn.classList.add('active');});});
-const sni=document.querySelectorAll('.settings-nav-item[data-stab]');const st={account:document.getElementById('settingsAccount'),appearance:document.getElementById('settingsAppearance'),cli:document.getElementById('settingsCli')};
-sni.forEach(i=>{i.addEventListener('click',()=>{sni.forEach(x=>x.classList.remove('active'));i.classList.add('active');Object.values(st).forEach(x=>x.style.display='none');st[i.dataset.stab].style.display='block';});});
-document.querySelectorAll('#navSettings .nav-item[data-settings]').forEach(i=>{i.addEventListener('click',()=>{document.querySelectorAll('#navSettings .nav-item[data-settings]').forEach(x=>x.classList.remove('active'));i.classList.add('active');sni.forEach(x=>x.classList.remove('active'));const t=document.querySelector(`.settings-nav-item[data-stab="${i.dataset.settings}"]`);if(t)t.classList.add('active');Object.values(st).forEach(x=>x.style.display='none');if(st[i.dataset.settings])st[i.dataset.settings].style.display='block';});});
-document.querySelectorAll('.theme-option').forEach(o=>{o.addEventListener('click',()=>{document.querySelectorAll('.theme-option').forEach(x=>x.classList.remove('active'));o.classList.add('active');showToast('success',`已切换到「${o.querySelector('span').textContent}」主题`);});});
+        // ===== Skill Interactions =====
+        document.querySelectorAll('.skill-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.skill-tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+            });
+        });
 
-function showToast(type,message){const c=document.getElementById('toastContainer');const t=document.createElement('div');t.className=`toast ${type}`;const icons={success:'fa-solid fa-circle-check',error:'fa-solid fa-circle-xmark',info:'fa-solid fa-circle-info'};t.innerHTML=`<i class="${icons[type]}"></i><span>${message}</span>`;c.appendChild(t);setTimeout(()=>{t.style.animation='toastOut .3s ease forwards';setTimeout(()=>t.remove(),300);},2500);}
-chatMessages.scrollTop=chatMessages.scrollHeight;
+        document.querySelectorAll('.skill-filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.skill-filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            });
+        });
 
-// ===== CLI配置交互 =====
-document.querySelectorAll('.cli-card:not(.cli-add-card)').forEach(card=>{
-  card.addEventListener('click',e=>{
-    if(e.target.closest('.menu-btn'))return;
-    document.querySelectorAll('.cli-card').forEach(c=>{
-      c.classList.remove('active');
-      const check=c.querySelector('.check-icon');
-      if(check)check.remove();
-    });
-    card.classList.add('active');
-    const check=document.createElement('i');
-    check.className='fa-solid fa-circle-check check-icon';
-    card.appendChild(check);
-    const name=card.querySelector('.cli-name')?.textContent||'CLI';
-    showToast('success',`已选择「${name}」作为默认CLI`);
-  });
-});
-document.querySelectorAll('.shell-card:not(.custom)').forEach(card=>{
-  card.addEventListener('click',e=>{
-    if(e.target.closest('.shell-menu'))return;
-    document.querySelectorAll('.shell-card').forEach(c=>{
-      c.classList.remove('active');
-      const check=c.querySelector('.shell-check');
-      if(check)check.remove();
-    });
-    card.classList.add('active');
-    const check=document.createElement('i');
-    check.className='fa-solid fa-circle-check shell-check';
-    check.style.position='absolute';
-    check.style.right='32px';
-    card.appendChild(check);
-    const name=card.querySelector('.shell-name')?.textContent||'终端';
-    showToast('success',`已选择「${name}」作为默认终端`);
-  });
-});
-document.querySelectorAll('.cli-add-card').forEach(card=>{
-  card.addEventListener('click',()=>{
-    showToast('info','打开自定义CLI配置对话框');
-  });
-});
-document.querySelectorAll('.shell-card.custom').forEach(card=>{
-  card.addEventListener('click',()=>{
-    showToast('info','打开自定义终端配置对话框');
-  });
-});
-document.querySelectorAll('.path-btn.add').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    const input=btn.parentElement.querySelector('.path-input');
-    if(input&&input.value.trim()){
-      showToast('success',`已添加路径: ${input.value.trim().substring(0,30)}...`);
-      input.value='';
-    }else{
-      showToast('error','请输入有效的路径');
-    }
-  });
-});
-document.querySelectorAll('.refresh-btn').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    btn.querySelector('i').style.animation='fa-spin .5s linear';
-    setTimeout(()=>{btn.querySelector('i').style.animation='';showToast('success','终端列表已刷新');},500);
-  });
-});
+        document.querySelectorAll('.page-btn:not(:disabled)').forEach(btn => {
+            btn.addEventListener('click', () => {
+                if(btn.disabled) return;
+                document.querySelectorAll('.page-btn').forEach(b => b.classList.remove('active'));
+                if(!btn.querySelector('i')) btn.classList.add('active');
+            });
+        });
 
-// 窗口控制按钮
-document.querySelectorAll('.window-titlebar .window-controls i').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    const action=btn.classList.contains('fa-minus')?'最小化':btn.classList.contains('fa-square')?'最大化':'关闭';
-    showToast('info',`窗口操作: ${action}`);
-  });
-});
+        // ===== Theme Options =====
+        document.querySelectorAll('.theme-option').forEach(o => {
+            o.addEventListener('click', () => {
+                document.querySelectorAll('.theme-option').forEach(x => x.classList.remove('active'));
+                o.classList.add('active');
+                showToast('success', `已切换到「${o.querySelector('span').textContent}」主题`);
+            });
+        });
 
-// 频道项hover显示菜单
-document.querySelectorAll('.channel-item').forEach(item=>{
-  item.addEventListener('mouseenter',()=>{const menu=item.querySelector('.fa-ellipsis-vertical');if(menu)menu.style.opacity='1';});
-  item.addEventListener('mouseleave',()=>{const menu=item.querySelector('.fa-ellipsis-vertical');if(menu)menu.style.opacity='0';});
-});
-</script>
-</div><!-- 关闭 app-layout -->
+        // ===== CLI Interactions =====
+        document.querySelectorAll('.cli-card:not(.cli-add-card)').forEach(card => {
+            card.addEventListener('click', e => {
+                if(e.target.closest('.menu-btn')) return;
+                document.querySelectorAll('.cli-card').forEach(c => {
+                    c.classList.remove('active');
+                    const check = c.querySelector('.check-icon');
+                    if(check) check.remove();
+                });
+                card.classList.add('active');
+                const check = document.createElement('i');
+                check.className = 'fa-solid fa-circle-check check-icon';
+                card.appendChild(check);
+                const name = card.querySelector('.cli-name')?.textContent || 'CLI';
+                showToast('success', `已选择「${name}」作为默认CLI`);
+            });
+        });
+
+        document.querySelectorAll('.shell-card:not(.custom)').forEach(card => {
+            card.addEventListener('click', e => {
+                if(e.target.closest('.shell-menu')) return;
+                document.querySelectorAll('.shell-card').forEach(c => {
+                    c.classList.remove('active');
+                    const check = c.querySelector('.shell-check');
+                    if(check) check.remove();
+                });
+                card.classList.add('active');
+                const check = document.createElement('i');
+                check.className = 'fa-solid fa-circle-check shell-check';
+                check.style.position = 'absolute';
+                check.style.right = '32px';
+                card.appendChild(check);
+                const name = card.querySelector('.shell-name')?.textContent || '终端';
+                showToast('success', `已选择「${name}」作为默认终端`);
+            });
+        });
+
+        document.querySelectorAll('.cli-add-card').forEach(card => {
+            card.addEventListener('click', () => {
+                showToast('info', '打开自定义CLI配置对话框');
+            });
+        });
+
+        document.querySelectorAll('.shell-card.custom').forEach(card => {
+            card.addEventListener('click', () => {
+                showToast('info', '打开自定义终端配置对话框');
+            });
+        });
+
+        document.querySelectorAll('.path-btn.add').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const input = btn.parentElement.querySelector('.path-input');
+                if(input && input.value.trim()) {
+                    showToast('success', `已添加路径: ${input.value.trim().substring(0, 30)}...`);
+                    input.value = '';
+                } else {
+                    showToast('error', '请输入有效的路径');
+                }
+            });
+        });
+
+        document.querySelectorAll('.refresh-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                btn.querySelector('i').style.animation = 'fa-spin .5s linear';
+                setTimeout(() => {
+                    btn.querySelector('i').style.animation = '';
+                    showToast('success', '终端列表已刷新');
+                }, 500);
+            });
+        });
+
+        // Initialize with Chat view
+        switchView('chat');
+    </script>
 </body>
 </html>
