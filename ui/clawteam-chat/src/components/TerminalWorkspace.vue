@@ -41,12 +41,12 @@ const handleSelectTerminal = (id: string) => {
           @click="handleSelectTerminal(session.id)"
         >
           <span class="truncate flex-1">{{ session.terminalType }}</span>
-          <button
-            class="hover:bg-gray-700 rounded p-0.5"
+          <span
+            class="hover:bg-gray-700 rounded p-0.5 cursor-pointer"
             @click.stop="handleCloseTerminal(session.id)"
           >
             <X class="h-3 w-3" />
-          </button>
+          </span>
         </button>
       </div>
       

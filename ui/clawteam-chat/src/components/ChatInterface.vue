@@ -19,7 +19,7 @@ const showSkillStore = ref(false)
 const showAuditPanel = ref(false)
 const channelConfigOpen = ref(false)
 
-const handleSend = (content: string, skillId?: string) => {
+const handleSend = (content: string) => {
   const sessionId = currentSessionId.value || 'default'
 
   chatStore.addMessage({
@@ -31,7 +31,6 @@ const handleSend = (content: string, skillId?: string) => {
     content,
     status: 'pending',
     createdAt: Date.now(),
-    metadata: skillId ? { skillId } : undefined,
   })
 }
 </script>
