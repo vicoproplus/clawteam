@@ -254,6 +254,8 @@ Step 9: 助手继续下一阶段任务
 
 ## 3. 目录结构
 
+> **更新 (2026-03-30)**：已删除 10 个工具目录，仅保留 `tools/execute_command/`
+
 ```
 clawteam/
 ├── gateway/              # 复用 MoonClaw
@@ -267,14 +269,22 @@ clawteam/
 │   ├── executor.mbt      # 执行生命周期
 │   └── system_types.mbt  # 数据模型
 │
-├── channel/              # 复用 MoonClaw
+├── channel/              # 复用 MoonClaw - 渠道抽象
 │   ├── types.mbt         # Channel trait 定义
 │   ├── extension.mbt     # ChannelExtension trait
 │   └── extension_registry.mbt # 扩展注册
 │
-├── channels/             # 复用 MoonClaw
+├── channels/             # 复用 MoonClaw - 渠道实现
 │   ├── feishu/           # 飞书渠道实现
-│   └── weixin/           # 微信渠道实现 (后续)
+│   └── weixin/           # 微信渠道实现
+│
+├── tools/                # 【精简】仅保留 CLI 执行
+│   ├── execute_command/  # Bash CLI 执行工具（唯一保留）
+│   └── README.mbt.md     # 工具文档
+│
+├── tool/                 # 工具抽象层（保留最小抽象）
+│   ├── tool.mbt          # Tool trait 定义
+│   └── jsonschema.mbt    # JSON Schema
 │
 ├── scheduler/            # 【新增】核心调度层
 │   ├── mod.mbt           # 模块入口
@@ -331,6 +341,22 @@ clawteam/
 │   └── gateway/          # gateway 命令入口
 │
 └── clawteam.mbt          # 主入口
+```
+
+### 已删除的工具目录
+
+```
+tools/
+├── read_file/            # ❌ 已删除
+├── read_multiple_files/  # ❌ 已删除
+├── write_to_file/        # ❌ 已删除
+├── replace_in_file/      # ❌ 已删除
+├── apply_patch/          # ❌ 已删除
+├── list_files/           # ❌ 已删除
+├── search_files/         # ❌ 已删除
+├── todo/                 # ❌ 已删除
+├── list_jobs/            # ❌ 已删除
+└── wait_job/             # ❌ 已删除
 ```
 
 ---
@@ -959,18 +985,33 @@ Agent 配置弹窗:
 
 ## 8. 复用策略
 
-### 8.1 完全复用（无修改）
+> **重要更新 (2026-03-30)**：经过简化重构，ClawTeam 现在是一个**纯调度层工具**，仅保留 Bash CLI 调用和渠道通讯功能。所有文件操作、任务管理等工具已删除，相关业务逻辑由外部 CLI 工具负责。
+
+### 8.1 从 MoonClaw 迁移的功能
+
+#### 保留的工具（仅 1 个）
+
+| 模块 | 来源 | 说明 |
+|------|------|------|
+| `tools/execute_command/` | MoonClaw | Bash CLI 执行工具 - 核心调度能力 |
+
+#### 保留的渠道通讯
+
+| 模块 | 来源 | 说明 |
+|------|------|------|
+| `channel/` | MoonClaw | 渠道抽象层 - Channel trait、ChannelExtension、注册管理 |
+| `channels/feishu/` | MoonClaw | 飞书渠道实现 - 消息收发、WebSocket、表情反应 |
+| `channels/weixin/` | MoonClaw | 微信公众号渠道实现 - 消息收发、签名验证 |
+
+#### 完全复用的基础模块
 
 | 模块 | 来源 | 说明 |
 |------|------|------|
 | `gateway/` | MoonClaw | HTTP/RPC 服务完整复用 |
 | `job/` | MoonClaw | 任务调度与工作流完整复用 |
-| `channel/` | MoonClaw | 渠道抽象完整复用 |
-| `channels/feishu/` | MoonClaw | 飞书实现完整复用 |
-| `channels/weixin/` | MoonClaw | 微信实现完整复用 |
 | `event/` | MoonClaw | 事件系统完整复用 |
 | `clock/` | MoonClaw | 时间工具完整复用 |
-| `internal/` | MoonClaw | 工具库完整复用 |
+| `internal/` | MoonClaw | 工具库完整复用（httpx、spawn、pino、fsx、broadcast、uuid 等） |
 | `cmd/` | MoonClaw | CLI 入口完整复用 |
 
 ### 8.2 精简复用（删除部分代码）
@@ -995,11 +1036,35 @@ Agent 配置弹窗:
 
 ## 9. 删除模块清单
 
+> **重要更新 (2026-03-30)**：已完成工具系统简化，删除了所有文件操作和任务管理工具。
+
+### 9.1 已删除的工具（2026-03-30）
+
+| 工具 | 原路径 | 说明 |
+|------|--------|------|
+| `read_file` | `tools/read_file/` | 文件读取 - 由外部 CLI 负责 |
+| `read_multiple_files` | `tools/read_multiple_files/` | 批量文件读取 - 由外部 CLI 负责 |
+| `write_to_file` | `tools/write_to_file/` | 文件写入 - 由外部 CLI 负责 |
+| `replace_in_file` | `tools/replace_in_file/` | 文件搜索替换 - 由外部 CLI 负责 |
+| `apply_patch` | `tools/apply_patch/` | 补丁应用 - 由外部 CLI 负责 |
+| `list_files` | `tools/list_files/` | 目录列表 - 由外部 CLI 负责 |
+| `search_files` | `tools/search_files/` | 文件搜索 - 由外部 CLI 负责 |
+| `todo` | `tools/todo/` | 任务管理 - 由外部 CLI 负责 |
+| `list_jobs` | `tools/list_jobs/` | 后台任务列表 - 由外部 CLI 负责 |
+| `wait_job` | `tools/wait_job/` | 后台任务等待 - 由外部 CLI 负责 |
+
+### 9.2 保留的工具
+
+| 工具 | 原路径 | 说明 |
+|------|--------|------|
+| `execute_command` | `tools/execute_command/` | Bash CLI 执行 - 核心调度能力 |
+
+### 9.3 其他删除/废弃的模块
+
 | 模块 | 原因 |
 |------|------|
 | `agent/` | Agent 运行时 - 业务逻辑由外部 CLI 负责 |
-| `tool/` | 工具抽象 - 业务逻辑由外部 CLI 负责 |
-| `tools/` | 工具实现 - 业务逻辑由外部 CLI 负责 |
+| `tool/` | 工具抽象 - 仅保留 execute_command 所需的最小抽象 |
 | `workspace/` | 工作空间管理 - 业务逻辑由外部 CLI 负责 |
 | `security/` | 安全运行时 - 业务逻辑由外部 CLI 负责 |
 | `file/` | 文件管理器 - 业务逻辑由外部 CLI 负责 |
@@ -1007,6 +1072,14 @@ Agent 配置弹窗:
 | `plugin/` | 插件运行时 - 暂不需要 |
 | `skills/` | 技能加载器 - 用新 Skill 系统替代 |
 | `onboarding/` | 用户引导 - 标记废弃 |
+
+### 9.4 设计原则
+
+ClawTeam 作为纯调度层，遵循以下原则：
+
+1. **只调度，不执行** - 所有业务逻辑由外部 CLI 工具负责
+2. **只通讯，不处理** - 渠道层仅负责消息路由，不处理业务
+3. **只记录，不决策** - 审计日志记录执行过程，决策由外部 CLI 负责
 
 ---
 
@@ -1583,3 +1656,4 @@ clawteam gateway --daemon
 | 1.0.2 | 2026-03-26 | 将 CLI 工具与 Agent 角色解耦，支持每个角色选择任意 CLI 工具 |
 | 1.0.3 | 2026-03-26 | 调整调用链设计：助手 prompt 包含所有技能，员工 prompt 不含 skill |
 | 1.0.4 | 2026-03-26 | 重新定义角色职责：助手=协调器不思考，员工=执行者负责思考 |
+| **1.1.0** | **2026-03-30** | **后端简化：删除 10 个工具目录，仅保留 execute_command；保留渠道通讯（Feishu/Weixin）；明确纯调度层定位** |
