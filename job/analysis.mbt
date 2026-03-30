@@ -161,20 +161,7 @@ fn requested_model_name_or_none(name : String) -> String? {
 
 ///|
 fn setup_analysis_agent(agent : @agent.Agent, cwd : String) -> Unit {
-  let file_manager = @file.manager(cwd~)
-  let todo_list = @todo.new(uuid=agent.uuid, cwd=agent.cwd)
-  agent.add_tools([
-    @execute_command.new(cwd).to_agent_tool(),
-    @list_files.new(file_manager).to_agent_tool(),
-    @read_file.new(file_manager).to_agent_tool(),
-    @todo.new_tool(todo_list).to_agent_tool(),
-    @search_files.new(agent.cwd).to_agent_tool(),
-  ])
-  if agent.model.supports_apply_patch {
-    agent.add_tool(@apply_patch.new(agent.cwd))
-  } else {
-    agent.add_tool(@write_to_file.new(agent.cwd))
-  }
+  agent.add_tools([@execute_command.new(cwd).to_agent_tool()])
 }
 
 ///|

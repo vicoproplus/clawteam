@@ -1,6 +1,0 @@
-import {
-  "clawteam/clawteam/tool",
-  "clawteam/clawteam/internal/fsx",
-  "clawteam/clawteam/internal/pathx",
-  "moonbitlang/core/json",
-}

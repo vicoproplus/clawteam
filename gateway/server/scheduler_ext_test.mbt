@@ -17,10 +17,10 @@ test "scheduler extension can be created" {
     },
   }
   let ext = SchedulerExtension::new(config)
-  
+
   // 验证配置版本
   inspect(ext.config.version, content="1.0.0")
-  
+
   // 验证审计日志状态
   inspect(ext.audit.enabled, content="false")
 }
@@ -42,7 +42,7 @@ test "scheduler extension list_agents returns empty array when no agents" {
     },
   }
   let ext = SchedulerExtension::new(config)
-  
+
   let agents = ext.list_agents()
   inspect(agents.length(), content="0")
 }
@@ -91,7 +91,7 @@ test "scheduler extension list_agents filters disabled agents" {
     },
   }
   let ext = SchedulerExtension::new(config)
-  
+
   let agents = ext.list_agents()
   inspect(agents.length(), content="1")
   inspect(agents[0].id, content="agent-1")
@@ -141,7 +141,7 @@ test "scheduler extension get_default_assistant finds assistant" {
     },
   }
   let ext = SchedulerExtension::new(config)
-  
+
   let result = ext.get_default_assistant()
   match result {
     Ok(agent) => {
@@ -183,7 +183,7 @@ test "scheduler extension get_default_assistant returns error when no assistant"
     },
   }
   let ext = SchedulerExtension::new(config)
-  
+
   let result = ext.get_default_assistant()
   match result {
     Ok(_) => inspect("ok", content="should not find assistant")
@@ -233,7 +233,7 @@ test "scheduler extension list_skills returns all skills" {
     },
   }
   let ext = SchedulerExtension::new(config)
-  
+
   let skills = ext.list_skills()
   inspect(skills.length(), content="1")
   inspect(skills[0].id, content="skill-1")
@@ -257,10 +257,10 @@ test "scheduler extension emit_status_changed works" {
     },
   }
   let ext = SchedulerExtension::new(config)
-  
+
   // 发送状态变更事件（不应该崩溃）
   ext.emit_status_changed("agent", "agent-1", "online", "working")
-  
+
   // 事件应该被放入队列
   inspect("success", content="success")
 }

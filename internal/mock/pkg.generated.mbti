@@ -1,14 +1,14 @@
 // Generated using `moon info`, DON'T EDIT IT
-package "moonbitlang/moonclaw/internal/mock"
+package "clawteam/clawteam/internal/mock"
 
 import {
+  "clawteam/clawteam/clock",
+  "clawteam/clawteam/internal/pino",
+  "clawteam/clawteam/internal/uuid",
+  "clawteam/clawteam/model",
   "moonbitlang/async",
   "moonbitlang/core/random",
   "moonbitlang/core/test",
-  "moonbitlang/moonclaw/clock",
-  "moonbitlang/moonclaw/internal/pino",
-  "moonbitlang/moonclaw/internal/uuid",
-  "moonbitlang/moonclaw/model",
 }
 
 // Values

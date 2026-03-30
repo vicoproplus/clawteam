@@ -1,23 +1,29 @@
 // Generated using `moon info`, DON'T EDIT IT
-package "moonbitlang/moonclaw/gateway/server"
+package "clawteam/clawteam/gateway/server"
 
 import {
+  "clawteam/clawteam/acp",
+  "clawteam/clawteam/channel",
+  "clawteam/clawteam/clock",
+  "clawteam/clawteam/config",
+  "clawteam/clawteam/errors",
+  "clawteam/clawteam/event",
+  "clawteam/clawteam/gateway/protocol",
+  "clawteam/clawteam/internal/broadcast",
+  "clawteam/clawteam/internal/httpx",
+  "clawteam/clawteam/internal/pino",
+  "clawteam/clawteam/internal/spawn",
+  "clawteam/clawteam/internal/uuid",
+  "clawteam/clawteam/job",
+  "clawteam/clawteam/logger",
+  "clawteam/clawteam/model",
+  "clawteam/clawteam/plugin",
+  "clawteam/clawteam/scheduler",
+  "clawteam/clawteam/security",
+  "clawteam/clawteam/types",
+  "clawteam/clawteam/workspace",
   "moonbitlang/core/json",
-  "moonbitlang/moonclaw/acp",
-  "moonbitlang/moonclaw/channel",
-  "moonbitlang/moonclaw/clock",
-  "moonbitlang/moonclaw/event",
-  "moonbitlang/moonclaw/gateway/protocol",
-  "moonbitlang/moonclaw/internal/broadcast",
-  "moonbitlang/moonclaw/internal/httpx",
-  "moonbitlang/moonclaw/internal/pino",
-  "moonbitlang/moonclaw/internal/spawn",
-  "moonbitlang/moonclaw/internal/uuid",
-  "moonbitlang/moonclaw/job",
-  "moonbitlang/moonclaw/model",
-  "moonbitlang/moonclaw/plugin",
-  "moonbitlang/moonclaw/security",
-  "moonbitlang/moonclaw/workspace",
+  "moonbitlang/core/set",
 }
 
 // Values
@@ -41,6 +47,22 @@ pub fn current_time_ms() -> Int
 
 pub fn fail_stage_params(stage_name~ : String, error~ : String) -> FailStageParams
 
+pub fn handle_agent_default(SchedulerExtension) -> Result[Json, @errors.ClawTeamError]
+
+pub fn handle_agent_get(SchedulerExtension, String) -> Result[Json, @errors.ClawTeamError]
+
+pub fn handle_agents_list(SchedulerExtension) -> Json
+
+pub fn handle_events_subscribe(WsEventBroadcaster, String, Array[String]) -> Json
+
+pub fn handle_events_unsubscribe(WsEventBroadcaster, String, Array[String]) -> Json
+
+pub fn handle_message_send(SchedulerExtension, String, String) -> Result[Json, @errors.ClawTeamError]
+
+pub fn handle_skills_list(SchedulerExtension) -> Json
+
+pub fn handle_workers_list(SchedulerExtension, String) -> Json
+
 pub fn mailbox_manager(config? : AgentMailboxConfig) -> MailboxManager
 
 pub fn pipeline(pipeline_id~ : String, name~ : String, stages~ : Array[PipelineStage], metadata? : Map[String, Json]) -> Pipeline
@@ -50,6 +72,10 @@ pub fn pipeline_manager(uuid~ : @uuid.Generator) -> PipelineManager
 pub fn pipeline_stage(name~ : String, message~ : String, model? : String?, cwd? : String?, input_template? : String?) -> PipelineStage
 
 pub fn pipeline_stage_params(name~ : String, message~ : String, model? : String, cwd? : String, input_template? : String) -> PipelineStageParams
+
+pub fn rpc_error(String, String, String) -> Json
+
+pub fn rpc_success(String, Json) -> Json
 
 pub fn sub_task(task_id~ : String, message~ : String, model? : String, cwd? : String) -> SubTask
 
@@ -97,6 +123,25 @@ pub struct AdvanceStageParams {
 }
 pub impl ToJson for AdvanceStageParams
 pub impl @json.FromJson for AdvanceStageParams
+
+pub struct AgentDispatchedEvent {
+  session_id : String
+  agent_id : String
+  target_id : String?
+  timestamp : Int
+}
+
+pub struct AgentInfo {
+  id : String
+  name : String
+  role : @types.AgentRole
+  cli_tool : String
+  enabled : Bool
+  skills : Array[String]
+}
+pub fn AgentInfo::to_json(Self) -> Json
+pub impl Show for AgentInfo
+pub impl ToJson for AgentInfo
 
 pub struct AgentMailbox {
   agent_id : String
@@ -327,6 +372,13 @@ pub fn MailboxManager::remove(Self, String) -> AgentMailbox?
 pub fn MailboxManager::size(Self) -> Int
 pub fn MailboxManager::to_json(Self) -> Json
 
+pub struct MessageReceivedEvent {
+  session_id : String
+  channel : String?
+  content_preview : String
+  timestamp : Int
+}
+
 type PersistedChannelAccount
 pub impl Show for PersistedChannelAccount
 pub impl ToJson for PersistedChannelAccount
@@ -431,6 +483,29 @@ pub impl Show for PipelineStatus
 pub impl ToJson for PipelineStatus
 pub impl @json.FromJson for PipelineStatus
 
+pub enum SchedulerEvent {
+  AgentDispatched(AgentDispatchedEvent)
+  SkillExecuted(SkillExecutedEvent)
+  MessageReceived(MessageReceivedEvent)
+  StatusChanged(StatusChangedEvent)
+}
+
+pub struct SchedulerExtension {
+  config : @config.ClawTeamConfig
+  router : @scheduler.AgentRouter
+  audit : @logger.AuditStore
+  events : @broadcast.Broadcast[SchedulerEvent]
+}
+pub fn SchedulerExtension::emit_agent_dispatched(Self, String, String, String?) -> Unit
+pub fn SchedulerExtension::emit_status_changed(Self, String, String, String, String) -> Unit
+pub fn SchedulerExtension::get_agent(Self, String) -> Result[@config.AgentConfig, @errors.ClawTeamError]
+pub fn SchedulerExtension::get_available_workers(Self, String) -> Array[String]
+pub fn SchedulerExtension::get_default_assistant(Self) -> Result[@config.AgentConfig, @errors.ClawTeamError]
+pub fn SchedulerExtension::list_agents(Self) -> Array[AgentInfo]
+pub fn SchedulerExtension::list_skills(Self) -> Array[SkillInfo]
+pub fn SchedulerExtension::log_message_sent(Self, String, String) -> Result[String, @errors.ClawTeamError]
+pub fn SchedulerExtension::new(@config.ClawTeamConfig) -> Self
+
 pub struct SendMessageParams {
   from_agent : String
   to_agent : String?
@@ -455,6 +530,36 @@ pub fn SessionManager::reset(Self, String) -> Bool
 pub async fn SessionManager::reset_and_save(Self, String) -> Bool
 pub async fn SessionManager::save(Self) -> Unit
 pub async fn SessionManager::save_entry(Self, String, SessionEntry) -> Unit
+
+pub struct SkillExecutedEvent {
+  skill_id : String
+  agent_id : String
+  success : Bool
+  elapsed_ms : Int
+  timestamp : Int
+}
+
+pub struct SkillInfo {
+  id : String
+  name : String
+  name_key : String
+  description : String
+  icon : String
+  color : String
+  tags : Array[String]
+  applicable_roles : Array[@types.AgentRole]
+}
+pub fn SkillInfo::to_json(Self) -> Json
+pub impl Show for SkillInfo
+pub impl ToJson for SkillInfo
+
+pub struct StatusChangedEvent {
+  entity_type : String
+  entity_id : String
+  old_status : String
+  new_status : String
+  timestamp : Int
+}
 
 pub struct SubTask {
   task_id : String
@@ -492,6 +597,37 @@ pub struct UpdateSubTaskParams {
 }
 pub impl ToJson for UpdateSubTaskParams
 pub impl @json.FromJson for UpdateSubTaskParams
+
+pub struct WsEvent {
+  event_type : String
+  payload : Json
+  timestamp : Int
+}
+pub fn WsEvent::to_json(Self) -> Json
+pub fn WsEvent::to_string(Self) -> String
+
+pub struct WsEventBroadcaster {
+  subscriptions : Map[String, WsEventSubscription]
+  event_queue : @broadcast.Broadcast[WsEvent]
+}
+pub fn WsEventBroadcaster::broadcast(Self, String, Json) -> Unit
+pub fn WsEventBroadcaster::broadcast_agent_status(Self, String, String, Json?) -> Unit
+pub fn WsEventBroadcaster::broadcast_message_status(Self, String, String, String) -> Unit
+pub fn WsEventBroadcaster::broadcast_session_created(Self, String, String) -> Unit
+pub fn WsEventBroadcaster::broadcast_session_destroyed(Self, String) -> Unit
+pub fn WsEventBroadcaster::broadcast_skill_result(Self, String, String, Bool, Json?) -> Unit
+pub fn WsEventBroadcaster::event_queue(Self) -> @broadcast.Broadcast[WsEvent]
+pub fn WsEventBroadcaster::is_subscribed(Self, String, String) -> Bool
+pub fn WsEventBroadcaster::new() -> Self
+pub fn WsEventBroadcaster::remove_client(Self, String) -> Unit
+pub fn WsEventBroadcaster::subscribe(Self, String, Array[String]) -> Unit
+pub fn WsEventBroadcaster::unsubscribe(Self, String, Array[String]) -> Unit
+
+pub struct WsEventSubscription {
+  client_id : String
+  subscriptions : @set.Set[String]
+  created_at : Int
+}
 
 // Type aliases
 

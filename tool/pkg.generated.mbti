@@ -1,8 +1,8 @@
 // Generated using `moon info`, DON'T EDIT IT
-package "moonbitlang/moonclaw/tool"
+package "clawteam/clawteam/tool"
 
 import {
-  "moonbitlang/moonclaw/internal/openai",
+  "clawteam/clawteam/internal/openai",
 }
 
 // Values

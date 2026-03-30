@@ -1,10 +1,10 @@
 // Generated using `moon info`, DON'T EDIT IT
-package "moonbitlang/moonclaw/job"
+package "clawteam/clawteam/job"
 
 import {
+  "clawteam/clawteam/ai",
+  "clawteam/clawteam/workspace",
   "moonbitlang/core/json",
-  "moonbitlang/moonclaw/ai",
-  "moonbitlang/moonclaw/workspace",
 }
 
 // Values

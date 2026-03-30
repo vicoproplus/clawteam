@@ -1,7 +1,7 @@
 ﻿moon : Warning: [0029]
-At line:1 char:25
-+ cd E:\moonbit\clawteam; moon check 2>&1 | Out-File -FilePath check_re ...
-+                         ~~~~~~~~~~~~~~~
+At line:1 char:1
++ moon check 2>&1 | Out-File -FilePath "E:\moonbit\clawteam\check_resul ...
++ ~~~~~~~~~~~~~~~
     + CategoryInfo          : NotSpecified: (Warning: [0029]:String) [], RemoteException
     + FullyQualifiedErrorId : NativeCommandError
  
@@ -11,13 +11,6 @@ At line:1 char:25
    │   ─────────┬─────────  
    │            ╰─────────── Warning (unused_package): Unused package 'moonbitlang/async'
 ───╯
-Warning: [0029]
-    ╭─[ E:\moonbit\clawteam\agent\moon.pkg:33:3 ]
-    │
- 33 │   "clawteam/clawteam/job",
-    │   ───────────┬───────────  
-    │              ╰───────────── Warning (unused_package): Unused package 'clawteam/clawteam/job'
-────╯
 Warning: [0006]
     ╭─[ E:\moonbit\clawteam\clawteam.mbt:17:10 ]
     │
@@ -31,6 +24,13 @@ Warning: [0027]
  17 │ pub type ClawTeam Moonclaw
     │                   ────┬───  
     │                       ╰───── Warning (deprecated_syntax): The syntax `type T A` for newtype is deprecated. Use `struct T(A)` instead.
+────╯
+Warning: [0002]
+    ╭─[ E:\moonbit\clawteam\clawteam.mbt:20:38 ]
+    │
+ 20 │ fn setup_agent(agent : @agent.Agent, cwd~ : String) -> Unit {
+    │                                      ─┬─  
+    │                                       ╰─── Warning (unused_value): Unused variable 'cwd'
 ────╯
 Warning: [0023]
    ╭─[ E:\moonbit\clawteam\cmd\daemon\acquire_lock.mbt:7:3 ]
@@ -65,7 +65,8 @@ Warning: [0071]
      │
  141 │     _ => @random.Rand::chacha8(seed=Bytes::make(32, 0))
      │          ──────┬─────  
-     │                ╰─────── Warning (core_package_not_imported): Package `random` from `moonbitlang/core/` is used without import. This is deprecated. Please add it to the imports in the moon.pkg file.
+     │                ╰─────── Warning (core_package_not_imported): Package `random` from `moonbitlang/core/` is used without import. This is deprecated. Ple
+ase add it to the imports in the moon.pkg file.
 ─────╯
 Warning: [0008]
     ╭─[ E:\moonbit\clawteam\gateway\server\scheduler_ext.mbt:12:3 ]
@@ -502,23 +503,23 @@ Warning: [0029]
    │                ╰────────────── Warning (unused_package): Unused package 'clawteam/clawteam/config'
 ───╯
 Warning: [0029]
-    ╭─[ E:\moonbit\clawteam\moon.pkg:16:3 ]
+    ╭─[ E:\moonbit\clawteam\moon.pkg:11:3 ]
     │
- 16 │   "clawteam/clawteam/job",
+ 11 │   "clawteam/clawteam/job",
     │   ───────────┬───────────  
     │              ╰───────────── Warning (unused_package): Unused package 'clawteam/clawteam/job'
 ────╯
 Warning: [0029]
-    ╭─[ E:\moonbit\clawteam\moon.pkg:28:3 ]
+    ╭─[ E:\moonbit\clawteam\moon.pkg:21:3 ]
     │
- 28 │   "moonbitlang/async",
+ 21 │   "moonbitlang/async",
     │   ─────────┬─────────  
     │            ╰─────────── Warning (unused_package): Unused package 'moonbitlang/async'
 ────╯
 Warning: [0029]
-    ╭─[ E:\moonbit\clawteam\moon.pkg:29:3 ]
+    ╭─[ E:\moonbit\clawteam\moon.pkg:22:3 ]
     │
- 29 │   "clawteam/clawteam/internal/mock",
+ 22 │   "clawteam/clawteam/internal/mock",
     │   ────────────────┬────────────────  
     │                   ╰────────────────── Warning (unused_package): Unused package 'clawteam/clawteam/internal/mock'
 ────╯
@@ -634,18 +635,4 @@ Warning: [0008]
     │   ─┬─  
     │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field metadata is public by default
 ────╯
-Warning: [0029]
-    ╭─[ E:\moonbit\clawteam\tools\replace_in_file\moon.pkg:21:3 ]
-    │
- 21 │   "moonbitlang/async/fs",
-    │   ───────────┬──────────  
-    │              ╰──────────── Warning (unused_package): Unused package 'moonbitlang/async/fs'
-────╯
-Warning: [0029]
-    ╭─[ E:\moonbit\clawteam\tools\write_to_file\moon.pkg:13:3 ]
-    │
- 13 │   "moonbitlang/async/fs",
-    │   ───────────┬──────────  
-    │              ╰──────────── Warning (unused_package): Unused package 'moonbitlang/async/fs'
-────╯
-Finished. moon: ran 16 tasks, now up to date (92 warnings, 0 errors)
+Finished. moon: ran 14 tasks, now up to date (90 warnings, 0 errors)

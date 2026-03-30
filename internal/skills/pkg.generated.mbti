@@ -1,9 +1,9 @@
 // Generated using `moon info`, DON'T EDIT IT
-package "moonbitlang/moonclaw/internal/skills"
+package "clawteam/clawteam/internal/skills"
 
 import {
-  "moonbitlang/moonclaw/ai",
-  "moonbitlang/moonclaw/internal/pino",
+  "clawteam/clawteam/ai",
+  "clawteam/clawteam/internal/pino",
 }
 
 // Values

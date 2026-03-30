@@ -1,10 +1,10 @@
 // Generated using `moon info`, DON'T EDIT IT
-package "moonbitlang/moonclaw/cmd/internal/test_utils"
+package "clawteam/clawteam/cmd/internal/test_utils"
 
 import {
+  "clawteam/clawteam/event",
+  "clawteam/clawteam/internal/httpx",
   "moonbitlang/async/http",
-  "moonbitlang/moonclaw/event",
-  "moonbitlang/moonclaw/internal/httpx",
 }
 
 // Values
@@ -22,8 +22,8 @@ pub(all) enum ServerEvent {
   Moonclaw(@event.Event)
 }
 pub async fn ServerEvent::collect_events(@http.Client, stop_at_cancel? : Bool) -> Array[Self]
-pub impl ToJson for ServerEvent
 pub impl @httpx.FromEvent for ServerEvent
+pub impl ToJson for ServerEvent
 
 // Type aliases
 

@@ -63,7 +63,9 @@ pub struct StatusChangedEvent {
 }
 
 ///|
-pub fn SchedulerExtension::new(config : @config.ClawTeamConfig) -> SchedulerExtension {
+pub fn SchedulerExtension::new(
+  config : @config.ClawTeamConfig,
+) -> SchedulerExtension {
   SchedulerExtension::{
     config,
     router: @scheduler.AgentRouter::new(config),
@@ -74,56 +76,70 @@ pub fn SchedulerExtension::new(config : @config.ClawTeamConfig) -> SchedulerExte
 
 ///|
 /// 获取默认助手
-pub fn SchedulerExtension::get_default_assistant(self : SchedulerExtension) -> Result[@config.AgentConfig, @errors.ClawTeamError] {
+pub fn SchedulerExtension::get_default_assistant(
+  self : SchedulerExtension,
+) -> Result[@config.AgentConfig, @errors.ClawTeamError] {
   self.router.get_default_assistant()
 }
 
 ///|
 /// 获取 Agent 配置
-pub fn SchedulerExtension::get_agent(self : SchedulerExtension, agent_id : String) -> Result[@config.AgentConfig, @errors.ClawTeamError] {
+pub fn SchedulerExtension::get_agent(
+  self : SchedulerExtension,
+  agent_id : String,
+) -> Result[@config.AgentConfig, @errors.ClawTeamError] {
   self.router.get_agent(agent_id)
 }
 
 ///|
 /// 获取所有启用的 Agent 列表
-pub fn SchedulerExtension::list_agents(self : SchedulerExtension) -> Array[AgentInfo] {
-  self.config.agents.iter()
-    .filter(fn(agent) { agent.enabled })
-    .map(fn(agent) {
-      AgentInfo::{
-        id: agent.id,
-        name: agent.name,
-        role: agent.role,
-        cli_tool: agent.cli_tool,
-        enabled: agent.enabled,
-        skills: agent.skills,
-      }
-    })
-    .to_array()
+pub fn SchedulerExtension::list_agents(
+  self : SchedulerExtension,
+) -> Array[AgentInfo] {
+  self.config.agents
+  .iter()
+  .filter(fn(agent) { agent.enabled })
+  .map(fn(agent) {
+    AgentInfo::{
+      id: agent.id,
+      name: agent.name,
+      role: agent.role,
+      cli_tool: agent.cli_tool,
+      enabled: agent.enabled,
+      skills: agent.skills,
+    }
+  })
+  .to_array()
 }
 
 ///|
 /// 获取所有 Skill 列表
-pub fn SchedulerExtension::list_skills(self : SchedulerExtension) -> Array[SkillInfo] {
-  self.config.skills.iter()
-    .map(fn(skill) {
-      SkillInfo::{
-        id: skill.id,
-        name: skill.name,
-        name_key: skill.name_key,
-        description: skill.description,
-        icon: skill.icon,
-        color: skill.color,
-        tags: skill.tags,
-        applicable_roles: skill.applicable_roles,
-      }
-    })
-    .to_array()
+pub fn SchedulerExtension::list_skills(
+  self : SchedulerExtension,
+) -> Array[SkillInfo] {
+  self.config.skills
+  .iter()
+  .map(fn(skill) {
+    SkillInfo::{
+      id: skill.id,
+      name: skill.name,
+      name_key: skill.name_key,
+      description: skill.description,
+      icon: skill.icon,
+      color: skill.color,
+      tags: skill.tags,
+      applicable_roles: skill.applicable_roles,
+    }
+  })
+  .to_array()
 }
 
 ///|
 /// 获取可用员工列表
-pub fn SchedulerExtension::get_available_workers(self : SchedulerExtension, assistant_id : String) -> Array[String] {
+pub fn SchedulerExtension::get_available_workers(
+  self : SchedulerExtension,
+  assistant_id : String,
+) -> Array[String] {
   self.router.get_available_workers(assistant_id)
 }
 
@@ -139,11 +155,12 @@ pub fn SchedulerExtension::log_message_sent(
   } else {
     content.to_string()
   }
-  let details : Json = {
-    "event": "message_sent",
-    "preview": preview,
-  }
-  self.audit.write(@types.AuditEventType::OutputCaptured, details, session_id=Some(session_id))
+  let details : Json = { "event": "message_sent", "preview": preview }
+  self.audit.write(
+    @types.AuditEventType::OutputCaptured,
+    details,
+    session_id=Some(session_id),
+  )
 }
 
 ///|

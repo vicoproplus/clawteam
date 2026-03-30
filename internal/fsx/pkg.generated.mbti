@@ -1,5 +1,5 @@
 // Generated using `moon info`, DON'T EDIT IT
-package "moonbitlang/moonclaw/internal/fsx"
+package "clawteam/clawteam/internal/fsx"
 
 import {
   "moonbitlang/async/fs",
@@ -10,13 +10,13 @@ pub async fn exists(StringView) -> Bool
 
 pub async fn exists_as_file(StringView) -> Bool
 
-pub fn get_lock_owner(@fs.File) -> Int? raise
+pub fn get_lock_owner(@fs.File) -> Int?
 
 pub async fn kind(StringView) -> FileKind
 
 pub async fn list_directory(StringView) -> Array[DirectoryEntry]
 
-pub fn lock_file(@fs.File) -> Unit raise
+pub fn lock_file(@fs.File) -> Unit
 
 pub async fn make_directory(StringView, recursive? : Bool, exists_ok? : Bool) -> Unit
 

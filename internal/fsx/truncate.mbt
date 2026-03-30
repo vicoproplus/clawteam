@@ -2,7 +2,6 @@
 /// File truncation function.
 /// Note: This function is only available on Unix-like systems.
 /// On Windows, this is not supported.
-
 #cfg(not(platform="windows"))
 extern "c" fn fsx_ftruncate(fd : Int, length : Int64) -> Int = "moonbit_moonclaw_fsx_ftruncate"
 

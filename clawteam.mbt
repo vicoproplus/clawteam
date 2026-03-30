@@ -13,26 +13,13 @@ pub struct Moonclaw {
   agent : @agent.Agent
 }
 
-///| ClawTeam 类型别名（Moonclaw 的另一个名称）
-pub type ClawTeam Moonclaw
+///|
+/// ClawTeam 类型别名（Moonclaw 的另一个名称）
+pub struct ClawTeam(Moonclaw)
 
 ///|
 fn setup_agent(agent : @agent.Agent, cwd~ : String) -> Unit {
-  let file_manager = @file.manager(cwd~)
-  let todo_list = @todo.new(uuid=agent.uuid, cwd=agent.cwd)
-  agent.add_tools([
-    @execute_command.new(agent.cwd).to_agent_tool(),
-    @list_files.new(file_manager).to_agent_tool(),
-    @read_file.new(file_manager).to_agent_tool(),
-    @todo.new_tool(todo_list).to_agent_tool(),
-    @search_files.new(agent.cwd).to_agent_tool(),
-  ])
-  // GPT 5.1+ uses apply_patch only, other models use meta_write_to_file
-  if agent.model.supports_apply_patch {
-    agent.add_tool(@apply_patch.new(agent.cwd))
-  } else {
-    agent.add_tool(@write_to_file.new(agent.cwd))
-  }
+  agent.add_tools([@execute_command.new(agent.cwd).to_agent_tool()])
 }
 
 ///|
@@ -63,9 +50,7 @@ pub async fn Moonclaw::new(
     Some(cwd) => cwd
     None => @os.cwd()
   }
-  let system_prompt = [@prompt.prelude, @todo.prompt, @search_files.prompt].join(
-    "\n",
-  )
+  let system_prompt = @prompt.prelude
   let agent = @agent.new(
     name?,
     model,

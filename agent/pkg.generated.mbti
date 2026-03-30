@@ -1,17 +1,17 @@
 // Generated using `moon info`, DON'T EDIT IT
-package "moonbitlang/moonclaw/agent"
+package "clawteam/clawteam/agent"
 
 import {
+  "clawteam/clawteam/ai",
+  "clawteam/clawteam/event",
+  "clawteam/clawteam/internal/broadcast",
+  "clawteam/clawteam/internal/conversation",
+  "clawteam/clawteam/internal/pino",
+  "clawteam/clawteam/internal/uuid",
+  "clawteam/clawteam/model",
+  "clawteam/clawteam/tool",
   "moonbitlang/core/json",
   "moonbitlang/core/set",
-  "moonbitlang/moonclaw/ai",
-  "moonbitlang/moonclaw/event",
-  "moonbitlang/moonclaw/internal/broadcast",
-  "moonbitlang/moonclaw/internal/conversation",
-  "moonbitlang/moonclaw/internal/pino",
-  "moonbitlang/moonclaw/internal/uuid",
-  "moonbitlang/moonclaw/model",
-  "moonbitlang/moonclaw/tool",
 }
 
 // Values

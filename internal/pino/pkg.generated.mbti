@@ -1,5 +1,5 @@
 // Generated using `moon info`, DON'T EDIT IT
-package "moonbitlang/moonclaw/internal/pino"
+package "clawteam/clawteam/internal/pino"
 
 import {
   "moonbitlang/async/aqueue",

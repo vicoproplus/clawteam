@@ -66,11 +66,10 @@ pub fn WsEventBroadcaster::unsubscribe(
   event_types : Array[String],
 ) -> Unit {
   match self.subscriptions.get(client_id) {
-    Some(sub) => {
+    Some(sub) =>
       for event_type in event_types {
         sub.subscriptions.remove(event_type)
       }
-    }
     None => ()
   }
 }
@@ -169,15 +168,15 @@ pub fn WsEventBroadcaster::broadcast_session_destroyed(
   self : WsEventBroadcaster,
   session_id : String,
 ) -> Unit {
-  let payload : Json = {
-    "sessionId": session_id.to_json(),
-  }
+  let payload : Json = { "sessionId": session_id.to_json() }
   self.broadcast("session.destroyed", payload)
 }
 
 ///|
 /// 获取事件队列（用于 WebSocket 连接读取）
-pub fn WsEventBroadcaster::event_queue(self : WsEventBroadcaster) -> @broadcast.Broadcast[WsEvent] {
+pub fn WsEventBroadcaster::event_queue(
+  self : WsEventBroadcaster,
+) -> @broadcast.Broadcast[WsEvent] {
   self.event_queue
 }
 

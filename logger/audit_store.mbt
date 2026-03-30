@@ -11,19 +11,14 @@ pub struct AuditStore {
 
 ///|
 pub fn AuditStore::new(config : @config.AuditConfig) -> AuditStore {
-  AuditStore::{
-    log_path: config.log_path,
-    enabled: config.enabled,
-  }
+  AuditStore::{ log_path: config.log_path, enabled: config.enabled }
 }
 
 ///|
 /// 生成 UUID
 fn generate_id() -> String {
   // 使用 chacha8 随机数生成器，失败时使用默认种子
-  let rand_gen = try {
-    @rand.chacha8()
-  } catch {
+  let rand_gen = @rand.chacha8() catch {
     _ => @random.Rand::chacha8(seed=Bytes::make(32, 0))
   }
   let gen = @uuid.generator(rand_gen)
@@ -36,13 +31,13 @@ pub fn AuditStore::write(
   self : AuditStore,
   event_type : @types.AuditEventType,
   details : Json,
-  session_id~ : String? = None,
-  target_id~ : String? = None,
+  session_id? : String? = None,
+  target_id? : String? = None,
 ) -> Result[String, @errors.ClawTeamError] {
   if !self.enabled {
     return Ok("")
   }
-  
+
   let id = generate_id()
   let timestamp = @clock.epoch.now().ms().to_int()
   let _entry = AuditLogEntry::{
@@ -57,7 +52,7 @@ pub fn AuditStore::write(
     channel: None,
     details,
   }
-  
+
   // 简化实现：仅返回日志 ID
   // TODO: 实际写入到文件系统
   Ok(id)
@@ -72,7 +67,12 @@ pub fn AuditStore::log_cli_started(
   command : String,
 ) -> Result[String, @errors.ClawTeamError] {
   let details : Json = { "command": command.to_json() }
-  self.write(@types.AuditEventType::CliStarted, details, session_id=Some(session_id), target_id=Some(target_id))
+  self.write(
+    @types.AuditEventType::CliStarted,
+    details,
+    session_id=Some(session_id),
+    target_id=Some(target_id),
+  )
 }
 
 ///|
@@ -84,5 +84,10 @@ pub fn AuditStore::log_cli_completed(
   status : Int,
 ) -> Result[String, @errors.ClawTeamError] {
   let details : Json = { "status": status.to_json() }
-  self.write(@types.AuditEventType::CliCompleted, details, session_id=Some(session_id), target_id=Some(target_id))
+  self.write(
+    @types.AuditEventType::CliCompleted,
+    details,
+    session_id=Some(session_id),
+    target_id=Some(target_id),
+  )
 }

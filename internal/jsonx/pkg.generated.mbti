@@ -1,5 +1,5 @@
 // Generated using `moon info`, DON'T EDIT IT
-package "moonbitlang/moonclaw/internal/jsonx"
+package "clawteam/clawteam/internal/jsonx"
 
 import {
   "moonbitlang/core/json",

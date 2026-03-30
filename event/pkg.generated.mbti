@@ -1,12 +1,12 @@
 // Generated using `moon info`, DON'T EDIT IT
-package "moonbitlang/moonclaw/event"
+package "clawteam/clawteam/event"
 
 import {
+  "clawteam/clawteam/ai",
+  "clawteam/clawteam/clock",
+  "clawteam/clawteam/internal/uuid",
+  "clawteam/clawteam/tool",
   "moonbitlang/core/json",
-  "moonbitlang/moonclaw/ai",
-  "moonbitlang/moonclaw/clock",
-  "moonbitlang/moonclaw/internal/uuid",
-  "moonbitlang/moonclaw/tool",
 }
 
 // Values

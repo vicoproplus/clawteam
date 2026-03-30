@@ -86,14 +86,14 @@ pub fn handle_message_send(
     Ok(_) => {
       // 生成消息 ID
       let message_id = "msg-\{generate_uuid()}"
-      
+
       // 发送事件
       scheduler_ext.emit_agent_dispatched(
         session_id,
-        "default",  // TODO: 根据路由策略选择 Agent
+        "default", // TODO: 根据路由策略选择 Agent
         None,
       )
-      
+
       Ok({
         "messageId": message_id.to_json(),
         "status": "dispatched".to_json(),
@@ -112,10 +112,7 @@ pub fn handle_events_subscribe(
   event_types : Array[String],
 ) -> Json {
   broadcaster.subscribe(client_id, event_types)
-  { 
-    "subscribed": true.to_json(),
-    "eventTypes": event_types.to_json(),
-  }
+  { "subscribed": true.to_json(), "eventTypes": event_types.to_json() }
 }
 
 ///|
@@ -126,18 +123,13 @@ pub fn handle_events_unsubscribe(
   event_types : Array[String],
 ) -> Json {
   broadcaster.unsubscribe(client_id, event_types)
-  { 
-    "unsubscribed": true.to_json(),
-    "eventTypes": event_types.to_json(),
-  }
+  { "unsubscribed": true.to_json(), "eventTypes": event_types.to_json() }
 }
 
 ///|
 /// 生成 UUID
 fn generate_uuid() -> String {
-  let rand_gen = try {
-    @rand.chacha8()
-  } catch {
+  let rand_gen = @rand.chacha8() catch {
     _ => @random.Rand::chacha8(seed=Bytes::make(32, 0))
   }
   let gen = @uuid.generator(rand_gen)
@@ -162,9 +154,6 @@ pub fn rpc_error(id : String, code : String, message : String) -> Json {
     "type": "res".to_json(),
     "id": id.to_json(),
     "ok": false.to_json(),
-    "error": {
-      "code": code.to_json(),
-      "message": message.to_json(),
-    }.to_json(),
+    "error": { "code": code.to_json(), "message": message.to_json() }.to_json(),
   }
 }

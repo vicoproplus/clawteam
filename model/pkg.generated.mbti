@@ -1,5 +1,5 @@
 // Generated using `moon info`, DON'T EDIT IT
-package "moonbitlang/moonclaw/model"
+package "clawteam/clawteam/model"
 
 import {
   "moonbitlang/core/json",

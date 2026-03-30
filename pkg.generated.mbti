@@ -1,16 +1,32 @@
 // Generated using `moon info`, DON'T EDIT IT
 package "clawteam/clawteam"
 
+import {
+  "clawteam/clawteam/agent",
+  "clawteam/clawteam/internal/pino",
+  "clawteam/clawteam/internal/uuid",
+  "clawteam/clawteam/model",
+}
+
 // Values
 
 // Errors
 
 // Types and methods
-pub struct ClawTeam {
-  version : String
+pub struct ClawTeam(Moonclaw)
+#deprecated
+pub fn ClawTeam::inner(Self) -> Moonclaw
+
+pub struct Moonclaw {
+  logger : @pino.Logger
+  agent : @agent.Agent
 }
-pub fn ClawTeam::new() -> Self
-pub fn ClawTeam::version(Self) -> String
+pub fn Moonclaw::close(Self) -> Unit
+#as_free_fn
+pub async fn Moonclaw::new(name? : String, logger? : @pino.Logger, model~ : @model.Model, home? : String, cwd? : String, user_message? : String, web_search? : Bool) -> Self
+#as_free_fn
+pub async fn Moonclaw::resume_(logger? : @pino.Logger, model~ : @model.Model, home? : String, @uuid.Uuid, user_message? : String, web_search? : Bool) -> Self
+pub async fn Moonclaw::start(Self, prompt? : String) -> Unit
 
 // Type aliases
 

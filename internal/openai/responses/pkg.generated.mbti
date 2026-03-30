@@ -1,5 +1,5 @@
 // Generated using `moon info`, DON'T EDIT IT
-package "moonbitlang/moonclaw/internal/openai/responses"
+package "clawteam/clawteam/internal/openai/responses"
 
 import {
   "moonbitlang/core/json",

@@ -28,37 +28,47 @@ pub struct RegexParser {
 }
 
 ///|
-pub fn RegexParser::new(ready_patterns : Array[String], working_patterns : Array[String]) -> RegexParser {
+pub fn RegexParser::new(
+  ready_patterns : Array[String],
+  working_patterns : Array[String],
+) -> RegexParser {
   RegexParser::{ ready_patterns, working_patterns }
 }
 
 ///|
 /// 解析输出行
-pub fn RegexParser::parse_line(self : RegexParser, line : String) -> ParseResult {
+pub fn RegexParser::parse_line(
+  self : RegexParser,
+  line : String,
+) -> ParseResult {
   // 检查就绪模式
   for pattern in self.ready_patterns {
     if line.contains(pattern) {
       return ParseResult::{ matched: true, pattern_type: PatternType::Ready }
     }
   }
-  
+
   // 检查工作中模式
   for pattern in self.working_patterns {
     if line.contains(pattern) {
       return ParseResult::{ matched: true, pattern_type: PatternType::Working }
     }
   }
-  
+
   ParseResult::{ matched: false, pattern_type: PatternType::Unknown }
 }
 
 ///|
 /// 检测最终状态
-pub fn RegexParser::detect_final_status(self : RegexParser, output : String) -> PatternType {
+pub fn RegexParser::detect_final_status(
+  self : RegexParser,
+  output : String,
+) -> PatternType {
   let lines = output.split("\n").to_array()
-  let results = lines.map(fn(line) { self.parse_line(line.to_string()) })
+  let results = lines
+    .map(fn(line) { self.parse_line(line.to_string()) })
     .filter(fn(r) { r.matched })
-  
+
   // 从后向前检查
   let mut i = results.length() - 1
   while i >= 0 {
@@ -69,6 +79,6 @@ pub fn RegexParser::detect_final_status(self : RegexParser, output : String) -> 
       _ => i = i - 1
     }
   }
-  
+
   PatternType::Unknown
 }

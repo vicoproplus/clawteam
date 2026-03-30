@@ -2,7 +2,6 @@
 /// Advisory file locking functions.
 /// Note: These functions are only available on Unix-like systems.
 /// On Windows, file locking works differently and these functions are not supported.
-
 #cfg(not(platform="windows"))
 extern "c" fn fsx_lock_file(fd : Int) -> Int = "moonbit_moonclaw_fsx_lock_file"
 

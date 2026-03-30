@@ -1,11 +1,11 @@
 // Generated using `moon info`, DON'T EDIT IT
-package "moonbitlang/moonclaw/internal/openai"
+package "clawteam/clawteam/internal/openai"
 
 import {
+  "clawteam/clawteam/internal/pino",
+  "clawteam/clawteam/internal/schema",
+  "clawteam/clawteam/model",
   "moonbitlang/core/json",
-  "moonbitlang/moonclaw/internal/pino",
-  "moonbitlang/moonclaw/internal/schema",
-  "moonbitlang/moonclaw/model",
 }
 
 // Values
@@ -234,8 +234,8 @@ pub enum ChatCompletionContentPartParam {
   Text(ChatCompletionContentPartTextParam)
 }
 pub fn ChatCompletionContentPartParam::new(text~ : String, cache_control? : CacheControl) -> Self
-pub impl ToJson for ChatCompletionContentPartParam
 pub impl ToChatCompletionMessageParamContent for ChatCompletionContentPartParam
+pub impl ToJson for ChatCompletionContentPartParam
 
 pub struct ChatCompletionContentPartTextParam {
   text : String

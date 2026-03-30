@@ -1,53 +1,536 @@
-﻿**********************************************************************
-** Visual Studio 2022 Developer Command Prompt v17.14.29
-** Copyright (c) 2025 Microsoft Corporation
-**********************************************************************
-[vcvarsall.bat] Environment initialized for: 'x64'
-failed: "C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\bin\HostX64\x64\cl.exe" /FoE:\moonbit\clawteam\_build\native\debug\test\internal\backtrace\backtrace.obj /IC:\Users\Administrator\.moon\include /c /utf-8 /wd4819 /nologo /Od E:\moonbit\clawteam\internal\backtrace\backtrace.c
-failed: "C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\bin\HostX64\x64\cl.exe" /FoE:\moonbit\clawteam\_build\native\debug\test\internal\os\os.obj /IC:\Users\Administrator\.moon\include /c /utf-8 /wd4819 /nologo /Od E:\moonbit\clawteam\internal\os\os.c
-failed: "C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\bin\HostX64\x64\cl.exe" /FoE:\moonbit\clawteam\_build\native\debug\test\internal\rand\rand.obj /IC:\Users\Administrator\.moon\include /c /utf-8 /wd4819 /nologo /Od E:\moonbit\clawteam\internal\rand\rand.c
-failed: "C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\bin\HostX64\x64\cl.exe" /FoE:\moonbit\clawteam\_build\native\debug\test\internal\fsx\lock.obj /IC:\Users\Administrator\.moon\include /c /utf-8 /wd4819 /nologo /Od E:\moonbit\clawteam\internal\fsx\lock.c
-failed: "C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\bin\HostX64\x64\cl.exe" /FoE:\moonbit\clawteam\_build\native\debug\test\internal\tty\tty.obj /IC:\Users\Administrator\.moon\include /c /utf-8 /wd4819 /nologo /Od E:\moonbit\clawteam\internal\tty\tty.c
-failed: "C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\bin\HostX64\x64\cl.exe" /FoE:\moonbit\clawteam\_build\native\debug\test\internal\fsx\readlink.obj /IC:\Users\Administrator\.moon\include /c /utf-8 /wd4819 /nologo /Od E:\moonbit\clawteam\internal\fsx\readlink.c
-failed: "C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\bin\HostX64\x64\cl.exe" /FoE:\moonbit\clawteam\_build\native\debug\test\internal\spawn\spawn.obj /IC:\Users\Administrator\.moon\include /c /utf-8 /wd4819 /nologo /Od E:\moonbit\clawteam\internal\spawn\spawn.c
-failed: "C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\bin\HostX64\x64\cl.exe" /FoE:\moonbit\clawteam\_build\native\debug\test\internal\fsx\mkdtemp.obj /IC:\Users\Administrator\.moon\include /c /utf-8 /wd4819 /nologo /Od E:\moonbit\clawteam\internal\fsx\mkdtemp.c
-failed: "C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\bin\HostX64\x64\cl.exe" /FoE:\moonbit\clawteam\_build\native\debug\test\internal\fsx\truncate.obj /IC:\Users\Administrator\.moon\include /c /utf-8 /wd4819 /nologo /Od E:\moonbit\clawteam\internal\fsx\truncate.c
-backtrace.c
-E:\moonbit\clawteam\internal\backtrace\backtrace.c(1): fatal error C1083: 无法打开包括文件: “execinfo.h”: No such file or directory
-os.c
-E:\moonbit\clawteam\internal\os\os.c(4): fatal error C1083: 无法打开包括文件: “pwd.h”: No such file or directory
-rand.c
-E:\moonbit\clawteam\internal\rand\rand.c(3): fatal error C1083: 无法打开包括文件: “sys/random.h”: No such file or directory
-lock.c
-E:\moonbit\clawteam\internal\fsx\lock.c(7): error C2079: “fl”使用未定义的 struct“flock”
-E:\moonbit\clawteam\internal\fsx\lock.c(8): error C2224: “.l_type”的左侧必须具有结构/联合类型
-E:\moonbit\clawteam\internal\fsx\lock.c(8): error C2065: “F_WRLCK”: 未声明的标识符
-E:\moonbit\clawteam\internal\fsx\lock.c(9): error C2224: “.l_whence”的左侧必须具有结构/联合类型
-E:\moonbit\clawteam\internal\fsx\lock.c(9): error C2065: “SEEK_SET”: 未声明的标识符
-E:\moonbit\clawteam\internal\fsx\lock.c(10): error C2224: “.l_start”的左侧必须具有结构/联合类型
-E:\moonbit\clawteam\internal\fsx\lock.c(11): error C2224: “.l_len”的左侧必须具有结构/联合类型
-E:\moonbit\clawteam\internal\fsx\lock.c(12): error C2224: “.l_pid”的左侧必须具有结构/联合类型
-E:\moonbit\clawteam\internal\fsx\lock.c(13): error C2065: “F_SETLK”: 未声明的标识符
-E:\moonbit\clawteam\internal\fsx\lock.c(19): error C2079: “fl”使用未定义的 struct“flock”
-E:\moonbit\clawteam\internal\fsx\lock.c(20): error C2224: “.l_type”的左侧必须具有结构/联合类型
-E:\moonbit\clawteam\internal\fsx\lock.c(20): error C2065: “F_WRLCK”: 未声明的标识符
-E:\moonbit\clawteam\internal\fsx\lock.c(21): error C2224: “.l_whence”的左侧必须具有结构/联合类型
-E:\moonbit\clawteam\internal\fsx\lock.c(21): error C2065: “SEEK_SET”: 未声明的标识符
-E:\moonbit\clawteam\internal\fsx\lock.c(22): error C2224: “.l_start”的左侧必须具有结构/联合类型
-E:\moonbit\clawteam\internal\fsx\lock.c(23): error C2224: “.l_len”的左侧必须具有结构/联合类型
-E:\moonbit\clawteam\internal\fsx\lock.c(24): error C2224: “.l_pid”的左侧必须具有结构/联合类型
-E:\moonbit\clawteam\internal\fsx\lock.c(25): error C2065: “F_GETLK”: 未声明的标识符
-E:\moonbit\clawteam\internal\fsx\lock.c(28): error C2224: “.l_type”的左侧必须具有结构/联合类型
-E:\moonbit\clawteam\internal\fsx\lock.c(28): error C2065: “F_UNLCK”: 未声明的标识符
-E:\moonbit\clawteam\internal\fsx\lock.c(31): error C2224: “.l_pid”的左侧必须具有结构/联合类型
-E:\moonbit\clawteam\internal\fsx\lock.c(31): warning C4033: “moonbit_moonclaw_fsx_get_lock_owner”必须返回值
-tty.c
-E:\moonbit\clawteam\internal\tty\tty.c(4): fatal error C1083: 无法打开包括文件: “sys/ioctl.h”: No such file or directory
-readlink.c
-E:\moonbit\clawteam\internal\fsx\readlink.c(3): fatal error C1083: 无法打开包括文件: “unistd.h”: No such file or directory
-spawn.c
-E:\moonbit\clawteam\internal\spawn\spawn.c(4): fatal error C1083: 无法打开包括文件: “unistd.h”: No such file or directory
-mkdtemp.c
-E:\moonbit\clawteam\internal\fsx\mkdtemp.c(4): fatal error C1083: 无法打开包括文件: “unistd.h”: No such file or directory
-truncate.c
-E:\moonbit\clawteam\internal\fsx\truncate.c(2): fatal error C1083: 无法打开包括文件: “unistd.h”: No such file or directory
+﻿failed: C:\Users\Administrator\.moon\bin\moonc.exe build-package -error-format json E:\moonbit\clawteam\internal\backtrace\backtrace.mbt -o E:\moonbit\clawteam\_build\wasm-gc\debug\test\internal\backtrace\backtrace.core -pkg clawteam/clawteam/internal/backtrace -std-path C:\Users\Administrator\.moon\lib\core\_build\wasm-gc\release\bundle -i C:\Users\Administrator\.moon\lib\core\_build\wasm-gc\release\bundle\encoding/utf8\utf8.mi:encoding/utf8 -i C:\Users\Administrator\.moon\lib\core\_build\wasm-gc\release\bundle\prelude\prelude.mi:prelude -pkg-sources clawteam/clawteam/internal/backtrace:E:\moonbit\clawteam\internal\backtrace -target wasm-gc -g -O0 -source-map -workspace-path E:\moonbit\clawteam -all-pkgs E:\moonbit\clawteam\_build\wasm-gc\debug\test\all_pkgs.json
+failed: C:\Users\Administrator\.moon\bin\moonc.exe build-package -error-format json E:\moonbit\clawteam\internal\signal\signal.mbt -o E:\moonbit\clawteam\_build\wasm-gc\debug\test\internal\signal\signal.core -pkg clawteam/clawteam/internal/signal -std-path C:\Users\Administrator\.moon\lib\core\_build\wasm-gc\release\bundle -i C:\Users\Administrator\.moon\lib\core\_build\wasm-gc\release\bundle\prelude\prelude.mi:prelude -pkg-sources clawteam/clawteam/internal/signal:E:\moonbit\clawteam\internal\signal -target wasm-gc -g -O0 -source-map -workspace-path E:\moonbit\clawteam -all-pkgs E:\moonbit\clawteam\_build\wasm-gc\debug\test\all_pkgs.json
+failed: C:\Users\Administrator\.moon\bin\moonc.exe build-package -error-format json E:\moonbit\clawteam\internal\backtrace\backtrace.mbt E:\moonbit\clawteam\_build\wasm-gc\debug\test\internal\backtrace\__generated_driver_for_internal_test.mbt -o E:\moonbit\clawteam\_build\wasm-gc\debug\test\internal\backtrace\backtrace.internal_test.core -pkg clawteam/clawteam/internal/backtrace -is-main -std-path C:\Users\Administrator\.moon\lib\core\_build\wasm-gc\release\bundle -i C:\Users\Administrator\.moon\lib\core\_build\wasm-gc\release\bundle\encoding/utf8\utf8.mi:encoding/utf8 -i C:\Users\Administrator\.moon\lib\core\_build\wasm-gc\release\bundle\prelude\prelude.mi:prelude -pkg-sources clawteam/clawteam/internal/backtrace:E:\moonbit\clawteam\internal\backtrace -target wasm-gc -g -O0 -source-map -no-mi -test-mode -workspace-path E:\moonbit\clawteam -all-pkgs E:\moonbit\clawteam\_build\wasm-gc\debug\test\all_pkgs.json
+failed: C:\Users\Administrator\.moon\bin\moonc.exe build-package -error-format json E:\moonbit\clawteam\internal\signal\signal.mbt E:\moonbit\clawteam\_build\wasm-gc\debug\test\internal\signal\__generated_driver_for_internal_test.mbt -o E:\moonbit\clawteam\_build\wasm-gc\debug\test\internal\signal\signal.internal_test.core -pkg clawteam/clawteam/internal/signal -is-main -std-path C:\Users\Administrator\.moon\lib\core\_build\wasm-gc\release\bundle -i C:\Users\Administrator\.moon\lib\core\_build\wasm-gc\release\bundle\prelude\prelude.mi:prelude -pkg-sources clawteam/clawteam/internal/signal:E:\moonbit\clawteam\internal\signal -target wasm-gc -g -O0 -source-map -no-mi -test-mode -workspace-path E:\moonbit\clawteam -all-pkgs E:\moonbit\clawteam\_build\wasm-gc\debug\test\all_pkgs.json
+failed: C:\Users\Administrator\.moon\bin\moonc.exe build-package -error-format json E:\moonbit\clawteam\internal\errno\errno.mbt E:\moonbit\clawteam\_build\wasm-gc\debug\test\internal\errno\__generated_driver_for_internal_test.mbt -o E:\moonbit\clawteam\_build\wasm-gc\debug\test\internal\errno\errno.internal_test.core -pkg clawteam/clawteam/internal/errno -is-main -std-path C:\Users\Administrator\.moon\lib\core\_build\wasm-gc\release\bundle -i E:\moonbit\clawteam\_build\wasm-gc\debug\test\internal\c\c.mi:c -i C:\Users\Administrator\.moon\lib\core\_build\wasm-gc\release\bundle\encoding/utf8\utf8.mi:encoding/utf8 -i C:\Users\Administrator\.moon\lib\core\_build\wasm-gc\release\bundle\prelude\prelude.mi:prelude -pkg-sources clawteam/clawteam/internal/errno:E:\moonbit\clawteam\internal\errno -target wasm-gc -g -O0 -source-map -no-mi -test-mode -workspace-path E:\moonbit\clawteam -all-pkgs E:\moonbit\clawteam\_build\wasm-gc\debug\test\all_pkgs.json
+failed: C:\Users\Administrator\.moon\bin\moonc.exe build-package -error-format json E:\moonbit\clawteam\internal\errno\errno.mbt -o E:\moonbit\clawteam\_build\wasm-gc\debug\test\internal\errno\errno.core -pkg clawteam/clawteam/internal/errno -std-path C:\Users\Administrator\.moon\lib\core\_build\wasm-gc\release\bundle -i E:\moonbit\clawteam\_build\wasm-gc\debug\test\internal\c\c.mi:c -i C:\Users\Administrator\.moon\lib\core\_build\wasm-gc\release\bundle\encoding/utf8\utf8.mi:encoding/utf8 -i C:\Users\Administrator\.moon\lib\core\_build\wasm-gc\release\bundle\prelude\prelude.mi:prelude -pkg-sources clawteam/clawteam/internal/errno:E:\moonbit\clawteam\internal\errno -target wasm-gc -g -O0 -source-map -workspace-path E:\moonbit\clawteam -all-pkgs E:\moonbit\clawteam\_build\wasm-gc\debug\test\all_pkgs.json
+failed: C:\Users\Administrator\.moon\bin\moonc.exe build-package -error-format json E:\moonbit\clawteam\internal\c\README.mbt.md E:\moonbit\clawteam\internal\c\memcpy_test.mbt E:\moonbit\clawteam\internal\c\strlen_test.mbt E:\moonbit\clawteam\_build\wasm-gc\debug\test\internal\c\__generated_driver_for_blackbox_test.mbt -o E:\moonbit\clawteam\_build\wasm-gc\debug\test\internal\c\c.blackbox_test.core -pkg clawteam/clawteam/internal/c_blackbox_test -is-main -std-path C:\Users\Administrator\.moon\lib\core\_build\wasm-gc\release\bundle -i E:\moonbit\clawteam\_build\wasm-gc\debug\test\internal\c\c.mi:c -i C:\Users\Administrator\.moon\lib\core\_build\wasm-gc\release\bundle\json\json.mi:json -i C:\Users\Administrator\.moon\lib\core\_build\wasm-gc\release\bundle\prelude\prelude.mi:prelude -pkg-sources clawteam/clawteam/internal/c_blackbox_test:E:\moonbit\clawteam\internal\c -target wasm-gc -g -O0 -source-map -blackbox-test -include-doctests -no-mi -test-mode -workspace-path E:\moonbit\clawteam -all-pkgs E:\moonbit\clawteam\_build\wasm-gc\debug\test\all_pkgs.json
+failed: C:\Users\Administrator\.moon\bin\moonc.exe build-package -error-format json E:\moonbit\clawteam\channels\weixin\channel.mbt E:\moonbit\clawteam\channels\weixin\client.mbt E:\moonbit\clawteam\channels\weixin\types.mbt E:\moonbit\clawteam\_build\wasm-gc\debug\test\channels\weixin\__generated_driver_for_internal_test.mbt -o E:\moonbit\clawteam\_build\wasm-gc\debug\test\channels\weixin\weixin.internal_test.core -pkg clawteam/clawteam/channels/weixin -is-main -std-path C:\Users\Administrator\.moon\lib\core\_build\wasm-gc\release\bundle -i E:\moonbit\clawteam\_build\wasm-gc\debug\test\channel\channel.mi:channel -i E:\moonbit\clawteam\_build\wasm-gc\debug\test\.mooncakes\moonbitlang\x\crypto\crypto.mi:crypto -i C:\Users\Administrator\.moon\lib\core\_build\wasm-gc\release\bundle\encoding/utf8\utf8.mi:encoding/utf8 -i E:\moonbit\clawteam\_build\wasm-gc\debug\test\.mooncakes\moonbitlang\async\http\http.mi:http -i C:\Users\Administrator\.moon\lib\core\_build\wasm-gc\release\bundle\json\json.mi:json -i C:\Users\Administrator\.moon\lib\core\_build\wasm-gc\release\bundle\prelude\prelude.mi:prelude -i C:\Users\Administrator\.moon\lib\core\_build\wasm-gc\release\bundle\strconv\strconv.mi:strconv -pkg-sources clawteam/clawteam/channels/weixin:E:\moonbit\clawteam\channels\weixin -target wasm-gc -g -O0 -source-map -no-mi -test-mode -workspace-path E:\moonbit\clawteam -all-pkgs E:\moonbit\clawteam\_build\wasm-gc\debug\test\all_pkgs.json
+failed: C:\Users\Administrator\.moon\bin\moonc.exe build-package -error-format json E:\moonbit\clawteam\internal\openrouter\models.mbt E:\moonbit\clawteam\_build\wasm-gc\debug\test\internal\openrouter\__generated_driver_for_internal_test.mbt -o E:\moonbit\clawteam\_build\wasm-gc\debug\test\internal\openrouter\openrouter.internal_test.core -pkg clawteam/clawteam/internal/openrouter -is-main -std-path C:\Users\Administrator\.moon\lib\core\_build\wasm-gc\release\bundle -i E:\moonbit\clawteam\_build\wasm-gc\debug\test\.mooncakes\moonbitlang\async\http\http.mi:http -i E:\moonbit\clawteam\_build\wasm-gc\debug\test\.mooncakes\moonbitlang\async\io\io.mi:io -i C:\Users\Administrator\.moon\lib\core\_build\wasm-gc\release\bundle\json\json.mi:json -i C:\Users\Administrator\.moon\lib\core\_build\wasm-gc\release\bundle\prelude\prelude.mi:prelude -i C:\Users\Administrator\.moon\lib\core\_build\wasm-gc\release\bundle\strconv\strconv.mi:strconv -i C:\Users\Administrator\.moon\lib\core\_build\wasm-gc\release\bundle\test\test.mi:test -pkg-sources clawteam/clawteam/internal/openrouter:E:\moonbit\clawteam\internal\openrouter -target wasm-gc -g -O0 -source-map -no-mi -test-mode -workspace-path E:\moonbit\clawteam -all-pkgs E:\moonbit\clawteam\_build\wasm-gc\debug\test\all_pkgs.json
+failed: C:\Users\Administrator\.moon\bin\moonc.exe build-package -error-format json E:\moonbit\clawteam\channels\weixin\channel.mbt E:\moonbit\clawteam\channels\weixin\client.mbt E:\moonbit\clawteam\channels\weixin\types.mbt E:\moonbit\clawteam\channels\weixin\channel_wbtest.mbt E:\moonbit\clawteam\_build\wasm-gc\debug\test\channels\weixin\__generated_driver_for_whitebox_test.mbt -o E:\moonbit\clawteam\_build\wasm-gc\debug\test\channels\weixin\weixin.whitebox_test.core -pkg clawteam/clawteam/channels/weixin -is-main -std-path C:\Users\Administrator\.moon\lib\core\_build\wasm-gc\release\bundle -i E:\moonbit\clawteam\_build\wasm-gc\debug\test\.mooncakes\moonbitlang\async\async.mi:async -i E:\moonbit\clawteam\_build\wasm-gc\debug\test\channel\channel.mi:channel -i E:\moonbit\clawteam\_build\wasm-gc\debug\test\.mooncakes\moonbitlang\x\crypto\crypto.mi:crypto -i C:\Users\Administrator\.moon\lib\core\_build\wasm-gc\release\bundle\encoding/utf8\utf8.mi:encoding/utf8 -i E:\moonbit\clawteam\_build\wasm-gc\debug\test\.mooncakes\moonbitlang\async\http\http.mi:http -i C:\Users\Administrator\.moon\lib\core\_build\wasm-gc\release\bundle\json\json.mi:json -i C:\Users\Administrator\.moon\lib\core\_build\wasm-gc\release\bundle\prelude\prelude.mi:prelude -i C:\Users\Administrator\.moon\lib\core\_build\wasm-gc\release\bundle\strconv\strconv.mi:strconv -pkg-sources clawteam/clawteam/channels/weixin:E:\moonbit\clawteam\channels\weixin -target wasm-gc -g -O0 -source-map -whitebox-test -no-mi -test-mode -workspace-path E:\moonbit\clawteam -all-pkgs E:\moonbit\clawteam\_build\wasm-gc\debug\test\all_pkgs.json
+moon : Updating buildinfo from commit 14b427c to 00090d11
+At line:1 char:1
++ moon test --target wasm-gc 2>&1 | Out-File -FilePath "E:\moonbit\claw ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Updating buildi...27c to 00090d11:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+Generated buildinfo package with version = 0.1.0+51.00090d11
+Warning: [0067]
+    ╭─[ E:\moonbit\clawteam\channels\weixin\client.mbt:58:5 ]
+    │
+ 58 │ pub async fn WeixinClient::load_access_token(
+    │     ──┬──  
+    │       ╰──── Warning (unused_async): This `async` annotation is useless.
+────╯
+Error: [4021]
+    ╭─[ E:\moonbit\clawteam\channels\weixin\client.mbt:65:26 ]
+    │
+ 65 │   let (response, data) = @http.get(weixin_access_token_url(self.config)) catch {
+    │                          ────┬────  
+    │                              ╰────── Value get not found in package `http`.
+────╯
+Warning: [0023]
+    ╭─[ E:\moonbit\clawteam\channels\weixin\client.mbt:65:26 ]
+    │
+ 65 │   let (response, data) = @http.get(weixin_access_token_url(self.config)) catch {
+    │                          ───────────────────────┬───────────────────────  
+    │                                                 ╰───────────────────────── Warning (unused_try): The body of this try expression never raises any error
+.
+────╯
+Error: [4014]
+    ╭─[ E:\moonbit\clawteam\channels\weixin\client.mbt:94:93 ]
+    │
+ 94 │           message="Weixin access token lookup failed: \{parse_weixin_error_message(payload, body_text)}",
+    │                                                                                             ────┬────  
+    │                                                                                                 ╰────── Expr Type Mismatch
+        has type : StringView
+        wanted   : String
+────╯
+Error: [4021]
+     ╭─[ E:\moonbit\clawteam\channels\weixin\client.mbt:127:26 ]
+     │
+ 127 │   let (response, data) = @http.post(
+     │                          ─────┬────  
+     │                               ╰────── Value post not found in package `http`.
+─────╯
+Warning: [0023]
+     ╭─[ E:\moonbit\clawteam\channels\weixin\client.mbt:127:26 ]
+     │
+ 127 │ ╭─▶   let (response, data) = @http.post(
+     ┆ ┆   
+ 131 │ ├─▶   ) catch {
+     │ │                  
+     │ ╰────────────────── Warning (unused_try): The body of this try expression never raises any error.
+─────╯
+Error: [4014]
+     ╭─[ E:\moonbit\clawteam\channels\weixin\client.mbt:173:84 ]
+     │
+ 173 │           message="Weixin send failed: \{parse_weixin_error_message(response_json, body_text)}",
+     │                                                                                    ────┬────  
+     │                                                                                        ╰────── Expr Type Mismatch
+        has type : StringView
+        wanted   : String
+─────╯
+Warning: [0029]
+   ╭─[ E:\moonbit\clawteam\config\moon.pkg:4:3 ]
+   │
+ 4 │   "moonbitlang/x/path",
+   │   ──────────┬─────────  
+   │             ╰─────────── Warning (unused_package): Unused package 'moonbitlang/x/path'
+───╯
+Error: [4156]
+   ╭─[ E:\moonbit\clawteam\internal\backtrace\backtrace.mbt:2:1 ]
+   │
+ 2 │ extern "c" fn c_backtrace(n : Int) -> FixedArray[Bytes] = "moonbit_moonclaw_backtrace"
+   │ ───────────────────────────────────────────┬──────────────────────────────────────────  
+   │                                            ╰──────────────────────────────────────────── extern "C" is unsupported in wasm-gc backend.
+───╯
+Error: [4032]
+    ╭─[ E:\moonbit\clawteam\internal\c\README.mbt.md:23:13 ]
+    │
+ 23 │   let ptr : @c.Pointer[Int] = @c.malloc(8)
+    │             ───────┬───────  
+    │                    ╰───────── The type @c.Pointer is undefined.
+────╯
+Error: [4021]
+    ╭─[ E:\moonbit\clawteam\internal\c\README.mbt.md:23:31 ]
+    │
+ 23 │   let ptr : @c.Pointer[Int] = @c.malloc(8)
+    │                               ────┬────  
+    │                                   ╰────── Value malloc not found in package `c`.
+────╯
+Error: [4021]
+    ╭─[ E:\moonbit\clawteam\internal\c\README.mbt.md:30:3 ]
+    │
+ 30 │   @c.free(ptr)
+    │   ───┬───  
+    │      ╰───── Value free not found in package `c`.
+────╯
+Error: [4032]
+    ╭─[ E:\moonbit\clawteam\internal\c\README.mbt.md:49:11 ]
+    │
+ 49 │   let s : Pointer[Byte] = @c.malloc(6)
+    │           ──────┬──────  
+    │                 ╰──────── The type Pointer is undefined.
+────╯
+Error: [4021]
+    ╭─[ E:\moonbit\clawteam\internal\c\README.mbt.md:49:27 ]
+    │
+ 49 │   let s : Pointer[Byte] = @c.malloc(6)
+    │                           ────┬────  
+    │                               ╰────── Value malloc not found in package `c`.
+────╯
+Error: [4021]
+    ╭─[ E:\moonbit\clawteam\internal\c\README.mbt.md:56:16 ]
+    │
+ 56 │   json_inspect(strlen(s), content="5")
+    │                ───┬──  
+    │                   ╰──── The value identifier strlen is unbound.
+────╯
+Error: [4021]
+    ╭─[ E:\moonbit\clawteam\internal\c\README.mbt.md:57:3 ]
+    │
+ 57 │   @c.free(s)
+    │   ───┬───  
+    │      ╰───── Value free not found in package `c`.
+────╯
+Error: [4032]
+    ╭─[ E:\moonbit\clawteam\internal\c\README.mbt.md:69:13 ]
+    │
+ 69 │   let src : Pointer[Byte] = malloc(4)
+    │             ──────┬──────  
+    │                   ╰──────── The type Pointer is undefined.
+────╯
+Error: [4021]
+    ╭─[ E:\moonbit\clawteam\internal\c\README.mbt.md:69:29 ]
+    │
+ 69 │   let src : Pointer[Byte] = malloc(4)
+    │                             ───┬──  
+    │                                ╰──── The value identifier malloc is unbound.
+────╯
+Error: [4032]
+    ╭─[ E:\moonbit\clawteam\internal\c\README.mbt.md:70:13 ]
+    │
+ 70 │   let dst : Pointer[Byte] = malloc(4)
+    │             ──────┬──────  
+    │                   ╰──────── The type Pointer is undefined.
+────╯
+Error: [4021]
+    ╭─[ E:\moonbit\clawteam\internal\c\README.mbt.md:70:29 ]
+    │
+ 70 │   let dst : Pointer[Byte] = malloc(4)
+    │                             ───┬──  
+    │                                ╰──── The value identifier malloc is unbound.
+────╯
+Error: [4021]
+    ╭─[ E:\moonbit\clawteam\internal\c\README.mbt.md:75:3 ]
+    │
+ 75 │   @c.memcpy(dst.cast(), src.cast(), 4)
+    │   ────┬────  
+    │       ╰────── Value memcpy not found in package `c`.
+────╯
+Error: [4021]
+    ╭─[ E:\moonbit\clawteam\internal\c\README.mbt.md:78:3 ]
+    │
+ 78 │   @c.free(src)
+    │   ───┬───  
+    │      ╰───── Value free not found in package `c`.
+────╯
+Error: [4021]
+    ╭─[ E:\moonbit\clawteam\internal\c\README.mbt.md:79:3 ]
+    │
+ 79 │   @c.free(dst)
+    │   ───┬───  
+    │      ╰───── Value free not found in package `c`.
+────╯
+Error: [4021]
+    ╭─[ E:\moonbit\clawteam\internal\c\README.mbt.md:90:3 ]
+    │
+ 90 │   @c.exit(0)
+    │   ───┬───  
+    │      ╰───── Value exit not found in package `c`.
+────╯
+Error: [4032]
+   ╭─[ E:\moonbit\clawteam\internal\c\memcpy_test.mbt:3:13 ]
+   │
+ 3 │   let src : @c.Pointer[Byte] = @c.malloc(16)
+   │             ────────┬───────  
+   │                     ╰───────── The type @c.Pointer is undefined.
+───╯
+Error: [4021]
+   ╭─[ E:\moonbit\clawteam\internal\c\memcpy_test.mbt:3:32 ]
+   │
+ 3 │   let src : @c.Pointer[Byte] = @c.malloc(16)
+   │                                ────┬────  
+   │                                    ╰────── Value malloc not found in package `c`.
+───╯
+Error: [4021]
+   ╭─[ E:\moonbit\clawteam\internal\c\memcpy_test.mbt:7:9 ]
+   │
+ 7 │   defer @c.free(src)
+   │         ───┬───  
+   │            ╰───── Value free not found in package `c`.
+───╯
+Error: [4032]
+   ╭─[ E:\moonbit\clawteam\internal\c\memcpy_test.mbt:8:13 ]
+   │
+ 8 │   let dst : @c.Pointer[Byte] = @c.malloc(16)
+   │             ────────┬───────  
+   │                     ╰───────── The type @c.Pointer is undefined.
+───╯
+Error: [4021]
+   ╭─[ E:\moonbit\clawteam\internal\c\memcpy_test.mbt:8:32 ]
+   │
+ 8 │   let dst : @c.Pointer[Byte] = @c.malloc(16)
+   │                                ────┬────  
+   │                                    ╰────── Value malloc not found in package `c`.
+───╯
+Error: [4021]
+    ╭─[ E:\moonbit\clawteam\internal\c\memcpy_test.mbt:12:9 ]
+    │
+ 12 │   defer @c.free(dst)
+    │         ───┬───  
+    │            ╰───── Value free not found in package `c`.
+────╯
+Error: [4021]
+    ╭─[ E:\moonbit\clawteam\internal\c\memcpy_test.mbt:13:3 ]
+    │
+ 13 │   @c.memcpy(dst, src, 16)
+    │   ────┬────  
+    │       ╰────── Value memcpy not found in package `c`.
+────╯
+Error: [4032]
+   ╭─[ E:\moonbit\clawteam\internal\c\strlen_test.mbt:3:11 ]
+   │
+ 3 │   let s : @c.Pointer[Byte] = @c.malloc(6)
+   │           ────────┬───────  
+   │                   ╰───────── The type @c.Pointer is undefined.
+───╯
+Error: [4021]
+   ╭─[ E:\moonbit\clawteam\internal\c\strlen_test.mbt:3:30 ]
+   │
+ 3 │   let s : @c.Pointer[Byte] = @c.malloc(6)
+   │                              ────┬────  
+   │                                  ╰────── Value malloc not found in package `c`.
+───╯
+Error: [4021]
+    ╭─[ E:\moonbit\clawteam\internal\c\strlen_test.mbt:10:16 ]
+    │
+ 10 │   json_inspect(@c.strlen(s), content="5")
+    │                ────┬────  
+    │                    ╰────── Value strlen not found in package `c`.
+────╯
+Error: [4156]
+   ╭─[ E:\moonbit\clawteam\internal\errno\errno.mbt:2:1 ]
+   │
+ 2 │ extern "c" fn errno_ERANGE() -> Int = "moonbit_moonclaw_errno_ERANGE"
+   │ ──────────────────────────────────┬──────────────────────────────────  
+   │                                   ╰──────────────────────────────────── extern "C" is unsupported in wasm-gc backend.
+───╯
+Error: [4156]
+   ╭─[ E:\moonbit\clawteam\internal\errno\errno.mbt:8:1 ]
+   │
+ 8 │ extern "c" fn errno_ENAMETOOLONG() -> Int = "moonbit_moonclaw_errno_ENAMETOOLONG"
+   │ ────────────────────────────────────────┬────────────────────────────────────────  
+   │                                         ╰────────────────────────────────────────── extern "C" is unsupported in wasm-gc backend.
+───╯
+Error: [4156]
+    ╭─[ E:\moonbit\clawteam\internal\errno\errno.mbt:14:1 ]
+    │
+ 14 │ extern "c" fn errno_EEXIST() -> Int = "moonbit_moonclaw_errno_EEXIST"
+    │ ──────────────────────────────────┬──────────────────────────────────  
+    │                                   ╰──────────────────────────────────── extern "C" is unsupported in wasm-gc backend.
+────╯
+Error: [4156]
+    ╭─[ E:\moonbit\clawteam\internal\errno\errno.mbt:25:1 ]
+    │
+ 25 │ extern "c" fn errno_strerror(errnum : Int) -> @c.Pointer[Byte] = "moonbit_moonclaw_errno_strerror"
+    │ ─────────────────────────────────────────────────┬────────────────────────────────────────────────  
+    │                                                  ╰────────────────────────────────────────────────── extern "C" is unsupported in wasm-gc backend.
+────╯
+Error: [4032]
+    ╭─[ E:\moonbit\clawteam\internal\errno\errno.mbt:25:47 ]
+    │
+ 25 │ extern "c" fn errno_strerror(errnum : Int) -> @c.Pointer[Byte] = "moonbit_moonclaw_errno_strerror"
+    │                                               ────────┬───────  
+    │                                                       ╰───────── The type @c.Pointer is undefined.
+────╯
+Error: [4021]
+    ╭─[ E:\moonbit\clawteam\internal\errno\errno.mbt:34:17 ]
+    │
+ 34 │     let c_len = @c.strlen(c_str).to_int()
+    │                 ────┬────  
+    │                     ╰────── Value strlen not found in package `c`.
+────╯
+Error: [4156]
+    ╭─[ E:\moonbit\clawteam\internal\errno\errno.mbt:50:1 ]
+    │
+ 50 │ extern "c" fn errno_EBADF() -> Int = "moonbit_moonclaw_errno_EBADF"
+    │ ─────────────────────────────────┬─────────────────────────────────  
+    │                                  ╰─────────────────────────────────── extern "C" is unsupported in wasm-gc backend.
+────╯
+Error: [4156]
+    ╭─[ E:\moonbit\clawteam\internal\errno\errno.mbt:56:1 ]
+    │
+ 56 │ extern "c" fn errno_ENOTTY() -> Int = "moonbit_moonclaw_errno_ENOTTY"
+    │ ──────────────────────────────────┬──────────────────────────────────  
+    │                                   ╰──────────────────────────────────── extern "C" is unsupported in wasm-gc backend.
+────╯
+Error: [4156]
+    ╭─[ E:\moonbit\clawteam\internal\errno\errno.mbt:62:1 ]
+    │
+ 62 │ extern "c" fn errno_get() -> Int = "moonbit_moonclaw_errno_get"
+    │ ───────────────────────────────┬───────────────────────────────  
+    │                                ╰───────────────────────────────── extern "C" is unsupported in wasm-gc backend.
+────╯
+Error: [4156]
+    ╭─[ E:\moonbit\clawteam\internal\errno\errno.mbt:70:1 ]
+    │
+ 70 │ extern "c" fn errno_ENOENT() -> Int = "moonbit_moonclaw_errno_ENOENT"
+    │ ──────────────────────────────────┬──────────────────────────────────  
+    │                                   ╰──────────────────────────────────── extern "C" is unsupported in wasm-gc backend.
+────╯
+Error: [4156]
+    ╭─[ E:\moonbit\clawteam\internal\errno\errno.mbt:76:1 ]
+    │
+ 76 │ extern "c" fn errno_EINVAL() -> Int = "moonbit_moonclaw_errno_EINVAL"
+    │ ──────────────────────────────────┬──────────────────────────────────  
+    │                                   ╰──────────────────────────────────── extern "C" is unsupported in wasm-gc backend.
+────╯
+Error: [4156]
+    ╭─[ E:\moonbit\clawteam\internal\errno\errno.mbt:82:1 ]
+    │
+ 82 │ extern "c" fn errno_EAGAIN() -> Int = "moonbit_moonclaw_errno_EAGAIN"
+    │ ──────────────────────────────────┬──────────────────────────────────  
+    │                                   ╰──────────────────────────────────── extern "C" is unsupported in wasm-gc backend.
+────╯
+Error: [4156]
+    ╭─[ E:\moonbit\clawteam\internal\errno\errno.mbt:88:1 ]
+    │
+ 88 │ extern "c" fn errno_EACCES() -> Int = "moonbit_moonclaw_errno_EACCES"
+    │ ──────────────────────────────────┬──────────────────────────────────  
+    │                                   ╰──────────────────────────────────── extern "C" is unsupported in wasm-gc backend.
+────╯
+Warning: [0067]
+     ╭─[ E:\moonbit\clawteam\internal\openrouter\models.mbt:425:5 ]
+     │
+ 425 │ pub async fn get_models(api_key~ : StringView) -> Array[Model] {
+     │     ──┬──  
+     │       ╰──── Warning (unused_async): This `async` annotation is useless.
+─────╯
+Error: [4021]
+     ╭─[ E:\moonbit\clawteam\internal\openrouter\models.mbt:426:16 ]
+     │
+ 426 │   let (r, b) = @http.get("https://openrouter.ai/api/v1/models", headers={
+     │                ────┬────  
+     │                    ╰────── Value get not found in package `http`.
+─────╯
+Error: [4118]
+     ╭─[ E:\moonbit\clawteam\internal\openrouter\models.mbt:429:21 ]
+     │
+ 429 │   guard b.json() is { "data": data_json, .. } else {
+     │                     ────────────┬────────────  
+     │                                 ╰────────────── Please implement method `get` for type _/0 to match it with map pattern.
+─────╯
+Warning: [0067]
+     ╭─[ E:\moonbit\clawteam\internal\openrouter\models.mbt:436:5 ]
+     │
+ 436 │ pub async fn get_models_count(api_key~ : StringView) -> Int {
+     │     ──┬──  
+     │       ╰──── Warning (unused_async): This `async` annotation is useless.
+─────╯
+Error: [4021]
+     ╭─[ E:\moonbit\clawteam\internal\openrouter\models.mbt:437:16 ]
+     │
+ 437 │   let (r, b) = @http.get("https://openrouter.ai/api/v1/models/count", headers={
+     │                ────┬────  
+     │                    ╰────── Value get not found in package `http`.
+─────╯
+Error: [4118]
+     ╭─[ E:\moonbit\clawteam\internal\openrouter\models.mbt:440:21 ]
+     │
+ 440 │   guard b.json() is { "data": { "count": count_json, .. }, .. } else {
+     │                     ─────────────────────┬─────────────────────  
+     │                                          ╰─────────────────────── Please implement method `get` for type _/0 to match it with map pattern.
+─────╯
+Error: [4118]
+     ╭─[ E:\moonbit\clawteam\internal\openrouter\models.mbt:440:31 ]
+     │
+ 440 │   guard b.json() is { "data": { "count": count_json, .. }, .. } else {
+     │                               ─────────────┬─────────────  
+     │                                            ╰─────────────── Please implement method `get` for type _/0 to match it with map pattern.
+─────╯
+Error: [4156]
+   ╭─[ E:\moonbit\clawteam\internal\signal\signal.mbt:2:1 ]
+   │
+ 2 │ extern "c" fn signal_sigtstp() -> Int = "moonbit_moonclaw_signal_sigtstp"
+   │ ────────────────────────────────────┬────────────────────────────────────  
+   │                                     ╰────────────────────────────────────── extern "C" is unsupported in wasm-gc backend.
+───╯
+Error: [4156]
+    ╭─[ E:\moonbit\clawteam\internal\signal\signal.mbt:16:1 ]
+    │
+ 16 │ extern "c" fn signal_sigterm() -> Int = "moonbit_moonclaw_signal_sigterm"
+    │ ────────────────────────────────────┬────────────────────────────────────  
+    │                                     ╰────────────────────────────────────── extern "C" is unsupported in wasm-gc backend.
+────╯
+Error: [4156]
+    ╭─[ E:\moonbit\clawteam\internal\signal\signal.mbt:22:1 ]
+    │
+ 22 │ extern "c" fn signal_sigkill() -> Int = "moonbit_moonclaw_signal_sigkill"
+    │ ────────────────────────────────────┬────────────────────────────────────  
+    │                                     ╰────────────────────────────────────── extern "C" is unsupported in wasm-gc backend.
+────╯
+Warning: [0009]
+   ╭─[ E:\moonbit\clawteam\scheduler\types.mbt:7:12 ]
+   │
+ 7 │ pub struct CliCallParams {
+   │            ──────┬──────  
+   │                  ╰──────── Warning (struct_never_constructed): The struct CliCallParams is never constructed
+───╯
+Warning: [0008]
+   ╭─[ E:\moonbit\clawteam\scheduler\types.mbt:8:3 ]
+   │
+ 8 │   pub cli_tool : String
+   │   ─┬─  
+   │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field cli_tool is public by default
+───╯
+Warning: [0008]
+   ╭─[ E:\moonbit\clawteam\scheduler\types.mbt:9:3 ]
+   │
+ 9 │   pub agent_prompt : String
+   │   ─┬─  
+   │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field agent_prompt is public by default
+───╯
+Warning: [0008]
+    ╭─[ E:\moonbit\clawteam\scheduler\types.mbt:10:3 ]
+    │
+ 10 │   pub context : String
+    │   ─┬─  
+    │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field context is public by default
+────╯
+Warning: [0008]
+    ╭─[ E:\moonbit\clawteam\scheduler\types.mbt:11:3 ]
+    │
+ 11 │   pub variables : Map[String, String]
+    │   ─┬─  
+    │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field variables is public by default
+────╯
+Warning: [0009]
+    ╭─[ E:\moonbit\clawteam\scheduler\types.mbt:16:12 ]
+    │
+ 16 │ pub struct CliCallResult {
+    │            ──────┬──────  
+    │                  ╰──────── Warning (struct_never_constructed): The struct CliCallResult is never constructed
+────╯
+Warning: [0008]
+    ╭─[ E:\moonbit\clawteam\scheduler\types.mbt:17:3 ]
+    │
+ 17 │   pub stdout : String
+    │   ─┬─  
+    │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field stdout is public by default
+────╯
+Warning: [0008]
+    ╭─[ E:\moonbit\clawteam\scheduler\types.mbt:18:3 ]
+    │
+ 18 │   pub stderr : String
+    │   ─┬─  
+    │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field stderr is public by default
+────╯
+Warning: [0008]
+    ╭─[ E:\moonbit\clawteam\scheduler\types.mbt:19:3 ]
+    │
+ 19 │   pub status : Int
+    │   ─┬─  
+    │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field status is public by default
+────╯
+Warning: [0008]
+    ╭─[ E:\moonbit\clawteam\scheduler\types.mbt:20:3 ]
+    │
+ 20 │   pub elapsed : Int
+    │   ─┬─  
+    │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field elapsed is public by default
+────╯
+Warning: [0009]
+    ╭─[ E:\moonbit\clawteam\scheduler\types.mbt:25:12 ]
+    │
+ 25 │ pub struct DispatchContext {
+    │            ───────┬───────  
+    │                   ╰───────── Warning (struct_never_constructed): The struct DispatchContext is never constructed
+────╯
+Warning: [0008]
+    ╭─[ E:\moonbit\clawteam\scheduler\types.mbt:26:3 ]
+    │
+ 26 │   pub session_id : String
+    │   ─┬─  
+    │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field session_id is public by default
+────╯
+Warning: [0008]
+    ╭─[ E:\moonbit\clawteam\scheduler\types.mbt:27:3 ]
+    │
+ 27 │   pub user_id : String?
+    │   ─┬─  
+    │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field user_id is public by default
+────╯
+Warning: [0008]
+    ╭─[ E:\moonbit\clawteam\scheduler\types.mbt:28:3 ]
+    │
+ 28 │   pub channel : String?
+    │   ─┬─  
+    │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field channel is public by default
+────╯
+Warning: [0008]
+    ╭─[ E:\moonbit\clawteam\scheduler\types.mbt:29:3 ]
+    │
+ 29 │   pub timestamp : Int
+    │   ─┬─  
+    │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field timestamp is public by default
+────╯
+Warning: [0008]
+    ╭─[ E:\moonbit\clawteam\scheduler\types.mbt:30:3 ]
+    │
+ 30 │   pub metadata : Map[String, String]
+    │   ─┬─  
+    │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field metadata is public by default
+────╯

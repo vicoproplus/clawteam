@@ -2,21 +2,136 @@
 /// 
 /// ClawTeam 是一个基于 MoonBit 构建的纯调度层工具，
 /// 核心价值在于通过聊天式交互统一编排外部 CLI 工具。
+///
+/// Moonclaw 类型别名保持与原模块的兼容性。
 
 ///|
-/// ClawTeam 主结构（简化版，待其他模块完成后扩展）
-pub struct ClawTeam {
-  version : String
+/// Moonclaw 是主 AI 编码代理，提供智能软件开发生命周期辅助。
+/// 集成文件管理、命令执行和代码分析等工具。
+pub struct Moonclaw {
+  logger : @pino.Logger
+  agent : @agent.Agent
 }
 
 ///|
-/// 创建 ClawTeam 实例
-pub fn ClawTeam::new() -> ClawTeam {
-  ClawTeam::{ version: "0.1.0" }
+/// ClawTeam 类型别名（Moonclaw 的另一个名称）
+pub struct ClawTeam(Moonclaw)
+
+///|
+fn setup_agent(agent : @agent.Agent, cwd~ : String) -> Unit {
+  agent.add_tools([@execute_command.new(agent.cwd).to_agent_tool()])
 }
 
 ///|
-/// 获取版本号
-pub fn ClawTeam::version(self : ClawTeam) -> String {
-  self.version
+/// Creates a new moonclaw agent instance.
+///
+/// Parameters:
+/// - logger: Optional logger for recording agent activities (defaults to file-based logger)
+/// - model: The AI model to use for the agent
+/// - cwd: Optional working directory (defaults to current working directory)
+/// - user_message: Optional initial user message to start the conversation
+/// - web_search: Whether to enable web search capabilities (defaults to false)
+///
+/// Returns a configured moonclaw instance ready to assist with coding tasks.
+#as_free_fn
+pub async fn Moonclaw::new(
+  name? : String,
+  logger? : @pino.Logger = @pino.logger(
+    "moonclaw",
+    try! @pino.Transport::parse("file:.moonclaw/log.jsonl"),
+  ),
+  model~ : @model.Model,
+  home? : String,
+  cwd? : String,
+  user_message? : String,
+  web_search? : Bool = false,
+) -> Moonclaw {
+  let cwd = match cwd {
+    Some(cwd) => cwd
+    None => @os.cwd()
+  }
+  let system_prompt = @prompt.prelude
+  let agent = @agent.new(
+    name?,
+    model,
+    logger~,
+    home?=home.map(home => home),
+    cwd~,
+    system_message=system_prompt,
+    user_message?,
+    web_search~,
+  )
+  setup_agent(agent, cwd~)
+  { logger, agent }
+}
+
+///|
+/// Closes the moonclaw agent and releases associated resources.
+/// Should be called when the agent is no longer needed (using `defer` ideally).
+pub fn Moonclaw::close(self : Moonclaw) -> Unit {
+  self.agent.close()
+}
+
+///|
+/// Starts the moonclaw agent and begins processing tasks.
+///
+/// Parameters:
+///
+/// - prompt: Optional initial prompt to send to the agent before starting
+///
+/// The agent will process messages from its queue and respond to user requests,
+/// and stops when there are no more messages to process.
+pub async fn Moonclaw::start(self : Moonclaw, prompt? : String) -> Unit {
+  if prompt is Some(prompt) {
+    let user_message = @ai.user_message(content=prompt)
+    self.agent.queue_message(user_message) |> ignore()
+  }
+  self.agent.start()
+}
+
+///|
+/// Resumes a previously saved moonclaw agent session.
+///
+/// Parameters:
+/// - logger: Optional logger for recording agent activities (defaults to file-based logger)
+/// - model: The AI model to use for the agent
+/// - cwd: Optional working directory (defaults to current working directory)
+/// - id: The unique identifier of the conversation to resume
+/// - user_message: Optional user message to add to the resumed conversation
+/// - web_search: Whether to enable web search capabilities (defaults to false)
+///
+/// Returns a moonclaw instance with the conversation history restored.
+/// Fails if the conversation with the given id cannot be found.
+#as_free_fn
+pub async fn Moonclaw::resume_(
+  logger? : @pino.Logger = @pino.logger(
+    "moonclaw",
+    try! @pino.Transport::parse("file:.moonclaw/log.jsonl"),
+  ),
+  model~ : @model.Model,
+  home? : String,
+  id : @uuid.Uuid,
+  user_message? : String,
+  web_search? : Bool,
+) -> Moonclaw {
+  let home = match home {
+    Some(home) => home
+    None => @os.home()
+  }
+  let uuid = @uuid.generator(@rand.chacha8())
+  let session_manager = @conversation.Manager::new(home~, uuid~)
+  guard session_manager.load(id) is Some(conversation) else {
+    fail("Conversation with id '\{id}' not found.")
+  }
+  // Use the conversation's web_search setting if not explicitly overridden.
+  let web_search = web_search.unwrap_or(conversation.web_search())
+  let agent = @agent.load(
+    model,
+    conversation,
+    logger~,
+    user_message?,
+    web_search~,
+  )
+  setup_agent(agent, cwd=conversation.cwd())
+  { logger, agent }
 }

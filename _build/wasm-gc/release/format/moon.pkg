@@ -2,5 +2,22 @@ import {
   "clawteam/clawteam/types",
   "clawteam/clawteam/errors",
   "clawteam/clawteam/config",
+  "clawteam/clawteam/agent",
+  "clawteam/clawteam/tools/execute_command",
+  "clawteam/clawteam/internal/os",
+  "clawteam/clawteam/model",
+  "clawteam/clawteam/internal/pino",
+  "clawteam/clawteam/prompt",
+  "clawteam/clawteam/job",
+  "clawteam/clawteam/tool",
+  "clawteam/clawteam/ai",
+  "clawteam/clawteam/internal/conversation",
+  "clawteam/clawteam/internal/uuid",
+  "clawteam/clawteam/internal/rand",
   "moonbitlang/core/json",
 }
+
+import {
+  "moonbitlang/async",
+  "clawteam/clawteam/internal/mock",
+} for "test"

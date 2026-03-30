@@ -1,5 +1,5 @@
 // Generated using `moon info`, DON'T EDIT IT
-package "moonbitlang/moonclaw/internal/tui"
+package "clawteam/clawteam/internal/tui"
 
 import {
   "moonbitlang/async/stdio",

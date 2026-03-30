@@ -1,9 +1,9 @@
 // Generated using `moon info`, DON'T EDIT IT
-package "moonbitlang/moonclaw/channels/feishu"
+package "clawteam/clawteam/channels/feishu"
 
 import {
+  "clawteam/clawteam/channel",
   "moonbitlang/core/json",
-  "moonbitlang/moonclaw/channel",
 }
 
 // Values

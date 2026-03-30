@@ -1,11 +1,17 @@
 // Generated using `moon info`, DON'T EDIT IT
-package "moonbitlang/moonclaw/internal/tty"
+package "clawteam/clawteam/internal/tty"
+
+import {
+  "moonbitlang/async/stdio",
+}
 
 // Values
 #callsite(autofill(loc))
 pub fn isatty(Int, loc~ : SourceLoc) -> Bool raise
 
 pub fn set_raw_mode(Int) -> Unit raise
+
+pub fn set_raw_mode_async(@stdio.Input) -> Unit
 
 pub fn window_size() -> Size raise
 

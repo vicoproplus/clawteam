@@ -1,10 +1,10 @@
 // Generated using `moon info`, DON'T EDIT IT
-package "moonbitlang/moonclaw/internal/content_extractor"
+package "clawteam/clawteam/internal/content_extractor"
 
 import {
-  "moonbitlang/moonclaw/internal/openai",
-  "moonbitlang/moonclaw/internal/pino",
-  "moonbitlang/moonclaw/model",
+  "clawteam/clawteam/internal/openai",
+  "clawteam/clawteam/internal/pino",
+  "clawteam/clawteam/model",
 }
 
 // Values

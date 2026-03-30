@@ -3,7 +3,6 @@ import {
   "clawteam/clawteam/agent",
   "clawteam/clawteam/ai",
   "clawteam/clawteam/event",
-  "clawteam/clawteam/file",
   "clawteam/clawteam/model",
   "clawteam/clawteam/prompt",
   "clawteam/clawteam/internal/spawn",
@@ -16,13 +15,7 @@ import {
   "moonbitlang/core/strconv",
   "moonbitlang/core/test",
   "moonbitlang/x/time",
-  "clawteam/clawteam/tools/apply_patch",
   "clawteam/clawteam/tools/execute_command",
-  "clawteam/clawteam/tools/list_files",
-  "clawteam/clawteam/tools/read_file",
-  "clawteam/clawteam/tools/search_files",
-  "clawteam/clawteam/tools/todo",
-  "clawteam/clawteam/tools/write_to_file",
 }
 
 import {

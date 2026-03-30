@@ -1,13 +1,7 @@
-﻿failed: C:\Users\Administrator\.moon\bin\moonc.exe check -error-format json E:\moonbit\clawteam\tools\write_to_file\tool_test.mbt -doctest-only E:\moonbit\clawteam\tools\write_to_file\write_to_file.mbt -include-doctests -o E:\moonbit\clawteam\_build\native\release\check\tools\write_to_file\write_to_file.blackbox_test.mi -pkg clawteam/clawteam/tools/write_to_file_blackbox_test -std-path C:\Users\Administrator\.moon\lib\core\_build\native\release\bundle -i E:\moonbit\clawteam\_build\native\release\check\.mooncakes\moonbitlang\async\async.mi:async -i E:\moonbit\clawteam\_build\native\release\check\.mooncakes\moonbitlang\async\fs\fs.mi:fs -i E:\moonbit\clawteam\_build\native\release\check\internal\fsx\fsx.mi:fsx -i C:\Users\Administrator\.moon\lib\core\_build\native\release\bundle\json\json.mi:json -i E:\moonbit\clawteam\_build\native\release\check\internal\mock\mock.mi:mock -i E:\moonbit\clawteam\_build\native\release\check\.mooncakes\moonbitlang\async\os_error\os_error.mi:os_error -i E:\moonbit\clawteam\_build\native\release\check\internal\pathx\pathx.mi:pathx -i C:\Users\Administrator\.moon\lib\core\_build\native\release\bundle\prelude\prelude.mi:prelude -i C:\Users\Administrator\.moon\lib\core\_build\native\release\bundle\test\test.mi:test -i E:\moonbit\clawteam\_build\native\release\check\tool\tool.mi:tool -i E:\moonbit\clawteam\_build\native\release\check\tools\write_to_file\write_to_file.mi:write_to_file -pkg-sources clawteam/clawteam/tools/write_to_file_blackbox_test:E:\moonbit\clawteam\tools\write_to_file -target native -blackbox-test -workspace-path E:\moonbit\clawteam -all-pkgs E:\moonbit\clawteam\_build\native\release\check\all_pkgs.json
-failed: C:\Users\Administrator\.moon\bin\moonc.exe check -error-format json E:\moonbit\clawteam\tools\replace_in_file\replace_in_file_test.mbt -doctest-only E:\moonbit\clawteam\tools\replace_in_file\replace_in_file.mbt -doctest-only E:\moonbit\clawteam\tools\replace_in_file\schema.mbt -include-doctests -o E:\moonbit\clawteam\_build\native\release\check\tools\replace_in_file\replace_in_file.blackbox_test.mi -pkg clawteam/clawteam/tools/replace_in_file_blackbox_test -std-path C:\Users\Administrator\.moon\lib\core\_build\native\release\bundle -i E:\moonbit\clawteam\_build\native\release\check\agent\agent.mi:agent -i E:\moonbit\clawteam\_build\native\release\check\ai\ai.mi:ai -i E:\moonbit\clawteam\_build\native\release\check\.mooncakes\moonbitlang\async\async.mi:async -i E:\moonbit\clawteam\_build\native\release\check\event\event.mi:event -i E:\moonbit\clawteam\_build\native\release\check\file\file.mi:file -i E:\moonbit\clawteam\_build\native\release\check\.mooncakes\moonbitlang\async\fs\fs.mi:fs -i E:\moonbit\clawteam\_build\native\release\check\internal\fsx\fsx.mi:fsx -i E:\moonbit\clawteam\_build\native\release\check\internal\fuzzy\fuzzy.mi:fuzzy -i C:\Users\Administrator\.moon\lib\core\_build\native\release\bundle\json\json.mi:json -i E:\moonbit\clawteam\_build\native\release\check\internal\mock\mock.mi:mock -i E:\moonbit\clawteam\_build\native\release\check\model\model.mi:model -i E:\moonbit\clawteam\_build\native\release\check\.mooncakes\moonbitlang\async\os_error\os_error.mi:os_error -i E:\moonbit\clawteam\_build\native\release\check\internal\pathx\pathx.mi:pathx -i E:\moonbit\clawteam\_build\native\release\check\internal\pino\pino.mi:pino -i C:\Users\Administrator\.moon\lib\core\_build\native\release\bundle\prelude\prelude.mi:prelude -i E:\moonbit\clawteam\_build\native\release\check\tools\read_file\read_file.mi:read_file -i E:\moonbit\clawteam\_build\native\release\check\tools\replace_in_file\replace_in_file.mi:replace_in_file -i C:\Users\Administrator\.moon\lib\core\_build\native\release\bundle\test\test.mi:test -i E:\moonbit\clawteam\_build\native\release\check\tool\tool.mi:tool -pkg-sources clawteam/clawteam/tools/replace_in_file_blackbox_test:E:\moonbit\clawteam\tools\replace_in_file -target native -blackbox-test -workspace-path E:\moonbit\clawteam -all-pkgs E:\moonbit\clawteam\_build\native\release\check\all_pkgs.json
-failed: C:\Users\Administrator\.moon\bin\moonc.exe check -error-format json E:\moonbit\clawteam\internal\readline\history.mbt E:\moonbit\clawteam\internal\readline\readline.mbt -o E:\moonbit\clawteam\_build\native\release\check\internal\readline\readline.mi -pkg clawteam/clawteam/internal/readline -std-path C:\Users\Administrator\.moon\lib\core\_build\native\release\bundle -i E:\moonbit\clawteam\_build\native\release\check\.mooncakes\moonbitlang\async\aqueue\aqueue.mi:aqueue -i E:\moonbit\clawteam\_build\native\release\check\.mooncakes\moonbitlang\async\async.mi:async -i C:\Users\Administrator\.moon\lib\core\_build\native\release\bundle\buffer\buffer.mi:buffer -i C:\Users\Administrator\.moon\lib\core\_build\native\release\bundle\cmp\cmp.mi:cmp -i E:\moonbit\clawteam\_build\native\release\check\internal\readline\csi\csi.mi:csi -i C:\Users\Administrator\.moon\lib\core\_build\native\release\bundle\deque\deque.mi:deque -i C:\Users\Administrator\.moon\lib\core\_build\native\release\bundle\encoding/utf8\utf8.mi:encoding/utf8 -i C:\Users\Administrator\.moon\lib\core\_build\native\release\bundle\env\env.mi:env -i E:\moonbit\clawteam\_build\native\release\check\.mooncakes\moonbitlang\async\io\io.mi:io -i C:\Users\Administrator\.moon\lib\core\_build\native\release\bundle\prelude\prelude.mi:prelude -i E:\moonbit\clawteam\_build\native\release\check\internal\signal\signal.mi:signal -i E:\moonbit\clawteam\_build\native\release\check\internal\spawn\spawn.mi:spawn -i E:\moonbit\clawteam\_build\native\release\check\.mooncakes\moonbitlang\async\stdio\stdio.mi:stdio -i E:\moonbit\clawteam\_build\native\release\check\internal\tty\tty.mi:tty -i E:\moonbit\clawteam\_build\native\release\check\internal\readline\unicode\unicode.mi:unicode -i E:\moonbit\clawteam\_build\native\release\check\internal\readline\unicode\width\width.mi:unicode/width -pkg-sources clawteam/clawteam/internal/readline:E:\moonbit\clawteam\internal\readline -target native -workspace-path E:\moonbit\clawteam -all-pkgs E:\moonbit\clawteam\_build\native\release\check\all_pkgs.json
-failed: C:\Users\Administrator\.moon\bin\moonc.exe check -error-format json E:\moonbit\clawteam\internal\readline\history.mbt E:\moonbit\clawteam\internal\readline\readline.mbt E:\moonbit\clawteam\internal\readline\readline_wbtest.mbt -o E:\moonbit\clawteam\_build\native\release\check\internal\readline\readline.whitebox_test.mi -pkg clawteam/clawteam/internal/readline -std-path C:\Users\Administrator\.moon\lib\core\_build\native\release\bundle -i E:\moonbit\clawteam\_build\native\release\check\.mooncakes\moonbitlang\async\aqueue\aqueue.mi:aqueue -i E:\moonbit\clawteam\_build\native\release\check\.mooncakes\moonbitlang\async\async.mi:async -i C:\Users\Administrator\.moon\lib\core\_build\native\release\bundle\buffer\buffer.mi:buffer -i C:\Users\Administrator\.moon\lib\core\_build\native\release\bundle\cmp\cmp.mi:cmp -i E:\moonbit\clawteam\_build\native\release\check\internal\readline\csi\csi.mi:csi -i C:\Users\Administrator\.moon\lib\core\_build\native\release\bundle\deque\deque.mi:deque -i C:\Users\Administrator\.moon\lib\core\_build\native\release\bundle\encoding/utf8\utf8.mi:encoding/utf8 -i C:\Users\Administrator\.moon\lib\core\_build\native\release\bundle\env\env.mi:env -i E:\moonbit\clawteam\_build\native\release\check\.mooncakes\moonbitlang\async\io\io.mi:io -i C:\Users\Administrator\.moon\lib\core\_build\native\release\bundle\prelude\prelude.mi:prelude -i E:\moonbit\clawteam\_build\native\release\check\internal\signal\signal.mi:signal -i E:\moonbit\clawteam\_build\native\release\check\internal\spawn\spawn.mi:spawn -i E:\moonbit\clawteam\_build\native\release\check\.mooncakes\moonbitlang\async\stdio\stdio.mi:stdio -i E:\moonbit\clawteam\_build\native\release\check\internal\tty\tty.mi:tty -i E:\moonbit\clawteam\_build\native\release\check\internal\readline\unicode\unicode.mi:unicode -i E:\moonbit\clawteam\_build\native\release\check\internal\readline\unicode\width\width.mi:unicode/width -pkg-sources clawteam/clawteam/internal/readline:E:\moonbit\clawteam\internal\readline -target native -whitebox-test -workspace-path E:\moonbit\clawteam -all-pkgs E:\moonbit\clawteam\_build\native\release\check\all_pkgs.json
-failed: C:\Users\Administrator\.moon\bin\moonc.exe check -error-format json E:\moonbit\clawteam\internal\tui\ansi.mbt E:\moonbit\clawteam\internal\tui\assistant_message.mbt E:\moonbit\clawteam\internal\tui\chat_log.mbt E:\moonbit\clawteam\internal\tui\commands.mbt E:\moonbit\clawteam\internal\tui\component.mbt E:\moonbit\clawteam\internal\tui\editor.mbt E:\moonbit\clawteam\internal\tui\loader.mbt E:\moonbit\clawteam\internal\tui\render_output.mbt E:\moonbit\clawteam\internal\tui\terminal.mbt E:\moonbit\clawteam\internal\tui\text.mbt E:\moonbit\clawteam\internal\tui\theme.mbt E:\moonbit\clawteam\internal\tui\tool_execution.mbt E:\moonbit\clawteam\internal\tui\tui.mbt E:\moonbit\clawteam\internal\tui\tui_state.mbt E:\moonbit\clawteam\internal\tui\user_message.mbt -o E:\moonbit\clawteam\_build\native\release\check\internal\tui\tui.mi -pkg clawteam/clawteam/internal/tui -std-path C:\Users\Administrator\.moon\lib\core\_build\native\release\bundle -i E:\moonbit\clawteam\_build\native\release\check\.mooncakes\moonbitlang\async\async.mi:async -i C:\Users\Administrator\.moon\lib\core\_build\native\release\bundle\buffer\buffer.mi:buffer -i C:\Users\Administrator\.moon\lib\core\_build\native\release\bundle\encoding/utf8\utf8.mi:encoding/utf8 -i E:\moonbit\clawteam\_build\native\release\check\internal\errno\errno.mi:errno -i E:\moonbit\clawteam\_build\native\release\check\.mooncakes\moonbitlang\async\os_error\os_error.mi:os_error -i C:\Users\Administrator\.moon\lib\core\_build\native\release\bundle\prelude\prelude.mi:prelude -i E:\moonbit\clawteam\_build\native\release\check\.mooncakes\moonbitlang\async\stdio\stdio.mi:stdio -i E:\moonbit\clawteam\_build\native\release\check\internal\tty\tty.mi:tty -i E:\moonbit\clawteam\_build\native\release\check\internal\readline\unicode\width\width.mi:unicode/width -pkg-sources clawteam/clawteam/internal/tui:E:\moonbit\clawteam\internal\tui -target native -workspace-path E:\moonbit\clawteam -all-pkgs E:\moonbit\clawteam\_build\native\release\check\all_pkgs.json
-failed: C:\Users\Administrator\.moon\bin\moonc.exe check -error-format json E:\moonbit\clawteam\gateway\client\client.mbt E:\moonbit\clawteam\gateway\client\client_wbtest.mbt -o E:\moonbit\clawteam\_build\native\release\check\gateway\client\client.whitebox_test.mi -pkg clawteam/clawteam/gateway/client -std-path C:\Users\Administrator\.moon\lib\core\_build\native\release\bundle -i E:\moonbit\clawteam\_build\native\release\check\acp\acp.mi:acp -i E:\moonbit\clawteam\_build\native\release\check\internal\buildinfo\buildinfo.mi:buildinfo -i E:\moonbit\clawteam\_build\native\release\check\channel\channel.mi:channel -i C:\Users\Administrator\.moon\lib\core\_build\native\release\bundle\encoding/utf8\utf8.mi:encoding/utf8 -i E:\moonbit\clawteam\_build\native\release\check\.mooncakes\moonbitlang\async\http\http.mi:http -i E:\moonbit\clawteam\_build\native\release\check\job\job.mi:job -i C:\Users\Administrator\.moon\lib\core\_build\native\release\bundle\json\json.mi:json -i E:\moonbit\clawteam\_build\native\release\check\internal\pino\pino.mi:pino -i E:\moonbit\clawteam\_build\native\release\check\plugin\plugin.mi:plugin -i C:\Users\Administrator\.moon\lib\core\_build\native\release\bundle\prelude\prelude.mi:prelude -i E:\moonbit\clawteam\_build\native\release\check\gateway\protocol\protocol.mi:protocol -i E:\moonbit\clawteam\_build\native\release\check\internal\rand\rand.mi:rand -i E:\moonbit\clawteam\_build\native\release\check\internal\uuid\uuid.mi:uuid -i E:\moonbit\clawteam\_build\native\release\check\workspace\workspace.mi:workspace -pkg-sources clawteam/clawteam/gateway/client:E:\moonbit\clawteam\gateway\client -target native -whitebox-test -workspace-path E:\moonbit\clawteam -all-pkgs E:\moonbit\clawteam\_build\native\release\check\all_pkgs.json
-moon : Warning: [0029]
-At line:1 char:25
-+ cd E:\moonbit\clawteam; moon check 2>&1 | Out-File -FilePath check_ou ...
-+                         ~~~~~~~~~~~~~~~
+﻿moon : Warning: [0029]
+At line:1 char:1
++ moon check 2>&1 | Out-File -FilePath "E:\moonbit\clawteam\check_outpu ...
++ ~~~~~~~~~~~~~~~
     + CategoryInfo          : NotSpecified: (Warning: [0029]:String) [], RemoteException
     + FullyQualifiedErrorId : NativeCommandError
  
@@ -18,11 +12,32 @@ At line:1 char:25
    │            ╰─────────── Warning (unused_package): Unused package 'moonbitlang/async'
 ───╯
 Warning: [0029]
-    ╭─[ E:\moonbit\clawteam\agent\moon.pkg:33:3 ]
+    ╭─[ E:\moonbit\clawteam\agent\moon.pkg:27:3 ]
     │
- 33 │   "clawteam/clawteam/job",
-    │   ───────────┬───────────  
-    │              ╰───────────── Warning (unused_package): Unused package 'clawteam/clawteam/job'
+ 27 │   "clawteam/clawteam/internal/fsx",
+    │   ────────────────┬───────────────  
+    │                   ╰───────────────── Warning (unused_package): Unused package 'clawteam/clawteam/internal/fsx'
+────╯
+Warning: [0029]
+    ╭─[ E:\moonbit\clawteam\agent\moon.pkg:28:3 ]
+    │
+ 28 │   "clawteam/clawteam/file",
+    │   ────────────┬───────────  
+    │               ╰───────────── Warning (unused_package): Unused package 'clawteam/clawteam/file'
+────╯
+Warning: [0029]
+    ╭─[ E:\moonbit\clawteam\agent\moon.pkg:29:3 ]
+    │
+ 29 │   "clawteam/clawteam/tools/execute_command",
+    │   ────────────────────┬────────────────────  
+    │                       ╰────────────────────── Warning (unused_package): Unused package 'clawteam/clawteam/tools/execute_command'
+────╯
+Warning: [0029]
+    ╭─[ E:\moonbit\clawteam\agent\moon.pkg:30:3 ]
+    │
+ 30 │   "clawteam/clawteam/internal/pathx",
+    │   ─────────────────┬────────────────  
+    │                    ╰────────────────── Warning (unused_package): Unused package 'clawteam/clawteam/internal/pathx'
 ────╯
 Warning: [0006]
     ╭─[ E:\moonbit\clawteam\clawteam.mbt:17:10 ]
@@ -37,6 +52,13 @@ Warning: [0027]
  17 │ pub type ClawTeam Moonclaw
     │                   ────┬───  
     │                       ╰───── Warning (deprecated_syntax): The syntax `type T A` for newtype is deprecated. Use `struct T(A)` instead.
+────╯
+Warning: [0002]
+    ╭─[ E:\moonbit\clawteam\clawteam.mbt:20:38 ]
+    │
+ 20 │ fn setup_agent(agent : @agent.Agent, cwd~ : String) -> Unit {
+    │                                      ─┬─  
+    │                                       ╰─── Warning (unused_value): Unused variable 'cwd'
 ────╯
 Warning: [0023]
    ╭─[ E:\moonbit\clawteam\cmd\daemon\acquire_lock.mbt:7:3 ]
@@ -66,21 +88,13 @@ Warning: [0029]
    │   ──────────┬─────────  
    │             ╰─────────── Warning (unused_package): Unused package 'moonbitlang/x/path'
 ───╯
-Error: [4044]
-     ╭─[ E:\moonbit\clawteam\gateway\client\client_wbtest.mbt:130:19 ]
-     │
- 130 │ ╭─▶       "snapshot": @job.JobUiSnapshot::{
-     ┆ ┆   
- 160 │ ├─▶       }.to_json(),
-     │ │                         
-     │ ╰───────────────────────── Record fields linked_remote, handoffs are undefined for type @clawteam/clawteam/job.JobUiSnapshot
-─────╯
 Warning: [0071]
      ╭─[ E:\moonbit\clawteam\gateway\server\rpc_clawteam.mbt:141:10 ]
      │
  141 │     _ => @random.Rand::chacha8(seed=Bytes::make(32, 0))
      │          ──────┬─────  
-     │                ╰─────── Warning (core_package_not_imported): Package `random` from `moonbitlang/core/` is used without import. This is deprecated. Please add it to the imports in the moon.pkg file.
+     │                ╰─────── Warning (core_package_not_imported): Package `random` from `moonbitlang/core/` is used without import. This is deprecated. Ple
+ase add it to the imports in the moon.pkg file.
 ─────╯
 Warning: [0008]
     ╭─[ E:\moonbit\clawteam\gateway\server\scheduler_ext.mbt:12:3 ]
@@ -418,24 +432,13 @@ Warning: [0008]
     │   ─┬─  
     │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field timestamp is public by default
 ────╯
-Error: [4014]
-     ╭─[ E:\moonbit\clawteam\internal\readline\readline.mbt:113:21 ]
+Warning: [0024]
+     ╭─[ E:\moonbit\clawteam\internal\readline\readline.mbt:112:16 ]
      │
- 113 │   @tty.set_raw_mode(input.fd())
-     │                     ─────┬────  
-     │                          ╰────── Expr Type Mismatch
-        has type : @moonbitlang/async/internal/fd_util.Fd
-        wanted   : Int
+ 112 │ ) -> Interface raise {
+     │                ──┬──  
+     │                  ╰──── Warning (unused_error_type): The error type of this function is never used.
 ─────╯
-Error: [4014]
-    ╭─[ E:\moonbit\clawteam\internal\tui\terminal.mbt:76:21 ]
-    │
- 76 │   @tty.set_raw_mode(self.input.fd())
-    │                     ───────┬───────  
-    │                            ╰───────── Expr Type Mismatch
-        has type : @moonbitlang/async/internal/fd_util.Fd
-        wanted   : Int
-────╯
 Warning: [0008]
    ╭─[ E:\moonbit\clawteam\logger\types.mbt:8:3 ]
    │
@@ -528,23 +531,23 @@ Warning: [0029]
    │                ╰────────────── Warning (unused_package): Unused package 'clawteam/clawteam/config'
 ───╯
 Warning: [0029]
-    ╭─[ E:\moonbit\clawteam\moon.pkg:16:3 ]
+    ╭─[ E:\moonbit\clawteam\moon.pkg:11:3 ]
     │
- 16 │   "clawteam/clawteam/job",
+ 11 │   "clawteam/clawteam/job",
     │   ───────────┬───────────  
     │              ╰───────────── Warning (unused_package): Unused package 'clawteam/clawteam/job'
 ────╯
 Warning: [0029]
-    ╭─[ E:\moonbit\clawteam\moon.pkg:28:3 ]
+    ╭─[ E:\moonbit\clawteam\moon.pkg:21:3 ]
     │
- 28 │   "moonbitlang/async",
+ 21 │   "moonbitlang/async",
     │   ─────────┬─────────  
     │            ╰─────────── Warning (unused_package): Unused package 'moonbitlang/async'
 ────╯
 Warning: [0029]
-    ╭─[ E:\moonbit\clawteam\moon.pkg:29:3 ]
+    ╭─[ E:\moonbit\clawteam\moon.pkg:22:3 ]
     │
- 29 │   "clawteam/clawteam/internal/mock",
+ 22 │   "clawteam/clawteam/internal/mock",
     │   ────────────────┬────────────────  
     │                   ╰────────────────── Warning (unused_package): Unused package 'clawteam/clawteam/internal/mock'
 ────╯
@@ -660,33 +663,4 @@ Warning: [0008]
     │   ─┬─  
     │    ╰─── Warning (redundant_modifier): The public modifier is redundant here since field metadata is public by default
 ────╯
-Error: [4021]
-     ╭─[ E:\moonbit\clawteam\tools\replace_in_file\replace_in_file_test.mbt:195:5 ]
-     │
- 195 │     @fs.chmod(file_path, 0o444)
-     │     ────┬────  
-     │         ╰────── Value chmod not found in package `fs`.
-─────╯
-Error: [4021]
-     ╭─[ E:\moonbit\clawteam\tools\replace_in_file\replace_in_file_test.mbt:211:5 ]
-     │
- 211 │     @fs.chmod(file_path, 0o644)
-     │     ────┬────  
-     │         ╰────── Value chmod not found in package `fs`.
-─────╯
-Error: [4021]
-    ╭─[ E:\moonbit\clawteam\tools\write_to_file\tool_test.mbt:35:5 ]
-    │
- 35 │     @fs.chmod(file_path, 0o444)
-    │     ────┬────  
-    │         ╰────── Value chmod not found in package `fs`.
-────╯
-Error: [4021]
-    ╭─[ E:\moonbit\clawteam\tools\write_to_file\tool_test.mbt:48:5 ]
-    │
- 48 │     @fs.chmod(file_path, 0o644)
-    │     ────┬────  
-    │         ╰────── Value chmod not found in package `fs`.
-────╯
-Failed with 89 warnings, 7 errors.
-error: failed when checking project
+Finished. moon: ran 15 tasks, now up to date (94 warnings, 0 errors)

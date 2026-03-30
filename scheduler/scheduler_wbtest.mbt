@@ -1,7 +1,7 @@
+///|
 /// Scheduler 模块白盒测试
 ///
 /// 白盒测试可以访问包内部实现
-
 test "CliCallParams internal creation" {
   let params = CliCallParams::{
     cli_tool: "claude",
@@ -13,6 +13,7 @@ test "CliCallParams internal creation" {
   inspect(params.agent_prompt, content="You are an assistant")
 }
 
+///|
 test "CliCallResult internal creation" {
   let result = CliCallResult::{
     stdout: "output",
@@ -23,6 +24,7 @@ test "CliCallResult internal creation" {
   inspect(result.stdout, content="output")
 }
 
+///|
 test "DispatchContext internal creation" {
   let context = DispatchContext::{
     session_id: "session-1",

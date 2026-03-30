@@ -1,10 +1,10 @@
 // Generated using `moon info`, DON'T EDIT IT
-package "moonbitlang/moonclaw/cmd/daemon"
+package "clawteam/clawteam/cmd/daemon"
 
 import {
+  "clawteam/clawteam/internal/uuid",
   "moonbitlang/async/fs",
   "moonbitlang/core/json",
-  "moonbitlang/moonclaw/internal/uuid",
 }
 
 // Values

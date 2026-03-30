@@ -24,16 +24,6 @@ import {
 
 import {
   "clawteam/clawteam/internal/mock",
-  "clawteam/clawteam/internal/fsx",
-  "clawteam/clawteam/file",
-  "clawteam/clawteam/tools/replace_in_file",
-  "clawteam/clawteam/tools/read_file",
-  "clawteam/clawteam/tools/read_multiple_files",
-  "clawteam/clawteam/internal/pathx",
-  "clawteam/clawteam/job",
-  "clawteam/clawteam/tools/todo",
-  "clawteam/clawteam/tools/list_files",
-  "clawteam/clawteam/tools/execute_command",
 } for "test"
 
 import {

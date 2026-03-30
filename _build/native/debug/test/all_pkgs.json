@@ -442,58 +442,8 @@
     },
     {
       "root": "clawteam/clawteam",
-      "rel": "tools/apply_patch",
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\tools\\apply_patch\\apply_patch.mi"
-    },
-    {
-      "root": "clawteam/clawteam",
       "rel": "tools/execute_command",
       "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\tools\\execute_command\\execute_command.mi"
-    },
-    {
-      "root": "clawteam/clawteam",
-      "rel": "tools/list_files",
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\tools\\list_files\\list_files.mi"
-    },
-    {
-      "root": "clawteam/clawteam",
-      "rel": "tools/list_jobs",
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\tools\\list_jobs\\list_jobs.mi"
-    },
-    {
-      "root": "clawteam/clawteam",
-      "rel": "tools/read_file",
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\tools\\read_file\\read_file.mi"
-    },
-    {
-      "root": "clawteam/clawteam",
-      "rel": "tools/read_multiple_files",
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\tools\\read_multiple_files\\read_multiple_files.mi"
-    },
-    {
-      "root": "clawteam/clawteam",
-      "rel": "tools/replace_in_file",
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\tools\\replace_in_file\\replace_in_file.mi"
-    },
-    {
-      "root": "clawteam/clawteam",
-      "rel": "tools/search_files",
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\tools\\search_files\\search_files.mi"
-    },
-    {
-      "root": "clawteam/clawteam",
-      "rel": "tools/todo",
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\tools\\todo\\todo.mi"
-    },
-    {
-      "root": "clawteam/clawteam",
-      "rel": "tools/wait_job",
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\tools\\wait_job\\wait_job.mi"
-    },
-    {
-      "root": "clawteam/clawteam",
-      "rel": "tools/write_to_file",
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\test\\tools\\write_to_file\\write_to_file.mi"
     },
     {
       "root": "clawteam/clawteam",
