@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { RouterView } from 'vue-router'
 import GlobalNav from './GlobalNav.vue'
 import ContextSidebar from './ContextSidebar.vue'
 import Toast from '@/components/common/Toast.vue'
@@ -9,7 +10,7 @@ import Toast from '@/components/common/Toast.vue'
     <GlobalNav />
     <ContextSidebar />
     <main class="flex-1 overflow-hidden flex flex-col">
-      <slot />
+      <RouterView />
     </main>
     <Toast />
   </div>
