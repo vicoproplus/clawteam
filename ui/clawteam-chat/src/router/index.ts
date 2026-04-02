@@ -18,10 +18,9 @@ const routes: RouteRecordRaw[] = [
       { path: 'skills', name: 'skills', component: SkillsView },
       {
         path: 'settings',
-        name: 'settings',
         component: SettingsView,
         children: [
-          { path: '', redirect: 'account' },
+          { path: '', name: 'settings', redirect: 'account' },
           { path: 'account', name: 'settings-account', component: SettingsView },
           { path: 'appearance', name: 'settings-appearance', component: SettingsView },
           { path: 'cli', name: 'settings-cli', component: SettingsView },

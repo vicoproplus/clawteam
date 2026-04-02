@@ -14,7 +14,7 @@ const navItems = [
 
 const bottomItems = [
   { path: '/help', icon: HelpCircle, label: '帮助' },
-  { path: '/settings', icon: Settings, label: '设置' },
+  { path: '/settings/account', icon: Settings, label: '设置' },
 ]
 
 const isActive = (path: string) => route.path.startsWith(path)
