@@ -1,52 +1,33 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { cn } from '@/lib/utils'
-import { Code } from 'lucide-vue-next'
+import { Star, RotateCw } from 'lucide-vue-next'
 import type { Skill } from '@/types/skill'
 
-interface Props {
-  skill: Skill
-  selected?: boolean
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  selected: false,
-})
-
-const emit = defineEmits<{ click: [] }>()
-
-const cardClasses = computed(() =>
-  cn(
-    'p-3 rounded-lg border cursor-pointer transition-all',
-    props.selected
-      ? 'bg-blue-50 border-blue-300 ring-2 ring-blue-200'
-      : 'bg-white border-gray-200 hover:border-gray-300 hover:shadow-sm'
-  )
-)
+defineProps<{ skill: Skill }>()
+defineEmits<{ install: [skill: Skill] }>()
 </script>
 
 <template>
-  <div :class="cardClasses" @click="emit('click')">
-    <div class="flex items-center gap-3">
-      <div
-        :class="cn('w-10 h-10 rounded-lg flex items-center justify-center', skill.bg)"
-        :style="{ color: skill.color }"
-      >
-        <Code class="h-5 w-5" />
-      </div>
-      <div class="flex-1 min-w-0">
-        <div class="font-medium text-sm truncate">{{ skill.name }}</div>
-        <div class="text-xs text-gray-500 truncate">{{ skill.description }}</div>
+  <div class="bg-gray-800 border border-gray-700 rounded-xl p-5 transition-all hover:border-gray-600 hover:bg-gray-700/50 hover:-translate-y-0.5 hover:shadow-lg flex gap-4 items-start">
+    <div :style="{ background: skill.color }" class="w-12 h-12 min-w-12 rounded-xl flex items-center justify-center text-white">
+      <span class="text-xl">{{ skill.icon }}</span>
+    </div>
+    <div class="flex-1 min-w-0">
+      <div class="font-semibold text-sm text-gray-200 mb-1">{{ skill.name }}</div>
+      <p class="text-xs text-gray-400 leading-relaxed mb-2.5 line-clamp-2">{{ skill.description }}</p>
+      <div class="flex items-center gap-3 flex-wrap">
+        <span v-if="skill.tags.includes('official')" class="text-xs px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400">官方默认</span>
+        <div v-if="skill.rating" class="flex items-center gap-1 text-xs text-amber-500">
+          <Star class="w-3.5 h-3.5 fill-current" />
+          <span class="text-gray-400">{{ skill.rating }}</span>
+        </div>
       </div>
     </div>
-    <div class="mt-2 flex gap-1">
-      <span
-        v-for="tag in skill.tags.slice(0, 2)"
-        :key="tag"
-        class="text-xs px-1.5 py-0.5 rounded bg-gray-100 text-gray-600"
-      >
-        {{ tag }}
-      </span>
+    <div class="flex items-center gap-2 ml-auto">
+      <button @click="$emit('install', skill)"
+        class="px-3 py-1.5 rounded-lg text-xs border border-gray-600 text-gray-400 hover:bg-gray-600 hover:text-gray-200 transition-colors flex items-center gap-1.5">
+        <RotateCw class="w-3.5 h-3.5" />
+        {{ skill.installed ? '重新安装' : '安装' }}
+      </button>
     </div>
   </div>
 </template>

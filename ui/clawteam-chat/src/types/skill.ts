@@ -31,4 +31,6 @@ export interface Skill {
   tags: string[];
   applicableRoles: string[];
   template: SkillTemplate;
+  rating?: number;
+  installed?: boolean;
 }

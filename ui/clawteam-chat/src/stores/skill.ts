@@ -24,6 +24,11 @@ export const useSkillStore = defineStore('skill', () => {
     }))
   })
 
+  // 返回数组形式的技能列表，用于商店视图
+  const skillsArray = computed(() => {
+    return skillList.value.map(id => skills.value[id]).filter(Boolean)
+  })
+
   // Actions
   const loadSkills = async () => {
     loading.value = true
@@ -78,6 +83,7 @@ export const useSkillStore = defineStore('skill', () => {
     // Getters
     selectedSkill,
     skillOptions,
+    skillsArray,
     // Actions
     loadSkills,
     selectSkill,
