@@ -1,16 +1,5 @@
 // ui/clawteam-chat/src/types/expert.ts
 
-export interface Expert {
-  id: number
-  name: string
-  role: string
-  category: string
-  desc: string
-  tags: string[]
-  added: boolean
-  avatar?: string
-}
-
 export const EXPERT_CATEGORIES = [
   '全部',
   '设计',
@@ -23,3 +12,14 @@ export const EXPERT_CATEGORIES = [
 ] as const
 
 export type ExpertCategory = (typeof EXPERT_CATEGORIES)[number]
+
+export interface Expert {
+  id: number
+  name: string
+  role: string
+  category: ExpertCategory
+  desc: string
+  tags: string[]
+  isAdded: boolean
+  avatar?: string
+}
