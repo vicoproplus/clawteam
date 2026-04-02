@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
 import { RouterView } from 'vue-router'
-import SidebarNav from '@/components/SidebarNav.vue'
 import { useWorkspaceStore } from '@/stores/workspace'
 import { useProjectStore } from '@/stores/project'
 import { useAgentStore } from '@/stores/agent'
@@ -23,10 +22,5 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="h-screen flex bg-gray-50">
-    <SidebarNav />
-    <main class="flex-1 overflow-hidden">
-      <RouterView />
-    </main>
-  </div>
+  <RouterView />
 </template>
