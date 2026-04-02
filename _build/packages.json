@@ -137,7 +137,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\clawteam.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\clawteam.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -371,7 +378,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\acp\\acp.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\acp\\acp.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -614,7 +628,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\agent\\agent.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\agent\\agent.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -712,7 +733,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\ai\\ai.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\ai\\ai.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -845,7 +873,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\channel\\channel.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\channel\\channel.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -990,7 +1025,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\channels\\feishu\\feishu.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\channels\\feishu\\feishu.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -1112,7 +1154,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\channels\\weixin\\weixin.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\channels\\weixin\\weixin.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -1205,7 +1254,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\clock\\clock.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\clock\\clock.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": true,
@@ -1306,7 +1362,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\cmd\\acp\\acp.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\cmd\\acp\\acp.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -1933,7 +1996,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\cmd\\daemon\\daemon.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\cmd\\daemon\\daemon.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": true,
@@ -2064,7 +2134,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\cmd\\gateway\\gateway.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\cmd\\gateway\\gateway.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -2146,7 +2223,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\cmd\\internal\\test_utils\\test_utils.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\cmd\\internal\\test_utils\\test_utils.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": true,
@@ -2331,7 +2415,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\cmd\\jsonl2md\\jsonl2md.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\cmd\\jsonl2md\\jsonl2md.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": true,
@@ -2443,7 +2534,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\cmd\\main\\main.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\cmd\\main\\main.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -2490,7 +2588,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\cmd\\main\\argument\\argument.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\cmd\\main\\argument\\argument.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -2567,7 +2672,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\cmd\\main\\conversation\\conversation.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\cmd\\main\\conversation\\conversation.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -2644,7 +2756,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\cmd\\main\\exec\\exec.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\cmd\\main\\exec\\exec.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -2766,7 +2885,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\cmd\\main\\interactive\\interactive.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\cmd\\main\\interactive\\interactive.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -2868,7 +2994,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\cmd\\main\\tui\\tui.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\cmd\\main\\tui\\tui.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": true,
@@ -2960,7 +3093,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\cmd\\onboard\\onboard.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\cmd\\onboard\\onboard.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -3242,7 +3382,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\cmd\\server\\server.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\cmd\\server\\server.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": true,
@@ -3324,7 +3471,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\cmd\\test\\test.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\cmd\\test\\test.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": true,
@@ -3401,7 +3555,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\cmd\\test-lock\\test-lock.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\cmd\\test-lock\\test-lock.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": true,
@@ -3502,7 +3663,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\cmd\\test-to-be-killed\\test-to-be-killed.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\cmd\\test-to-be-killed\\test-to-be-killed.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -3601,7 +3769,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\config\\config.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\config\\config.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -3653,7 +3828,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\errors\\errors.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\errors\\errors.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -3819,7 +4001,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\event\\event.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\event\\event.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -3876,7 +4065,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\file\\file.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\file\\file.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -4002,7 +4198,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\gateway\\client\\client.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\gateway\\client\\client.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -4093,7 +4296,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\gateway\\protocol\\protocol.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\gateway\\protocol\\protocol.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -4888,7 +5098,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\gateway\\server\\server.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\gateway\\server\\server.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -4940,7 +5157,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\internal\\abort\\abort.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\internal\\abort\\abort.impl.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -5007,7 +5231,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\internal\\assets\\assets.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\internal\\assets\\assets.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -5059,7 +5290,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\internal\\backtrace\\backtrace.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\internal\\backtrace\\backtrace.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -5150,7 +5388,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\internal\\broadcast\\broadcast.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\internal\\broadcast\\broadcast.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -5234,7 +5479,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\internal\\buildinfo\\buildinfo.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\internal\\buildinfo\\buildinfo.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -5374,7 +5626,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\internal\\c\\c.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\internal\\c\\c.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -5445,7 +5704,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\internal\\cache\\cache.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\internal\\cache\\cache.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -5536,7 +5802,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\internal\\content_extractor\\content_extractor.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\internal\\content_extractor\\content_extractor.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -5652,7 +5925,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\internal\\context_pruner\\context_pruner.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\internal\\context_pruner\\context_pruner.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -5889,7 +6169,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\internal\\conversation\\conversation.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\internal\\conversation\\conversation.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -5946,7 +6233,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\internal\\errno\\errno.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\internal\\errno\\errno.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -6324,7 +6618,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\internal\\fsx\\fsx.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\internal\\fsx\\fsx.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -6403,7 +6704,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\internal\\fuzzy\\fuzzy.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\internal\\fuzzy\\fuzzy.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -6636,7 +6944,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\internal\\git\\git.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\internal\\git\\git.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -7044,7 +7359,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\internal\\httpx\\httpx.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\internal\\httpx\\httpx.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -7091,7 +7413,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\internal\\httpx\\reason\\reason.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\internal\\httpx\\reason\\reason.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -7183,7 +7512,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\internal\\httpx\\status\\status.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\internal\\httpx\\status\\status.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -7325,7 +7661,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\internal\\jsonx\\jsonx.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\internal\\jsonx\\jsonx.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -7391,7 +7734,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\internal\\lru\\lru.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\internal\\lru\\lru.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -7564,7 +7914,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\internal\\mock\\mock.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\internal\\mock\\mock.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -8325,7 +8682,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\internal\\openai\\openai.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\internal\\openai\\openai.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -8377,7 +8741,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\internal\\openai\\responses\\responses.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\internal\\openai\\responses\\responses.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -8473,7 +8844,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\internal\\openrouter\\openrouter.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\internal\\openrouter\\openrouter.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -8608,7 +8986,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\internal\\os\\os.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\internal\\os\\os.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -8679,7 +9064,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\internal\\pathx\\pathx.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\internal\\pathx\\pathx.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -8826,7 +9218,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\internal\\pino\\pino.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\internal\\pino\\pino.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -8902,7 +9301,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\internal\\rand\\rand.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\internal\\rand\\rand.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -9051,7 +9457,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\internal\\readline\\readline.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\internal\\readline\\readline.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -9103,7 +9516,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\internal\\readline\\csi\\csi.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\internal\\readline\\csi\\csi.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -9184,7 +9604,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\internal\\readline\\unicode\\unicode.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\internal\\readline\\unicode\\unicode.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -9292,7 +9719,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\internal\\readline\\unicode\\width\\width.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\internal\\readline\\unicode\\width\\width.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -9427,7 +9861,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\internal\\rules\\rules.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\internal\\rules\\rules.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -9484,7 +9925,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\internal\\schema\\schema.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\internal\\schema\\schema.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -9545,7 +9993,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\internal\\signal\\signal.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\internal\\signal\\signal.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -9742,7 +10197,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\internal\\skills\\skills.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\internal\\skills\\skills.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -9866,7 +10328,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\internal\\spawn\\spawn.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\internal\\spawn\\spawn.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -10020,7 +10489,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\internal\\tiktoken\\tiktoken.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\internal\\tiktoken\\tiktoken.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -10092,7 +10568,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\internal\\token_counter\\token_counter.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\internal\\token_counter\\token_counter.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -10168,7 +10651,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\internal\\tty\\tty.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\internal\\tty\\tty.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -10437,7 +10927,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\internal\\tui\\tui.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\internal\\tui\\tui.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -10494,7 +10991,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\internal\\uri\\uri.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\internal\\uri\\uri.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -10570,7 +11074,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\internal\\uuid\\uuid.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\internal\\uuid\\uuid.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -10676,7 +11187,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\test"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\internal\\websocket\\websocket.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\internal\\websocket\\websocket.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -10747,7 +11265,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\internal\\yamd\\yamd.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\internal\\yamd\\yamd.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -11508,7 +12033,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\job\\job.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\job\\job.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -11613,7 +12145,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\logger\\logger.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\logger\\logger.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -11827,7 +12366,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\model\\model.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\model\\model.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -12040,7 +12586,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\oauth\\codex\\codex.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\oauth\\codex\\codex.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -12174,7 +12727,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\oauth\\copilot\\copilot.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\oauth\\copilot\\copilot.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -12290,7 +12850,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\onboarding\\onboarding.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\onboarding\\onboarding.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -12356,7 +12923,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\parser\\parser.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\parser\\parser.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -12447,7 +13021,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\plugin\\plugin.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\plugin\\plugin.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -12494,7 +13075,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\prompt\\prompt.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\prompt\\prompt.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -12606,7 +13194,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\scheduler\\scheduler.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\scheduler\\scheduler.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": true,
@@ -12713,7 +13308,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\sdk\\sdk.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\sdk\\sdk.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -12804,7 +13406,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\security\\security.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\security\\security.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -12902,7 +13511,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\tool\\tool.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\tool\\tool.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -13011,7 +13627,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\tools\\execute_command\\execute_command.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\tools\\execute_command\\execute_command.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -13063,7 +13686,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\types\\types.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\types\\types.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -13154,7 +13784,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\workspace\\workspace.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\workspace\\workspace.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -13347,7 +13984,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\.mooncakes\\moonbit-community\\yaml\\yaml.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\.mooncakes\\moonbit-community\\yaml\\yaml.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -13669,7 +14313,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\.mooncakes\\moonbitlang\\async\\async.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\.mooncakes\\moonbitlang\\async\\async.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -13784,7 +14435,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\.mooncakes\\moonbitlang\\async\\aqueue\\aqueue.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\.mooncakes\\moonbitlang\\async\\aqueue\\aqueue.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -13860,7 +14518,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\.mooncakes\\moonbitlang\\async\\cond_var\\cond_var.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\.mooncakes\\moonbitlang\\async\\cond_var\\cond_var.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -14180,7 +14845,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\.mooncakes\\moonbitlang\\async\\fs\\fs.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\.mooncakes\\moonbitlang\\async\\fs\\fs.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -14455,7 +15127,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\.mooncakes\\moonbitlang\\async\\http\\http.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\.mooncakes\\moonbitlang\\async\\http\\http.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -14516,7 +15195,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\.mooncakes\\moonbitlang\\async\\internal\\bytes_util\\bytes_util.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\.mooncakes\\moonbitlang\\async\\internal\\bytes_util\\bytes_util.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -14572,7 +15258,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\.mooncakes\\moonbitlang\\async\\internal\\c_buffer\\c_buffer.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\.mooncakes\\moonbitlang\\async\\internal\\c_buffer\\c_buffer.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -14669,7 +15362,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\.mooncakes\\moonbitlang\\async\\internal\\coroutine\\coroutine.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\.mooncakes\\moonbitlang\\async\\internal\\coroutine\\coroutine.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -14725,7 +15425,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\.mooncakes\\moonbitlang\\async\\internal\\env_util\\env_util.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\.mooncakes\\moonbitlang\\async\\internal\\env_util\\env_util.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -15061,7 +15768,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\.mooncakes\\moonbitlang\\async\\internal\\event_loop\\event_loop.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\.mooncakes\\moonbitlang\\async\\internal\\event_loop\\event_loop.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -15150,7 +15864,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\.mooncakes\\moonbitlang\\async\\internal\\fd_util\\fd_util.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\.mooncakes\\moonbitlang\\async\\internal\\fd_util\\fd_util.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -15197,7 +15918,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\.mooncakes\\moonbitlang\\async\\internal\\io_buffer\\io_buffer.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\.mooncakes\\moonbitlang\\async\\internal\\io_buffer\\io_buffer.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -15263,7 +15991,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\.mooncakes\\moonbitlang\\async\\internal\\os_string\\os_string.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\.mooncakes\\moonbitlang\\async\\internal\\os_string\\os_string.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -15324,7 +16059,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\.mooncakes\\moonbitlang\\async\\internal\\time\\time.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\.mooncakes\\moonbitlang\\async\\internal\\time\\time.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -15580,7 +16322,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\.mooncakes\\moonbitlang\\async\\io\\io.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\.mooncakes\\moonbitlang\\async\\io\\io.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -15672,7 +16421,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\.mooncakes\\moonbitlang\\async\\js_async\\js_async.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\.mooncakes\\moonbitlang\\async\\js_async\\js_async.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -15771,7 +16527,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\.mooncakes\\moonbitlang\\async\\os_error\\os_error.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\.mooncakes\\moonbitlang\\async\\os_error\\os_error.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -15884,7 +16647,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\.mooncakes\\moonbitlang\\async\\pipe\\pipe.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\.mooncakes\\moonbitlang\\async\\pipe\\pipe.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -16159,7 +16929,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\.mooncakes\\moonbitlang\\async\\process\\process.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\.mooncakes\\moonbitlang\\async\\process\\process.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -16235,7 +17012,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\.mooncakes\\moonbitlang\\async\\semaphore\\semaphore.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\.mooncakes\\moonbitlang\\async\\semaphore\\semaphore.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -16453,7 +17237,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\.mooncakes\\moonbitlang\\async\\socket\\socket.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\.mooncakes\\moonbitlang\\async\\socket\\socket.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -16562,7 +17353,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\.mooncakes\\moonbitlang\\async\\stdio\\stdio.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\.mooncakes\\moonbitlang\\async\\stdio\\stdio.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -16755,7 +17553,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\.mooncakes\\moonbitlang\\async\\tls\\tls.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\.mooncakes\\moonbitlang\\async\\tls\\tls.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -17004,7 +17809,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\.mooncakes\\moonbitlang\\async\\websocket\\websocket.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\.mooncakes\\moonbitlang\\async\\websocket\\websocket.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -17160,7 +17972,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\.mooncakes\\moonbitlang\\regexp\\regexp.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\.mooncakes\\moonbitlang\\regexp\\regexp.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -17257,7 +18076,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\.mooncakes\\moonbitlang\\regexp\\internal\\ast\\ast.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\.mooncakes\\moonbitlang\\regexp\\internal\\ast\\ast.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -17351,7 +18177,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\.mooncakes\\moonbitlang\\regexp\\internal\\parse\\parse.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\.mooncakes\\moonbitlang\\regexp\\internal\\parse\\parse.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -17451,7 +18284,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\.mooncakes\\moonbitlang\\regexp\\internal\\unicode\\unicode.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\.mooncakes\\moonbitlang\\regexp\\internal\\unicode\\unicode.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -17540,7 +18380,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\test"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\.mooncakes\\moonbitlang\\regexp\\internal\\vm\\vm.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\.mooncakes\\moonbitlang\\regexp\\internal\\vm\\vm.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -17615,7 +18462,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\.mooncakes\\moonbitlang\\x\\benchmark\\benchmark.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\.mooncakes\\moonbitlang\\x\\benchmark\\benchmark.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -17692,7 +18546,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\.mooncakes\\moonbitlang\\x\\benchmark\\internal\\benchmark_ffi\\benchmark_ffi.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\.mooncakes\\moonbitlang\\x\\benchmark\\internal\\benchmark_ffi\\benchmark_ffi.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -17753,7 +18614,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\.mooncakes\\moonbitlang\\x\\codec\\base64\\base64.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\.mooncakes\\moonbitlang\\x\\codec\\base64\\base64.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -18038,7 +18906,14 @@
           "fspath": "E:\\moonbit\\clawteam\\.mooncakes\\moonbitlang\\x\\encoding"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\.mooncakes\\moonbitlang\\x\\crypto\\crypto.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\.mooncakes\\moonbitlang\\x\\crypto\\crypto.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -18124,7 +18999,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\.mooncakes\\moonbitlang\\x\\decimal\\decimal.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\.mooncakes\\moonbitlang\\x\\decimal\\decimal.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -18248,7 +19130,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\.mooncakes\\moonbitlang\\x\\encoding\\encoding.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\.mooncakes\\moonbitlang\\x\\encoding\\encoding.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -18310,7 +19199,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\.mooncakes\\moonbitlang\\x\\encoding\\internal\\benchmark\\benchmark.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\.mooncakes\\moonbitlang\\x\\encoding\\internal\\benchmark\\benchmark.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": true,
@@ -18372,7 +19268,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\.mooncakes\\moonbitlang\\x\\encoding\\internal\\benchmark\\decoding_batch\\decoding_batch.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\.mooncakes\\moonbitlang\\x\\encoding\\internal\\benchmark\\decoding_batch\\decoding_batch.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": true,
@@ -18434,7 +19337,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\.mooncakes\\moonbitlang\\x\\encoding\\internal\\benchmark\\decoding_streaming\\decoding_streaming.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\.mooncakes\\moonbitlang\\x\\encoding\\internal\\benchmark\\decoding_streaming\\decoding_streaming.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -18534,7 +19444,14 @@
           "fspath": "E:\\moonbit\\clawteam\\.mooncakes\\moonbitlang\\x\\encoding"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\.mooncakes\\moonbitlang\\x\\fs\\fs.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\.mooncakes\\moonbitlang\\x\\fs\\fs.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -18611,7 +19528,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\.mooncakes\\moonbitlang\\x\\internal\\ffi\\ffi.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\.mooncakes\\moonbitlang\\x\\internal\\ffi\\ffi.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -18826,7 +19750,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\.mooncakes\\moonbitlang\\x\\json5\\json5.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\.mooncakes\\moonbitlang\\x\\json5\\json5.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -18873,7 +19804,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\.mooncakes\\moonbitlang\\x\\num\\num.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\.mooncakes\\moonbitlang\\x\\num\\num.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -18935,7 +19873,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\.mooncakes\\moonbitlang\\x\\path\\path.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\.mooncakes\\moonbitlang\\x\\path\\path.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -19001,7 +19946,14 @@
           "fspath": "E:\\moonbit\\clawteam\\.mooncakes\\moonbitlang\\x\\sys"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\.mooncakes\\moonbitlang\\x\\path\\internal\\ffi\\ffi.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\.mooncakes\\moonbitlang\\x\\path\\internal\\ffi\\ffi.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -19113,7 +20065,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\.mooncakes\\moonbitlang\\x\\path\\posix\\posix.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\.mooncakes\\moonbitlang\\x\\path\\posix\\posix.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -19225,7 +20184,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\.mooncakes\\moonbitlang\\x\\path\\win32\\win32.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\.mooncakes\\moonbitlang\\x\\path\\win32\\win32.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -19333,7 +20299,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\quickcheck"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\.mooncakes\\moonbitlang\\x\\rational\\rational.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\.mooncakes\\moonbitlang\\x\\rational\\rational.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -19425,7 +20398,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\.mooncakes\\moonbitlang\\x\\stack\\stack.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\.mooncakes\\moonbitlang\\x\\stack\\stack.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -19491,7 +20471,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\.mooncakes\\moonbitlang\\x\\sys\\sys.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\.mooncakes\\moonbitlang\\x\\sys\\sys.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -19559,7 +20546,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\.mooncakes\\moonbitlang\\x\\sys\\internal\\ffi\\ffi.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\.mooncakes\\moonbitlang\\x\\sys\\internal\\ffi\\ffi.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -19936,7 +20930,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\.mooncakes\\moonbitlang\\x\\time\\time.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\.mooncakes\\moonbitlang\\x\\time\\time.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     },
     {
       "is-main": false,
@@ -20037,7 +21038,14 @@
           "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
         }
       ],
-      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\release\\check\\.mooncakes\\moonbitlang\\x\\uuid\\uuid.mi"
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\.mooncakes\\moonbitlang\\x\\uuid\\uuid.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     }
   ],
   "deps": [
@@ -20047,6 +21055,6 @@
     "moonbit-community/yaml"
   ],
   "backend": "native",
-  "opt_level": "release",
+  "opt_level": "debug",
   "source": null
 }
