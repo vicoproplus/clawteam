@@ -1,10 +1,132 @@
 #include "moonbit.h"
 #include <errno.h>
-#include <limits.h>
-#include <pwd.h>
 #include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
+
+#ifdef _WIN32
+#include <windows.h>
+#include <direct.h>
+#include <process.h>
+
+MOONBIT_FFI_EXPORT
+const char *
+moonbit_moonclaw_os_getenv(moonbit_bytes_t key) {
+  return getenv((const char *)key);
+}
+
+MOONBIT_FFI_EXPORT
+int32_t
+moonbit_moonclaw_os_setenv(
+  moonbit_bytes_t key,
+  moonbit_bytes_t value,
+  int overwrite
+) {
+  if (!overwrite && getenv((const char *)key) != NULL) {
+    return 0;
+  }
+  if (_putenv_s((const char *)key, (const char *)value) != 0) {
+    return errno;
+  }
+  return 0;
+}
+
+MOONBIT_FFI_EXPORT
+int
+moonbit_moonclaw_os_unsetenv(moonbit_bytes_t key) {
+  return _putenv_s((const char *)key, "");
+}
+
+MOONBIT_FFI_EXPORT
+uint32_t
+moonbit_moonclaw_os_getuid() {
+  return 0; // Windows doesn't have Unix UIDs
+}
+
+MOONBIT_FFI_EXPORT
+int32_t
+moonbit_moonclaw_os_getpwuid_r(
+  uint32_t uid,
+  moonbit_bytes_t pwd,
+  char *buf,
+  uint64_t buf_len,
+  void **result
+) {
+  // Windows doesn't have getpwuid
+  *result = NULL;
+  return ENOTSUP;
+}
+
+MOONBIT_FFI_EXPORT
+int32_t
+moonbit_moonclaw_os_passwd_sizeof() {
+  return 0; // No passwd struct on Windows
+}
+
+MOONBIT_FFI_EXPORT
+int32_t
+moonbit_moonclaw_sysconf_SC_GETPW_R_SIZE_MAX() {
+  return 0; // No passwd on Windows
+}
+
+MOONBIT_FFI_EXPORT
+char *
+moonbit_moonclaw_os_passwd_get_dir(moonbit_bytes_t pwd) {
+  // Return user's home directory on Windows
+  static char home[MAX_PATH];
+  if (GetEnvironmentVariableA("USERPROFILE", home, MAX_PATH) > 0) {
+    return home;
+  }
+  return NULL;
+}
+
+MOONBIT_FFI_EXPORT
+int64_t
+moonbit_moonclaw_sysconf_SC_HOST_NAME_MAX(void) {
+  return MAX_COMPUTERNAME_LENGTH;
+}
+
+MOONBIT_FFI_EXPORT
+int32_t
+moonbit_moonclaw_os_gethostname(moonbit_bytes_t name) {
+  DWORD size = (DWORD)Moonbit_array_length(name);
+  if (!GetComputerNameA((LPSTR)name, &size)) {
+    return GetLastError();
+  }
+  return 0;
+}
+
+MOONBIT_FFI_EXPORT
+int32_t
+moonbit_moonclaw_os_chdir(moonbit_bytes_t path) {
+  if (_chdir((const char *)path) != 0) {
+    return errno;
+  }
+  return 0;
+}
+
+MOONBIT_FFI_EXPORT
+void
+moonbit_moonclaw_os_exit(int32_t code) {
+  exit(code);
+}
+
+MOONBIT_FFI_EXPORT
+int32_t
+moonbit_moonclaw_os_executable(moonbit_bytes_t buf) {
+  DWORD len = GetModuleFileNameA(NULL, (LPSTR)buf, (DWORD)Moonbit_array_length(buf));
+  if (len == 0) {
+    return -1;
+  }
+  if (len == Moonbit_array_length(buf)) {
+    return len * 2; // Buffer too small
+  }
+  return (int32_t)len;
+}
+
+#else
+#include <limits.h>
+#include <pwd.h>
 #include <sys/time.h>
 #include <unistd.h>
 #if defined(__APPLE__)
@@ -128,5 +250,9 @@ moonbit_moonclaw_os_executable(moonbit_bytes_t buf) {
   } else {
     return len;
   }
+#else
+  return -1;
 #endif
 }
+
+#endif
