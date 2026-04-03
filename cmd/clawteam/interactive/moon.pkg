@@ -1,0 +1,17 @@
+import {
+  "moonbitlang/async",
+  "clawteam/clawteam/internal/readline",
+  "moonbitlang/async/stdio",
+  "clawteam/clawteam",
+  "clawteam/clawteam/agent",
+  "clawteam/clawteam/cmd/clawteam/argument",
+  "clawteam/clawteam/cmd/clawteam/tui",
+  "clawteam/clawteam/event",
+  "clawteam/clawteam/model",
+  "clawteam/clawteam/ai",
+  "moonbitlang/async/io",
+  "clawteam/clawteam/internal/pino",
+  "clawteam/clawteam/internal/uuid",
+  "moonbitlang/core/encoding/utf8" @encoding/utf8,
+  "moonbitlang/core/json",
+}

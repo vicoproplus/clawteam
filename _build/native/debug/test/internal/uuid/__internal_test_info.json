@@ -1,1 +1,0 @@
-{"tests":{"uuid.mbt":[{"index":0,"func":"__test_757569642e6d6274_0","name":null,"attrs":[],"line_number":211}]},"no_args_tests":{"uuid.mbt":[{"index":0,"func":"__test_757569642e6d6274_0","name":null,"attrs":[],"line_number":211}]},"with_args_tests":{"uuid.mbt":[]},"with_bench_args_tests":{"uuid.mbt":[]},"async_tests":{"uuid.mbt":[]},"async_tests_with_args":{"uuid.mbt":[]}}

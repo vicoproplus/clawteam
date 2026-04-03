@@ -1372,6 +1372,560 @@
       ]
     },
     {
+      "is-main": true,
+      "is-third-party": false,
+      "root-path": "E:\\moonbit\\clawteam\\cmd\\clawteam",
+      "root": "clawteam/clawteam",
+      "rel": "cmd/clawteam",
+      "files": {
+        "E:\\moonbit\\clawteam\\cmd\\clawteam\\main.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        }
+      },
+      "wbtest-files": {},
+      "test-files": {},
+      "mbt-md-files": {},
+      "deps": [
+        {
+          "path": "clawteam/clawteam/cmd/clawteam/conversation",
+          "alias": "conversation",
+          "fspath": "E:\\moonbit\\clawteam\\cmd\\clawteam\\conversation"
+        },
+        {
+          "path": "clawteam/clawteam/cmd/clawteam/exec",
+          "alias": "exec",
+          "fspath": "E:\\moonbit\\clawteam\\cmd\\clawteam\\exec"
+        },
+        {
+          "path": "clawteam/clawteam/cmd/clawteam/interactive",
+          "alias": "interactive",
+          "fspath": "E:\\moonbit\\clawteam\\cmd\\clawteam\\interactive"
+        },
+        {
+          "path": "clawteam/clawteam/cmd/clawteam/tui",
+          "alias": "tui",
+          "fspath": "E:\\moonbit\\clawteam\\cmd\\clawteam\\tui"
+        },
+        {
+          "path": "clawteam/clawteam/internal/backtrace",
+          "alias": "backtrace",
+          "fspath": "E:\\moonbit\\clawteam\\internal\\backtrace"
+        },
+        {
+          "path": "clawteam/clawteam/internal/buildinfo",
+          "alias": "buildinfo",
+          "fspath": "E:\\moonbit\\clawteam\\internal\\buildinfo"
+        },
+        {
+          "path": "clawteam/clawteam/internal/os",
+          "alias": "os",
+          "fspath": "E:\\moonbit\\clawteam\\internal\\os"
+        },
+        {
+          "path": "moonbitlang/async",
+          "alias": "async",
+          "fspath": "E:\\moonbit\\clawteam\\.mooncakes\\moonbitlang\\async\\src"
+        },
+        {
+          "path": "moonbitlang/core/prelude",
+          "alias": "prelude",
+          "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
+        }
+      ],
+      "wbtest-deps": [
+        {
+          "path": "moonbitlang/core/prelude",
+          "alias": "prelude",
+          "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
+        }
+      ],
+      "test-deps": [
+        {
+          "path": "moonbitlang/core/prelude",
+          "alias": "prelude",
+          "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
+        }
+      ],
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\cmd\\clawteam\\clawteam.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
+    },
+    {
+      "is-main": false,
+      "is-third-party": false,
+      "root-path": "E:\\moonbit\\clawteam\\cmd\\clawteam\\argument",
+      "root": "clawteam/clawteam",
+      "rel": "cmd/clawteam/argument",
+      "files": {
+        "E:\\moonbit\\clawteam\\cmd\\clawteam\\argument\\error.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        }
+      },
+      "wbtest-files": {},
+      "test-files": {},
+      "mbt-md-files": {},
+      "deps": [
+        {
+          "path": "moonbitlang/core/prelude",
+          "alias": "prelude",
+          "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
+        }
+      ],
+      "wbtest-deps": [
+        {
+          "path": "moonbitlang/core/prelude",
+          "alias": "prelude",
+          "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
+        }
+      ],
+      "test-deps": [
+        {
+          "path": "moonbitlang/core/prelude",
+          "alias": "prelude",
+          "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
+        }
+      ],
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\cmd\\clawteam\\argument\\argument.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
+    },
+    {
+      "is-main": false,
+      "is-third-party": false,
+      "root-path": "E:\\moonbit\\clawteam\\cmd\\clawteam\\conversation",
+      "root": "clawteam/clawteam",
+      "rel": "cmd/clawteam/conversation",
+      "files": {
+        "E:\\moonbit\\clawteam\\cmd\\clawteam\\conversation\\conversation.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        }
+      },
+      "wbtest-files": {},
+      "test-files": {},
+      "mbt-md-files": {},
+      "deps": [
+        {
+          "path": "clawteam/clawteam/cmd/clawteam/argument",
+          "alias": "argument",
+          "fspath": "E:\\moonbit\\clawteam\\cmd\\clawteam\\argument"
+        },
+        {
+          "path": "clawteam/clawteam/internal/conversation",
+          "alias": "conv",
+          "fspath": "E:\\moonbit\\clawteam\\internal\\conversation"
+        },
+        {
+          "path": "clawteam/clawteam/internal/fsx",
+          "alias": "fsx",
+          "fspath": "E:\\moonbit\\clawteam\\internal\\fsx"
+        },
+        {
+          "path": "clawteam/clawteam/internal/os",
+          "alias": "os",
+          "fspath": "E:\\moonbit\\clawteam\\internal\\os"
+        },
+        {
+          "path": "clawteam/clawteam/internal/rand",
+          "alias": "rand",
+          "fspath": "E:\\moonbit\\clawteam\\internal\\rand"
+        },
+        {
+          "path": "clawteam/clawteam/internal/uuid",
+          "alias": "uuid",
+          "fspath": "E:\\moonbit\\clawteam\\internal\\uuid"
+        },
+        {
+          "path": "moonbitlang/core/prelude",
+          "alias": "prelude",
+          "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
+        }
+      ],
+      "wbtest-deps": [
+        {
+          "path": "moonbitlang/core/prelude",
+          "alias": "prelude",
+          "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
+        }
+      ],
+      "test-deps": [
+        {
+          "path": "moonbitlang/core/prelude",
+          "alias": "prelude",
+          "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
+        }
+      ],
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\cmd\\clawteam\\conversation\\conversation.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
+    },
+    {
+      "is-main": false,
+      "is-third-party": false,
+      "root-path": "E:\\moonbit\\clawteam\\cmd\\clawteam\\exec",
+      "root": "clawteam/clawteam",
+      "rel": "cmd/clawteam/exec",
+      "files": {
+        "E:\\moonbit\\clawteam\\cmd\\clawteam\\exec\\exec.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        }
+      },
+      "wbtest-files": {},
+      "test-files": {},
+      "mbt-md-files": {},
+      "deps": [
+        {
+          "path": "clawteam/clawteam",
+          "alias": "clawteam",
+          "fspath": "E:\\moonbit\\clawteam"
+        },
+        {
+          "path": "clawteam/clawteam/cmd/clawteam/argument",
+          "alias": "argument",
+          "fspath": "E:\\moonbit\\clawteam\\cmd\\clawteam\\argument"
+        },
+        {
+          "path": "clawteam/clawteam/internal/fsx",
+          "alias": "fsx",
+          "fspath": "E:\\moonbit\\clawteam\\internal\\fsx"
+        },
+        {
+          "path": "clawteam/clawteam/internal/os",
+          "alias": "os",
+          "fspath": "E:\\moonbit\\clawteam\\internal\\os"
+        },
+        {
+          "path": "clawteam/clawteam/internal/pino",
+          "alias": "pino",
+          "fspath": "E:\\moonbit\\clawteam\\internal\\pino"
+        },
+        {
+          "path": "clawteam/clawteam/model",
+          "alias": "model",
+          "fspath": "E:\\moonbit\\clawteam\\model"
+        },
+        {
+          "path": "moonbitlang/core/prelude",
+          "alias": "prelude",
+          "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
+        }
+      ],
+      "wbtest-deps": [
+        {
+          "path": "moonbitlang/core/prelude",
+          "alias": "prelude",
+          "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
+        }
+      ],
+      "test-deps": [
+        {
+          "path": "moonbitlang/core/prelude",
+          "alias": "prelude",
+          "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
+        }
+      ],
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\cmd\\clawteam\\exec\\exec.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
+    },
+    {
+      "is-main": false,
+      "is-third-party": false,
+      "root-path": "E:\\moonbit\\clawteam\\cmd\\clawteam\\interactive",
+      "root": "clawteam/clawteam",
+      "rel": "cmd/clawteam/interactive",
+      "files": {
+        "E:\\moonbit\\clawteam\\cmd\\clawteam\\interactive\\interactive.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        }
+      },
+      "wbtest-files": {},
+      "test-files": {},
+      "mbt-md-files": {},
+      "deps": [
+        {
+          "path": "clawteam/clawteam",
+          "alias": "clawteam",
+          "fspath": "E:\\moonbit\\clawteam"
+        },
+        {
+          "path": "clawteam/clawteam/agent",
+          "alias": "agent",
+          "fspath": "E:\\moonbit\\clawteam\\agent"
+        },
+        {
+          "path": "clawteam/clawteam/ai",
+          "alias": "ai",
+          "fspath": "E:\\moonbit\\clawteam\\ai"
+        },
+        {
+          "path": "clawteam/clawteam/cmd/clawteam/argument",
+          "alias": "argument",
+          "fspath": "E:\\moonbit\\clawteam\\cmd\\clawteam\\argument"
+        },
+        {
+          "path": "clawteam/clawteam/cmd/clawteam/tui",
+          "alias": "tui",
+          "fspath": "E:\\moonbit\\clawteam\\cmd\\clawteam\\tui"
+        },
+        {
+          "path": "clawteam/clawteam/event",
+          "alias": "event",
+          "fspath": "E:\\moonbit\\clawteam\\event"
+        },
+        {
+          "path": "clawteam/clawteam/internal/pino",
+          "alias": "pino",
+          "fspath": "E:\\moonbit\\clawteam\\internal\\pino"
+        },
+        {
+          "path": "clawteam/clawteam/internal/readline",
+          "alias": "readline",
+          "fspath": "E:\\moonbit\\clawteam\\internal\\readline"
+        },
+        {
+          "path": "clawteam/clawteam/internal/uuid",
+          "alias": "uuid",
+          "fspath": "E:\\moonbit\\clawteam\\internal\\uuid"
+        },
+        {
+          "path": "clawteam/clawteam/model",
+          "alias": "model",
+          "fspath": "E:\\moonbit\\clawteam\\model"
+        },
+        {
+          "path": "moonbitlang/async",
+          "alias": "async",
+          "fspath": "E:\\moonbit\\clawteam\\.mooncakes\\moonbitlang\\async\\src"
+        },
+        {
+          "path": "moonbitlang/async/io",
+          "alias": "io",
+          "fspath": "E:\\moonbit\\clawteam\\.mooncakes\\moonbitlang\\async\\src\\io"
+        },
+        {
+          "path": "moonbitlang/async/stdio",
+          "alias": "stdio",
+          "fspath": "E:\\moonbit\\clawteam\\.mooncakes\\moonbitlang\\async\\src\\stdio"
+        },
+        {
+          "path": "moonbitlang/core/encoding/utf8",
+          "alias": "encoding/utf8",
+          "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\encoding\\utf8"
+        },
+        {
+          "path": "moonbitlang/core/json",
+          "alias": "json",
+          "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\json"
+        },
+        {
+          "path": "moonbitlang/core/prelude",
+          "alias": "prelude",
+          "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
+        }
+      ],
+      "wbtest-deps": [
+        {
+          "path": "moonbitlang/core/prelude",
+          "alias": "prelude",
+          "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
+        }
+      ],
+      "test-deps": [
+        {
+          "path": "moonbitlang/core/prelude",
+          "alias": "prelude",
+          "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
+        }
+      ],
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\cmd\\clawteam\\interactive\\interactive.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
+    },
+    {
+      "is-main": false,
+      "is-third-party": false,
+      "root-path": "E:\\moonbit\\clawteam\\cmd\\clawteam\\tui",
+      "root": "clawteam/clawteam",
+      "rel": "cmd/clawteam/tui",
+      "files": {
+        "E:\\moonbit\\clawteam\\cmd\\clawteam\\tui\\tui.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        }
+      },
+      "wbtest-files": {},
+      "test-files": {},
+      "mbt-md-files": {},
+      "deps": [
+        {
+          "path": "clawteam/clawteam",
+          "alias": "clawteam",
+          "fspath": "E:\\moonbit\\clawteam"
+        },
+        {
+          "path": "clawteam/clawteam/agent",
+          "alias": "agent",
+          "fspath": "E:\\moonbit\\clawteam\\agent"
+        },
+        {
+          "path": "clawteam/clawteam/ai",
+          "alias": "ai",
+          "fspath": "E:\\moonbit\\clawteam\\ai"
+        },
+        {
+          "path": "clawteam/clawteam/cmd/clawteam/argument",
+          "alias": "argument",
+          "fspath": "E:\\moonbit\\clawteam\\cmd\\clawteam\\argument"
+        },
+        {
+          "path": "clawteam/clawteam/event",
+          "alias": "event",
+          "fspath": "E:\\moonbit\\clawteam\\event"
+        },
+        {
+          "path": "clawteam/clawteam/internal/pino",
+          "alias": "pino",
+          "fspath": "E:\\moonbit\\clawteam\\internal\\pino"
+        },
+        {
+          "path": "clawteam/clawteam/internal/tui",
+          "alias": "itui",
+          "fspath": "E:\\moonbit\\clawteam\\internal\\tui"
+        },
+        {
+          "path": "clawteam/clawteam/internal/uuid",
+          "alias": "uuid",
+          "fspath": "E:\\moonbit\\clawteam\\internal\\uuid"
+        },
+        {
+          "path": "clawteam/clawteam/model",
+          "alias": "model",
+          "fspath": "E:\\moonbit\\clawteam\\model"
+        },
+        {
+          "path": "moonbitlang/async",
+          "alias": "async",
+          "fspath": "E:\\moonbit\\clawteam\\.mooncakes\\moonbitlang\\async\\src"
+        },
+        {
+          "path": "moonbitlang/async/stdio",
+          "alias": "stdio",
+          "fspath": "E:\\moonbit\\clawteam\\.mooncakes\\moonbitlang\\async\\src\\stdio"
+        },
+        {
+          "path": "moonbitlang/core/prelude",
+          "alias": "prelude",
+          "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
+        }
+      ],
+      "wbtest-deps": [
+        {
+          "path": "moonbitlang/core/prelude",
+          "alias": "prelude",
+          "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
+        }
+      ],
+      "test-deps": [
+        {
+          "path": "moonbitlang/core/prelude",
+          "alias": "prelude",
+          "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
+        }
+      ],
+      "artifact": "E:\\moonbit\\clawteam\\_build\\native\\debug\\check\\cmd\\clawteam\\tui\\tui.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
+    },
+    {
       "is-main": false,
       "is-third-party": false,
       "root-path": "E:\\moonbit\\clawteam\\cmd\\daemon",
@@ -2425,7 +2979,7 @@
       ]
     },
     {
-      "is-main": true,
+      "is-main": false,
       "is-third-party": false,
       "root-path": "E:\\moonbit\\clawteam\\cmd\\main",
       "root": "clawteam/clawteam",

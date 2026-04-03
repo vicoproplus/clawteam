@@ -15,6 +15,6 @@ import {
 }
 
 options(
-  "is-main": true,
+  "is-main": false,
   overrides: [ "clawteam/clawteam/internal/abort" ],
 )

@@ -1,7 +1,0 @@
-import {
-  "moonbitlang/core/json",
-  "moonbitlang/core/test",
-  "moonbitlang/x/path",
-  "clawteam/clawteam/types",
-  "clawteam/clawteam/errors",
-}
