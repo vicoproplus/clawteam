@@ -436,6 +436,17 @@ let moonbit_test_driver_internal_no_args_tests : MoonBitTestDriverInternalTestMa
   },
   "project_mentions.mbt": {
   },
+  "log_redaction_test.mbt": {
+    0: (__test_6c6f675f726564616374696f6e5f746573742e6d6274_0, ["redact macos home path"]),
+    1: (__test_6c6f675f726564616374696f6e5f746573742e6d6274_1, ["redact macos home path single char"]),
+    2: (__test_6c6f675f726564616374696f6e5f746573742e6d6274_2, ["redact linux home path"]),
+    3: (__test_6c6f675f726564616374696f6e5f746573742e6d6274_3, ["redact windows home path"]),
+    4: (__test_6c6f675f726564616374696f6e5f746573742e6d6274_4, ["redact multiple paths"]),
+    5: (__test_6c6f675f726564616374696f6e5f746573742e6d6274_5, ["no paths to redact"]),
+    6: (__test_6c6f675f726564616374696f6e5f746573742e6d6274_6, ["redact path empty username segment"]),
+  },
+  "log_redaction.mbt": {
+  },
 }
 
 
