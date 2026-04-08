@@ -414,6 +414,28 @@ let moonbit_test_driver_internal_no_args_tests : MoonBitTestDriverInternalTestMa
   },
   "routine_variables.mbt": {
   },
+  "project_mentions_test.mbt": {
+    0: (__test_70726f6a6563745f6d656e74696f6e735f746573742e6d6274_0, ["normalize_hex_color 6 digit with hash"]),
+    1: (__test_70726f6a6563745f6d656e74696f6e735f746573742e6d6274_1, ["normalize_hex_color 6 digit uppercase"]),
+    2: (__test_70726f6a6563745f6d656e74696f6e735f746573742e6d6274_2, ["normalize_hex_color 6 digit without hash"]),
+    3: (__test_70726f6a6563745f6d656e74696f6e735f746573742e6d6274_3, ["normalize_hex_color 3 digit short"]),
+    4: (__test_70726f6a6563745f6d656e74696f6e735f746573742e6d6274_4, ["normalize_hex_color 3 digit no hash"]),
+    5: (__test_70726f6a6563745f6d656e74696f6e735f746573742e6d6274_5, ["normalize_hex_color invalid"]),
+    6: (__test_70726f6a6563745f6d656e74696f6e735f746573742e6d6274_6, ["normalize_hex_color empty"]),
+    7: (__test_70726f6a6563745f6d656e74696f6e735f746573742e6d6274_7, ["build_project_mention_href no color"]),
+    8: (__test_70726f6a6563745f6d656e74696f6e735f746573742e6d6274_8, ["build_project_mention_href with color"]),
+    9: (__test_70726f6a6563745f6d656e74696f6e735f746573742e6d6274_9, ["parse_project_mention_href valid"]),
+    10: (__test_70726f6a6563745f6d656e74696f6e735f746573742e6d6274_10, ["parse_project_mention_href with color"]),
+    11: (__test_70726f6a6563745f6d656e74696f6e735f746573742e6d6274_11, ["parse_project_mention_href invalid scheme"]),
+    12: (__test_70726f6a6563745f6d656e74696f6e735f746573742e6d6274_12, ["normalize_agent_icon valid"]),
+    13: (__test_70726f6a6563745f6d656e74696f6e735f746573742e6d6274_13, ["normalize_agent_icon uppercase"]),
+    14: (__test_70726f6a6563745f6d656e74696f6e735f746573742e6d6274_14, ["normalize_agent_icon invalid chars"]),
+    15: (__test_70726f6a6563745f6d656e74696f6e735f746573742e6d6274_15, ["normalize_skill_slug valid"]),
+    16: (__test_70726f6a6563745f6d656e74696f6e735f746573742e6d6274_16, ["normalize_skill_slug starts with number"]),
+    17: (__test_70726f6a6563745f6d656e74696f6e735f746573742e6d6274_17, ["normalize_skill_slug invalid start"]),
+  },
+  "project_mentions.mbt": {
+  },
 }
 
 

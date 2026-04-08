@@ -9,6 +9,19 @@
       "root": "paperclip-wasm",
       "rel": "",
       "files": {
+        "E:\\moonbit\\clawteam\\src\\project_mentions.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        },
         "E:\\moonbit\\clawteam\\src\\routine_variables.mbt": {
           "backend": [
             "Wasm",
@@ -38,6 +51,19 @@
       },
       "wbtest-files": {},
       "test-files": {
+        "E:\\moonbit\\clawteam\\src\\project_mentions_test.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        },
         "E:\\moonbit\\clawteam\\src\\routine_variables_test.mbt": {
           "backend": [
             "Wasm",
