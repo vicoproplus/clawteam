@@ -1,6 +1,6 @@
 ///|
 /// session-compaction 模块 - MoonBit 实现
-/// 原始 TypeScript 实现参考: paperclip/packages/adapter-utils/src/session-compaction.ts
+/// 原始 TypeScript 实现参考: lib/adapter-utils/session-compaction.ts
 pub enum NativeContextManagement {
   Confirmed
   Likely

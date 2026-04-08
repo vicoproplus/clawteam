@@ -1,6 +1,6 @@
 ///|
 /// log-redaction 模块 - MoonBit 实现
-/// 原始 TypeScript 实现参考: paperclip/packages/adapter-utils/src/log-redaction.ts
+/// 原始 TypeScript 实现参考: lib/adapter-utils/log-redaction.ts
 pub const REDACTED_HOME_PATH_USER : String = "*"
 
 ///|

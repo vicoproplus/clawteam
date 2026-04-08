@@ -1,28 +1,33 @@
-# Paperclip → MoonBit wasm-gc 迁移概述
+# MoonBit wasm-gc 模块 - 独立项目
 
-## 迁移目标
+## 概述
 
-将 paperclip 项目的 4 个高频计算模块迁移到 MoonBit wasm-gc，通过 WebAssembly 提升核心算法执行性能。
+这是一个独立的 MoonBit wasm-gc 项目，包含 4 个高性能计算模块。
 
-## 迁移模块
+## 模块
 
-| 模块 | 原始路径 | MoonBit 路径 | 测试数 |
-|------|----------|--------------|--------|
-| routine-variables | `paperclip/packages/shared/src/routine-variables.ts` | `src/routine_variables.mbt` | 13 ✅ |
-| project-mentions | `paperclip/packages/shared/src/project-mentions.ts` | `src/project_mentions.mbt` | 18 ✅ |
-| log-redaction | `paperclip/packages/adapter-utils/src/log-redaction.ts` | `src/log_redaction.mbt` | 7 ✅ |
-| session-compaction | `paperclip/packages/adapter-utils/src/session-compaction.ts` | `src/session_compaction.mbt` | 8 ✅ |
+| 模块 | MoonBit 路径 | TypeScript 参考 |
+|------|--------------|-----------------|
+| routine-variables | `src/routine_variables.mbt` | `lib/shared/routine-variables.ts` |
+| project-mentions | `src/project_mentions.mbt` | `lib/shared/project-mentions.ts` |
+| log-redaction | `src/log_redaction.mbt` | `lib/adapter-utils/log-redaction.ts` |
+| session-compaction | `src/session_compaction.mbt` | `lib/adapter-utils/session-compaction.ts` |
 
-**总计：46 个测试全部通过**
+**总计：46 个测试全部通过 ✅**
 
 ## 架构设计
 
 ```
 clawteam/
-├── paperclip/                     # 原始代码（只读参考）
-│   └── packages/
-│       ├── shared/src/
-│       └── adapter-utils/src/
+├── lib/                           # TypeScript 参考代码（本地副本）
+│   ├── shared/
+│   │   ├── routine-variables.ts
+│   │   ├── project-mentions.ts
+│   │   └── types/
+│   └── adapter-utils/
+│       ├── log-redaction.ts
+│       ├── session-compaction.ts
+│       └── types.ts
 │
 ├── src/                           # MoonBit 源码
 │   ├── routine_variables.mbt
@@ -42,7 +47,7 @@ clawteam/
 │   └── wasm_bridge.ts             # 统一 API，wasm/TS 自动切换
 │
 └── target/wasm-gc/release/        # 编译输出
-    └── bundle/paperclip-wasm.wasm
+    └── bundle/moonbit-wasm.wasm
 ```
 
 ## 核心设计原则
@@ -51,7 +56,7 @@ clawteam/
 2. **零 FFI 依赖**：所有字符串处理在 wasm 内部完成，避免跨调用开销
 3. **测试驱动**：每个模块有对比测试，验证与 TS 输出一致
 4. **透明替换**：调用方无需关心底层实现，bridge 层自动切换
-5. **原始代码只读**：`./paperclip/` 目录保持不变，作为参考和降级方案
+5. **本地副本**：`./lib/` 目录包含 TypeScript 参考代码的本地副本
 
 ## 构建命令
 

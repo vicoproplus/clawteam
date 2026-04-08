@@ -1,5 +1,5 @@
 /// project-mentions 模块 - MoonBit 实现
-/// 原始 TypeScript 实现参考: paperclip/packages/shared/src/project-mentions.ts
+/// 原始 TypeScript 实现参考: lib/shared/project-mentions.ts
 
 ///|
 /// 协议常量

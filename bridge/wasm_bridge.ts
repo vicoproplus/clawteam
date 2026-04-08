@@ -8,25 +8,22 @@ import { getWasmExports } from '../wasm_loader/loader.js';
 import { writeString, readString, writeJSON, readJSON } from '../wasm_loader/memory.js';
 
 // ============================================================================
-// 导入原始 TypeScript 实现（从 paperclip/ 参考代码）
-// 注意：这些导入路径需要根据实际项目结构调整
+// 导入原始 TypeScript 实现（本地 lib/ 副本）
 // ============================================================================
 
 // routine-variables 的 TypeScript 实现
 async function tsExtractVariables(template: string): Promise<string[]> {
-  // 动态导入原始实现
-  const mod = await import('../paperclip/packages/shared/src/routine-variables.js');
+  const mod = await import('../lib/shared/routine-variables.js');
   return mod.extractRoutineVariableNames(template);
 }
 
 async function tsInterpolate(template: string, values: Record<string, unknown>): Promise<string | null> {
-  const mod = await import('../paperclip/packages/shared/src/routine-variables.js');
+  const mod = await import('../lib/shared/routine-variables.js');
   return mod.interpolateRoutineTemplate(template, values);
 }
 
 // project-mentions 的 TypeScript 实现
 async function tsNormalizeHexColor(input: string | null | undefined): Promise<string | null> {
-  // 简化版 fallback
   if (!input) return null;
   const trimmed = input.trim();
   if (!trimmed) return null;
@@ -43,13 +40,13 @@ async function tsNormalizeHexColor(input: string | null | undefined): Promise<st
 }
 
 async function tsBuildProjectMentionHref(projectId: string, color?: string | null): Promise<string> {
-  const mod = await import('../paperclip/packages/shared/src/project-mentions.js');
+  const mod = await import('../lib/shared/project-mentions.js');
   return mod.buildProjectMentionHref(projectId, color);
 }
 
 // log-redaction 的 TypeScript 实现
 async function tsRedactHomePath(text: string): Promise<string> {
-  const mod = await import('../paperclip/packages/adapter-utils/src/log-redaction.js');
+  const mod = await import('../lib/adapter-utils/log-redaction.js');
   return mod.redactHomePathUserSegments(text);
 }
 

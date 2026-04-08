@@ -21,7 +21,7 @@ let wasmExports: WebAssembly.Exports | null = null;
 export async function initWasm(wasmPath?: string): Promise<boolean> {
   try {
     const resolvedPath = wasmPath ?? 
-      join(__dirname, '../target/wasm-gc/release/bundle/paperclip-wasm.wasm');
+      join(__dirname, '../target/wasm-gc/release/bundle/moonbit-wasm.wasm');
     
     // 检查文件是否存在
     try {

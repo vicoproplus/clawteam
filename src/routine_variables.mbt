@@ -1,5 +1,5 @@
 /// routine-variables 模块 - MoonBit 实现
-/// 原始 TypeScript 实现参考: paperclip/packages/shared/src/routine-variables.ts
+/// 原始 TypeScript 实现参考: lib/shared/routine-variables.ts
 
 /// 正则模式: /\{\{\s*([A-Za-z][A-Za-z0-9_]*)\s*\}\}/g
 /// 手动实现模板变量提取（无 FFI 依赖）

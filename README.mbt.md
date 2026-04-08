@@ -1,6 +1,6 @@
-# Paperclip wasm Modules
+# MoonBit wasm-gc 模块
 
-MoonBit wasm-gc 模块，用于 paperclip 项目的高性能计算核心。
+独立的高性能计算模块，可单独使用或与 paperclip 项目集成。
 
 ## 模块
 
@@ -98,9 +98,9 @@ test "extract_variables works" {
 }
 ```
 
-## 原始代码参考
+## TypeScript 参考代码
 
-原始 TypeScript 实现保留在 `../paperclip/` 目录中，作为：
+原始 TypeScript 实现的本地副本位于 `lib/` 目录中，作为：
 - 参考实现
 - 降级方案
 - 性能对比基准
