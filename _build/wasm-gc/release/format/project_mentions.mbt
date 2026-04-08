@@ -331,17 +331,18 @@ pub fn parse_skill_mention_href(href : String) -> ParsedSkillMention? {
 ///|
 /// 手动转小写
 fn to_lower(s : String) -> String {
+  let alpha_lower = "abcdefghijklmnopqrstuvwxyz"
   let len = s.length()
   let mut result = ""
   let mut i = 0
   while i < len {
     let ch = s[i]
-    let lc = if ch >= 65 && ch <= 90 { ch + 32 } else { ch }
-    result = result + s[i:i + 1].to_string()
-    if lc != ch {
-      let rl = result.length()
-      result = result[0:rl - 1].to_string() +
-        HEX_CHARS[(lc - 97).to_int():(lc - 97).to_int() + 1].to_string()
+    if ch >= 65 && ch <= 90 {
+      // A-Z → 用字母表索引转小写
+      let idx = (ch - 65).to_int()
+      result = result + alpha_lower[idx:idx + 1].to_string()
+    } else {
+      result = result + s[i:i + 1].to_string()
     }
     i = i + 1
   }

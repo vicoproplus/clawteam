@@ -115,6 +115,19 @@
             "Release",
             "Debug"
           ]
+        },
+        "E:\\moonbit\\clawteam\\src\\session_compaction_test.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
         }
       },
       "mbt-md-files": {},

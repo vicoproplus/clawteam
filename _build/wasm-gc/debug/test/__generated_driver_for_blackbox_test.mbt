@@ -397,6 +397,18 @@ let moonbit_test_driver_internal_no_args_tests : MoonBitTestDriverInternalTestMa
 ] = {
   "string_utils.mbt": {
   },
+  "session_compaction_test.mbt": {
+    0: (__test_73657373696f6e5f636f6d70616374696f6e5f746573742e6d6274_0, ["get_adapter_session_management claude_local"]),
+    1: (__test_73657373696f6e5f636f6d70616374696f6e5f746573742e6d6274_1, ["get_adapter_session_management unknown adapter"]),
+    2: (__test_73657373696f6e5f636f6d70616374696f6e5f746573742e6d6274_2, ["resolve_session_compaction_policy claude adapter"]),
+    3: (__test_73657373696f6e5f636f6d70616374696f6e5f746573742e6d6274_3, ["resolve_session_compaction_policy cursor adapter"]),
+    4: (__test_73657373696f6e5f636f6d70616374696f6e5f746573742e6d6274_4, ["resolve_session_compaction_policy unknown adapter (legacy)"]),
+    5: (__test_73657373696f6e5f636f6d70616374696f6e5f746573742e6d6274_5, ["resolve_session_compaction_policy with explicit override"]),
+    6: (__test_73657373696f6e5f636f6d70616374696f6e5f746573742e6d6274_6, ["has_session_compaction_thresholds with thresholds"]),
+    7: (__test_73657373696f6e5f636f6d70616374696f6e5f746573742e6d6274_7, ["has_session_compaction_thresholds no thresholds"]),
+  },
+  "session_compaction.mbt": {
+  },
   "routine_variables_test.mbt": {
     0: (__test_726f7574696e655f7661726961626c65735f746573742e6d6274_0, ["extract_variables single variable"]),
     1: (__test_726f7574696e655f7661726961626c65735f746573742e6d6274_1, ["extract_variables multiple variables"]),
