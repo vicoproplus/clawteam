@@ -2,7 +2,9 @@
 
 ///|
 test "redact macos home path" {
-  let result = redact_home_path_user_segments("Error at /Users/john/secret/key.pem")
+  let result = redact_home_path_user_segments(
+    "Error at /Users/john/secret/key.pem",
+  )
   @debug.assert_eq(result, "Error at /Users/j***/secret/key.pem")
 }
 
@@ -40,5 +42,5 @@ test "no paths to redact" {
 test "redact path empty username segment" {
   // 路径 /Users//file (双斜杠) 不会匹配，因为用户名段为空
   let result = redact_home_path_user_segments("/Users//file")
-  @debug.assert_eq(result, "/Users//file")  // 不匹配，保持不变
+  @debug.assert_eq(result, "/Users//file") // 不匹配，保持不变
 }
