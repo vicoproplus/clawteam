@@ -8,17 +8,17 @@ import { getWasmExports } from '../wasm_loader/loader.js';
 import { writeString, readString, writeJSON, readJSON } from '../wasm_loader/memory.js';
 
 // ============================================================================
-// 导入原始 TypeScript 实现（本地 lib/ 副本）
+// 导入原始 TypeScript 实现（本地 packages/ 副本）
 // ============================================================================
 
 // routine-variables 的 TypeScript 实现
 async function tsExtractVariables(template: string): Promise<string[]> {
-  const mod = await import('../lib/shared/routine-variables.js');
+  const mod = await import('../packages/shared/src/routine-variables.js');
   return mod.extractRoutineVariableNames(template);
 }
 
 async function tsInterpolate(template: string, values: Record<string, unknown>): Promise<string | null> {
-  const mod = await import('../lib/shared/routine-variables.js');
+  const mod = await import('../packages/shared/src/routine-variables.js');
   return mod.interpolateRoutineTemplate(template, values);
 }
 
@@ -40,13 +40,13 @@ async function tsNormalizeHexColor(input: string | null | undefined): Promise<st
 }
 
 async function tsBuildProjectMentionHref(projectId: string, color?: string | null): Promise<string> {
-  const mod = await import('../lib/shared/project-mentions.js');
+  const mod = await import('../packages/shared/src/project-mentions.js');
   return mod.buildProjectMentionHref(projectId, color);
 }
 
 // log-redaction 的 TypeScript 实现
 async function tsRedactHomePath(text: string): Promise<string> {
-  const mod = await import('../lib/adapter-utils/log-redaction.js');
+  const mod = await import('../packages/adapter-utils/src/log-redaction.js');
   return mod.redactHomePathUserSegments(text);
 }
 
