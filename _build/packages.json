@@ -1,0 +1,91 @@
+{
+  "source_dir": "E:\\moonbit\\clawteam",
+  "name": "paperclip-wasm",
+  "packages": [
+    {
+      "is-main": false,
+      "is-third-party": false,
+      "root-path": "E:\\moonbit\\clawteam\\src",
+      "root": "paperclip-wasm",
+      "rel": "",
+      "files": {
+        "E:\\moonbit\\clawteam\\src\\routine_variables.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        },
+        "E:\\moonbit\\clawteam\\src\\string_utils.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        }
+      },
+      "wbtest-files": {},
+      "test-files": {
+        "E:\\moonbit\\clawteam\\src\\routine_variables_test.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        }
+      },
+      "mbt-md-files": {},
+      "deps": [
+        {
+          "path": "moonbitlang/core/prelude",
+          "alias": "prelude",
+          "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
+        }
+      ],
+      "wbtest-deps": [
+        {
+          "path": "moonbitlang/core/prelude",
+          "alias": "prelude",
+          "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
+        }
+      ],
+      "test-deps": [
+        {
+          "path": "moonbitlang/core/prelude",
+          "alias": "prelude",
+          "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
+        }
+      ],
+      "artifact": "E:\\moonbit\\clawteam\\_build\\wasm-gc\\debug\\check\\paperclip-wasm.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
+    }
+  ],
+  "deps": [],
+  "backend": "wasm-gc",
+  "opt_level": "debug",
+  "source": "src"
+}

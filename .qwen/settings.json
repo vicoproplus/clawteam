@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(moon *)"
+    ]
+  },
+  "$version": 3
+}

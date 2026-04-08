@@ -1,0 +1,5 @@
+options(
+  deps: { },
+  "is-main": false,
+  targets: { "wasm-gc": [ "wasm-gc" ] },
+)
