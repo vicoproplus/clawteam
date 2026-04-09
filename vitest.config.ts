@@ -9,6 +9,7 @@ export default defineConfig({
       "server",
       "ui",
       "cli",
+      "tests/moonbit-integration",
     ],
   },
 });
