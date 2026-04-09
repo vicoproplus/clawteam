@@ -102,7 +102,59 @@
             "Debug"
           ]
         },
+        "E:\\moonbit\\clawteam\\moonbit-core\\src\\domain\\common\\company_types.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        },
         "E:\\moonbit\\clawteam\\moonbit-core\\src\\domain\\common\\enums.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        },
+        "E:\\moonbit\\clawteam\\moonbit-core\\src\\domain\\common\\goal_types.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        },
+        "E:\\moonbit\\clawteam\\moonbit-core\\src\\domain\\common\\issue_state_machine.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        },
+        "E:\\moonbit\\clawteam\\moonbit-core\\src\\domain\\common\\project_types.mbt": {
           "backend": [
             "Wasm",
             "WasmGC",
@@ -132,6 +184,19 @@
           ]
         },
         "E:\\moonbit\\clawteam\\moonbit-core\\src\\domain\\common\\enums_test.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        },
+        "E:\\moonbit\\clawteam\\moonbit-core\\src\\domain\\common\\issue_state_machine_test.mbt": {
           "backend": [
             "Wasm",
             "WasmGC",

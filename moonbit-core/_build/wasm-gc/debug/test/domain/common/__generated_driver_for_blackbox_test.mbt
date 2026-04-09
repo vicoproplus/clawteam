@@ -395,6 +395,34 @@ fn moonbit_test_driver_internal_catch_error(
 let moonbit_test_driver_internal_no_args_tests : MoonBitTestDriverInternalTestMap[
   () -> Unit raise,
 ] = {
+  "project_types.mbt": {
+  },
+  "issue_state_machine_test.mbt": {
+    0: (__test_69737375655f73746174655f6d616368696e655f746573742e6d6274_0, ["issue backlog to todo"]),
+    1: (__test_69737375655f73746174655f6d616368696e655f746573742e6d6274_1, ["issue backlog to cancelled"]),
+    2: (__test_69737375655f73746174655f6d616368696e655f746573742e6d6274_2, ["issue todo to in_progress"]),
+    3: (__test_69737375655f73746174655f6d616368696e655f746573742e6d6274_3, ["issue todo to blocked"]),
+    4: (__test_69737375655f73746174655f6d616368696e655f746573742e6d6274_4, ["issue todo to cancelled"]),
+    5: (__test_69737375655f73746174655f6d616368696e655f746573742e6d6274_5, ["issue in_progress to in_review"]),
+    6: (__test_69737375655f73746174655f6d616368696e655f746573742e6d6274_6, ["issue in_progress to blocked"]),
+    7: (__test_69737375655f73746174655f6d616368696e655f746573742e6d6274_7, ["issue in_progress to todo"]),
+    8: (__test_69737375655f73746174655f6d616368696e655f746573742e6d6274_8, ["issue in_progress to cancelled"]),
+    9: (__test_69737375655f73746174655f6d616368696e655f746573742e6d6274_9, ["issue in_review to done"]),
+    10: (__test_69737375655f73746174655f6d616368696e655f746573742e6d6274_10, ["issue in_review to in_progress"]),
+    11: (__test_69737375655f73746174655f6d616368696e655f746573742e6d6274_11, ["issue in_review to todo"]),
+    12: (__test_69737375655f73746174655f6d616368696e655f746573742e6d6274_12, ["issue in_review to blocked"]),
+    13: (__test_69737375655f73746174655f6d616368696e655f746573742e6d6274_13, ["issue blocked to todo"]),
+    14: (__test_69737375655f73746174655f6d616368696e655f746573742e6d6274_14, ["issue blocked to cancelled"]),
+    15: (__test_69737375655f73746174655f6d616368696e655f746573742e6d6274_15, ["issue done to anything is false"]),
+    16: (__test_69737375655f73746174655f6d616368696e655f746573742e6d6274_16, ["issue cancelled to anything is false"]),
+    17: (__test_69737375655f73746174655f6d616368696e655f746573742e6d6274_17, ["issue same status to same status is false"]),
+    18: (__test_69737375655f73746174655f6d616368696e655f746573742e6d6274_18, ["issue apply_transition returns error for invalid transition"]),
+    19: (__test_69737375655f73746174655f6d616368696e655f746573742e6d6274_19, ["issue apply_transition returns success for valid transition"]),
+  },
+  "issue_state_machine.mbt": {
+  },
+  "goal_types.mbt": {
+  },
   "enums_test.mbt": {
     0: (__test_656e756d735f746573742e6d6274_0, ["company status to_string"]),
     1: (__test_656e756d735f746573742e6d6274_1, ["agent status to_string"]),
@@ -407,6 +435,8 @@ let moonbit_test_driver_internal_no_args_tests : MoonBitTestDriverInternalTestMa
     8: (__test_656e756d735f746573742e6d6274_8, ["project status to_string"]),
   },
   "enums.mbt": {
+  },
+  "company_types.mbt": {
   },
   "agent_state_machine_test.mbt": {
     0: (__test_6167656e745f73746174655f6d616368696e655f746573742e6d6274_0, ["agent active to paused"]),
