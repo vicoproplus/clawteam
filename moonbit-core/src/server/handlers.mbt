@@ -3,15 +3,15 @@
 // JSON-RPC Handlers (简化版，不依赖 domain 包)
 
 // 处理 JSON-RPC 请求
-pub fn handle_request(method: String, params_json: String, id: Int) -> String {
-  match method {
+pub fn handle_request(method_name: String, params_json: String, id: Int) -> String {
+  match method_name {
     "health" => handle_health(id)
     "agent.validate" => handle_agent_validate(params_json, id)
     "agent.transition" => handle_agent_transition(params_json, id)
     "issue.transition" => handle_issue_transition(params_json, id)
     "budget.enforce" => handle_budget_enforce(params_json, id)
     "cost.aggregate" => handle_cost_aggregate(params_json, id)
-    _ => format_error(-32601, "Method not found: " + method, id)
+    _ => format_error(-32601, "Method not found: " + method_name, id)
   }
 }
 
