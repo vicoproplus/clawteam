@@ -102,6 +102,19 @@
             "Debug"
           ]
         },
+        "E:\\moonbit\\clawteam\\moonbit-core\\src\\domain\\common\\budget_types.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        },
         "E:\\moonbit\\clawteam\\moonbit-core\\src\\domain\\common\\company_types.mbt": {
           "backend": [
             "Wasm",
@@ -171,6 +184,32 @@
       "wbtest-files": {},
       "test-files": {
         "E:\\moonbit\\clawteam\\moonbit-core\\src\\domain\\common\\agent_state_machine_test.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        },
+        "E:\\moonbit\\clawteam\\moonbit-core\\src\\domain\\common\\budget_enforcement_test.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        },
+        "E:\\moonbit\\clawteam\\moonbit-core\\src\\domain\\common\\cost_aggregation_test.mbt": {
           "backend": [
             "Wasm",
             "WasmGC",

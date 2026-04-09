@@ -436,7 +436,22 @@ let moonbit_test_driver_internal_no_args_tests : MoonBitTestDriverInternalTestMa
   },
   "enums.mbt": {
   },
+  "cost_aggregation_test.mbt": {
+    0: (__test_636f73745f6167677265676174696f6e5f746573742e6d6274_0, ["aggregate costs - filter by company"]),
+    1: (__test_636f73745f6167677265676174696f6e5f746573742e6d6274_1, ["aggregate costs - filter by agent_ids"]),
+    2: (__test_636f73745f6167677265676174696f6e5f746573742e6d6274_2, ["aggregate costs - sum multiple events"]),
+    3: (__test_636f73745f6167677265676174696f6e5f746573742e6d6274_3, ["aggregate costs - group by agent"]),
+  },
   "company_types.mbt": {
+  },
+  "budget_types.mbt": {
+  },
+  "budget_enforcement_test.mbt": {
+    0: (__test_6275646765745f656e666f7263656d656e745f746573742e6d6274_0, ["budget enforcement - not configured"]),
+    1: (__test_6275646765745f656e666f7263656d656e745f746573742e6d6274_1, ["budget enforcement - within budget (50%)"]),
+    2: (__test_6275646765745f656e666f7263656d656e745f746573742e6d6274_2, ["budget enforcement - soft warning (85%)"]),
+    3: (__test_6275646765745f656e666f7263656d656e745f746573742e6d6274_3, ["budget enforcement - hard block (100%)"]),
+    4: (__test_6275646765745f656e666f7263656d656e745f746573742e6d6274_4, ["budget enforcement - over budget (110%)"]),
   },
   "agent_state_machine_test.mbt": {
     0: (__test_6167656e745f73746174655f6d616368696e655f746573742e6d6274_0, ["agent active to paused"]),
