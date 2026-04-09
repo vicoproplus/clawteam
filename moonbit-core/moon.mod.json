@@ -1,0 +1,8 @@
+{
+  "name": "paperclip/moonbit-core",
+  "version": "0.1.0",
+  "readme": "README.md",
+  "repository": "https://github.com/HenkDz/paperclip",
+  "license": "MIT",
+  "source": "src"
+}

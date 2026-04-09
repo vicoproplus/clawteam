@@ -33,14 +33,6 @@ server/src/**/*.d.ts.map
 tmp/
 feedback-export-*
 
-# Editor / tool temp files
-*.tmp
-.vscode/
-.claude/settings.local.json
-.paperclip-local/
-/.idea/
-/.agents/
-
 # Doc maintenance cursor
 .doc-review-cursor
 
@@ -51,3 +43,92 @@ tests/release-smoke/test-results/
 tests/release-smoke/playwright-report/
 .superset/
 .claude/worktrees/
+
+# Node.js 相關
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+.npm
+.yarn-integrity
+
+#node_modules
+.output
+stats.html
+stats-*.json
+.wxt
+web-ext.config.ts
+dist
+
+# TypeScript 編譯輸出
+dist/
+build/
+*.tsbuildinfo
+
+# 環境變數和敏感資訊
+.env
+.env.local
+.env.*.local
+
+# IDE 和編輯器
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+*.code-workspace
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*.onnx
+runtime
+.VSCodeCounter/
+composer.lock
+/public/nginx.htaccess
+/public/.htaccess
+
+
+# 日誌檔案
+logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# 暫存檔案
+.tmp/
+.temp/
+tmp/
+temp/
+*.tmp
+.vscode/
+.claude/settings.local.json
+.paperclip-local/
+/.idea/
+/.agents/
+
+# 系統檔案
+.DS_Store
+Thumbs.db
+
+# 覆蓋率報告
+coverage/
+
+# 資料檔案
+*.sqlite
+data/*.json
+data/*/*.json
+data/*
+
+# Prevent npm metadata pollution
+false/
+metadata-v1.3/
+registry.npmmirror.com/
+registry.npmjs.com/
