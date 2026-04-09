@@ -379,6 +379,11 @@
       "root": "paperclip/moonbit-core",
       "rel": "lib",
       "artifact": "E:\\moonbit\\clawteam\\moonbit-core\\_build\\wasm-gc\\debug\\check\\lib\\lib.mi"
+    },
+    {
+      "root": "paperclip/moonbit-core",
+      "rel": "server",
+      "artifact": "E:\\moonbit\\clawteam\\moonbit-core\\_build\\wasm-gc\\debug\\check\\server\\server.mi"
     }
   ]
 }

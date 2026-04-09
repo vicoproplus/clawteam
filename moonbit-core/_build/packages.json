@@ -346,6 +346,73 @@
         "Native",
         "LLVM"
       ]
+    },
+    {
+      "is-main": true,
+      "is-third-party": false,
+      "root-path": "E:\\moonbit\\clawteam\\moonbit-core\\src\\server",
+      "root": "paperclip/moonbit-core",
+      "rel": "server",
+      "files": {
+        "E:\\moonbit\\clawteam\\moonbit-core\\src\\server\\handlers.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        },
+        "E:\\moonbit\\clawteam\\moonbit-core\\src\\server\\main.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        }
+      },
+      "wbtest-files": {},
+      "test-files": {},
+      "mbt-md-files": {},
+      "deps": [
+        {
+          "path": "moonbitlang/core/prelude",
+          "alias": "prelude",
+          "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
+        }
+      ],
+      "wbtest-deps": [
+        {
+          "path": "moonbitlang/core/prelude",
+          "alias": "prelude",
+          "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
+        }
+      ],
+      "test-deps": [
+        {
+          "path": "moonbitlang/core/prelude",
+          "alias": "prelude",
+          "fspath": "C:\\Users\\Administrator\\.moon\\lib\\core\\prelude"
+        }
+      ],
+      "artifact": "E:\\moonbit\\clawteam\\moonbit-core\\_build\\wasm-gc\\debug\\check\\server\\server.mi",
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
     }
   ],
   "deps": [],
