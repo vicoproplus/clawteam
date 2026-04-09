@@ -389,81 +389,6 @@ fn moonbit_test_driver_internal_catch_error(
 // =========================================================
 // -=================== END JS SPECIFIC ====================
 // =========================================================
-// This file is introduced when tests without args is needed
-
-///|
-let moonbit_test_driver_internal_no_args_tests : MoonBitTestDriverInternalTestMap[
-  () -> Unit raise,
-] = {
-  "enums_test.mbt": {
-    0: (__test_656e756d735f746573742e6d6274_0, ["company status to_string"]),
-    1: (__test_656e756d735f746573742e6d6274_1, ["agent status to_string"]),
-    2: (__test_656e756d735f746573742e6d6274_2, ["agent role to_string"]),
-    3: (__test_656e756d735f746573742e6d6274_3, ["agent adapter type to_string"]),
-    4: (__test_656e756d735f746573742e6d6274_4, ["issue status to_string"]),
-    5: (__test_656e756d735f746573742e6d6274_5, ["issue priority to_string"]),
-    6: (__test_656e756d735f746573742e6d6274_6, ["goal level to_string"]),
-    7: (__test_656e756d735f746573742e6d6274_7, ["goal status to_string"]),
-    8: (__test_656e756d735f746573742e6d6274_8, ["project status to_string"]),
-  },
-  "enums.mbt": {
-  },
-  "agent_state_machine_test.mbt": {
-    0: (__test_6167656e745f73746174655f6d616368696e655f746573742e6d6274_0, ["agent active to paused"]),
-    1: (__test_6167656e745f73746174655f6d616368696e655f746573742e6d6274_1, ["agent active to terminated"]),
-    2: (__test_6167656e745f73746174655f6d616368696e655f746573742e6d6274_2, ["agent paused to idle"]),
-    3: (__test_6167656e745f73746174655f6d616368696e655f746573742e6d6274_3, ["agent paused to terminated"]),
-    4: (__test_6167656e745f73746174655f6d616368696e655f746573742e6d6274_4, ["agent idle to running"]),
-    5: (__test_6167656e745f73746174655f6d616368696e655f746573742e6d6274_5, ["agent idle to paused"]),
-    6: (__test_6167656e745f73746174655f6d616368696e655f746573742e6d6274_6, ["agent idle to terminated"]),
-    7: (__test_6167656e745f73746174655f6d616368696e655f746573742e6d6274_7, ["agent running to idle"]),
-    8: (__test_6167656e745f73746174655f6d616368696e655f746573742e6d6274_8, ["agent running to error"]),
-    9: (__test_6167656e745f73746174655f6d616368696e655f746573742e6d6274_9, ["agent running to paused"]),
-    10: (__test_6167656e745f73746174655f6d616368696e655f746573742e6d6274_10, ["agent running to terminated"]),
-    11: (__test_6167656e745f73746174655f6d616368696e655f746573742e6d6274_11, ["agent error to idle"]),
-    12: (__test_6167656e745f73746174655f6d616368696e655f746573742e6d6274_12, ["agent error to paused"]),
-    13: (__test_6167656e745f73746174655f6d616368696e655f746573742e6d6274_13, ["agent error to terminated"]),
-    14: (__test_6167656e745f73746174655f6d616368696e655f746573742e6d6274_14, ["agent pending_approval to idle"]),
-    15: (__test_6167656e745f73746174655f6d616368696e655f746573742e6d6274_15, ["agent pending_approval to terminated"]),
-    16: (__test_6167656e745f73746174655f6d616368696e655f746573742e6d6274_16, ["agent terminated to anything is false"]),
-    17: (__test_6167656e745f73746174655f6d616368696e655f746573742e6d6274_17, ["agent same status to same status is false"]),
-    18: (__test_6167656e745f73746174655f6d616368696e655f746573742e6d6274_18, ["agent pending_approval to paused is false"]),
-    19: (__test_6167656e745f73746174655f6d616368696e655f746573742e6d6274_19, ["agent apply_transition returns error for invalid transition"]),
-  },
-  "agent_state_machine.mbt": {
-  },
-}
-
-
-///|
-impl MoonBit_Test_Driver for MoonBit_Test_Driver_Internal_No_Args with run_test(
-  _,
-  filename,
-  index,
-  handle_result,
-  error_to_string,
-) {
-  if moonbit_test_driver_internal_no_args_tests.0.get(filename)
-    is Some(index_map) &&
-    index_map.get(index) is Some((f, attrs)) {
-    let name = if attrs is [name, ..] { name } else { "" }
-    if MOONBIT_TEST_DRIVER_INTERNAL_IS_NATIVE {
-      for attr in attrs {
-        if attr is [.. "panic", ..] {
-          raise MoonBitTestDriverInternalSkipTest(name~)
-        }
-      }
-    }
-    moonbit_test_driver_internal_catch_error(
-      f,
-      on_ok=() => handle_result(name, "", false),
-      on_err=err => handle_result(name, error_to_string(err), false),
-    )
-    true
-  } else {
-    false
-  }
-}
 ///|
 #cfg(target="native")
 #test_entry
@@ -573,7 +498,7 @@ fn moonbit_test_driver_internal_do_execute(
     let message = message.escape()
     @moonbitlang/core/prelude.println("----- BEGIN MOON TEST RESULT -----")
     @moonbitlang/core/prelude.println(
-      "{\"package\": \"paperclip/moonbit-core/domain/common\", \"filename\": \{file_name}, \"index\": \"\{index}\", \"test_name\": \{test_name}, \"message\": \{message}}",
+      "{\"package\": \"paperclip/moonbit-core/domain/agent\", \"filename\": \{file_name}, \"index\": \"\{index}\", \"test_name\": \{test_name}, \"message\": \{message}}",
     )
     @moonbitlang/core/prelude.println("----- END MOON TEST RESULT -----")
   }

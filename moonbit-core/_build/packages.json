@@ -89,6 +89,19 @@
       "root": "paperclip/moonbit-core",
       "rel": "domain/common",
       "files": {
+        "E:\\moonbit\\clawteam\\moonbit-core\\src\\domain\\common\\agent_state_machine.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        },
         "E:\\moonbit\\clawteam\\moonbit-core\\src\\domain\\common\\enums.mbt": {
           "backend": [
             "Wasm",
@@ -105,6 +118,19 @@
       },
       "wbtest-files": {},
       "test-files": {
+        "E:\\moonbit\\clawteam\\moonbit-core\\src\\domain\\common\\agent_state_machine_test.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        },
         "E:\\moonbit\\clawteam\\moonbit-core\\src\\domain\\common\\enums_test.mbt": {
           "backend": [
             "Wasm",

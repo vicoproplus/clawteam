@@ -395,42 +395,16 @@ fn moonbit_test_driver_internal_catch_error(
 let moonbit_test_driver_internal_no_args_tests : MoonBitTestDriverInternalTestMap[
   () -> Unit raise,
 ] = {
-  "enums_test.mbt": {
-    0: (__test_656e756d735f746573742e6d6274_0, ["company status to_string"]),
-    1: (__test_656e756d735f746573742e6d6274_1, ["agent status to_string"]),
-    2: (__test_656e756d735f746573742e6d6274_2, ["agent role to_string"]),
-    3: (__test_656e756d735f746573742e6d6274_3, ["agent adapter type to_string"]),
-    4: (__test_656e756d735f746573742e6d6274_4, ["issue status to_string"]),
-    5: (__test_656e756d735f746573742e6d6274_5, ["issue priority to_string"]),
-    6: (__test_656e756d735f746573742e6d6274_6, ["goal level to_string"]),
-    7: (__test_656e756d735f746573742e6d6274_7, ["goal status to_string"]),
-    8: (__test_656e756d735f746573742e6d6274_8, ["project status to_string"]),
+  "validation_test.mbt": {
+    0: (__test_76616c69646174696f6e5f746573742e6d6274_0, ["validate agent create - valid input"]),
+    1: (__test_76616c69646174696f6e5f746573742e6d6274_1, ["validate agent create - empty name"]),
+    2: (__test_76616c69646174696f6e5f746573742e6d6274_2, ["validate agent create - negative budget"]),
+    3: (__test_76616c69646174696f6e5f746573742e6d6274_3, ["validate agent update - valid input"]),
+    4: (__test_76616c69646174696f6e5f746573742e6d6274_4, ["validate agent update - empty name"]),
   },
-  "enums.mbt": {
+  "validation.mbt": {
   },
-  "agent_state_machine_test.mbt": {
-    0: (__test_6167656e745f73746174655f6d616368696e655f746573742e6d6274_0, ["agent active to paused"]),
-    1: (__test_6167656e745f73746174655f6d616368696e655f746573742e6d6274_1, ["agent active to terminated"]),
-    2: (__test_6167656e745f73746174655f6d616368696e655f746573742e6d6274_2, ["agent paused to idle"]),
-    3: (__test_6167656e745f73746174655f6d616368696e655f746573742e6d6274_3, ["agent paused to terminated"]),
-    4: (__test_6167656e745f73746174655f6d616368696e655f746573742e6d6274_4, ["agent idle to running"]),
-    5: (__test_6167656e745f73746174655f6d616368696e655f746573742e6d6274_5, ["agent idle to paused"]),
-    6: (__test_6167656e745f73746174655f6d616368696e655f746573742e6d6274_6, ["agent idle to terminated"]),
-    7: (__test_6167656e745f73746174655f6d616368696e655f746573742e6d6274_7, ["agent running to idle"]),
-    8: (__test_6167656e745f73746174655f6d616368696e655f746573742e6d6274_8, ["agent running to error"]),
-    9: (__test_6167656e745f73746174655f6d616368696e655f746573742e6d6274_9, ["agent running to paused"]),
-    10: (__test_6167656e745f73746174655f6d616368696e655f746573742e6d6274_10, ["agent running to terminated"]),
-    11: (__test_6167656e745f73746174655f6d616368696e655f746573742e6d6274_11, ["agent error to idle"]),
-    12: (__test_6167656e745f73746174655f6d616368696e655f746573742e6d6274_12, ["agent error to paused"]),
-    13: (__test_6167656e745f73746174655f6d616368696e655f746573742e6d6274_13, ["agent error to terminated"]),
-    14: (__test_6167656e745f73746174655f6d616368696e655f746573742e6d6274_14, ["agent pending_approval to idle"]),
-    15: (__test_6167656e745f73746174655f6d616368696e655f746573742e6d6274_15, ["agent pending_approval to terminated"]),
-    16: (__test_6167656e745f73746174655f6d616368696e655f746573742e6d6274_16, ["agent terminated to anything is false"]),
-    17: (__test_6167656e745f73746174655f6d616368696e655f746573742e6d6274_17, ["agent same status to same status is false"]),
-    18: (__test_6167656e745f73746174655f6d616368696e655f746573742e6d6274_18, ["agent pending_approval to paused is false"]),
-    19: (__test_6167656e745f73746174655f6d616368696e655f746573742e6d6274_19, ["agent apply_transition returns error for invalid transition"]),
-  },
-  "agent_state_machine.mbt": {
+  "types.mbt": {
   },
 }
 
@@ -573,7 +547,7 @@ fn moonbit_test_driver_internal_do_execute(
     let message = message.escape()
     @moonbitlang/core/prelude.println("----- BEGIN MOON TEST RESULT -----")
     @moonbitlang/core/prelude.println(
-      "{\"package\": \"paperclip/moonbit-core/domain/common\", \"filename\": \{file_name}, \"index\": \"\{index}\", \"test_name\": \{test_name}, \"message\": \{message}}",
+      "{\"package\": \"paperclip/moonbit-core/domain/agent\", \"filename\": \{file_name}, \"index\": \"\{index}\", \"test_name\": \{test_name}, \"message\": \{message}}",
     )
     @moonbitlang/core/prelude.println("----- END MOON TEST RESULT -----")
   }
