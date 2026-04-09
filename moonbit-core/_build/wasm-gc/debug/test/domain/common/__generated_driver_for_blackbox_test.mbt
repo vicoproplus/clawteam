@@ -405,7 +405,6 @@ let moonbit_test_driver_internal_no_args_tests : MoonBitTestDriverInternalTestMa
     6: (__test_656e756d735f746573742e6d6274_6, ["goal level to_string"]),
     7: (__test_656e756d735f746573742e6d6274_7, ["goal status to_string"]),
     8: (__test_656e756d735f746573742e6d6274_8, ["project status to_string"]),
-    9: (__test_656e756d735f746573742e6d6274_9, ["enum equality"]),
   },
   "enums.mbt": {
   },

@@ -3,7 +3,7 @@
 // === Company ===
 
 // TS: COMPANY_STATUSES = ["active", "paused", "archived"]
-pub enum CompanyStatus {
+pub(all) enum CompanyStatus {
   Active
   Paused
   Archived
@@ -21,7 +21,7 @@ pub fn company_status_to_string(s: CompanyStatus) -> String {
 
 // TS: AGENT_STATUSES = ["active", "paused", "idle", "running", "error", "pending_approval", "terminated"]
 // 注意: "active" 是独立枚举值 (从 STATE-MACHINE-CONTRACTS.md 调研结果)
-pub enum AgentStatus {
+pub(all) enum AgentStatus {
   Active
   Paused
   Idle
@@ -44,7 +44,7 @@ pub fn agent_status_to_string(s: AgentStatus) -> String {
 }
 
 // TS: AGENT_ROLES = ["ceo", "cto", "cmo", "cfo", "engineer", "designer", "pm", "qa", "devops", "researcher", "general"]
-pub enum AgentRole {
+pub(all) enum AgentRole {
   CEO
   CTO
   CMO
@@ -75,7 +75,7 @@ pub fn agent_role_to_string(r: AgentRole) -> String {
 }
 
 // TS: AGENT_ADAPTER_TYPES = ["process", "http", "claude_local", "codex_local", "gemini_local", "opencode_local", "pi_local", "cursor", "openclaw_gateway"]
-pub enum AgentAdapterType {
+pub(all) enum AgentAdapterType {
   Process
   Http
   ClaudeLocal
@@ -104,7 +104,7 @@ pub fn adapter_type_to_string(t: AgentAdapterType) -> String {
 // === Issue ===
 
 // TS: ISSUE_STATUSES = ["backlog", "todo", "in_progress", "in_review", "done", "blocked", "cancelled"]
-pub enum IssueStatus {
+pub(all) enum IssueStatus {
   Backlog
   Todo
   InProgress
@@ -127,7 +127,7 @@ pub fn issue_status_to_string(s: IssueStatus) -> String {
 }
 
 // TS: ISSUE_PRIORITIES = ["critical", "high", "medium", "low"]
-pub enum IssuePriority {
+pub(all) enum IssuePriority {
   Critical
   High
   Medium
@@ -146,7 +146,7 @@ pub fn issue_priority_to_string(p: IssuePriority) -> String {
 // === Goal ===
 
 // TS: GOAL_LEVELS = ["company", "team", "agent", "task"]
-pub enum GoalLevel {
+pub(all) enum GoalLevel {
   Company
   Team
   Agent
@@ -163,7 +163,7 @@ pub fn goal_level_to_string(l: GoalLevel) -> String {
 }
 
 // TS: GOAL_STATUSES = ["planned", "active", "achieved", "cancelled"]
-pub enum GoalStatus {
+pub(all) enum GoalStatus {
   Planned
   Active
   Achieved
@@ -182,7 +182,7 @@ pub fn goal_status_to_string(s: GoalStatus) -> String {
 // === Project ===
 
 // TS: PROJECT_STATUSES = ["backlog", "planned", "in_progress", "completed", "cancelled"]
-pub enum ProjectStatus {
+pub(all) enum ProjectStatus {
   Backlog
   Planned
   InProgress
