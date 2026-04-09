@@ -48,6 +48,8 @@ import { createPluginHostServiceCleanup } from "./services/plugin-host-service-c
 import { pluginRegistryService } from "./services/plugin-registry.js";
 import { createHostClientHandlers } from "@paperclipai/plugin-sdk";
 import type { BetterAuthSessionResult } from "./auth/better-auth.js";
+import { MoonBitProcessManager } from "./services/moonbit-process-manager.js";
+import { MoonBitClient } from "./services/moonbit-client.js";
 
 type UiMode = "none" | "static" | "vite-dev";
 const FEEDBACK_EXPORT_FLUSH_INTERVAL_MS = 5_000;
@@ -87,6 +89,15 @@ export async function createApp(
   },
 ) {
   const app = express();
+
+  // Initialize MoonBit process manager
+  const moonbitManager = new MoonBitProcessManager();
+  const moonbitStarted = await moonbitManager.start();
+  if (moonbitStarted) {
+    logger.info("MoonBit JSON-RPC server started");
+  } else {
+    logger.warn("MoonBit JSON-RPC server not started (disabled or failed)");
+  }
 
   app.use(express.json({
     // Company import/export payloads can inline full portable packages.
